@@ -23,6 +23,7 @@
         autofocus
       />
       <label for="password" class="sr-only">Password</label>
+      
       <input
         type="password"
         id="password"
@@ -31,8 +32,9 @@
         v-model="user.password"
         required
       />
+      
+      <button class="btn" type="submit">Sign in</button>
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
     </form>
   </div>
 </template>
@@ -74,3 +76,27 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.form-signin {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  flex-grow: 1;
+  flex-basis: 100%;
+  margin: 10%
+
+}
+input {
+  margin: 10px;
+}
+#login {
+    width: 100%
+}
+
+.btn {
+  max-width: 25%;
+  justify-content: center
+}
+
+</style>
