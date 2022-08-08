@@ -1,12 +1,20 @@
 <template>
   <div class="home">
-    <div>PLAYDATE STUFF</div>
-    <div>
+    <div class="playdate-panel">
+      PLAYDATE STUFF
+      <br>
+      PLAYDATE STUFF
+      <br>
+      PLAYDATE STUFF
+      <br>
+      PLAYDATE STUFF
+      <br>
+      PLAYDATE STUFF
+      <br>
+      </div>
+    <div class="login-panel">
     <login v-if="$store.state.token == ''"></login>
     </div>
-  
-    <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
   </div>
 </template>
 
@@ -26,5 +34,19 @@ export default {
 <style scoped>
 .home {
   display: flex;
+  justify-content: space-around;
 }
+.login-panel,.playdate-panel{
+  /* flex-grow: 1 */
+  flex-basis: 40%;
+  
+}
+.login-panel {
+  background-color: aqua
+}
+.playdate-panel{
+  background-color: burlywood;
+}
+
+
 </style>
