@@ -2,7 +2,7 @@
   <div class="home">
     <div>PLAYDATE STUFF</div>
     <div>
-    <login></login>
+    <login v-if="$store.state.token == ''"></login>
     </div>
   
     <h1>Home</h1>

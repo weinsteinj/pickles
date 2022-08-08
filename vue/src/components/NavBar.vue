@@ -10,10 +10,10 @@
       <router-link class="main-nav-link" v-bind:to="{ name: 'login' }" v-else>login</router-link>
         </li>
         <li>
-          <router-link class="main-nav-link" :to="{}">profile</router-link>
+          <router-link class="main-nav-link" :to="{/* TODO */}">profile</router-link>
         </li>
         <li>
-          <router-link class="main-nav-link" :to="{}">play-dates</router-link>
+          <router-link class="main-nav-link" :to="{/* TODO */}">play-dates</router-link>
         </li>
       </ul>
       
