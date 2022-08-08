@@ -7,7 +7,7 @@ SELECT pg_terminate_backend(pid)
 FROM pg_stat_activity
 WHERE datname = 'pickles';
 
-DROP DATABASE final_capstone;
+DROP DATABASE pickles;
 
 DROP USER final_capstone_owner;
 DROP USER final_capstone_appuser;
