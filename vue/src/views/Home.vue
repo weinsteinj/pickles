@@ -52,7 +52,8 @@ export default {
   
 }
 .login-panel {
-  background-color: aqua
+  background-color: #52B69A;
+  border-radius: 15px 0 0 0;
 }
 .playdate-panel{
   background-color: burlywood;

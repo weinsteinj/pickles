@@ -29,7 +29,7 @@ img {
 .pet-spotlight-container {
     margin-top: 5rem;
     display: flex;
-    background-color: orange;
+    background-color: #184E77;
     justify-content: space-around;
 
 }
