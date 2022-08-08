@@ -12,7 +12,7 @@ CREATE TABLE users
 	password_hash varchar(200),
 	role varchar(50) NOT NULL,
 	email_address varchar(250) NOT NULL,
-	address varchar(500) NOT NULL,
+	address varchar(500), -- we think this should be not required?
 	birth_date date,
 	pickle_points int,
 
