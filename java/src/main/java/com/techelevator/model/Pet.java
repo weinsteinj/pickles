@@ -10,12 +10,12 @@ public class Pet {
     private int species;
     private int sex;
     private Date birthDate;
-    private String personality;
+    private int personality;
     private boolean isFixed;
     private boolean hasVaccinations;
-    private double weight;
+    private int size;
 
-    public Pet(int petId, String name, int species, int sex, Date birthDate, String personality, boolean isFixed, boolean hasVaccinations, double weight) {
+    public Pet(int petId, String name, int species, int sex, Date birthDate, int personality, boolean isFixed, boolean hasVaccinations, int size) {
         this.petId = petId;
         this.name = name;
         this.species = species;
@@ -24,7 +24,7 @@ public class Pet {
         this.personality = personality;
         this.isFixed = isFixed;
         this.hasVaccinations = hasVaccinations;
-        this.weight = weight;
+        this.size = size;
     }
 
     public Pet() {
@@ -71,11 +71,11 @@ public class Pet {
         this.birthDate = birthDate;
     }
 
-    public String getPersonality() {
+    public int getPersonality() {
         return personality;
     }
 
-    public void setPersonality(String personality) {
+    public void setPersonality(int personality) {
         this.personality = personality;
     }
 
@@ -95,12 +95,12 @@ public class Pet {
         this.hasVaccinations = hasVaccinations;
     }
 
-    public double getWeight() {
-        return weight;
+    public int getSize() {
+        return size;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public void setSize(int size) {
+        this.size = size;
     }
 
     @Override
@@ -108,11 +108,11 @@ public class Pet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
-        return species == pet.species && sex == pet.sex && isFixed == pet.isFixed && hasVaccinations == pet.hasVaccinations && Double.compare(pet.weight, weight) == 0 && Objects.equals(name, pet.name) && Objects.equals(birthDate, pet.birthDate) && Objects.equals(personality, pet.personality);
+        return species == pet.species && sex == pet.sex && isFixed == pet.isFixed && hasVaccinations == pet.hasVaccinations && Double.compare(pet.size, size) == 0 && Objects.equals(name, pet.name) && Objects.equals(birthDate, pet.birthDate) && Objects.equals(personality, pet.personality);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, species, sex, birthDate, personality, isFixed, hasVaccinations, weight);
+        return Objects.hash(name, species, sex, birthDate, personality, isFixed, hasVaccinations, size);
     }
 }
