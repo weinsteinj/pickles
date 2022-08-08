@@ -19,3 +19,9 @@ export default {
 }
 
 </script>
+
+<style>
+#app {
+  font-family: 'Cabin', sans-serif;
+}
+</style>
