@@ -11,13 +11,13 @@ public class Pet {
     private int species;
     private int sex;
     private Date birthDate;
-    private int personality;
+    private int[] personality;
     private boolean isFixed;
     private boolean hasVaccinations;
     private int size;
     private int userId;
 
-    public Pet(int petId, String name, int species, int sex, Date birthDate, int personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
+    public Pet(int petId, String name, int species, int sex, Date birthDate, int[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
         this.petId = petId;
         this.name = name;
         this.species = species;
@@ -74,11 +74,11 @@ public class Pet {
         this.birthDate = birthDate;
     }
 
-    public int getPersonality() {
+    public int[] getPersonality() {
         return personality;
     }
 
-    public void setPersonality(int personality) {
+    public void setPersonality(int[] personality) {
         this.personality = personality;
     }
 
@@ -119,13 +119,13 @@ public class Pet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
-        return species == pet.species && sex == pet.sex && isFixed == pet.isFixed && hasVaccinations == pet.hasVaccinations && size == pet.size && Objects.equals(name, pet.name) && Objects.equals(birthDate, pet.birthDate); //&& Arrays.equals(personality, pet.personality);
+        return species == pet.species && sex == pet.sex && isFixed == pet.isFixed && hasVaccinations == pet.hasVaccinations && size == pet.size && Objects.equals(name, pet.name) && Objects.equals(birthDate, pet.birthDate) && Arrays.equals(personality, pet.personality);
     }
 
     @Override
     public int hashCode() {
         int result = Objects.hash(name, species, sex, birthDate, isFixed, hasVaccinations, size);
-       // result = 31 * result + Arrays.hashCode(personality);
+        result = 31 * result + Arrays.hashCode(personality);
         return result;
     }
 }
