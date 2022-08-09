@@ -1,28 +1,45 @@
 <template>
   <div class="pet-spotlight-container">
-      <div class="img-left">
-        <img src="../assets/images/caitosdog.jpg" alt="">  
-      </div>
-      
-      <div class="img-center">
-        <img src="../assets/images/nicholasdog.jpg" alt="">  
-      </div>
-      <div class="img-right">
-       <img src="../assets/images/stockcuteturtle.jpg" alt="">   
-      </div>
-      
+      <div class="flexslider">
+          <ul class="slides">
+            <li>
+              <img class="img-left" src="../assets/images/caitosdog.jpg" />
+            </li>
+            <li>
+              <img class="img-center" src="../assets/images/nicholasdog.jpg" />
+            </li>
+            <li>
+              <img class="img-right" src="../assets/images/stockcuteturtle.jpg" />
+            </li>
+        </ul>
+    </div>
+  </div>    
+
+
       <!-- <router-link :to="{/* TODO - Links to Registration */}" >Join us (tbd)</router-link> -->
-</div>
+
 </template>
 
 <script>
 export default {
     name: 'pet-spotlight',
+
+    mounted() {
+      let recaptchaScript = document.createElement('script')
+      recaptchaScript.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+      document.head.appendChild(recaptchaScript)
+    }
 }
 </script>
 
 <style scoped>
 img {
+    width: 10rem;
+}
+
+.img-left,
+.img-center,
+.img-right {
     width: 10rem;
 }
 

@@ -19,22 +19,7 @@
 </div>
 
     <div class="pet-spotlight">
-      <pet-spotlight>
-        <div class="flexslider">
-          <ul class="slides">
-            <li>
-              <img src="https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-800x825.jpg" />
-            </li>
-            <li>
-              <img src="src/assets/images/nicholasdog.jpg" />
-            </li>
-            <li>
-              <img src="src/assets/images/stockcuteturtle.jpg" />
-            </li>
-        </ul>
-      </div>
-        
-      </pet-spotlight>
+      <pet-spotlight></pet-spotlight>
       </div>
 
 
