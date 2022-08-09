@@ -1,6 +1,6 @@
 <template>
   <div id = "pet-register" class="text-center">
-      <form class="pet-form-register" @submit.prevent>
+      <form class="pet-form-register" @submit.prevent="registerPet">
           
       <h1>Register New Pet: </h1>
       <label for="petName">Name: </label>
@@ -84,10 +84,11 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
+import petService from '@/services/petService.js'
 
 export default {
      components: {
-    Multiselect
+    Multiselect,
   },
     name: 'pet-register',
     data() {
@@ -105,7 +106,16 @@ export default {
              value: '',
         options: ['Timid', 'Tires Quickly', 'Independent', 'Playful', 'Toy Sharing', 'Confident', 'High Energy', 'Toy Possessive']         
         }
-    }
+    },
+    methods: {
+      registerPet() {
+        petService.createPet(this.pet)
+         .then(response => {
+           if (response.status === 200) 
+            return;  // add commit mutation to update the $store.state
+         })
+      },
+    },
 }
 </script>
 

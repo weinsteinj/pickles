@@ -4,8 +4,8 @@ export default {
 // will not write create method for user here--pls see AuthServices
 
     
-    createPet() {
-        return axios.post('/pet');
+    createPet(pet) {
+        return axios.post('/pet', pet);
     },    
 
     getAllPets() {
@@ -16,8 +16,8 @@ export default {
         return axios.get(`/pet/${petId}`);
     },
     //POST-update
-    updatePet(petId) {
-        return axios.put(`/pet/${petId}`);
+    updatePet(petId, pet) {
+        return axios.put(`/pet/${petId}`, pet);
     },
     deletePet(petId) {
         return axios.delete(`/pet/${petId}`);
