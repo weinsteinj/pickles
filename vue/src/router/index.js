@@ -55,7 +55,7 @@ const router = new Router({
       }
     },
     {
-      path: "/pet-register",
+      path: "/pet",
       name: "pet-register",
       component: petRegister,
       meta: {

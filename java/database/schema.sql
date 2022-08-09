@@ -10,9 +10,9 @@ CREATE TABLE users
 	last_name varchar(50) NOT NULL,
 	username varchar(50) UNIQUE NOT NULL,
 	password_hash varchar(200),
-	role varchar(50) NOT NULL,
+	role varchar(50),
 	email_address varchar(250) NOT NULL,
-	address varchar(500), --should be made not null and change to address ID
+	address varchar(500), --should be made not null and change to address ID (take out of table)
 	birth_date date,
 	pickle_points int,
 

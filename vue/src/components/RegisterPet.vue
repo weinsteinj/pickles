@@ -98,7 +98,7 @@ export default {
                 species: '',
                 sex: '',
                 birthDate: '',
-                personality: '',
+                personality: [],
                 isFixed: '',
                 hasVaccinations: '',
                 size:''   
