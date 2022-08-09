@@ -121,15 +121,14 @@ export default {
 </style>
 
 <style>
- #tag {
-     width: 150px;
-     height: 25px;
-}
+ 
 
 
  #petName {
    margin-left: 50px;
    width: 170px;
+   height: 30px;
+   margin-bottom: 0px;
 }
 
 #petSpecies {
