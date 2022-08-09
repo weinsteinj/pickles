@@ -4,6 +4,7 @@ import com.techelevator.dao.PetDao;
 import com.techelevator.model.Pet;
 import com.techelevator.model.PetAlreadyExistsException;
 import com.techelevator.model.PetNotFoundException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ public class PetController {
     }
 
 // consider packaging up user_id as part of Pet object / Pet DTO instead of path variable
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = "/user/{user_id}/register", method = RequestMethod.POST)
     public void registerPet(@Valid @RequestBody Pet newPet, @PathVariable int user_id) {
         try {
@@ -27,6 +29,7 @@ public class PetController {
         }
 
     }
+
 
     @RequestMapping(path = "/pet/{pet_id}", method = RequestMethod.GET)
     public Pet getPetById(@PathVariable int pet_id) {
@@ -43,4 +46,6 @@ public class PetController {
     public List<Pet> petList() {
         return petDao.listAllPets();
     }
+
+    //get pets by user
 }
