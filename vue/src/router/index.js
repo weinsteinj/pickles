@@ -59,7 +59,7 @@ const router = new Router({
       name: "pet-register",
       component: petRegister,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     }
   ]
