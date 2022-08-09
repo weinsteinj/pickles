@@ -50,6 +50,7 @@ export default {
       user: {
         username: '',
         password: '',
+        
         confirmPassword: '',
         role: 'user',
       },
