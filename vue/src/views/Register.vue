@@ -85,9 +85,12 @@
         Create Account
       </button>
 
-      <router-link :to="{ name: 'login' }" class="already-has-account"
+      <div class="login-link">
+        <router-link :to="{ name: 'login' }" class="already-has-account"
         >Already Have an account?</router-link
       >
+      </div>
+      
     </form>
     <div class="right-panel"></div>
   </div>
@@ -123,10 +126,12 @@ export default {
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
-              this.$router.push({
-                path: "/login",
-                query: { registration: "success" },
-              });
+              this.$router.go(-1
+              //   {
+              //   path: "/login",
+              //   query: { registration: "success" },
+              // }
+              );
             }
           })
           .catch((error) => { // TODO: Figure out accurate response.messages
@@ -262,16 +267,24 @@ export default {
 
 label {
   font-weight: bold;
-  padding: 0;
-  margin: 0;
   display: inline-block;
 }
 
 .btn {
-  margin-top: 1rem;
+  margin-top: .5rem;
   line-height: 2rem;
   width: 50%;
   border-radius: .5rem;
+  background-color: var(--btn-green);
+  font-family: 'Cabin', sans-serif; 
+  color: white;
+  margin-bottom: .5rem;
+}
+
+.login-link {
+  display: inline-block;
+
+
 }
 
 input {
@@ -279,5 +292,7 @@ input {
   display: inline-block;
   line-height: 2rem;
   border-radius: .5rem;
+  margin-bottom: 1rem;
+  
 }
 </style>
