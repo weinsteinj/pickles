@@ -1,5 +1,12 @@
 <template>
   <div id = "pet-register" class="text-center">
+    <div class="left-panel">
+      <h2>Pickles</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiandae necessitatibus architecto. Reiciendis adipisci at fuga aut ratione! Obcaecati deleniti architecto aliquam repellendus optio ea, dolorem voluptatum nulla fuga.</p>
+      <p></p>
+
+      <img src="../assets\images\playful_cat_re_ac9g.svg" alt="playful cat" class="playful-cat">
+    </div>
       <form class="pet-form-register" @submit.prevent="registerPet">
           
       <h1>Register New Pet: </h1>
@@ -200,6 +207,19 @@ export default {
 #selectBtn {
     margin-left: 95px;
     width: 170px;
+}
+.left-panel {
+  display: flex;
+  flex-direction: column;
+}
+.playful-cat {
+  width: 100%;
+  justify-self: flex-end;
+  flex-grow: 2;
+}
+.form {
+  display: flex;
+  flex-direction: column;
 }
 
 

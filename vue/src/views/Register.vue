@@ -1,8 +1,8 @@
 <template>
   <div id="register" class="text-center">
     <div class="left-panel">
-      <h2>Pickles</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiandae necessitatibus architecto. Reiciendis adipisci at fuga aut ratione! Obcaecati deleniti architecto aliquam repellendus optio ea, dolorem voluptatum nulla fuga.</p>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiandae necessitatibus architecto. Reiciendis adipisci at fuga aut ratione! Obcaecati deleniti architecto aliquam repellendus optio ea, dolorem voluptatum nulla fuga.      <h2>Pickles</h2>
+      <p></p>
 
       <img src="../assets/images/woman-withdog.svg" alt="woman with dog" class="woman-with-dog">
     </div>
