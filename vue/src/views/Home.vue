@@ -13,8 +13,8 @@
       PLAYDATE STUFF
       <br>
       </div>
-    <div class="login-panel">
-    <login v-if="$store.state.token == ''"></login>
+    <div class="login-panel" v-if="$store.state.token == ''">
+    <login></login>
     </div>
 </div>
 
@@ -53,11 +53,19 @@ export default {
 }
 .login-panel {
   background-color: var(--primary-green);
-  border-radius: 15px 0 0 0;
+  border-radius: 15px 15px 15px 15px;
+  flex-grow: 1;
+  margin: 0 1rem 0 1rem;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.18);
+  height: 45vh;
 }
 .playdate-panel{
   background-color: var(--secondary-green);
   flex-grow: 1;
+  margin: 0 1rem 0 1rem;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.18);
+  height: 45vh;
 }
 
 
