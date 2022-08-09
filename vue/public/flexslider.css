@@ -51,7 +51,7 @@
 }
 .flexslider .slides img {
   width: 100%;
-  display: block;
+  display: flex;
 }
 .flexslider .slides:after {
   content: "\0020";

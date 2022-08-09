@@ -12,7 +12,7 @@ CREATE TABLE users
 	password_hash varchar(200),
 	role varchar(50),
 	email_address varchar(250) NOT NULL,
-	address varchar(500), --should be made not null and change to address ID (take out of table)
+	address varchar(500), --take this out of the table
 	birth_date date,
 	pickle_points int,
 
@@ -70,7 +70,7 @@ CREATE TABLE address
 CREATE TABLE personality
 (
 	personality_id serial,
-	type varchar(10) UNIQUE NOT NULL,
+	type varchar(100) UNIQUE NOT NULL,
 
 	constraint pk_personality_id PRIMARY KEY (personality_id)
 );
@@ -94,29 +94,29 @@ CREATE TABLE messages
 );
 
 ----PERSONALITY INSERTS--
---
---INSERT INTO personality(type)
---VALUES ('timid');
---
---INSERT INTO personality(type)
---VALUES ('tires quickly');
---
---INSERT INTO personality(type)
---VALUES ('independent');
---
---INSERT INTO personality(type)
---VALUES ('playful');
---
---INSERT INTO personality(type)
---VALUES ('toy sharing');
---
---INSERT INTO personality(type)
---VALUES ('confident');
---
---INSERT INTO personality(type)
---VALUES ('high energy');
---
---INSERT INTO personality(type)
---VALUES ('toy possessive');
+
+INSERT INTO personality(type)
+VALUES ('timid');
+
+INSERT INTO personality(type)
+VALUES ('tires quickly');
+
+INSERT INTO personality(type)
+VALUES ('independent');
+
+INSERT INTO personality(type)
+VALUES ('playful');
+
+INSERT INTO personality(type)
+VALUES ('toy sharing');
+
+INSERT INTO personality(type)
+VALUES ('confident');
+
+INSERT INTO personality(type)
+VALUES ('high energy');
+
+INSERT INTO personality(type)
+VALUES ('toy possessive');
 
 COMMIT TRANSACTION;
