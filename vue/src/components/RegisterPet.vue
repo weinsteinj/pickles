@@ -116,6 +116,8 @@ export default {
     },
     methods: {
       registerPet() {
+
+        this.pet.personality = this.value;
         this.pet.isFixed = Boolean(this.pet.isFixed);
         this.pet.hasVaccinations = Boolean(this.pet.hasVaccinations);
 
