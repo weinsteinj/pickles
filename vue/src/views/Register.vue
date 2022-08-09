@@ -38,7 +38,7 @@
           class="email-input"
           type="text"
           id="emailAddress"
-          v-model="user.emailAddress"
+          v-model="user.email"
           required
           autofocus
         />
