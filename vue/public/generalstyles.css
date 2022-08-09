@@ -8,9 +8,329 @@
 :root {
     --primary-green: #52B69A;
     --secondary-green: #D9ED92;
-
     --btn-green: #76C893;
-    
     --blur: 10px;
 }
 
+/*================================================================================================================================================================================================
+                                                                                                 APP
+  ================================================================================================================================================================================================*/
+
+#app {
+    font-family: 'Cabin', sans-serif;
+}
+
+
+/*================================================================================================================================================================================================
+                                                                                                 HOME
+  ================================================================================================================================================================================================*/
+
+.home {
+    display: flex;
+    justify-content: space-around;
+}
+
+.login-panel, .playdate-panel {
+    flex-basis: 40%;
+}
+
+.login-panel {
+    background-color: var(--primary-green);
+    border-radius: 15px 15px 15px 15px;
+    margin: 0 1rem 0 1rem;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.18);
+    height: 45vh;
+    transition: box-shadow 10ms;
+}
+
+.login-panel:hover,
+.playdate-panel:hover {
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.18);
+
+}
+
+.playdate-panel {
+    background-color: var(--secondary-green);
+    flex-grow: 1;
+    margin: 0 1rem 0 1rem;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.18);
+    height: 45vh;
+}
+
+/*================================================================================================================================================================================================
+                                                                                                 REGISTER USER
+  ================================================================================================================================================================================================*/
+.form-register {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+#register {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-panel {
+    width: 20%;
+    background-color: var(--secondary-green);
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    display: inline-block;
+}
+
+.btn {
+    margin-top: .5rem;
+    line-height: 2rem;
+    width: 50%;
+    border-radius: .5rem;
+    background-color: var(--btn-green);
+    font-family: 'Cabin', sans-serif;
+    color: white;
+    margin-bottom: .5rem;
+}
+
+.btn:hover {
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.18);
+}
+
+.login-link {
+    display: inline-block;
+}
+
+.already-has-account {
+    text-decoration: none;
+    color: var(--primary-green);
+}
+
+.already-has-account:hover {
+    text-decoration: underline;
+}
+
+input {
+    background-color: rgb(226, 223, 223);
+    display: inline-block;
+    line-height: 2rem;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    margin-top: 7rem;
+}
+
+h2 {
+    text-align: center;
+    color: var(--primary-green);
+}
+
+p {
+    padding-left: 1rem;
+    color: var(--primary-green);
+}
+
+.woman-with-dog {
+    width: 100%;
+    justify-self: flex-end;
+    flex-grow: 2;
+}
+
+/*================================================================================================================================================================================================
+                                                                                                 REGISTER PET
+  ================================================================================================================================================================================================*/
+#petName {
+    margin-left: 50px;
+    width: 170px;
+    margin-bottom: 0px;
+}
+
+#petSpecies {
+    margin: 10px;
+    width: 175px;
+    height: 25px;
+    margin-left: 40px;
+
+}
+
+#petSex {
+    margin-left: 67px;
+    width: 175px;
+    height: 25px;
+}
+
+#birthDate {
+    margin-top: 10px;
+    margin-left: 34px;
+    margin-bottom: 10px;
+    width: 175px;
+}
+
+#petFixed {
+    width: 175px;
+    height: 25px;
+    margin-left: 57px;
+}
+
+#petVac {
+    height: 25px;
+    width: 175px;
+    margin-top: 10px;
+    margin-left: 18px;
+}
+
+
+#petSize {
+    width: 175px;
+    height: 25px;
+    margin-left: 63px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.multiselect {
+    width: 400px;
+    margin-bottom: 50px;
+    ;
+    margin-top: 10px;
+}
+
+#selectBtn {
+    margin-left: 95px;
+    width: 170px;
+}
+
+
+.multiselect {
+    width: 400px;
+    margin-bottom: 50px;
+    ;
+    margin-top: 10px;
+}
+
+#selectBtn {
+    margin-left: 95px;
+    width: 170px;
+}
+
+/*================================================================================================================================================================================================
+                                                                                                 NAV BAR
+  ================================================================================================================================================================================================*/
+#nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: #52B69A; */
+    height: 5rem;
+    position: relative;
+    font-family: 'Cabin', sans-serif;
+}
+
+.logo {
+    height: 4rem;
+    flex-grow: 2;
+}
+
+.logo:hover {
+    height: 4.05rem;
+}
+
+.main-nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding-right: 1rem;
+    align-items: center;
+    justify-content: space-around;
+
+
+}
+
+.main-nav-link {
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #52B69A;
+}
+
+.main-nav-link:hover {
+    text-decoration: underline;
+}
+
+/*================================================================================================================================================================================================
+                                                                                                 LOGIN
+  ================================================================================================================================================================================================*/
+.form-signin {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    flex-grow: 1;
+    flex-basis: 100%;
+    margin: 10%
+}
+
+h2 {
+    color: black;
+}
+
+label {
+    display: inline-block;
+
+}
+
+input {
+    margin: 0px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+#login {
+    width: 100%
+}
+
+.btn {
+    max-width: 50%;
+
+}
+
+label {
+    font-weight: bold;
+}
+
+.need-account {
+    text-decoration: none;
+    color: black;
+}
+
+.need-account:hover {
+    text-decoration: underline;
+}
+
+/*================================================================================================================================================================================================
+                                                                                                 PET SPOTLIGHT
+  ================================================================================================================================================================================================*/
+img {
+    width: 10rem;
+}
+
+.pet-spotlight-container {
+    margin-top: 5rem;
+    display: flex;
+    background-color: #184E77;
+    justify-content: space-around;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.18);
+    margin: 5rem 1rem 0 1rem;
+   
+
+}
+
+.pet-spotlight-container:hover {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.18);
+}

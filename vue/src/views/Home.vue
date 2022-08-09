@@ -67,8 +67,6 @@ export default {
   
 }
 
-
-
 .playdate-panel{
   background-color: var(--secondary-green);
   flex-grow: 1;
