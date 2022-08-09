@@ -1,4 +1,5 @@
 <template>
+<body>
   <div class="pet-spotlight-container">
       <div class="flexslider">
           <ul class="slides">
@@ -14,6 +15,8 @@
         </ul>
     </div>
   </div>    
+</body>
+  
 
 
       <!-- <router-link :to="{/* TODO - Links to Registration */}" >Join us (tbd)</router-link> -->
@@ -37,11 +40,7 @@ img {
     width: 10rem;
 }
 
-.img-left,
-.img-center,
-.img-right {
-    width: 10rem;
-}
+
 
 .pet-spotlight-container {
     margin-top: 5rem;
