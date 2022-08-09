@@ -1,5 +1,5 @@
 BEGIN TRANSACTION;
-DROP TABLE IF EXISTS users, pets, playdate, pet_playdate, user_pet, messages;
+DROP TABLE IF EXISTS users, pets, playdate, pet_playdate, user_pet, address, personality, pet_personality, messages;
 
 --TABLE CREATION--
 
@@ -12,7 +12,7 @@ CREATE TABLE users
 	password_hash varchar(200),
 	role varchar(50) NOT NULL,
 	email_address varchar(250) NOT NULL,
-	address varchar(500), -- we think this should be not required?
+	address varchar(500) NOT NULL,
 	birth_date date,
 	pickle_points int,
 
@@ -22,11 +22,10 @@ CREATE TABLE pets
 (
 	pet_id serial,
 	name varchar(50) NOT NULL,
-	species varchar(50) NOT NULL,
-	sex varchar(10) ,
+	species varchar(15) NOT NULL,
+	sex varchar(10),
 	birth_date date NOT NULL,
-	personality varchar(1500) NOT NULL,
-	is_fixed boolean NOT NULL,
+	is_fixed boolean,
 	has_vaccinations boolean NOT NULL,
 	size varchar (15),
 
@@ -61,6 +60,35 @@ CREATE TABLE user_pet
 	constraint fk_user_pet_user_id FOREIGN KEY (user_id) references users (user_id),
 	constraint fk_user_pet_pet_id FOREIGN KEY (pet_id) references pets (pet_id)
 );
+CREATE TABLE address
+(
+	address_id serial,
+	user_id int NOT NULL,
+	street_number varchar(20) NOT NULL,
+	street varchar(30) NOT NULL,
+	city varchar(25) NOT NULL,
+	state_abbreviation varchar(2) NOT NULL,
+
+	constraint pk_address_id PRIMARY KEY (address_id),
+	constraint fk_user_id FOREIGN KEY (user_id) references users (user_id)
+
+);
+CREATE TABLE personality
+(
+	personality_id serial,
+	type varchar(20) UNIQUE NOT NULL,
+
+	constraint pk_personality_id PRIMARY KEY (personality_id)
+);
+CREATE TABLE pet_personality
+(
+	pet_id int,
+	personality_id int,
+
+	constraint pk_pet_personality PRIMARY KEY (pet_id, personality_id),
+	constraint fk_pet_personality_pet_id FOREIGN KEY (pet_id) references pets (pet_id),
+	constraint fk_pet_personality_personality_id FOREIGN KEY (personality_id) references personality (personality_id)
+);
 CREATE TABLE messages
 (
 	message_id serial,
@@ -70,5 +98,31 @@ CREATE TABLE messages
 	constraint pk_message PRIMARY KEY (message_id),
 	constraint fk_user FOREIGN KEY (user_id) references users (user_id)
 );
+
+----PERSONALITY INSERTS--
+--
+--INSERT INTO personality(type)
+--VALUES ('timid');
+--
+--INSERT INTO personality(type)
+--VALUES ('tires quickly');
+--
+--INSERT INTO personality(type)
+--VALUES ('independent');
+--
+--INSERT INTO personality(type)
+--VALUES ('playful');
+--
+--INSERT INTO personality(type)
+--VALUES ('toy sharing');
+--
+--INSERT INTO personality(type)
+--VALUES ('confident');
+--
+--INSERT INTO personality(type)
+--VALUES ('high energy');
+--
+--INSERT INTO personality(type)
+--VALUES ('toy possessive');
 
 COMMIT TRANSACTION;
