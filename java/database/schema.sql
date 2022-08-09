@@ -10,9 +10,9 @@ CREATE TABLE users
 	last_name varchar(50) NOT NULL,
 	username varchar(50) UNIQUE NOT NULL,
 	password_hash varchar(200),
-	role varchar(50) NOT NULL,
+	role varchar(50),
 	email_address varchar(250) NOT NULL,
-	address varchar(500) NOT NULL,
+	address varchar(500), --should be made not null and change to address ID (take out of table)
 	birth_date date,
 	pickle_points int,
 
@@ -26,7 +26,7 @@ CREATE TABLE pets
 	species varchar(50) NOT NULL,
 	sex varchar(10),
 	birth_date date NOT NULL,
-	personality varchar(1500) NOT NULL,
+	personality varchar(1500), --this is represented in a different table, delete this
 	is_fixed boolean NOT NULL,
 	has_vaccinations boolean NOT NULL,
 	size varchar (15),
