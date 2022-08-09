@@ -52,11 +52,11 @@ export default {
   
 }
 .login-panel {
-  background-color: #52B69A;
+  background-color: var(--primary-green);
   border-radius: 15px 0 0 0;
 }
 .playdate-panel{
-  background-color: burlywood;
+  background-color: var(--secondary-green);
 }
 
 
