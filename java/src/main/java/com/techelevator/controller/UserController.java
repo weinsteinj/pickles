@@ -6,11 +6,14 @@ import com.techelevator.model.Pet;
 import com.techelevator.model.PetNotFoundException;
 import com.techelevator.model.User;
 import com.techelevator.model.UserNotFoundException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.xml.crypto.Data;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,13 +38,21 @@ public class UserController {
         return user;
     }
 
+    @RequestMapping(path = "/user", method = RequestMethod.GET)
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        try {
+            users = userDao.findAll();
+        } catch (DataAccessException e) {
+
+        }
+        return users;
+    }
+
 //    getAllUsers() {
 //        return axios.get('/user/');
 //    },
-//
-//    getById(userId) {
-//        return axios.get(`/user/${userId}`);
-//    },
+
 //    //POST-update
 //    updateUser(userId) {
 //        return axios.put(`/user/${userId}`);
