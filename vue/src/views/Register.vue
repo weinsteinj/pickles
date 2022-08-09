@@ -38,7 +38,7 @@
           class="email-input"
           type="text"
           id="emailAddress"
-          v-model="user.emailAddress"
+          v-model="user.email"
           required
           autofocus
         />
@@ -85,9 +85,12 @@
         Create Account
       </button>
 
-      <router-link :to="{ name: 'login' }" class="already-has-account"
+      <div class="login-link">
+        <router-link :to="{ name: 'login' }" class="already-has-account"
         >Already Have an account?</router-link
       >
+      </div>
+      
     </form>
     <div class="right-panel"></div>
   </div>
@@ -272,11 +275,18 @@ label {
   line-height: 2rem;
   width: 50%;
   border-radius: .5rem;
+  background-color: var(--btn-green);
+  font-family: 'Cabin', sans-serif; 
+  color: white;
+}
+
+.login-link {
+  display: inline;
 }
 
 input {
   background-color: rgb(226, 223, 223);
-  display: inline-block;
+  display: inline;
   line-height: 2rem;
   border-radius: .5rem;
 }
