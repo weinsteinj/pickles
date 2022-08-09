@@ -23,7 +23,7 @@ CREATE TABLE pets
 	pet_id serial,
 	name varchar(50) NOT NULL,
 	species varchar(50) NOT NULL,
-	sex varchar(10),
+	sex varchar(10) ,
 	birth_date date NOT NULL,
 	personality varchar(1500) NOT NULL,
 	is_fixed boolean NOT NULL,
