@@ -68,4 +68,8 @@ export default {
   font-size: 1.2rem;
   color: #52B69A;
 }
+
+.main-nav-link:hover {
+  text-decoration: underline;
+}
 </style>

@@ -86,7 +86,7 @@
       </button>
 
       <div class="login-link">
-        <router-link :to="{ name: 'login' }" class="already-has-account"
+        <router-link :to="{ name: 'home' }" class="already-has-account"
         >Already Have an account?</router-link
       >
       </div>
@@ -281,10 +281,23 @@ label {
   margin-bottom: .5rem;
 }
 
+.btn:hover {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.18);
+}
+
 .login-link {
   display: inline-block;
+  
 
+}
 
+.already-has-account {
+  text-decoration: none;
+  color: var(--primary-green);
+}
+
+.already-has-account:hover {
+  text-decoration: underline;
 }
 
 input {

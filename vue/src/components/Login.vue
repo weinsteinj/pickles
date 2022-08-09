@@ -34,7 +34,7 @@
       />
       
       <button class="btn" type="submit">Sign in</button>
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <router-link :to="{ name: 'register' }" class="need-account">Need an account?</router-link>
     </form>
   </div>
 </template>
@@ -103,6 +103,14 @@ label {
   font-weight: bold;
 }
 
+.need-account {
+  text-decoration: none;
+  color: black;
+}
+
+.need-account:hover {
+  text-decoration: underline;
+}
 
 
 </style>

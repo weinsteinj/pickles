@@ -34,6 +34,11 @@ img {
     border-radius: 15px 15px 15px 15px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.18);
     margin: 5rem 1rem 0 1rem;
+   
 
+}
+
+.pet-spotlight-container:hover {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.18);
 }
 </style>

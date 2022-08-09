@@ -58,7 +58,17 @@ export default {
   margin: 0 1rem 0 1rem;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.18);
   height: 45vh;
+  transition: box-shadow 10ms;
 }
+
+.login-panel:hover,
+.playdate-panel:hover {
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.18);
+  
+}
+
+
+
 .playdate-panel{
   background-color: var(--secondary-green);
   flex-grow: 1;
@@ -66,6 +76,7 @@ export default {
   border-radius: 15px 15px 15px 15px;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.18);
   height: 45vh;
+  
 }
 
 
