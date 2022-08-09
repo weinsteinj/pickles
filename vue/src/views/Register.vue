@@ -36,7 +36,7 @@
         <label class="email-label" for="email">Email Address</label>
         <input
           class="email-input"
-          type="email"
+          type="text"
           id="emailAddress"
           v-model="user.emailAddress"
           required
@@ -101,8 +101,11 @@ export default {
   data() {
     return {
       user: {
+        firstName: "",
+        lastName: "",
         username: "",
         password: "",
+        email: "",
         confirmPassword: "",
         role: "user",
       },
@@ -268,11 +271,13 @@ label {
   margin-top: 1rem;
   line-height: 2rem;
   width: 50%;
+  border-radius: .5rem;
 }
 
 input {
   background-color: rgb(226, 223, 223);
   display: inline-block;
   line-height: 2rem;
+  border-radius: .5rem;
 }
 </style>
