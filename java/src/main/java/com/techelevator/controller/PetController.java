@@ -17,7 +17,7 @@ public class PetController {
         this.petDao = petDao;
     }
 
-
+// consider packaging up user_id as part of Pet object / Pet DTO instead of path variable
     @RequestMapping(path = "/user/{user_id}/register", method = RequestMethod.POST)
     public void registerPet(@Valid @RequestBody Pet newPet, @PathVariable int user_id) {
         try {
