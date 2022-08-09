@@ -21,18 +21,18 @@ public class JdbcPetDao implements PetDao{
     }
 
     @Override
-    public void create(String name, int species, int sex, Date birthDate, int[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
+    public void create(String name, int species, int sex, Date birthDate, String[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
         String sql = "INSERT INTO pets (name, species, sex, birth_date, is_fixed, has_vaccinations, size, user_id) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING pet_id";
 
-        Integer newPetId;
-        newPetId = jdbcTemplate.queryForObject(sql, Integer.class, name, species, sex, birthDate, isFixed, hasVaccinations, size,userId);
-
-        String personalitySql = "INSERT INTO pet_personality (pet_id, personality_id) " +
-                "VALUES (?,?)";
-        for (int personality_id : personality) {
-            jdbcTemplate.update(personalitySql,newPetId,personality_id);
-        }
+//        Integer newPetId;
+//        newPetId = jdbcTemplate.queryForObject(sql, Integer.class, name, species, sex, birthDate, isFixed, hasVaccinations, size,userId);
+//
+//        String personalitySql = "INSERT INTO pet_personality (pet_id, personality_id) " +
+//                "VALUES (?,?)";
+//        for (int personality_id : personality) {
+//            jdbcTemplate.update(personalitySql,newPetId,personality_id);
+//        }
     }
 
     @Override
