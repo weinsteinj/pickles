@@ -54,7 +54,7 @@ export default {
 .login-panel {
   background-color: var(--primary-green);
   border-radius: 15px 15px 15px 15px;
-  flex-grow: 1;
+  
   margin: 0 1rem 0 1rem;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.18);
   height: 45vh;

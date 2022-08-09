@@ -3,6 +3,8 @@
     <div class="left-panel">
       <h2>Pickles</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiandae necessitatibus architecto. Reiciendis adipisci at fuga aut ratione! Obcaecati deleniti architecto aliquam repellendus optio ea, dolorem voluptatum nulla fuga.</p>
+
+      <img src="../assets/images/woman-withdog.svg" alt="woman with dog" class="woman-with-dog">
     </div>
 
     <form class="form-register" @submit.prevent="register">
@@ -95,7 +97,9 @@
       </div>
       
     </form>
-    <div class="right-panel"></div>
+    <div class="right-panel">
+      
+    </div>
   </div>
 </template>
 
@@ -265,7 +269,9 @@ export default {
 .left-panel {
   width: 20%;
   background-color: var(--secondary-green);
-  height: 100vh;
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
@@ -324,5 +330,11 @@ h2 {
 p {
   padding-left: 1rem;
   color: var(--primary-green);
+}
+
+.woman-with-dog {
+  width: 100%;
+  justify-self: flex-end;
+  flex-grow: 2;
 }
 </style>
