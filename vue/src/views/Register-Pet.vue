@@ -103,11 +103,9 @@ export default {
                 size:''   
             },
              value: '',
-        options: ['Timid', 'Tires Quickly', 'Independent', 'Playful', 'Toy Sharing', 'Confident', 'High Energy', 'Toy Possessive']
-            
+        options: ['Timid', 'Tires Quickly', 'Independent', 'Playful', 'Toy Sharing', 'Confident', 'High Energy', 'Toy Possessive']         
         }
     }
-
 }
 </script>
 
