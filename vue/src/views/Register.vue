@@ -1,75 +1,128 @@
 <template>
   <div id="register" class="text-center">
+    <div class="left-panel"></div>
+
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label>
+
+      <!-- <div class="first-name"> -->
+        <label for="first-name" class="first-name-label">First Name</label>
+        <input
+          class="first-name-input"
+          type="text"
+          id="first-name"
+          v-model="user.firstName"
+          required
+          autofocus
+        />
+      <!-- </div> -->
+
+      <!-- <div class="last-name"> -->
+        <label for="last-name" class="last-name-label">Last Name</label>
+        <input
+          class="last-name-input"
+          type="text"
+          id="last-name"
+          v-model="user.lastName"
+          required
+          autofocus
+        />
+      <!-- </div> -->
+
+      <!-- <div class="email"> -->
+        <label class="email-label" for="email">Email Address</label>
+        <input
+          class="email-input"
+          type="email"
+          id="emailAddress"
+          v-model="user.emailAddress"
+          required
+          autofocus
+        />
+      <!-- </div> -->
+
+      <!-- <div class="username"> -->
+        <label for="username" class="username-label">Username</label>
       <input
         type="text"
         id="username"
-        class="form-control"
-        placeholder="Username"
+        class="username-input"
         v-model="user.username"
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <!-- </div> -->
+      
+      <!-- <div class="password"> -->
+       <label for="password" class="password-label">Password</label>
       <input
         type="password"
         id="password"
-        class="form-control"
-        placeholder="Password"
+        class="password-input"
         v-model="user.password"
         required
-      />
+      /> 
+      <!-- </div> -->
+      
+      <!-- <div class="confirm-password"> -->
+        <label for="confirmPassword" class="confirm-password-label"
+        >Confirm Password</label
+      >
       <input
         type="password"
         id="confirmPassword"
-        class="form-control"
-        placeholder="Confirm Password"
+        class="confirm-password-input"
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <!-- </div> -->
+      
+
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
+
+      <router-link :to="{ name: 'login' }" class="already-has-account"
+        >Already Have an account?</router-link
+      >
     </form>
+    <div class="right-panel"></div>
   </div>
 </template>
 
 <script>
-import authService from '../services/AuthService';
+import authService from "../services/AuthService";
 
 export default {
-  name: 'register',
+  name: "register",
   data() {
     return {
       user: {
-        username: '',
-        password: '',
-        confirmPassword: '',
-        role: 'user',
+        username: "",
+        password: "",
+        confirmPassword: "",
+        role: "user",
       },
       registrationErrors: false,
-      registrationErrorMsg: 'There were problems registering this user.',
+      registrationErrorMsg: "There were problems registering this user.",
     };
   },
   methods: {
     register() {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
-        this.registrationErrorMsg = 'Password & Confirm Password do not match.';
+        this.registrationErrorMsg = "Password & Confirm Password do not match.";
       } else {
         authService
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
               this.$router.push({
-                path: '/login',
-                query: { registration: 'success' },
+                path: "/login",
+                query: { registration: "success" },
               });
             }
           })
@@ -77,17 +130,149 @@ export default {
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = 'Bad Request: Validation Errors';
+              this.registrationErrorMsg = "Bad Request: Validation Errors";
             }
           });
       }
     },
     clearErrors() {
       this.registrationErrors = false;
-      this.registrationErrorMsg = 'There were problems registering this user.';
+      this.registrationErrorMsg = "There were problems registering this user.";
     },
   },
 };
 </script>
 
-<style></style>
+
+
+<style>
+.h3 {
+  grid-area: "create-h3";
+}
+
+.first-name-label {
+  grid-area: "fn-label";
+}
+
+.first-name-input {
+  grid-area: "fn-input";
+}
+
+.last-name-label {
+  grid-area: "ln-label";
+}
+
+.last-name-input {
+  grid-area: "ln-input";
+}
+
+.email-label {
+  grid-area: "e-label";
+}
+
+.email-input {
+  grid-area: "e-input";
+}
+
+.username-label {
+  grid-area: "u-label";
+}
+
+.username-input {
+  grid-area: "u-input";
+}
+
+.password-label {
+  grid-area: "pw-label";
+}
+
+.password-input {
+  grid-area: "pw-input";
+}
+
+.confirm-password-label {
+  grid-area: "c-pw-label";
+}
+
+.confirm-password-input {
+  grid-area: "c-pw-input";
+}
+
+.btn-primary {
+  grid-area: "create-btn";
+}
+
+.already-has-account {
+  grid-area: "has-accnt-link";
+}
+
+.first-name {
+  grid-area: "fn";
+}
+
+.last-name {
+  grid-area: "ln";
+}
+
+.email {
+  grid-area: "email";
+}
+
+.username {
+  grid-area: 'username';
+}
+
+.password {
+  grid-area: 'password';
+}
+
+.confirm-password {
+  grid-area: 'confirm-password';
+}
+.form-register {
+  display: flex;
+  /* grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "create-h3 create-h3"
+    "fn fn"
+    "ln ln"
+    "email email"
+    "username username"
+    "password password"
+    "confirm-password confirm-password"
+    "create-btn create-btn"
+    "has-accnt-link has-accnt-link"; */
+  flex-direction: column;
+  width: 40%;
+}
+
+#register {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-panel {
+  width: 20%;
+  background-color: var(--secondary-green);
+  height: 100vh;
+}
+
+label {
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+
+.btn {
+  margin-top: 1rem;
+  line-height: 2rem;
+  width: 50%;
+}
+
+input {
+  background-color: rgb(226, 223, 223);
+  display: inline-block;
+  line-height: 2rem;
+}
+</style>

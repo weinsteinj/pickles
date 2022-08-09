@@ -2,7 +2,7 @@
   <div id="nav-bar">
       
       <router-link v-bind:to="{name: 'home' }">
-          <img class="logo" src="@/assets/images/FullTurtle.png" alt="cute green turtle logo">
+          <img class="logo" src="@/assets/images/TurtleTransparent.png" alt="cute green turtle logo">
       </router-link>
       <ul class="main-nav-list">
         <li>

@@ -5,3 +5,10 @@
 
 */
 
+:root {
+    --primary-green: #52B69A;
+    --secondary-green: #D9ED92;
+    
+    --blur: 10px;
+}
+
