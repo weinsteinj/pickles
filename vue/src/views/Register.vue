@@ -265,29 +265,32 @@ export default {
 
 label {
   font-weight: bold;
-  padding: 0;
-  margin: 0;
   display: inline-block;
 }
 
 .btn {
-  margin-top: 1rem;
+  margin-top: .5rem;
   line-height: 2rem;
   width: 50%;
   border-radius: .5rem;
   background-color: var(--btn-green);
   font-family: 'Cabin', sans-serif; 
   color: white;
+  margin-bottom: .5rem;
 }
 
 .login-link {
-  display: inline;
+  display: inline-block;
+
+
 }
 
 input {
   background-color: rgb(226, 223, 223);
-  display: inline;
+  display: inline-block;
   line-height: 2rem;
   border-radius: .5rem;
+  margin-bottom: 1rem;
+  
 }
 </style>
