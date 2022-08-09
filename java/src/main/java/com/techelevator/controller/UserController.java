@@ -7,6 +7,7 @@ import com.techelevator.model.PetNotFoundException;
 import com.techelevator.model.User;
 import com.techelevator.model.UserNotFoundException;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,9 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@PreAuthorize("isAuthenticated()")
 public class UserController {
-
-    //TODO ADD matching @Mapping methods to connect with userService.js at FRONT-END
 
     private UserDao userDao;
 
@@ -49,14 +49,12 @@ public class UserController {
         return users;
     }
 
-//    getAllUsers() {
-//        return axios.get('/user/');
-//    },
 
 //    //POST-update
 //    updateUser(userId) {
 //        return axios.put(`/user/${userId}`);
-//    },
+//    }
+    //also deletes pets associated with the user
 //    deleteUser(userId) {
 //        return axios.delete(`/user/${userId}`);
 //    },
