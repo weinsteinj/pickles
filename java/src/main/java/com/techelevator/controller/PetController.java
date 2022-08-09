@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class PetController {
     private PetDao petDao;
@@ -20,7 +21,7 @@ public class PetController {
 
 // consider packaging up user_id as part of Pet object / Pet DTO instead of path variable
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(path = "/pet-register", method = RequestMethod.POST)
+    @RequestMapping(path = "/pet", method = RequestMethod.POST)
     public void registerPet(@Valid @RequestBody Pet newPet) {
         try {
             petDao.create(newPet.getName(), newPet.getSpecies(), newPet.getSex(), newPet.getBirthDate(), newPet.getPersonality(), newPet.isFixed(), newPet.isHasVaccinations(), newPet.getSize(), newPet.getUserId());
