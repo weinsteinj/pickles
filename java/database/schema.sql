@@ -1,5 +1,5 @@
 BEGIN TRANSACTION;
-DROP TABLE IF EXISTS users, pets, playdate, pet_playdate, user_pet, address, personality, pet_personality, messages;
+DROP TABLE IF EXISTS users, pets, playdate, pet_playdate, address, personality, pet_personality, messages;
 
 --TABLE CREATION--
 
@@ -21,15 +21,18 @@ CREATE TABLE users
 CREATE TABLE pets
 (
 	pet_id serial,
+	user_id int,
 	name varchar(50) NOT NULL,
-	species varchar(15) NOT NULL,
+	species varchar(50) NOT NULL,
 	sex varchar(10),
 	birth_date date NOT NULL,
-	is_fixed boolean,
+	personality varchar(1500) NOT NULL,
+	is_fixed boolean NOT NULL,
 	has_vaccinations boolean NOT NULL,
 	size varchar (15),
 
-	constraint pk_pet PRIMARY KEY (pet_id)
+	constraint pk_pet PRIMARY KEY (pet_id),
+	constraint fk_user FOREIGN KEY (user_id) references users (user_id)
 );
 CREATE TABLE playdate
 (
@@ -51,15 +54,6 @@ CREATE TABLE pet_playdate
 	constraint fk_pet_playdate_pet_id FOREIGN KEY (pet_id) references pets (pet_id),
 	constraint fk_pet_playdate_playdate_id FOREIGN KEY (playdate_id) references playdate (playdate_id)
 );
-CREATE TABLE user_pet
-(
-	user_id int NOT NULL,
-	pet_id int NOT NULL,
-
-	constraint pk_user_pet PRIMARY KEY (user_id, pet_id),
-	constraint fk_user_pet_user_id FOREIGN KEY (user_id) references users (user_id),
-	constraint fk_user_pet_pet_id FOREIGN KEY (pet_id) references pets (pet_id)
-);
 CREATE TABLE address
 (
 	address_id serial,
@@ -76,7 +70,7 @@ CREATE TABLE address
 CREATE TABLE personality
 (
 	personality_id serial,
-	type varchar(20) UNIQUE NOT NULL,
+	type varchar(10) UNIQUE NOT NULL,
 
 	constraint pk_personality_id PRIMARY KEY (personality_id)
 );
