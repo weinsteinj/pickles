@@ -21,7 +21,7 @@
       >
 
       
-      <div></div>
+       <div></div>
 
       <label for="Species">Species:</label>
       <select id="petSpecies" class="form-control" v-model="pet.species" required>
@@ -48,8 +48,8 @@
 
         <label for="petFixed">Fixed:</label>
       <select id="petFixed" class="form-control" v-model="pet.isFixed" required>
-        <option value="1">Yes</option>
-        <option value="2">No</option>
+        <option value=true>Yes</option>
+        <option value=false>No</option>
       </select>
       <div></div>
 
@@ -59,8 +59,8 @@
 
         <label for="petVac">Vaccinated:</label>
       <select id="petVac" class="form-control" v-model="pet.hasVaccinations" required>
-        <option value="1">Yes</option>
-        <option value="2">No</option>
+        <option value=true>Yes</option>
+        <option value=false>No</option>
       </select>
       <div></div>
 
@@ -76,7 +76,7 @@
 
 
         <label for="Personalities">Personalities:</label>
-       <multiselect id="personality" v-model="value" :options="options" :close-on-select="false" :hide-selected="true" multiple=true></multiselect>
+       <multiselect id="personality" v-model="value" :options="options" :close-on-select="false" :hide-selected="true" multiple=true></multiselect> -->
        
       <div></div>
 
@@ -106,8 +106,8 @@ export default {
                 sex: '',
                 birthDate: '',
                 personality: [],
-                isFixed: '',
-                hasVaccinations: '',
+                isFixed: false,
+                hasVaccinations: false,
                 size:''   
             },
              value: '',
@@ -116,6 +116,9 @@ export default {
     },
     methods: {
       registerPet() {
+        this.pet.isFixed = Boolean(this.pet.isFixed);
+        this.pet.hasVaccinations = Boolean(this.pet.hasVaccinations);
+
         petService.createPet(this.pet)
          .then(response => {
            if (response.status === 200) 
