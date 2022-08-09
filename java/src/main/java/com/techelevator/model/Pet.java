@@ -15,8 +15,9 @@ public class Pet {
     private boolean isFixed;
     private boolean hasVaccinations;
     private int size;
+    private int userId;
 
-    public Pet(int petId, String name, int species, int sex, Date birthDate, int personality, boolean isFixed, boolean hasVaccinations, int size) {
+    public Pet(int petId, String name, int species, int sex, Date birthDate, int personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
         this.petId = petId;
         this.name = name;
         this.species = species;
@@ -26,6 +27,7 @@ public class Pet {
         this.isFixed = isFixed;
         this.hasVaccinations = hasVaccinations;
         this.size = size;
+        this.userId = userId;
     }
 
     public Pet() {
@@ -102,6 +104,14 @@ public class Pet {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override

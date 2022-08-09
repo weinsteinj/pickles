@@ -20,10 +20,10 @@ public class PetController {
 
 // consider packaging up user_id as part of Pet object / Pet DTO instead of path variable
     @PreAuthorize("isAuthenticated()")
-    @RequestMapping(path = "/user/{user_id}/register", method = RequestMethod.POST)
-    public void registerPet(@Valid @RequestBody Pet newPet, @PathVariable int user_id) {
+    @RequestMapping(path = "/pet-register", method = RequestMethod.POST)
+    public void registerPet(@Valid @RequestBody Pet newPet) {
         try {
-            petDao.create(newPet.getName(), newPet.getSpecies(), newPet.getSex(), newPet.getBirthDate(), newPet.getPersonality(), newPet.isFixed(), newPet.isHasVaccinations(), newPet.getSize(), user_id);
+            petDao.create(newPet.getName(), newPet.getSpecies(), newPet.getSex(), newPet.getBirthDate(), newPet.getPersonality(), newPet.isFixed(), newPet.isHasVaccinations(), newPet.getSize(), newPet.getUserId());
         } catch (PetAlreadyExistsException e) {
 
         }
