@@ -87,16 +87,28 @@ export default {
   margin: 10%
 
 }
+
+h2 {
+  color: black;
+}
+
+label {
+  display: inline-block;
+  
+}
+
 input {
-  margin: 10px;
+  margin: 0px;
+  display: inline-block;
+  margin-bottom: 1rem;
 }
 #login {
     width: 100%
 }
 
 .btn {
-  max-width: 25%;
-  justify-content: center;
+  max-width: 50%;
+  
 }
 
 label {

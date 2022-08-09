@@ -50,6 +50,10 @@ export default {
   flex-grow: 2;
 }
 
+.logo:hover {
+  height: 4.05rem;
+}
+
 .main-nav-list {
   list-style: none;
   display: flex;

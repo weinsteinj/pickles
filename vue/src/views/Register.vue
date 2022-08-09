@@ -1,6 +1,9 @@
 <template>
   <div id="register" class="text-center">
-    <div class="left-panel"></div>
+    <div class="left-panel">
+      <h2>Pickles</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiandae necessitatibus architecto. Reiciendis adipisci at fuga aut ratione! Obcaecati deleniti architecto aliquam repellendus optio ea, dolorem voluptatum nulla fuga.</p>
+    </div>
 
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
@@ -307,5 +310,19 @@ input {
   border-radius: .5rem;
   margin-bottom: 1rem;
   
+}
+
+h1 {
+  margin-top: 7rem;
+}
+
+h2 {
+  text-align: center;
+  color: var(--primary-green);
+}
+
+p {
+  padding-left: 1rem;
+  color: var(--primary-green);
 }
 </style>
