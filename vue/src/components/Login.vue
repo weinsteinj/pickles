@@ -17,7 +17,6 @@
         type="text"
         id="username"
         class="form-control"
-        placeholder="Username"
         v-model="user.username"
         required
         autofocus
@@ -28,7 +27,6 @@
         type="password"
         id="password"
         class="form-control"
-        placeholder="Password"
         v-model="user.password"
         required
       />
