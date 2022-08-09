@@ -129,7 +129,7 @@ export default {
               });
             }
           })
-          .catch((error) => {
+          .catch((error) => { // TODO: Figure out accurate response.messages
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
