@@ -7,7 +7,7 @@
       <ul class="main-nav-list">
         <li>
           <router-link class="main-nav-link" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">logout</router-link>
-      <router-link class="main-nav-link" v-bind:to="{ name: '/register' }" v-else>register</router-link>
+      <router-link class="main-nav-link" v-bind:to="{ name: 'register' }" v-else>register</router-link>
         </li>
         <li>
           <router-link class="main-nav-link" :to="{/* TODO */}">profile</router-link>
