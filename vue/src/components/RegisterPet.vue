@@ -146,7 +146,10 @@ export default {
 
 <style>
  
-
+#pet-register {
+  display: flex;
+  align-content: space-between;
+}
 
  #petName {
    margin-left: 50px;
@@ -233,20 +236,25 @@ export default {
   
 }
 .pet-form-register {
-  grid-area: form;
-  justify-items: center;
-  flex-grow: 2;
+  /* grid-area: form; */
+  
+  
+  flex-grow: 1;
 }
 .left-panel {
   grid-area: left-panel;
 }
 .right-panel {
   grid-area: right-panel;
+  width: 20%;
+  /* background-color: black; */
 }
 div.text-center {
+  /* display: flex;
+
   display: grid;
   grid-template-areas: "left-panel form right-panel";
-  grid-template-columns: 1fr, 1fr, 1fr;
+  grid-template-columns: 1fr, 1fr, 1fr; */
 }
 
 </style>
