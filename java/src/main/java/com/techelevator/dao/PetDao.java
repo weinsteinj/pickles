@@ -11,7 +11,7 @@ public interface PetDao {
 
     Pet getPetById(int petId);
 
-    //List<Pet> listAllPets();
+    List<Pet> listAllPets();
 
 
 

@@ -39,13 +39,7 @@ public class JdbcPetDao implements PetDao{
     public Pet getPetById(int petId) {
         String sql = "SELECT * FROM pets WHERE pet_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, petId);
-        String sqlPersonality = "SELECT * FROM pet_personality WHERE pet_id = ?";
-        SqlRowSet resultsPersonality = jdbcTemplate.queryForRowSet(sqlPersonality,petId);
-        List<Integer> personality = new ArrayList<>();
-        while(resultsPersonality.next()) {
-            personality.add(resultsPersonality.getInt("personality_id"));
-        }
-        Integer[] personalityArray = personality.toArray(new Integer[0]);
+        Integer[] personalityArray = getPersonalitiesForPet(petId);
         if (results.next()) {
             return mapRowToPet(results, personalityArray);
         } else {
@@ -53,17 +47,30 @@ public class JdbcPetDao implements PetDao{
         }
     }
 
-//    @Override
-//    public List<Pet> listAllPets() {
-//        List<Pet> petList = new ArrayList<>();
-//        String sql = "SELECT * FROM pets";
-//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-//        while (results.next()) {
-//            Pet pet = mapRowToPet(results);
-//            petList.add(pet);
-//        }
-//        return petList;
-//    }
+    @Override
+    public List<Pet> listAllPets() {
+        List<Pet> petList = new ArrayList<>();
+        String sql = "SELECT * FROM pets";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            int petId = results.getInt("pet_id");
+            Integer[] personality = getPersonalitiesForPet(petId);
+            Pet pet = mapRowToPet(results,personality);
+            petList.add(pet);
+        }
+        return petList;
+    }
+
+    private Integer[] getPersonalitiesForPet(int petId) {
+        String sqlPersonality = "SELECT * FROM pet_personality WHERE pet_id = ?";
+        SqlRowSet resultsPersonality = jdbcTemplate.queryForRowSet(sqlPersonality,petId);
+        List<Integer> personality = new ArrayList<>();
+        while(resultsPersonality.next()) {
+            personality.add(resultsPersonality.getInt("personality_id"));
+        }
+        Integer[] personalityArray = personality.toArray(new Integer[0]);
+        return personalityArray;
+    }
 
 
     private Pet mapRowToPet(SqlRowSet rs, Integer[] personality) {
