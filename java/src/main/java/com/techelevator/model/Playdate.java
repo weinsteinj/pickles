@@ -1,33 +1,28 @@
 package com.techelevator.model;
 
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 public class Playdate {
-    private Pet hostPet;
-    private List<Pet> visitingPet;
+    private int playdateId;
     private String location;
-    private Date date;
-    private Time time;
+    private Timestamp dateTime;
     private String details;
     private int rating;
-    private int status;
+    private String status;
+    private int hostUserId;
+    private int visitingUserId;
+    List<Integer> petId;
 
-    public Pet getHostPet() {
-        return hostPet;
+    public int getPlaydateId() {
+        return playdateId;
     }
 
-    public void setHostPet(Pet hostPet) {
-        this.hostPet = hostPet;
-    }
-
-    public List<Pet> getVisitingPet() {
-        return visitingPet;
-    }
-
-    public void setVisitingPet(List<Pet> visitingPet) {
-        this.visitingPet = visitingPet;
+    public void setPlaydateId(int playdateId) {
+        this.playdateId = playdateId;
     }
 
     public String getLocation() {
@@ -38,20 +33,12 @@ public class Playdate {
         this.location = location;
     }
 
-    public Date getDate() {
-        return date;
+    public Timestamp getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
+    public void setDateTime(Timestamp dateTime) {
+        this.dateTime = dateTime;
     }
 
     public String getDetails() {
@@ -70,11 +57,35 @@ public class Playdate {
         this.rating = rating;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getHostUserId() {
+        return hostUserId;
+    }
+
+    public void setHostUserId(int hostUserId) {
+        this.hostUserId = hostUserId;
+    }
+
+    public int getVisitingUserId() {
+        return visitingUserId;
+    }
+
+    public void setVisitingUserId(int visitingUserId) {
+        this.visitingUserId = visitingUserId;
+    }
+
+    public List<Integer> getPetId() {
+        return petId;
+    }
+
+    public void setPetId(List<Integer> petId) {
+        this.petId = petId;
     }
 }
