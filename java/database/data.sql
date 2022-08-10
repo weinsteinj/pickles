@@ -30,13 +30,13 @@ INSERT INTO personality(type)
 VALUES ('toy possessive');
 
 INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size)
-VALUES ('Junebug', 'dog', 'female', '2015-06-10', true, true, 'small');
+VALUES ('Junebug', 'dog', 'female', '2015-06-10', true, true, 1);
 
 INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size)
-VALUES ('Kona', 'dog', 'female', '2017-04-15', true, true, 'small');
+VALUES ('Kona', 'dog', 'female', '2017-04-15', true, true, 1);
 
 INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size)
-VALUES ('James Franco', 'dog', 'male', '2013-08-15', true, true, 'large');
+VALUES ('James Franco', 'dog', 'male', '2013-08-15', true, true, 3);
 
 
 --USER IDS IN PETS--
@@ -51,6 +51,15 @@ WHERE name = 'Kona';
 UPDATE pets
 SET user_id = (SELECT user_id FROM users WHERE first_name = 'admin')
 WHERE name = 'James Franco';
+
+--PET PERSONALITIES--
+
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (1,2);
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (2,4);
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (1,6);
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (3,1);
+
+
 
 
 
