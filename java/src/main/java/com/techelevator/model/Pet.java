@@ -8,8 +8,8 @@ import java.util.Objects;
 public class Pet {
     private int petId;
     private String name;
-    private int species;
-    private int sex;
+    private String species;
+    private String sex;
     private Date birthDate;
     private Integer[] personality;
     private boolean isFixed;
@@ -17,7 +17,7 @@ public class Pet {
     private int size;
     private int userId;
 
-    public Pet(int petId, String name, int species, int sex, Date birthDate, Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
+    public Pet(int petId, String name, String species, String sex, Date birthDate, Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
         this.petId = petId;
         this.name = name;
         this.species = species;
@@ -50,19 +50,19 @@ public class Pet {
         this.name = name;
     }
 
-    public int getSpecies() {
+    public String getSpecies() {
         return species;
     }
 
-    public void setSpecies(int species) {
+    public void setSpecies(String species) {
         this.species = species;
     }
 
-    public int getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

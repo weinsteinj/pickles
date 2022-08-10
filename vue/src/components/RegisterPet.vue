@@ -50,8 +50,8 @@
 
         <label for="petFixed">Fixed:</label>
       <select id="petFixed" class="form-control" v-model="pet.isFixed" required>
-        <option value=true>Yes</option>
-        <option value=false>No</option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
       </select>
       <div></div>
 
@@ -61,8 +61,8 @@
 
         <label for="petVac">Vaccinated:</label>
       <select id="petVac" class="form-control" v-model="pet.hasVaccinations" required>
-        <option value=true>Yes</option>
-        <option value=false>No</option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
       </select>
       <div></div>
 
