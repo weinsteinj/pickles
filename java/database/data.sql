@@ -3,6 +3,32 @@ BEGIN TRANSACTION;
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address) VALUES ('A','B','user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER','email@email.com');
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address) VALUES ('admin','admin','admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','admin@admin.com');
 
+----PERSONALITY INSERTS--
+
+INSERT INTO personality(type)
+VALUES ('timid');
+
+INSERT INTO personality(type)
+VALUES ('tires quickly');
+
+INSERT INTO personality(type)
+VALUES ('independent');
+
+INSERT INTO personality(type)
+VALUES ('playful');
+
+INSERT INTO personality(type)
+VALUES ('toy sharing');
+
+INSERT INTO personality(type)
+VALUES ('confident');
+
+INSERT INTO personality(type)
+VALUES ('high energy');
+
+INSERT INTO personality(type)
+VALUES ('toy possessive');
+
 COMMIT TRANSACTION;
 --
 ----PET INSERTS--

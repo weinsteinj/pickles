@@ -93,30 +93,6 @@ CREATE TABLE messages
 	constraint fk_user FOREIGN KEY (user_id) references users (user_id)
 );
 
-----PERSONALITY INSERTS--
 
-INSERT INTO personality(type)
-VALUES ('timid');
-
-INSERT INTO personality(type)
-VALUES ('tires quickly');
-
-INSERT INTO personality(type)
-VALUES ('independent');
-
-INSERT INTO personality(type)
-VALUES ('playful');
-
-INSERT INTO personality(type)
-VALUES ('toy sharing');
-
-INSERT INTO personality(type)
-VALUES ('confident');
-
-INSERT INTO personality(type)
-VALUES ('high energy');
-
-INSERT INTO personality(type)
-VALUES ('toy possessive');
 
 COMMIT TRANSACTION;
