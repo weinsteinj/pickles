@@ -53,17 +53,17 @@ public class JdbcPetDao implements PetDao{
         }
     }
 
-    @Override
-    public List<Pet> listAllPets() {
-        List<Pet> petList = new ArrayList<>();
-        String sql = "SELECT * FROM pets";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-        while (results.next()) {
-            Pet pet = mapRowToPet(results);
-            petList.add(pet);
-        }
-        return petList;
-    }
+//    @Override
+//    public List<Pet> listAllPets() {
+//        List<Pet> petList = new ArrayList<>();
+//        String sql = "SELECT * FROM pets";
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+//        while (results.next()) {
+//            Pet pet = mapRowToPet(results);
+//            petList.add(pet);
+//        }
+//        return petList;
+//    }
 
 
     private Pet mapRowToPet(SqlRowSet rs, Integer[] personality) {
