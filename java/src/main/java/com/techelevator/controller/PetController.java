@@ -24,7 +24,6 @@ public class PetController {
         this.userDao = userDao;
     }
 
-// consider packaging up user_id as part of Pet object / Pet DTO instead of path variable
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = "/pet", method = RequestMethod.POST)
     public void registerPet(Principal principal, @Valid @RequestBody Pet newPet) {
@@ -47,10 +46,10 @@ public class PetController {
         return newPet;
     }
 
-//    @RequestMapping(path = "/pet", method = RequestMethod.GET)
-//    public List<Pet> petList() {
-//        return petDao.listAllPets();
-//    }
+    @RequestMapping(path = "/pet", method = RequestMethod.GET)
+    public List<Pet> petList() {
+        return petDao.listAllPets();
+    }
 
     //get pets by user
 }
