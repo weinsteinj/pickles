@@ -49,7 +49,7 @@
         <div></div>
 
         <label for="petFixed">Fixed:</label>
-      <select id="petFixed" class="form-control" v-model="pet.isFixed" required>
+      <select id="petFixed" class="form-control" v-model="pet.fixed" required>
         <option value="true">Yes</option>
         <option value="false">No</option>
       </select>
@@ -111,7 +111,7 @@ export default {
                 sex: '',
                 birthDate: '',
                 personality: [],
-                isFixed: false,
+                fixed: false,
                 hasVaccinations: false,
                 size:''   
             },
@@ -166,8 +166,21 @@ export default {
           this.pet.personality.push(i.id)
         }
 
-        this.pet.isFixed = Boolean(this.pet.isFixed);
-        this.pet.hasVaccinations = Boolean(this.pet.hasVaccinations);
+        if (this.pet.fixed === "true") {
+          this.pet.fixed = true;
+        } else if (this.pet.fixed === "false") {
+          this.pet.fixed = false;
+        }
+
+
+        if (this.pet.hasVaccinations === "true") {
+          this.pet.hasVaccinations = true;
+        } else if (this.pet.hasVaccinations === "false") {
+          this.pet.hasVaccinations = false;
+        }
+
+        // this.pet.isFixed = Boolean(this.pet.isFixed);
+        // this.pet.hasVaccinations = Boolean(this.pet.hasVaccinations);
 
         petService.createPet(this.pet)
          .then(response => {
