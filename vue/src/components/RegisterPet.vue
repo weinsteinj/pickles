@@ -239,6 +239,10 @@ select,
   height: 2rem;
 }
 
+.multiselect__tag {
+  background-color: var(--primary-green);
+}
+
 
 
 /* #petSex {
