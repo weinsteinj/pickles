@@ -38,24 +38,18 @@ VALUES ('Kona', 'dog', 'female', '2017-04-15', true, true, 'small');
 INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size)
 VALUES ('James Franco', 'dog', 'male', '2013-08-15', true, true, 'large');
 
---USER INSERTS--
-INSERT INTO users(first_name, last_name, username, role, email_address, birth_date)
-VALUES ('Caito', 'Nagelson', 'c80_grace', 'role_user', 'cnagelson@gmail.com', '1987-10-20');
-
-INSERT INTO users(first_name, last_name, username, role, email_address, birth_date)
-VALUES ('Bradley', 'Mauger', 'bmauger', 'role_admin', 'bradleyamauger@gmail.com', '03/10/1988');
 
 --USER IDS IN PETS--
 UPDATE pets
-SET user_id = (SELECT user_id FROM users WHERE first_name = 'Caito')
+SET user_id = (SELECT user_id FROM users WHERE first_name = 'A')
 WHERE name = 'Junebug';
 
 UPDATE pets
-SET user_id = (SELECT user_id FROM users WHERE first_name = 'Caito')
+SET user_id = (SELECT user_id FROM users WHERE first_name = 'A')
 WHERE name = 'Kona';
 
 UPDATE pets
-SET user_id = (SELECT user_id FROM users WHERE first_name = 'Bradley')
+SET user_id = (SELECT user_id FROM users WHERE first_name = 'admin')
 WHERE name = 'James Franco';
 
 
