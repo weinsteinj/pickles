@@ -2,10 +2,10 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.PetDao;
 import com.techelevator.dao.UserDao;
-import com.techelevator.model.Pet;
-import com.techelevator.model.PetAlreadyExistsException;
-import com.techelevator.model.PetNotFoundException;
-import com.techelevator.model.User;
+import com.techelevator.model.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,13 +26,29 @@ public class PetController {
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = "/pet", method = RequestMethod.POST)
-    public void registerPet(Principal principal, @Valid @RequestBody Pet newPet) {
+    public ResponseEntity<Pet> registerPet(Principal principal, @Valid @RequestBody PetDTO newPetDTO) {
         String userName = principal.getName();
         User currentUser = userDao.findByUsername(userName);
+        Pet newPet = new Pet();
+
         try {
-            petDao.create(newPet.getName(), newPet.getSpecies(), newPet.getSex(), newPet.getBirthDate(), newPet.getPersonality(), newPet.isFixed(), newPet.isHasVaccinations(), newPet.getSize(), currentUser.getId());
-        } catch (PetAlreadyExistsException e) {
+            newPet = petDao.create(newPetDTO, currentUser.getId());
+            } catch (PetAlreadyExistsException e) {
         }
+        newPet.setName(newPetDTO.getName());
+        newPet.setSpecies(newPetDTO.getSpecies());
+        newPet.setSex(newPetDTO.getSex());
+        newPet.setBirthDate(newPetDTO.getBirthDate());
+        newPet.setPersonality(newPetDTO.getPersonality());
+        newPet.setFixed(newPetDTO.isFixed());
+        newPet.setHasVaccinations(newPetDTO.isHasVaccinations());
+        newPet.setSize(newPetDTO.getSize());
+        newPet.setUserId(currentUser.getId());
+
+        HttpHeaders responseHeaders = new HttpHeaders();
+        ResponseEntity<Pet> responseEntity = new ResponseEntity<Pet>(newPet, responseHeaders, HttpStatus.CREATED);
+
+        return responseEntity;
     }
 
     @RequestMapping(path = "/pet/{pet_id}", method = RequestMethod.GET)

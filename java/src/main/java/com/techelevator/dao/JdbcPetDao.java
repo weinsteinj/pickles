@@ -1,14 +1,13 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Pet;
+import com.techelevator.model.PetDTO;
 import com.techelevator.model.PetNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -21,18 +20,24 @@ public class JdbcPetDao implements PetDao{
     }
 
     @Override
-    public void create(String name, String species, String sex, Date birthDate, Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
+    public Pet create(PetDTO newPetDTO, int userId) {
+        Pet newPet = new Pet();
         String sql = "INSERT INTO pets (name, species, sex, birth_date, is_fixed, has_vaccinations, size, user_id) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING pet_id";
 
         Integer newPetId;
-        newPetId = jdbcTemplate.queryForObject(sql, Integer.class, name, species, sex, birthDate, isFixed, hasVaccinations, size,userId);
-
+        newPetId = jdbcTemplate.queryForObject(sql, Integer.class, newPetDTO.getName(), newPetDTO.getSpecies(),
+                newPetDTO.getSex(), newPetDTO.getBirthDate(), newPetDTO.isFixed(), newPetDTO.isHasVaccinations(),
+                newPetDTO.getSize(), userId);
+        newPet.setPetId(newPetId);
         String personalitySql = "INSERT INTO pet_personality (pet_id, personality_id) " +
                 "VALUES (?,?)";
+        Integer[] personality = newPetDTO.getPersonality();
         for (int personality_id : personality) {
             jdbcTemplate.update(personalitySql,newPetId,personality_id);
         }
+
+        return newPet;
     }
 
     @Override
