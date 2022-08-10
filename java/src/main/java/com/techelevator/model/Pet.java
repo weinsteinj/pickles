@@ -11,13 +11,13 @@ public class Pet {
     private int species;
     private int sex;
     private Date birthDate;
-    private int[] personality;
+    private Integer[] personality;
     private boolean isFixed;
     private boolean hasVaccinations;
     private int size;
     private int userId;
 
-    public Pet(int petId, String name, int species, int sex, Date birthDate, int[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
+    public Pet(int petId, String name, int species, int sex, Date birthDate, Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
         this.petId = petId;
         this.name = name;
         this.species = species;
@@ -74,11 +74,11 @@ public class Pet {
         this.birthDate = birthDate;
     }
 
-    public int[] getPersonality() {
+    public Integer[] getPersonality() {
         return personality;
     }
 
-    public void setPersonality(int[] personality) {
+    public void setPersonality(Integer[] personality) {
         this.personality = personality;
     }
 

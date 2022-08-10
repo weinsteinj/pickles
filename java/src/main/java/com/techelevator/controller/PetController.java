@@ -30,6 +30,7 @@ public class PetController {
     public void registerPet(Principal principal, @Valid @RequestBody Pet newPet) {
         String userName = principal.getName();
         User currentUser = userDao.findByUsername(userName);
+        System.out.println(newPet);
         try {
             petDao.create(newPet.getName(), newPet.getSpecies(), newPet.getSex(), newPet.getBirthDate(), newPet.getPersonality(), newPet.isFixed(), newPet.isHasVaccinations(), newPet.getSize(), currentUser.getId());
         } catch (PetAlreadyExistsException e) {

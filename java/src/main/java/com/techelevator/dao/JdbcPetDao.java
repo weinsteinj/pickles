@@ -21,7 +21,7 @@ public class JdbcPetDao implements PetDao{
     }
 
     @Override
-    public void create(String name, int species, int sex, Date birthDate, int[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
+    public void create(String name, int species, int sex, Date birthDate, Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
         String sql = "INSERT INTO pets (name, species, sex, birth_date, is_fixed, has_vaccinations, size, user_id) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING pet_id";
 
@@ -39,8 +39,15 @@ public class JdbcPetDao implements PetDao{
     public Pet getPetById(int petId) {
         String sql = "SELECT * FROM pets WHERE pet_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, petId);
+        String sqlPersonality = "SELECT * FROM pet_personality WHERE pet_id = ?";
+        SqlRowSet resultsPersonality = jdbcTemplate.queryForRowSet(sql,petId);
+        List<Integer> personality = new ArrayList<>();
+        while(resultsPersonality.next()) {
+            personality.add(resultsPersonality.getInt("personality_id"));
+        }
+        Integer[] personalityArray = personality.toArray(new Integer[0]);
         if (results.next()) {
-            return mapRowToPet(results);
+            return mapRowToPet(results, personalityArray);
         } else {
             throw new PetNotFoundException();
         }
@@ -59,18 +66,19 @@ public class JdbcPetDao implements PetDao{
     }
 
 
-    private Pet mapRowToPet(SqlRowSet rs) {
+    private Pet mapRowToPet(SqlRowSet rs, Integer[] personality) {
         Pet pet = new Pet();
         pet.setPetId(rs.getInt("pet_id"));
         pet.setName(rs.getString("name"));
         pet.setSpecies(rs.getInt("species"));
         pet.setSex(rs.getInt("sex"));
         pet.setBirthDate(rs.getDate("birth_date"));
-      //  pet.setPersonality(rs.getInt("personality"));
         pet.setFixed(rs.getBoolean("is_fixed"));
         pet.setHasVaccinations(rs.getBoolean("has_vaccinations"));
         pet.setSize(rs.getInt("size"));
         pet.setUserId(rs.getInt("user_id"));
+        pet.setPersonality(personality);
+
         return pet;
     }
 }
