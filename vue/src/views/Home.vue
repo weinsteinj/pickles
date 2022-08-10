@@ -17,7 +17,9 @@
     <login></login>
     </div>
 </div>
-
+    <div>
+    <app-intro></app-intro>
+    </div>
     <div class="pet-spotlight">
       <pet-spotlight></pet-spotlight>
       </div>
@@ -29,12 +31,14 @@
 <script>
 import Login from '@/components/Login.vue';
 import PetSpotlight from '@/components/PetSpotlight.vue';
+import AppIntro from '@/components/AppIntro.vue';
 
 export default {
   name: "home",
   components: {
     Login,
-    PetSpotlight
+    PetSpotlight,
+    AppIntro,
   
 
   }
