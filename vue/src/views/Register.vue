@@ -160,8 +160,8 @@ export default {
 
 
 
-<style>
-.h3 {
+<style scoped>
+/* .h3 {
   grid-area: "create-h3";
 }
 
@@ -243,7 +243,7 @@ export default {
 
 .confirm-password {
   grid-area: 'confirm-password';
-}
+} */
 .form-register {
   display: flex;
   /* grid-template-columns: 1fr 1fr;

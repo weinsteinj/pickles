@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import $ from 'jquery';
+const $ = window.$;
 export default {
     name: 'pet-spotlight',
 
@@ -33,9 +33,7 @@ export default {
       recaptchaScript.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
       document.head.appendChild(recaptchaScript)
 
-      $(window).load(function() {
-        $('.flexslider').flexslider();
-      });
+      $('.flexslider').flexslider();
     }
 }
 </script>
@@ -58,11 +56,17 @@ img {
     margin: 5rem 1rem 0 1rem;
     height: 15rem;
     
-   
+    
 
+}
+
+.flex-control-paging li a {
+  text-indent: 0px;
+  display: none;
 }
 
 .pet-spotlight-container:hover {
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.18);
+  
 }
 </style>
