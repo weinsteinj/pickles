@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="pet-card" v-for="pet in $store.state.petArray" v-bind:key="pet.id"> 
-      {{pet.name}}
+      {{`Click here to learn more about ${pet.name}`}}. {{ pet.sex == 'Male' ? 'He' : 'She' }} is a {{pet.species.toLowerCase()}}.
       </div>
 
   </div>
@@ -9,15 +9,15 @@
 
 <script>
 
+
 export default {
   components: {
-    
   },
   data () {
     return {
     
     }
-  }
+  },
 }
 </script>
 

@@ -9,7 +9,7 @@ export default {
     },    
 
     getAllPets() {
-    return axios.get('/pet/');
+    return axios.get('/pet');
     },
     
     getPetById(petId) {
