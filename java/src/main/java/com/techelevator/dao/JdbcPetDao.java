@@ -21,7 +21,7 @@ public class JdbcPetDao implements PetDao{
     }
 
     @Override
-    public void create(String name, int species, int sex, Date birthDate, Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
+    public void create(String name, String species, String sex, Date birthDate, Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
         String sql = "INSERT INTO pets (name, species, sex, birth_date, is_fixed, has_vaccinations, size, user_id) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING pet_id";
 
@@ -70,8 +70,8 @@ public class JdbcPetDao implements PetDao{
         Pet pet = new Pet();
         pet.setPetId(rs.getInt("pet_id"));
         pet.setName(rs.getString("name"));
-        pet.setSpecies(rs.getInt("species"));
-        pet.setSex(rs.getInt("sex"));
+        pet.setSpecies(rs.getString("species"));
+        pet.setSex(rs.getString("sex"));
         pet.setBirthDate(rs.getDate("birth_date"));
         pet.setFixed(rs.getBoolean("is_fixed"));
         pet.setHasVaccinations(rs.getBoolean("has_vaccinations"));
