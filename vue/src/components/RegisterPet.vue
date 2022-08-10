@@ -1,8 +1,10 @@
 <template>
+
   <div id = "pet-register" class="text-center">
+  
     <div class="left-panel">
-      <h2>Pickles</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiandae necessitatibus architecto. Reiciendis adipisci at fuga aut ratione! Obcaecati deleniti architecto aliquam repellendus optio ea, dolorem voluptatum nulla fuga.</p>
+      <h2>Pickles</h2>
       <p></p>
 
       <img src="../assets\images\playful_cat_re_ac9g.svg" alt="playful cat" class="playful-cat">
@@ -85,18 +87,21 @@
       </button>
         
       </form>
-      
+      <div class="right-panel"></div>
   </div>
 </template>
 
 <script>
 import Multiselect from 'vue-multiselect'
 import petService from '@/services/petService.js'
+// import NavBar from '@/components/NavBar.vue'
 
 export default {
      components: {
+     
     Multiselect,
-  },
+    // NavBar,
+    },
     name: 'pet-register',
     data() {
         return {
@@ -220,12 +225,28 @@ export default {
 .playful-cat {
   width: 100%;
   justify-self: flex-end;
-  flex-grow: 2;
+  flex-grow: 3;
 }
 .form {
   display: flex;
   flex-direction: column;
+  
 }
-
+.pet-form-register {
+  grid-area: form;
+  justify-items: center;
+  flex-grow: 2;
+}
+.left-panel {
+  grid-area: left-panel;
+}
+.right-panel {
+  grid-area: right-panel;
+}
+div.text-center {
+  display: grid;
+  grid-template-areas: "left-panel form right-panel";
+  grid-template-columns: 1fr, 1fr, 1fr;
+}
 
 </style>
