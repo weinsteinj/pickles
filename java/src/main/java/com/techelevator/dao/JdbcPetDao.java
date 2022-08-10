@@ -40,7 +40,7 @@ public class JdbcPetDao implements PetDao{
         String sql = "SELECT * FROM pets WHERE pet_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, petId);
         String sqlPersonality = "SELECT * FROM pet_personality WHERE pet_id = ?";
-        SqlRowSet resultsPersonality = jdbcTemplate.queryForRowSet(sql,petId);
+        SqlRowSet resultsPersonality = jdbcTemplate.queryForRowSet(sqlPersonality,petId);
         List<Integer> personality = new ArrayList<>();
         while(resultsPersonality.next()) {
             personality.add(resultsPersonality.getInt("personality_id"));
