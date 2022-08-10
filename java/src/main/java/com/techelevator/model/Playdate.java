@@ -1,10 +1,11 @@
 package com.techelevator.model;
 
-import java.sql.Time;
+import org.springframework.cglib.core.Local;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class Playdate {
     private int playdateId;
@@ -87,5 +88,18 @@ public class Playdate {
 
     public void setPetId(List<Integer> petId) {
         this.petId = petId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Playdate playdate = (Playdate) o;
+        return rating == playdate.rating && hostUserId == playdate.hostUserId && visitingUserId == playdate.visitingUserId && Objects.equals(location, playdate.location) && Objects.equals(dateTime, playdate.dateTime) && Objects.equals(details, playdate.details) && Objects.equals(status, playdate.status) && Objects.equals(petId, playdate.petId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(location, dateTime, details, rating, status, hostUserId, visitingUserId, petId);
     }
 }
