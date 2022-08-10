@@ -78,7 +78,7 @@
 
 
         <label for="Personalities">Personalities:</label>
-       <multiselect id="personality" v-model="value" :options="options" :close-on-select="false" :hide-selected="true" multiple=true></multiselect> -->
+       <multiselect id="personality" v-model="value" :options="options" :close-on-select="false" track-by="id" label="personality" :hide-selected="true" multiple=true></multiselect> 
        
       <div></div>
 
@@ -115,14 +115,57 @@ export default {
                 hasVaccinations: false,
                 size:''   
             },
-             value: '',
-        options: ['Timid', 'Tires Quickly', 'Independent', 'Playful', 'Toy Sharing', 'Confident', 'High Energy', 'Toy Possessive']         
+             value: [],
+        options: [
+          {
+            "id" : 1,
+           "personality":'Timid',  
+          },
+          
+           {
+            "id" : 2,
+           "personality":'Tires Quickly',   
+          },
+          
+           {
+            "id" : 3,
+           "personality":'Independent',
+          },
+
+           {
+            "id" : 4,
+           "personality":'Playful', 
+          },
+
+           {
+            "id" : 5,
+           "personality":'Toy Sharing', 
+          },
+
+           {
+            "id" : 6,
+           "personality": 'Confident', 
+          },
+
+           {
+            "id" : 7,
+           "personality":'High Energy', 
+          },
+
+           {
+            "id" : 8,
+           "personality":'Toy Possessive'
+          }
+          ]         
         }
     },
     methods: {
       registerPet() {
 
-        this.pet.personality = this.value;
+        for (var i of this.value) {
+          this.pet.personality.push(i.id)
+        }
+
         this.pet.isFixed = Boolean(this.pet.isFixed);
         this.pet.hasVaccinations = Boolean(this.pet.hasVaccinations);
 
