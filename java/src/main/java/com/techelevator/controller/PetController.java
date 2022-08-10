@@ -47,10 +47,10 @@ public class PetController {
         return newPet;
     }
 
-    @RequestMapping(path = "/pet", method = RequestMethod.GET)
-    public List<Pet> petList() {
-        return petDao.listAllPets();
-    }
+//    @RequestMapping(path = "/pet", method = RequestMethod.GET)
+//    public List<Pet> petList() {
+//        return petDao.listAllPets();
+//    }
 
     //get pets by user
 }

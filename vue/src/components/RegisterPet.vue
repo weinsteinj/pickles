@@ -28,18 +28,18 @@
 
       <label for="Species">Species:</label>
       <select id="petSpecies" class="form-control" v-model="pet.species" required>
-        <option value="1">Dog</option>
-        <option value="2">Cat</option>
-        <option value="3">Rabbit</option>
-        <option value="4">Reptile</option>
-        <option value="5">Other</option>
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+        <option value="Rabbit">Rabbit</option>
+        <option value="Reptile">Reptile</option>
+        <option value="Other">Other</option>
       </select>
       <div></div>
 
     <label for="Sex">Sex:</label>
       <select id="petSex" class="form-control" v-model="pet.sex" required>
-        <option value="1">Male</option>
-        <option value="2">Female</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
       </select>
 
         <div></div>
@@ -79,7 +79,7 @@
 
 
         <label for="Personalities">Personalities:</label>
-       <multiselect id="personality" v-model="value" :options="options" :close-on-select="false" :hide-selected="true" multiple=true></multiselect> 
+       <multiselect id="personality" v-model="value" :options="options" :close-on-select="false" track-by="id" label="personality" :hide-selected="true" multiple=true></multiselect> 
        
       <div></div>
 
@@ -116,14 +116,57 @@ export default {
                 hasVaccinations: false,
                 size:''   
             },
-             value: '',
-        options: ['Timid', 'Tires Quickly', 'Independent', 'Playful', 'Toy Sharing', 'Confident', 'High Energy', 'Toy Possessive']         
+             value: [],
+        options: [
+          {
+            "id" : 1,
+           "personality":'Timid',  
+          },
+          
+           {
+            "id" : 2,
+           "personality":'Tires Quickly',   
+          },
+          
+           {
+            "id" : 3,
+           "personality":'Independent',
+          },
+
+           {
+            "id" : 4,
+           "personality":'Playful', 
+          },
+
+           {
+            "id" : 5,
+           "personality":'Toy Sharing', 
+          },
+
+           {
+            "id" : 6,
+           "personality": 'Confident', 
+          },
+
+           {
+            "id" : 7,
+           "personality":'High Energy', 
+          },
+
+           {
+            "id" : 8,
+           "personality":'Toy Possessive'
+          }
+          ]         
         }
     },
     methods: {
       registerPet() {
 
-        this.pet.personality = this.value;
+        for (var i of this.value) {
+          this.pet.personality.push(i.id)
+        }
+
         this.pet.isFixed = Boolean(this.pet.isFixed);
         this.pet.hasVaccinations = Boolean(this.pet.hasVaccinations);
 
