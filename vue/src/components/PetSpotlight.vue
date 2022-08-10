@@ -1,7 +1,7 @@
 <template>
 <body>
   <div class="pet-spotlight-container">
-      <div class="flexslider">
+      <div class="flexslider" style="direction:rtl">
           <ul class="slides">
             <li>
               <img class="img-left" src="../assets/images/caitosdog.jpg" />
@@ -37,7 +37,8 @@ export default {
 
 <style scoped>
 img {
-    width: 10rem;
+    height: 10rem;
+    max-width: 10rem;
 }
 
 
@@ -50,6 +51,8 @@ img {
     border-radius: 15px 15px 15px 15px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.18);
     margin: 5rem 1rem 0 1rem;
+    height: 15rem;
+    
    
 
 }
