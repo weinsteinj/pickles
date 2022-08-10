@@ -35,7 +35,8 @@ CREATE TABLE pets
 CREATE TABLE playdate
 (
 	playdate_id serial,
-	user_id int,
+	host_id int,
+	visitor_id int,
 	location varchar(500) NOT NULL,
 	date_and_time timestamp NOT NULL,
 	details varchar(1000),
@@ -43,7 +44,8 @@ CREATE TABLE playdate
 	status varchar(10),
 
 	constraint pk_playdate PRIMARY KEY (playdate_id),
-	constraint fk_user_id FOREIGN KEY (user_id) references users (user_id)
+	constraint fk_host_id FOREIGN KEY (host_id) references users (user_id),
+	constraint fk_visitor_id FOREIGN KEY (visitor_id) references users (user_id)
 );
 CREATE TABLE pet_playdate
 (
