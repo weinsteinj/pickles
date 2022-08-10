@@ -21,18 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     petArray: [
-      {
-        id: 1, name: 'Franco', sex: 'male',
-
-      }, 
-      {
-        id: 2, name: 'Golem', sex: 'male',
-
-      }, 
-      {
-        id: 3, name: 'Janie', sex: 'female',
-
-      },
+      
     ],    
   },
   mutations: {
@@ -51,6 +40,9 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    ADD_ALL_PETS(state, petArray) {
+      this.state.petArray = petArray;
     }
   }
 })

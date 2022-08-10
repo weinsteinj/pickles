@@ -11,10 +11,19 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+import petService from '@/services/petService.js';
 
 export default {
   components: {
     NavBar,
+  },
+  created () {
+         petService.getAllPets()
+       .then(response => {
+         if(response.status === 200) {
+         this.$store.commit('ADD_ALL_PETS', response.data )
+         }
+       });
   }
 }
 
