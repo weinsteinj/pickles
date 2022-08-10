@@ -27,18 +27,18 @@
 
       <label for="Species">Species:</label>
       <select id="petSpecies" class="form-control" v-model="pet.species" required>
-        <option value="1">Dog</option>
-        <option value="2">Cat</option>
-        <option value="3">Rabbit</option>
-        <option value="4">Reptile</option>
-        <option value="5">Other</option>
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+        <option value="Rabbit">Rabbit</option>
+        <option value="Reptile">Reptile</option>
+        <option value="Other">Other</option>
       </select>
       <div></div>
 
     <label for="Sex">Sex:</label>
       <select id="petSex" class="form-control" v-model="pet.sex" required>
-        <option value="1">Male</option>
-        <option value="2">Female</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
       </select>
 
         <div></div>
