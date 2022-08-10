@@ -3,8 +3,9 @@
   <div id = "pet-register" class="text-center">
   
     <div class="left-panel">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiandae necessitatibus architecto. Reiciendis adipisci at fuga aut ratione! Obcaecati deleniti architecto aliquam repellendus optio ea, dolorem voluptatum nulla fuga.</p>
       <h2>Pickles</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiandae necessitatibus architecto. Reiciendis adipisci at fuga aut ratione! Obcaecati deleniti architecto aliquam repellendus optio ea, dolorem voluptatum nulla fuga.</p>
+      
       <p></p>
 
       <img src="../assets\images\playful_cat_re_ac9g.svg" alt="playful cat" class="playful-cat">
@@ -82,7 +83,7 @@
        
       <div></div>
 
-      <button id="selectBtn" type="submit">
+      <button id="selectBtn" class="btn" type="submit">
           Add Pet
       </button>
         
@@ -187,34 +188,53 @@ export default {
 
 </style>
 
-<style>
- 
+<style scoped>
 #pet-register {
   display: flex;
-  align-content: space-between;
+  justify-content: space-between;
+}
+ 
+.pet-form-register {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
 }
 
  #petName {
-   margin-left: 50px;
-   width: 170px;
+   /* margin-left: 50px; */
+   /* width: 170px;
    margin-bottom: 0px;
+   margin-left: 0; */
 }
 
-#petSpecies {
-    margin: 10px;
-     width: 175px;
-     height: 25px;
-     margin-left: 40px;
+/* #petSpecies {
+    
+  
+     height:  2rem;
+     margin-left: 0;
 
+} */
+
+select,
+#personality {
+  background-color: rgb(226, 223, 223);
+  display: inline-block;
+  line-height: 2rem;
+  border-radius: .5rem;
+  margin-bottom: 1rem;
+  margin-left: 0;
+  height: 2rem;
 }
 
-#petSex {
+
+
+/* #petSex {
     margin-left: 67px;
     width: 175px;
     height: 25px;
-}
+} */
 
-#birthDate {
+/* #birthDate {
     margin-top: 10px;
     margin-left: 34px;
     margin-bottom: 10px;
@@ -263,7 +283,7 @@ export default {
 #selectBtn {
     margin-left: 95px;
     width: 170px;
-}
+} */
 .left-panel {
   display: flex;
   flex-direction: column;
@@ -271,7 +291,7 @@ export default {
 .playful-cat {
   width: 100%;
   justify-self: flex-end;
-  flex-grow: 3;
+  flex-grow: 2;
 }
 .form {
   display: flex;
@@ -280,17 +300,18 @@ export default {
 }
 .pet-form-register {
   /* grid-area: form; */
+  display: flex;
+  flex-direction: column;
+  width: 40%;
   
-  
-  flex-grow: 1;
 }
 .left-panel {
-  grid-area: left-panel;
+  /* grid-area: left-panel; */
 }
 .right-panel {
-  grid-area: right-panel;
-  width: 20%;
-  /* background-color: black; */
+  /* grid-area: right-panel; */
+  /* width: 20%; */
+  
 }
 div.text-center {
   /* display: flex;
