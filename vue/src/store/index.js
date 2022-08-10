@@ -20,8 +20,20 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
+    petArray: [
+      {
+        id: 1, name: 'Franco', sex: 'male',
 
-    
+      }, 
+      {
+        id: 2, name: 'Golem', sex: 'male',
+
+      }, 
+      {
+        id: 3, name: 'Janie', sex: 'female',
+
+      },
+    ],    
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
