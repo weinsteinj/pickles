@@ -35,13 +35,15 @@ CREATE TABLE pets
 CREATE TABLE playdate
 (
 	playdate_id serial,
+	user_id int,
 	location varchar(500) NOT NULL,
 	date_and_time timestamp NOT NULL,
 	details varchar(1000),
 	rating int,
 	status varchar(10),
 
-	constraint pk_playdate PRIMARY KEY (playdate_id)
+	constraint pk_playdate PRIMARY KEY (playdate_id),
+	constraint fk_user_id FOREIGN KEY (user_id) references users (user_id)
 );
 CREATE TABLE pet_playdate
 (
