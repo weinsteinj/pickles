@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import $ from 'jquery';
 export default {
     name: 'pet-spotlight',
 
@@ -31,6 +32,10 @@ export default {
       let recaptchaScript = document.createElement('script')
       recaptchaScript.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
       document.head.appendChild(recaptchaScript)
+
+      $(window).load(function() {
+        $('.flexslider').flexslider();
+      });
     }
 }
 </script>
