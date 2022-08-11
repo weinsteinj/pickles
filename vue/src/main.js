@@ -3,8 +3,6 @@ import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
 import axios from 'axios'
-// import Cloudinary from "cloudinary-vue";
-
 import * as VueGoogleMaps from "vue2-google-maps" // Import package
 Vue.config.productionTip = false
 Vue.use(VueGoogleMaps, {
