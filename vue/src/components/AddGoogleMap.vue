@@ -6,6 +6,10 @@
         <gmap-autocomplete @place_changed="initMarker"></gmap-autocomplete>
         <button @click="addLocationMarker">Add</button>
       </label>
+      <label>Please enter your zip code below!
+        <gmap-autocomplete @place_changed="initMarker"></gmap-autocomplete>
+        <button @click="addLocationMarker">Show Nearby Playdates</button>
+      </label>
       <br/>
  
     </div>
