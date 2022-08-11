@@ -18,10 +18,11 @@ public class User {
    private String firstName;
    private String lastName;
    private String email;
+   private int zipCode;
 
    public User() { }
 
-   public User(int id, String username, String password, String authorities, String firstName, String lastName, String email) {
+   public User(int id, String username, String password, String authorities, String firstName, String lastName, String email, int zipCode) {
       this.id = id;
       this.username = username;
       this.password = password;
@@ -30,6 +31,7 @@ public class User {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
+      this.zipCode = zipCode;
    }
 
    public int getId() {
@@ -102,6 +104,14 @@ public class User {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   public int getZipCode() {
+      return zipCode;
+   }
+
+   public void setZipCode(int zipCode) {
+      this.zipCode = zipCode;
    }
 
    @Override

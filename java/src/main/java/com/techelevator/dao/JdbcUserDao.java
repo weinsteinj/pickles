@@ -75,12 +75,12 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public boolean create(String firstName, String lastName, String username, String password, String role, String email) {
-        String insertUserSql = "insert into users (first_name,last_name,username,password_hash,role,email_address) values (?,?,?,?,?,?)";
+    public boolean create(String firstName, String lastName, String username, String password, String role, String email, int zipCode) {
+        String insertUserSql = "insert into users (first_name,last_name,username,password_hash,role,email_address,zip_code) values (?,?,?,?,?,?,?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
-        return jdbcTemplate.update(insertUserSql, firstName, lastName, username, password_hash, ssRole, email) == 1;
+        return jdbcTemplate.update(insertUserSql, firstName, lastName, username, password_hash, ssRole, email, zipCode) == 1;
     }
 
     private User mapRowToUser(SqlRowSet rs) {
@@ -91,6 +91,8 @@ public class JdbcUserDao implements UserDao {
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password_hash"));
         user.setEmail(rs.getString("email_address"));
+        user.setZipCode(rs.getInt("zip_code"));
+
         user.setAuthorities(Objects.requireNonNull(rs.getString("role")));
         user.setActivated(true);
         return user;

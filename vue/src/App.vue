@@ -13,6 +13,7 @@
 import NavBar from '@/components/NavBar.vue'
 import petService from '@/services/petService.js';
 
+
 export default {
   components: {
     NavBar,

@@ -13,6 +13,7 @@ CREATE TABLE users
 	role varchar(50),
 	email_address varchar(250) NOT NULL,
 	birth_date date,
+	zip_code int, --NOT NULL
 	pickle_points int,
 
 	constraint pk_user PRIMARY KEY (user_id)

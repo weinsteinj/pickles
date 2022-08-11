@@ -83,6 +83,15 @@
        
       <div></div>
 
+       <button 
+      id="upload_widget" 
+      class="cloudinary-button">
+        Upload photo
+      </button>
+    
+    <!-- placeholder for uploaded image -->
+      <img id="uploadedimage" src="" /> 
+
       <button id="selectBtn" class="btn" type="submit">
           Add Pet
       </button>
@@ -96,8 +105,37 @@
 import Multiselect from 'vue-multiselect'
 import petService from '@/services/petService.js'
 // import NavBar from '@/components/NavBar.vue'
+import {cloudinary} from 'cloudinary-core';
+
+const cloudName = "picklepoints"; 
+const uploadPreset = "uw_test"; 
 
 export default {
+     mounted() {
+       const myWidget = cloudinary.createUploadWidget(
+        {
+
+          cloudName: cloudName,
+          uploadPreset: uploadPreset,
+        },
+        (error, result) => {
+          if (!error && result && result.event === "success") {
+            console.log("Done! Here is the image info: ", result.info);
+            document
+              .getElementById("uploadedimage")
+              .setAttribute("src", result.info.secure_url);
+          }
+        }
+      );
+
+      document.getElementById("upload_widget").addEventListener(
+        "click",
+        function () {
+          myWidget.open();
+        },
+        false
+      );
+     },
      components: {
      
     Multiselect,
