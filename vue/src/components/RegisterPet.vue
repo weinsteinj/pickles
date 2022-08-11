@@ -12,7 +12,7 @@
     </div>
       <form class="pet-form-register" @submit.prevent="registerPet">
           
-      <h1>Register New Pet: </h1>
+      <h1>Register New Pet</h1>
       <label for="petName">Name: </label>
       <input type="text"
       id="petName"
@@ -93,9 +93,12 @@
     <!-- placeholder for uploaded image -->
       <img id="uploadedimage" src="" /> 
 
-      <button id="selectBtn" class="btn" type="submit">
+      <div class="submitButtonPet">
+        <button id="selectBtn" class="btn" type="submit">
           Add Pet
       </button>
+      </div>
+      
         
       </form>
       <div class="right-panel"></div>
@@ -393,5 +396,12 @@ div.text-center {
   justify-content: center;
   
 } 
+.submitButtonPet{
+  display: flex;
+  justify-content: center;
+}
+h1{
+  text-align: center;
+}
 
 </style>
