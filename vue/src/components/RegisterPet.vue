@@ -82,12 +82,13 @@
        <multiselect id="personality" v-model="value" :options="options" :close-on-select="false" track-by="id" label="personality" :hide-selected="true" multiple=true></multiselect> 
        
       <div></div>
-
+        
        <button 
       id="upload_widget" 
       class="cloudinary-button">
         Upload photo
       </button>
+      
     
     <!-- placeholder for uploaded image -->
       <img id="uploadedimage" src="" /> 
@@ -250,6 +251,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 40%;
+  justify-content: center;
 }
 
  #petName {
@@ -359,6 +361,7 @@ select,
   display: flex;
   flex-direction: column;
   width: 40%;
+  justify-content: center;
   
 }
 .left-panel {
@@ -376,5 +379,19 @@ div.text-center {
   grid-template-areas: "left-panel form right-panel";
   grid-template-columns: 1fr, 1fr, 1fr; */
 }
+
+#upload_widget {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  background-color: #76C893;
+  color: white;
+  border-radius: 10px;
+}
+
+ #selectBtn{
+  display: flex;
+  justify-content: center;
+  
+} 
 
 </style>
