@@ -73,4 +73,9 @@ public class JdbcPetDaoTests extends BaseDaoTests {
 
         Assert.assertArrayEquals(expected, testPersonalities);
     }
+
+    @Test(expected = PetNotFoundException.class)
+    public void getPetNotFoundExceptionWhenGivenPetIdThatDoesntExist(){
+            sut.getPetById(-1);
+        }
 }
