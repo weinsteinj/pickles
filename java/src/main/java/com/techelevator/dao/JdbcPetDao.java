@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,7 +90,7 @@ public class JdbcPetDao implements PetDao{
 //        pet.setBirthDate(rs.getDate("birth_date"));
         Date date = rs.getDate("birth_date");
         if (date != null) {
-            pet.setBirthDate(date.toLocalDate());
+            pet.setBirthDate(date.toLocalDate().plus(4, ChronoUnit.HOURS));
         }
         pet.setFixed(rs.getBoolean("is_fixed"));
         pet.setHasVaccinations(rs.getBoolean("has_vaccinations"));
