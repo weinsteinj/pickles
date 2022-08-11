@@ -39,4 +39,9 @@ public class JdbcPetDaoTests extends BaseDaoTests {
 
         Assert.assertEquals(testPet, createdPet);
     }
+
+    @Test
+    public void getPetById_returns_PET_1_when_given_1(){
+
+    }
 }
