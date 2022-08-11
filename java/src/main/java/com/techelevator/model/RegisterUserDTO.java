@@ -16,6 +16,7 @@ public class RegisterUserDTO {
     private String firstName;
     private String lastName;
     private String email;
+    private int zipCode;
 
     public String getUsername() {
         return username;
@@ -70,5 +71,13 @@ public class RegisterUserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
     }
 }
