@@ -33,8 +33,9 @@ public class JdbcPetDaoTests extends BaseDaoTests {
     }
     @Test
     public void create_pet_creates_new_pet() {
-        PetDTO testPet = new PetDTO(0, "pet0", "dog", "male", birthday, personality, true, true, 2, 1);
-        Pet createdPet = sut.create(testPet, 1);
+        Pet testPet = new Pet(0, "pet0", "dog", "male", birthday, personality, true, true, 2, 1);
+        PetDTO testPet2 = new PetDTO(0, "pet0", "dog", "male", birthday, personality, true, true, 2, 1);
+        Pet createdPet = sut.create(testPet2, 1);
 
         Assert.assertEquals(testPet, createdPet);
     }

@@ -32,13 +32,22 @@ public class JdbcPetDao implements PetDao{
         newPetId = jdbcTemplate.queryForObject(sql, Integer.class, newPetDTO.getName(), newPetDTO.getSpecies(),
                 newPetDTO.getSex(), newPetDTO.getBirthDate(), newPetDTO.isFixed(), newPetDTO.isHasVaccinations(),
                 newPetDTO.getSize(), userId);
-        newPet.setPetId(newPetId);
+        newPet.setPetId(newPetDTO.getPetId());
+        newPet.setName(newPetDTO.getName());
+        newPet.setSpecies(newPetDTO.getSpecies());
+        newPet.setSex(newPetDTO.getSex());
+        newPet.setBirthDate(newPetDTO.getBirthDate());
+        newPet.setFixed(newPetDTO.isFixed());
+        newPet.setHasVaccinations(newPetDTO.isHasVaccinations());
+        newPet.setSize(newPetDTO.getSize());
+        newPet.setUserId(newPetDTO.getUserId());
         String personalitySql = "INSERT INTO pet_personality (pet_id, personality_id) " +
                 "VALUES (?,?)";
         Integer[] personality = newPetDTO.getPersonality();
         for (int personality_id : personality) {
             jdbcTemplate.update(personalitySql,newPetId,personality_id);
         }
+        newPet.setPersonality(personality);
 
         return newPet;
     }
