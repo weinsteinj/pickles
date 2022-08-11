@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import org.apache.tomcat.jni.Local;
+
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
@@ -10,14 +12,14 @@ public class Pet {
     private String name;
     private String species;
     private String sex;
-    private Date birthDate;
+    private LocalDate birthDate;
     private Integer[] personality;
     private boolean isFixed;
     private boolean hasVaccinations;
     private int size;
     private int userId;
 
-    public Pet(int petId, String name, String species, String sex, Date birthDate, Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
+    public Pet(int petId, String name, String species, String sex, LocalDate birthDate, Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
         this.petId = petId;
         this.name = name;
         this.species = species;
@@ -66,11 +68,11 @@ public class Pet {
         this.sex = sex;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -119,12 +121,12 @@ public class Pet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
-        return species == pet.species && sex == pet.sex && isFixed == pet.isFixed && hasVaccinations == pet.hasVaccinations && size == pet.size && Objects.equals(name, pet.name) && Objects.equals(birthDate, pet.birthDate) && Arrays.equals(personality, pet.personality);
+        return petId == pet.petId && isFixed == pet.isFixed && hasVaccinations == pet.hasVaccinations && size == pet.size && userId == pet.userId && Objects.equals(name, pet.name) && Objects.equals(species, pet.species) && Objects.equals(sex, pet.sex) && Objects.equals(birthDate, pet.birthDate) && Arrays.equals(personality, pet.personality);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(name, species, sex, birthDate, isFixed, hasVaccinations, size);
+        int result = Objects.hash(petId, name, species, sex, birthDate, isFixed, hasVaccinations, size, userId);
         result = 31 * result + Arrays.hashCode(personality);
         return result;
     }

@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class JdbcPlaydateDao implements PlaydateDao{
     }
 
     @Override
-    public void create(int hostUserId, String location, Timestamp dateTime, String details, int rating, String status, List<Integer> petId) {
+    public void create(int hostUserId, String location, LocalDateTime dateTime, String details, int rating, String status, List<Integer> petId) {
         String sql = "INSERT INTO playdate (host_id, location, date_and_time, details, rating, status) " +
                 "VALUES (?, ?, ?, ?, ?, ?) RETURNING playdate_id";
         Integer newPlaydateId;
@@ -78,7 +79,11 @@ public class JdbcPlaydateDao implements PlaydateDao{
         playdate.setHostUserId(rs.getInt("host_id"));
         playdate.setVisitingUserId(rs.getInt("visitor_id"));
         playdate.setLocation(rs.getString("location"));
-        playdate.setDateTime(rs.getTimestamp("date_and_time"));
+//        playdate.setDateTime(rs.getTimestamp("date_and_time"));
+        Timestamp dateTime = rs.getTimestamp("date_and_time");
+        if (dateTime != null) {
+            playdate.setDateTime(dateTime.toLocalDateTime());
+        }
         playdate.setDetails(rs.getString("details"));
         playdate.setRating(rs.getInt("rating"));
         playdate.setStatus(rs.getString("status"));

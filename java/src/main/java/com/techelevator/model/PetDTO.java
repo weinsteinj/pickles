@@ -1,21 +1,25 @@
 package com.techelevator.model;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 
 public class PetDTO {
-
+    private int petId;
     private String name;
     private String species;
     private String sex;
-    private Date birthDate;
+    private LocalDate birthDate;
     private Integer[] personality;
     private boolean isFixed;
     private boolean hasVaccinations;
     private int size;
     private int userId;
 
-    public PetDTO(int petId, String name, String species, String sex, Date birthDate,
+    public PetDTO(int petId, String name, String species, String sex, LocalDate birthDate,
                   Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
+        this.petId = petId;
         this.name = name;
         this.species = species;
         this.sex = sex;
@@ -29,6 +33,14 @@ public class PetDTO {
 
     public PetDTO() {
 
+    }
+
+    public int getPetId() {
+        return petId;
+    }
+
+    public void setPetId(int petId) {
+        this.petId = petId;
     }
 
     public String getName() {
@@ -55,11 +67,11 @@ public class PetDTO {
         this.sex = sex;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -101,5 +113,20 @@ public class PetDTO {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PetDTO petDTO = (PetDTO) o;
+        return isFixed == petDTO.isFixed && hasVaccinations == petDTO.hasVaccinations && size == petDTO.size && userId == petDTO.userId && Objects.equals(name, petDTO.name) && Objects.equals(species, petDTO.species) && Objects.equals(sex, petDTO.sex) && Objects.equals(birthDate, petDTO.birthDate) && Arrays.equals(personality, petDTO.personality);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(name, species, sex, birthDate, isFixed, hasVaccinations, size, userId);
+        result = 31 * result + Arrays.hashCode(personality);
+        return result;
     }
 }
