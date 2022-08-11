@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Pet;
+import com.techelevator.model.PetByUserDTO;
 import com.techelevator.model.PetDTO;
 import com.techelevator.model.PetNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -88,6 +89,19 @@ public class JdbcPetDao implements PetDao{
         Integer[] personalityArray = personality.toArray(new Integer[0]);
         return personalityArray;
     }
+
+//    @Override
+//    public List<Pet> getPetsByUserId(PetByUserDTO petByUserDTO) {
+//        String sql = "SELECT * FROM pet WHERE user_id = ?";
+//        int userId = petByUserDTO.getUserId();
+//
+//        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
+//        List<Pet> petsByUserId = new ArrayList<>();
+//
+//
+//
+//        return null;
+//    }
 
 
     private Pet mapRowToPet(SqlRowSet rs, Integer[] personality) {
