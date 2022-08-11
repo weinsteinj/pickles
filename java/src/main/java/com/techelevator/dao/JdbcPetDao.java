@@ -7,6 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +32,22 @@ public class JdbcPetDao implements PetDao{
         newPetId = jdbcTemplate.queryForObject(sql, Integer.class, newPetDTO.getName(), newPetDTO.getSpecies(),
                 newPetDTO.getSex(), newPetDTO.getBirthDate(), newPetDTO.isFixed(), newPetDTO.isHasVaccinations(),
                 newPetDTO.getSize(), userId);
-        newPet.setPetId(newPetId);
+        newPet.setPetId(newPetDTO.getPetId());
+        newPet.setName(newPetDTO.getName());
+        newPet.setSpecies(newPetDTO.getSpecies());
+        newPet.setSex(newPetDTO.getSex());
+        newPet.setBirthDate(newPetDTO.getBirthDate());
+        newPet.setFixed(newPetDTO.isFixed());
+        newPet.setHasVaccinations(newPetDTO.isHasVaccinations());
+        newPet.setSize(newPetDTO.getSize());
+        newPet.setUserId(newPetDTO.getUserId());
         String personalitySql = "INSERT INTO pet_personality (pet_id, personality_id) " +
                 "VALUES (?,?)";
         Integer[] personality = newPetDTO.getPersonality();
         for (int personality_id : personality) {
             jdbcTemplate.update(personalitySql,newPetId,personality_id);
         }
+        newPet.setPersonality(personality);
 
         return newPet;
     }
@@ -84,7 +96,11 @@ public class JdbcPetDao implements PetDao{
         pet.setName(rs.getString("name"));
         pet.setSpecies(rs.getString("species"));
         pet.setSex(rs.getString("sex"));
-        pet.setBirthDate(rs.getDate("birth_date"));
+//        pet.setBirthDate(rs.getDate("birth_date"));
+        Date date = rs.getDate("birth_date");
+        if (date != null) {
+            pet.setBirthDate(date.toLocalDate().plus(4, ChronoUnit.HOURS));
+        }
         pet.setFixed(rs.getBoolean("is_fixed"));
         pet.setHasVaccinations(rs.getBoolean("has_vaccinations"));
         pet.setSize(rs.getInt("size"));
