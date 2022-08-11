@@ -78,7 +78,7 @@ public class JdbcPetDao implements PetDao{
         return petList;
     }
 
-    private Integer[] getPersonalitiesForPet(int petId) {
+    public Integer[] getPersonalitiesForPet(int petId) {
         String sqlPersonality = "SELECT * FROM pet_personality WHERE pet_id = ?";
         SqlRowSet resultsPersonality = jdbcTemplate.queryForRowSet(sqlPersonality,petId);
         List<Integer> personality = new ArrayList<>();
