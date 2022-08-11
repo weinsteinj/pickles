@@ -99,7 +99,7 @@ public class JdbcPetDao implements PetDao{
 //        pet.setBirthDate(rs.getDate("birth_date"));
         Date date = rs.getDate("birth_date");
         if (date != null) {
-            pet.setBirthDate(date.toLocalDate().plus(4, ChronoUnit.HOURS));
+            pet.setBirthDate(date.toLocalDate());
         }
         pet.setFixed(rs.getBoolean("is_fixed"));
         pet.setHasVaccinations(rs.getBoolean("has_vaccinations"));
