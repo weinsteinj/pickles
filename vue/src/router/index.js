@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import petRegister from '../views/RegisterPet.vue'
+import GoogleMapView from '@/views/GoogleMapView.vue'
 
 Vue.use(Router)
 
@@ -60,6 +61,14 @@ const router = new Router({
       component: petRegister,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: "/map",
+      name: "map",
+      component: GoogleMapView,
+      meta: {
+        requiresAuth: false
       }
     }
   ]
