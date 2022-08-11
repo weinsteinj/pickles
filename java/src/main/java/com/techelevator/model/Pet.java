@@ -121,12 +121,12 @@ public class Pet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
-        return species == pet.species && sex == pet.sex && isFixed == pet.isFixed && hasVaccinations == pet.hasVaccinations && size == pet.size && Objects.equals(name, pet.name) && Objects.equals(birthDate, pet.birthDate) && Arrays.equals(personality, pet.personality);
+        return petId == pet.petId && isFixed == pet.isFixed && hasVaccinations == pet.hasVaccinations && size == pet.size && userId == pet.userId && Objects.equals(name, pet.name) && Objects.equals(species, pet.species) && Objects.equals(sex, pet.sex) && Objects.equals(birthDate, pet.birthDate) && Arrays.equals(personality, pet.personality);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(name, species, sex, birthDate, isFixed, hasVaccinations, size);
+        int result = Objects.hash(petId, name, species, sex, birthDate, isFixed, hasVaccinations, size, userId);
         result = 31 * result + Arrays.hashCode(personality);
         return result;
     }
