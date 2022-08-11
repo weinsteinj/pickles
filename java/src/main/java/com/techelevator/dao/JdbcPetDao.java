@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +86,11 @@ public class JdbcPetDao implements PetDao{
         pet.setName(rs.getString("name"));
         pet.setSpecies(rs.getString("species"));
         pet.setSex(rs.getString("sex"));
-        pet.setBirthDate(rs.getDate("birth_date"));
+//        pet.setBirthDate(rs.getDate("birth_date"));
+        Date date = rs.getDate("birth_date");
+        if (date != null) {
+            pet.setBirthDate(date.toLocalDate());
+        }
         pet.setFixed(rs.getBoolean("is_fixed"));
         pet.setHasVaccinations(rs.getBoolean("has_vaccinations"));
         pet.setSize(rs.getInt("size"));

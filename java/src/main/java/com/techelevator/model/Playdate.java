@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Playdate {
     private int playdateId;
     private String location;
-    private Timestamp dateTime;
+    private LocalDateTime dateTime;
     private String details;
     private int rating;
     private String status;
@@ -34,11 +34,11 @@ public class Playdate {
         this.location = location;
     }
 
-    public Timestamp getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Timestamp dateTime) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 

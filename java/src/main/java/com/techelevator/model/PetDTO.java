@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class PetDTO {
@@ -7,14 +8,14 @@ public class PetDTO {
     private String name;
     private String species;
     private String sex;
-    private Date birthDate;
+    private LocalDate birthDate;
     private Integer[] personality;
     private boolean isFixed;
     private boolean hasVaccinations;
     private int size;
     private int userId;
 
-    public PetDTO(int petId, String name, String species, String sex, Date birthDate,
+    public PetDTO(int petId, String name, String species, String sex, LocalDate birthDate,
                   Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
         this.name = name;
         this.species = species;
@@ -55,11 +56,11 @@ public class PetDTO {
         this.sex = sex;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
