@@ -4,7 +4,7 @@
       <h2>Search and add a pin</h2>
     </div>
     <br>
-    <google-maps
+    <GmapMap
       :center='center'
       :zoom='12'
       style='width:100%;  height: 400px;'
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'gm',
+  name: 'GoogleMap',
   data() {
     return {
       center: { lat: 45.508, lng: -73.587 },

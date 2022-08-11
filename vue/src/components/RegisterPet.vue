@@ -105,10 +105,11 @@
 import Multiselect from 'vue-multiselect'
 import petService from '@/services/petService.js'
 // import NavBar from '@/components/NavBar.vue'
-import {cloudinary} from 'cloudinary-core';
+//import {Cloudinary} from 'cloudinary-core';
 
 const cloudName = "picklepoints"; 
 const uploadPreset = "uw_test"; 
+const cloudinary = window.cloudinary;
 
 export default {
      mounted() {
