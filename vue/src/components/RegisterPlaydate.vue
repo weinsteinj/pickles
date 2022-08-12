@@ -14,6 +14,7 @@
           
       <h1>Hi, {{this.$store.state.user.firstName}}! Register New Playdate: </h1>
      <h2> You are scheduling a playdate for </h2>
+     <p v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.id">{{pet.name}}</p>
 
       <multiselect id="pets" v-model="value" :options="options" :close-on-select="false" track-by="id" label="name" :hide-selected="true" multiple=true></multiselect> 
 
@@ -58,7 +59,7 @@
 
 <script>
 import playdateService from '@/services/playdateService.js'
-//import petService from '@/services/petService.js'
+import petService from '@/services/petService.js'
 // import NavBar from '@/components/NavBar.vue'
 //import {Cloudinary} from 'cloudinary-core';
 
@@ -68,6 +69,20 @@ const cloudinary = window.cloudinary;
 import Multiselect from 'vue-multiselect'
 
 export default {
+     created () {
+       petService.getPetsByUserId(this.$store.state.user.id)
+       .then(response => {
+         if(response.status === 200) {
+         this.$store.commit('ADD_PETS_TO_USER', response.data )
+         }
+       })
+       .catch(error => {
+         const response = error.response;
+         if(response.status >= 400 && response.status < 500) {
+           alert("Error: Bad Request!")
+         }
+         })
+  },
      mounted() {
        const myWidget = cloudinary.createUploadWidget(
         {
@@ -110,10 +125,10 @@ export default {
           options: [],
 
             date: '',
-            time: ''
+            time: '',
         }
     },
-    created() {
+    // created() {
       // this.user = this.$store.state.user;
       // this.petArray = petService.getPetByUserId(this.user.id)
       // .then(response => {
@@ -121,21 +136,15 @@ export default {
       //     return; // add commit mutation to update $store.state?
       //   }
       // }
-      // ) 
-      
-      for (var pet of this.$store.state.petArray) {
-        //console.log(this.$store.state.user.id);
-        //this.options.push(pet);
-        if (pet.userId === this.$store.state.user.id) {
-        
-          //console.log("hello!")
-          //console.log(pet.userId);
-          this.options.push(pet);
-          this.playdate.pets.push(pet);
-          console.log(this.playdate)
-        }
-      }
-    },
+      // )
+      // for (var pet of this.$store.state.petArray) {
+      //   //console.log(this.$store.state.user.id);
+      //   if (pet.userId === this.$store.state.user.id) {
+      //     console.log(pet.userId);
+      //     this.playdate.pets.push(pet);
+      //   }
+    //   }
+    // },
     methods: {
       
       registerPlaydate() {
@@ -155,7 +164,7 @@ export default {
 }
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css">
+<style>
  
 #personality {
     width: 150px;

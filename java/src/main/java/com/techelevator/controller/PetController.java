@@ -69,8 +69,13 @@ public class PetController {
     }
 
     // TODO get pets by user
-    @RequestMapping(path = "/pet/user", method = RequestMethod.GET)
-    public List<Pet> getPetsByUserId(@RequestBody PetByUserDTO petByUserDTO) {
-        return petDao.getPetsByUserId(petByUserDTO);
+    @RequestMapping(path = "/pet/user/{userId}", method = RequestMethod.GET)
+    public List<Pet> getPetsByUserId(@PathVariable int userId) {
+        return petDao.getPetsByUserId(userId);
     }
+
+//    @RequestMapping(path = "/pet/user", method = RequestMethod.GET)
+//    public List<Pet> getPetsByUserId(@RequestBody PetByUserDTO petByUserDTO) {
+//        return petDao.getPetsByUserId(petByUserDTO);
+//    }
 }

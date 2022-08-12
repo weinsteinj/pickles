@@ -29,6 +29,7 @@ CREATE TABLE pets
 	is_fixed boolean NOT NULL,
 	has_vaccinations boolean NOT NULL,
 	size varchar (15),
+	pet_photo varchar (2100),
 
 	constraint pk_pet PRIMARY KEY (pet_id),
 	constraint fk_user FOREIGN KEY (user_id) references users (user_id)
@@ -38,11 +39,12 @@ CREATE TABLE playdate
 	playdate_id serial,
 	host_id int,
 	visitor_id int,
-	location varchar(500) NOT NULL,
-	date_and_time timestamp NOT NULL,
+	zip_code int,
+	date_and_time timestamp,
 	details varchar(1000),
 	rating int,
 	status varchar(10),
+	playdate_photo varchar (2100),
 
 	constraint pk_playdate PRIMARY KEY (playdate_id),
 	constraint fk_host_id FOREIGN KEY (host_id) references users (user_id),
