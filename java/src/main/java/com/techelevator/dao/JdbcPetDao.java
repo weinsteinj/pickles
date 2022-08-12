@@ -1,7 +1,6 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Pet;
-import com.techelevator.model.PetByUserDTO;
 import com.techelevator.model.PetDTO;
 import com.techelevator.model.PetNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,8 +8,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +23,13 @@ public class JdbcPetDao implements PetDao{
     @Override
     public Pet create(PetDTO newPetDTO, int userId) {
         Pet newPet = new Pet();
-        String sql = "INSERT INTO pets (name, species, sex, birth_date, is_fixed, has_vaccinations, size, user_id) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING pet_id";
+        String sql = "INSERT INTO pets (name, species, sex, birth_date, is_fixed, has_vaccinations, size, user_id, pet_photo) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING pet_id";
 
         Integer newPetId;
         newPetId = jdbcTemplate.queryForObject(sql, Integer.class, newPetDTO.getName(), newPetDTO.getSpecies(),
                 newPetDTO.getSex(), newPetDTO.getBirthDate(), newPetDTO.isFixed(), newPetDTO.isHasVaccinations(),
-                newPetDTO.getSize(), userId);
+                newPetDTO.getSize(), userId, newPetDTO.getPetPhoto());
         newPet.setPetId(newPetDTO.getPetId());
         newPet.setName(newPetDTO.getName());
         newPet.setSpecies(newPetDTO.getSpecies());
@@ -42,6 +39,7 @@ public class JdbcPetDao implements PetDao{
         newPet.setHasVaccinations(newPetDTO.isHasVaccinations());
         newPet.setSize(newPetDTO.getSize());
         newPet.setUserId(newPetDTO.getUserId());
+        newPet.setPetPhoto(newPetDTO.getPetPhoto());
         String personalitySql = "INSERT INTO pet_personality (pet_id, personality_id) " +
                 "VALUES (?,?)";
         Integer[] personality = newPetDTO.getPersonality();
@@ -116,6 +114,26 @@ public class JdbcPetDao implements PetDao{
             petsByUserId.add(pet);
         }
         return petsByUserId;
+    }
+
+
+    @Override
+    public Pet updatePet(Pet pet, int petId) {
+        String sql = "UPDATE pets SET name = ?, species = ?, sex = ?, birth_date = ?, " +
+                "is_fixed = ?, has_vaccinations = ?, size = ?, user_id = ?, pet_photo = ? " +
+                "WHERE pet_id = ?;";
+        jdbcTemplate.update(sql,
+                pet.getName(),
+                pet.getSpecies(),
+                pet.getSex(),
+                pet.getBirthDate(),
+                pet.isFixed(),
+                pet.isHasVaccinations(),
+                pet.getSize(),
+                pet.getUserId(),
+                pet.getPetPhoto(),
+                petId);
+        return pet;
     }
 
 

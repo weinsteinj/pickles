@@ -45,6 +45,7 @@ public class PetController {
         newPet.setHasVaccinations(newPetDTO.isHasVaccinations());
         newPet.setSize(newPetDTO.getSize());
         newPet.setUserId(currentUser.getId());
+        newPet.setPetPhoto(newPetDTO.getPetPhoto());
 
         HttpHeaders responseHeaders = new HttpHeaders();
         ResponseEntity<Pet> responseEntity = new ResponseEntity<Pet>(newPet, responseHeaders, HttpStatus.CREATED);
@@ -61,6 +62,13 @@ public class PetController {
 
         }
         return newPet;
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(path = "/pet/{petId}", method = RequestMethod.PUT)
+    public Pet updatePet(@PathVariable int petId, @RequestBody Pet pet) throws PetNotFoundException {
+        pet.setPetId(petId);
+        return petDao.updatePet(pet, petId);
     }
 
     @RequestMapping(path = "/pet", method = RequestMethod.GET)

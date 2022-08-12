@@ -43,7 +43,7 @@ CREATE TABLE playdate
 	date_and_time timestamp,
 	details varchar(1000),
 	rating int,
-	status varchar(10),
+	status varchar(10) DEFAULT 'Posted',
 	playdate_photo varchar (2100),
 
 	constraint pk_playdate PRIMARY KEY (playdate_id),
@@ -52,8 +52,8 @@ CREATE TABLE playdate
 );
 CREATE TABLE pet_playdate
 (
-	pet_id int NOT NULL,
 	playdate_id int NOT NULL,
+	pet_id int NOT NULL,
 
 	constraint fk_pet_playdate_pet_id FOREIGN KEY (pet_id) references pets (pet_id),
 	constraint fk_pet_playdate_playdate_id FOREIGN KEY (playdate_id) references playdate (playdate_id)
@@ -96,7 +96,6 @@ CREATE TABLE messages
 	constraint pk_message PRIMARY KEY (message_id),
 	constraint fk_user FOREIGN KEY (user_id) references users (user_id)
 );
-
 
 
 COMMIT TRANSACTION;

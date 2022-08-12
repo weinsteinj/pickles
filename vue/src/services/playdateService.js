@@ -5,7 +5,7 @@ export default {
 
     
     getAllPlaydates() {
-    return axios.get('/playdate/');
+    return axios.get('/playdate');
     },
     
     getById(playdateId) {

@@ -18,6 +18,9 @@ public class Pet {
     private boolean hasVaccinations;
     private int size;
     private int userId;
+    private String petPhoto;
+
+
 
     public Pet(int petId, String name, String species, String sex, LocalDate birthDate, Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
         this.petId = petId;
@@ -116,17 +119,25 @@ public class Pet {
         this.userId = userId;
     }
 
+    public String getPetPhoto() {
+        return petPhoto;
+    }
+
+    public void setPetPhoto(String petPhoto) {
+        this.petPhoto = petPhoto;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
-        return petId == pet.petId && isFixed == pet.isFixed && hasVaccinations == pet.hasVaccinations && size == pet.size && userId == pet.userId && Objects.equals(name, pet.name) && Objects.equals(species, pet.species) && Objects.equals(sex, pet.sex) && Objects.equals(birthDate, pet.birthDate) && Arrays.equals(personality, pet.personality);
+        return petId == pet.petId && isFixed == pet.isFixed && hasVaccinations == pet.hasVaccinations && size == pet.size && userId == pet.userId && Objects.equals(name, pet.name) && Objects.equals(species, pet.species) && Objects.equals(sex, pet.sex) && Objects.equals(birthDate, pet.birthDate) && Arrays.equals(personality, pet.personality) && Objects.equals(petPhoto, pet.petPhoto);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(petId, name, species, sex, birthDate, isFixed, hasVaccinations, size, userId);
+        int result = Objects.hash(petId, name, species, sex, birthDate, isFixed, hasVaccinations, size, userId, petPhoto);
         result = 31 * result + Arrays.hashCode(personality);
         return result;
     }
