@@ -15,6 +15,8 @@
       <h1>Hi, {{this.$store.state.user.firstName}}! Register New Playdate: </h1>
      <h2> You are scheduling a playdate for </h2>
 
+      <multiselect id="pets" v-model="value" :options="options" :close-on-select="false" track-by="id" label="name" :hide-selected="true" multiple=true></multiselect> 
+
       <label for="location">Location: </label>
       <input type="text"
       id="location"
@@ -63,6 +65,7 @@ import playdateService from '@/services/playdateService.js'
 const cloudName = "picklepoints"; 
 const uploadPreset = "uw_test"; 
 const cloudinary = window.cloudinary;
+import Multiselect from 'vue-multiselect'
 
 export default {
      mounted() {
@@ -91,7 +94,7 @@ export default {
       );
      },
      components: {
-     
+     Multiselect
     // NavBar,
     },
     name: 'playdate-register',
@@ -103,6 +106,9 @@ export default {
                 details: '',
                 pets: [], 
             },
+            value: [],
+          options: [],
+
             date: '',
             time: ''
         }
@@ -115,16 +121,23 @@ export default {
       //     return; // add commit mutation to update $store.state?
       //   }
       // }
-      // )
+      // ) 
+      
       for (var pet of this.$store.state.petArray) {
         //console.log(this.$store.state.user.id);
+        //this.options.push(pet);
         if (pet.userId === this.$store.state.user.id) {
-          console.log(pet.userId);
+        
+          //console.log("hello!")
+          //console.log(pet.userId);
+          this.options.push(pet);
           this.playdate.pets.push(pet);
+          console.log(this.playdate)
         }
       }
     },
     methods: {
+      
       registerPlaydate() {
         this.playdate.dateTime = this.date + ", " + this.time;
         playdateService.createPlaydate(this.pet)
@@ -132,6 +145,10 @@ export default {
            if (response.status === 200) 
             return;  // add commit mutation to update the $store.state
          })
+         for (var i of this.value) {
+          this.playdate.pets.push(i.name)
+        }
+
       },
     
     },
