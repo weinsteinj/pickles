@@ -30,9 +30,11 @@
         v-model="user.password"
         required
       />
-      
+      <div class="homePageButtons">
       <button class="btn" type="submit">Sign in</button>
-      <router-link :to="{ name: 'register' }" class="need-account">Need an account?</router-link>
+      <router-link :to="{ name: 'register' }" class="need-account">Need an account?</router-link>  
+      </div>
+      
     </form>
   </div>
 </template>
@@ -120,6 +122,12 @@ label {
 
 .need-account:hover {
   text-decoration: underline;
+}
+.homePageButtons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 

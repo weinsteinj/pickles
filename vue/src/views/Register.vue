@@ -85,7 +85,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiand
       />
       <!-- </div> -->
       
-
+    <div class="buttonRegisterUser">
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
@@ -94,6 +94,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiand
         <router-link :to="{ name: 'home' }" class="already-has-account"
         >Already Have an account?</router-link
       >
+      </div>
       </div>
       
     </form>
@@ -320,6 +321,7 @@ input {
 
 h1 {
   margin-top: 7rem;
+  text-align: center;
 }
 
 h2 {
@@ -336,5 +338,12 @@ p {
   width: 100%;
   justify-self: flex-end;
   flex-grow: 2;
+}
+
+.buttonRegisterUser{
+  flex-direction: column;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

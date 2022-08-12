@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Pet;
+import com.techelevator.model.PetByUserDTO;
 import com.techelevator.model.PetDTO;
 
 import java.util.Date;
@@ -14,6 +15,7 @@ public interface PetDao {
 
     List<Pet> listAllPets();
 
+    Integer[] getPersonalitiesForPet(int petId);
 
-
+//    List<Pet> getPetsByUserId(PetByUserDTO petByUserDTO);
 }

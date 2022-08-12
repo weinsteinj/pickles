@@ -63,6 +63,19 @@ public class JdbcPetDaoTests extends BaseDaoTests {
 
     @Test
     public void getPersonalitiesForPet(){
-        
+        // Arrange
+        Integer[] testPersonalities = personality;
+
+
+        // Act
+        Integer[] expected = sut.getPersonalitiesForPet(1);
+        // Arrange
+
+        Assert.assertArrayEquals(expected, testPersonalities);
     }
+
+    @Test(expected = PetNotFoundException.class)
+    public void getPetNotFoundExceptionWhenGivenPetIdThatDoesntExist(){
+            sut.getPetById(-1);
+        }
 }
