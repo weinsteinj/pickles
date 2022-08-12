@@ -1,5 +1,4 @@
 BEGIN TRANSACTION;
-
 ----PERSONALITY INSERTS--
 
 INSERT INTO personality(type)
@@ -71,5 +70,13 @@ VALUES (2, 3, '15212', '2022-08-15T12:00:00', 'Super fun playdate at the park!')
 
 INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details)
 VALUES (1, 3, '15202', '2022-09-30T12:00:00', 'Go on a walk with us!');
+
+--PET PLAYDATES--
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (1, 1);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (1, 2);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (2, 2);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (2, 3);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (3, 1);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (3, 3);
 
 COMMIT TRANSACTION;
