@@ -19,6 +19,13 @@ public class RestGeocodeDao implements GeocodeDao{
         Place playPlace = new Place();
         String uri = "https://maps.googleapis.com/maps/api/geocode/json?address=15217&key=AIzaSyCbMJBc_MS9mlIMfrzc96ZgSAZWe-ZvpnA";
         String stringPlace = restTemplate.getForObject(uri, String.class);
+//        var json = @"
+//        {
+//            ""someObj"": 5
+//        }
+//        ";
+//        var result = JsonConvert.DeserializeObject<JToken>(json);
+//        var t = result["someObj"];
         return stringPlace;
     }
 }
