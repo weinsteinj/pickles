@@ -31,9 +31,16 @@ public class PlaydateController {
         String userName = principal.getName();
         User currentUser = userDao.findByUsername(userName);
         try {
-            playdateDao.create(currentUser.getId(), newPlaydate.getLocation(), newPlaydate.getDateTime(), newPlaydate.getDetails(), newPlaydate.getRating(), newPlaydate.getStatus(), newPlaydate.getPetId() );
-        } catch (PlaydateAlreadyExistsException e){
+            playdateDao.create(currentUser.getId(), newPlaydate.getZipCode(), newPlaydate.getDateTime(), newPlaydate.getDetails(), newPlaydate.getRating(), newPlaydate.getStatus(), newPlaydate.getPlaydatePhoto(), newPlaydate.getPetId());
+        } catch (PlaydateAlreadyExistsException e) {
         }
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(path = "/playdate/{playdateId}", method = RequestMethod.PUT)
+    public Playdate updatePlaydate(@PathVariable int playdateId, @RequestBody Playdate playdate) throws PlaydateNotFoundException {
+        playdate.setPlaydateId(playdateId);
+        return playdateDao.updatePlaydate(playdate, playdateId);
     }
 
     @RequestMapping(path = "/playdate/{playdate_id}", method = RequestMethod.GET)

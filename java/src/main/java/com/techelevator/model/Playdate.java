@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Playdate {
     private int playdateId;
-    private String location;
+    private int zipCode;
     private LocalDateTime dateTime;
     private String details;
     private int rating;
@@ -17,6 +17,7 @@ public class Playdate {
     private int hostUserId;
     private int visitingUserId;
     List<Integer> petId;
+    private String playdatePhoto;
 
     public int getPlaydateId() {
         return playdateId;
@@ -26,12 +27,12 @@ public class Playdate {
         this.playdateId = playdateId;
     }
 
-    public String getLocation() {
-        return location;
+    public int getZipCode() {
+        return zipCode;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
     }
 
     public LocalDateTime getDateTime() {
@@ -90,16 +91,24 @@ public class Playdate {
         this.petId = petId;
     }
 
+    public String getPlaydatePhoto() {
+        return playdatePhoto;
+    }
+
+    public void setPlaydatePhoto(String playdatePhoto) {
+        this.playdatePhoto = playdatePhoto;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Playdate playdate = (Playdate) o;
-        return rating == playdate.rating && hostUserId == playdate.hostUserId && visitingUserId == playdate.visitingUserId && Objects.equals(location, playdate.location) && Objects.equals(dateTime, playdate.dateTime) && Objects.equals(details, playdate.details) && Objects.equals(status, playdate.status) && Objects.equals(petId, playdate.petId);
+        return playdateId == playdate.playdateId && zipCode == playdate.zipCode && rating == playdate.rating && hostUserId == playdate.hostUserId && visitingUserId == playdate.visitingUserId && Objects.equals(dateTime, playdate.dateTime) && Objects.equals(details, playdate.details) && Objects.equals(status, playdate.status) && Objects.equals(petId, playdate.petId) && Objects.equals(playdatePhoto, playdate.playdatePhoto);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(location, dateTime, details, rating, status, hostUserId, visitingUserId, petId);
+        return Objects.hash(playdateId, zipCode, dateTime, details, rating, status, hostUserId, visitingUserId, petId, playdatePhoto);
     }
 }
