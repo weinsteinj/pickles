@@ -19,11 +19,11 @@
       <multiselect id="pets"  multiple=true v-model="value" :options="options" :close-on-select="false" track-by="petId" label="name" :hide-selected="false" ></multiselect> 
 
       <label for="zip-code">Zip Code: </label>
-      <input type="text"
+      <input type="number"
       id="zip-code"
       class="form-control"
       placeholder="Zip Code"
-      v-model="playdate.zipcode"
+      v-model="playdate.zipCode"
       required
       autofocus
       >
@@ -123,13 +123,13 @@ export default {
     data() {
         return {
             playdate: {
-                zipcode: '',
+                zipCode: 0,
                 dateTime: '',
                 details: '',
                 petId: [], 
-                rating: '',
+                rating: 0,
                 playdatePhoto: '',
-                userId: ''
+                userId: 0
             },
             value: [],
           options: [],
@@ -144,14 +144,15 @@ export default {
         this.playdate.dateTime = this.date + "T" + this.time;
         this.playdate.userId = this.$store.state.user.id;
         //this.playdate.petId.push(this.$store.state.currentUserPetArray[0].petId);
+        for (var i of this.value) {
+          this.playdate.petId.push(i.petId);
+        }
         playdateService.createPlaydate(this.playdate)
          .then(response => {
            if (response.status === 200) 
             return;  // add commit mutation to update the $store.state
          })
-         for (var i of this.value) {
-          this.playdate.petId.push(i.petId);
-        }
+         
 
       },
     
