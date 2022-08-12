@@ -3,15 +3,56 @@
         <h2> Host User ID: {{playdate.hostUserId}}  
             <br>
         ZipCode of Playdate: {{playdate.zipCode}}</h2>
-    </body>
+        <br>
+        <div>
+            Pets: 
+            {{pets}}
+        </div>
+            </body>
 </template>
 
 <script>
 export default {
     name: 'playdate-card',
+    data() {
+        return {
+            
+            pets: []
+        }
+    },
     props: {
         playdate: Object,
     },
+    created() {
+        let allPetsArray = this.$store.state.petArray;
+        let playdatePets = this.playdate.petId;
+        
+        for(let i=0; i<allPetsArray.length; i++) {
+            
+            playdatePets.forEach((element) => {
+                
+                allPetsArray.forEach(pet => {
+                    let petIdHere = pet.petId;
+               
+                    if (element === petIdHere)
+                    this.pets.push(pet.name)
+                    
+                     })
+
+                     
+                })
+        }
+            
+        
+    },
+
+    methods: {
+        getNamesFromId(id){
+            this.$store.state.petArray.find(element => {
+                element.id === id;
+            })
+        }
+    }
 }
 </script>
 
