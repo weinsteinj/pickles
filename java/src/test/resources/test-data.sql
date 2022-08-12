@@ -16,6 +16,16 @@ INSERT INTO personality (type) VALUES ('independent');
 
 
 INSERT INTO pet_personality (pet_id, personality_id) VALUES (1, 1);
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (1, 2);
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (1, 3);
+
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (2, 1);
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (2, 2);
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (2, 3);
+
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (3, 1);
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (3, 2);
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (3, 3);
 
 
 COMMIT TRANSACTION;
