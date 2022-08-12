@@ -90,16 +90,28 @@ public class JdbcPetDao implements PetDao{
     }
 
     @Override
-    public List<Pet> getPetsByUserId(PetByUserDTO petByUserDTO) {
+    public List<Pet> getPetsByUserId(int userId) {
         List<Pet> petsByUserId = new ArrayList<>();
-        String sql = "SELECT * FROM pet WHERE user_id = ?";
-        int userId = petByUserDTO.getUserId();
+        String sql = "SELECT * FROM pets WHERE user_id = ?";
+//        int userId = petByUserDTO.getUserId();
 
         SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
         while(rs.next()) {
             Pet pet = new Pet();
             pet.setPetId(rs.getInt("pet_id"));
-            mapRowToPet(rs, getPersonalitiesForPet(rs.getInt("pet_id")));
+            pet.setName(rs.getString("name"));
+            pet.setSpecies(rs.getString("species"));
+            pet.setSex(rs.getString("sex"));
+            Date date = rs.getDate("birth_date");
+            if (date != null) {
+                pet.setBirthDate(date.toLocalDate());
+            }
+            pet.setFixed(rs.getBoolean("is_fixed"));
+            pet.setHasVaccinations(rs.getBoolean("has_vaccinations"));
+            pet.setSize(rs.getInt("size"));
+            pet.setUserId(userId);
+//            mapRowToPet(rs, getPersonalitiesForPet(rs.getInt("pet_id")));
+            pet.setPersonality(getPersonalitiesForPet(pet.getPetId()));
             petsByUserId.add(pet);
         }
         return petsByUserId;
