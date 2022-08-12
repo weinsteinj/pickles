@@ -1,7 +1,6 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Pet;
-import com.techelevator.model.PetByUserDTO;
 import com.techelevator.model.PetDTO;
 import com.techelevator.model.PetNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;

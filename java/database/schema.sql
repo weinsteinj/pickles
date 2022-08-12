@@ -52,8 +52,8 @@ CREATE TABLE playdate
 );
 CREATE TABLE pet_playdate
 (
-	pet_id int NOT NULL,
 	playdate_id int NOT NULL,
+	pet_id int NOT NULL,
 
 	constraint fk_pet_playdate_pet_id FOREIGN KEY (pet_id) references pets (pet_id),
 	constraint fk_pet_playdate_playdate_id FOREIGN KEY (playdate_id) references playdate (playdate_id)
