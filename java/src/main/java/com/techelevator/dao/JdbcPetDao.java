@@ -90,18 +90,21 @@ public class JdbcPetDao implements PetDao{
         return personalityArray;
     }
 
-//    @Override
-//    public List<Pet> getPetsByUserId(PetByUserDTO petByUserDTO) {
-//        String sql = "SELECT * FROM pet WHERE user_id = ?";
-//        int userId = petByUserDTO.getUserId();
-//
-//        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
-//        List<Pet> petsByUserId = new ArrayList<>();
-//
-//
-//
-//        return null;
-//    }
+    @Override
+    public List<Pet> getPetsByUserId(PetByUserDTO petByUserDTO) {
+        List<Pet> petsByUserId = new ArrayList<>();
+        String sql = "SELECT * FROM pet WHERE user_id = ?";
+        int userId = petByUserDTO.getUserId();
+
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
+        while(rs.next()) {
+            Pet pet = new Pet();
+            pet.setPetId(rs.getInt("pet_id"));
+            mapRowToPet(rs, getPersonalitiesForPet(rs.getInt("pet_id")));
+            petsByUserId.add(pet);
+        }
+        return petsByUserId;
+    }
 
 
     private Pet mapRowToPet(SqlRowSet rs, Integer[] personality) {
