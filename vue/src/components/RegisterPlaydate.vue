@@ -14,9 +14,9 @@
           
       <h1>Hi, {{this.$store.state.user.firstName}}! Register New Playdate: </h1>
      <h2> You are scheduling a playdate for </h2>
-     <p v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.id">{{pet.name}}</p>
+     <!-- <p v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.id">{{pet.name}}</p> -->
 
-      <multiselect id="pets" v-model="value" :options="options" :close-on-select="false" track-by="id" label="name" :hide-selected="true" multiple=true></multiselect> 
+      <multiselect id="pets" v-model="value" :options="options" :close-on-select="false" track-by="id" label="name" :hide-selected="false" multiple=true></multiselect> 
 
       <label for="location">Location: </label>
       <input type="text"
@@ -74,6 +74,10 @@ export default {
        .then(response => {
          if(response.status === 200) {
          this.$store.commit('ADD_PETS_TO_USER', response.data )
+
+         for (var pet of this.$store.state.currentUserPetArray) {
+          this.options.push(pet);
+        }
          }
        })
        .catch(error => {
@@ -82,6 +86,8 @@ export default {
            alert("Error: Bad Request!")
          }
          })
+      
+    
   },
      mounted() {
        const myWidget = cloudinary.createUploadWidget(
@@ -128,23 +134,7 @@ export default {
             time: '',
         }
     },
-    // created() {
-      // this.user = this.$store.state.user;
-      // this.petArray = petService.getPetByUserId(this.user.id)
-      // .then(response => {
-      //   if (response.status === 200) {
-      //     return; // add commit mutation to update $store.state?
-      //   }
-      // }
-      // )
-      // for (var pet of this.$store.state.petArray) {
-      //   //console.log(this.$store.state.user.id);
-      //   if (pet.userId === this.$store.state.user.id) {
-      //     console.log(pet.userId);
-      //     this.playdate.pets.push(pet);
-      //   }
-    //   }
-    // },
+  
     methods: {
       
       registerPlaydate() {
