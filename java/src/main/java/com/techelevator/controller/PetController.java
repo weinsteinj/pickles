@@ -68,9 +68,9 @@ public class PetController {
         return petDao.listAllPets();
     }
 
-    //get pets by user
-//    @RequestMapping(path = "/pet/user", method = RequestMethod.GET)
-//    public List<Pet> getPetsByUserId(@RequestBody PetByUserDTO petByUserDTO) {
-//        return petDao.getPetsByUserId();
-//    }
+    // TODO get pets by user
+    @RequestMapping(path = "/pet/user", method = RequestMethod.GET)
+    public List<Pet> getPetsByUserId(@RequestBody PetByUserDTO petByUserDTO) {
+        return petDao.getPetsByUserId(petByUserDTO);
+    }
 }
