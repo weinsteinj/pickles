@@ -19,6 +19,9 @@ public class Playdate {
     List<Integer> petId;
     private String playdatePhoto;
 
+    public Playdate() {
+    }
+
     public int getPlaydateId() {
         return playdateId;
     }
