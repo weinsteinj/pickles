@@ -4,6 +4,7 @@
       {{`Click here to learn more about ${pet.name}`}}. {{ pet.sex == 'Male' ? 'He' : 'She' }} is a {{pet.species.toLowerCase()}}.
       </div> -->
       <div>
+        Have a look at Playdates that are on the Schedule Currently!
         <playdate-card v-for="playdate in $store.state.playdateArray" v-bind:key="playdate.id" 
         v-bind:playdate="playdate"></playdate-card>
       </div>
