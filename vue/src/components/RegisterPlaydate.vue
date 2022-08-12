@@ -14,6 +14,7 @@
           
       <h1>Hi, {{this.$store.state.user.firstName}}! Register New Playdate: </h1>
      <h2> You are scheduling a playdate for </h2>
+     <p v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.id">{{pet.name}}</p>
 
       <label for="location">Location: </label>
       <input type="text"
@@ -66,9 +67,7 @@ const cloudinary = window.cloudinary;
 
 export default {
      created () {
-      //  let requestBody;
-      //  requestBody = this.petByUserDTO;
-       petService.getPetsByUserId(this.petByUserDTO)
+       petService.getPetsByUserId(this.$store.state.user.id)
        .then(response => {
          if(response.status === 200) {
          this.$store.commit('ADD_PETS_TO_USER', response.data )
@@ -121,9 +120,6 @@ export default {
             },
             date: '',
             time: '',
-            petByUserDTO: {
-                userId: 1, 
-            },
         }
     },
     // created() {

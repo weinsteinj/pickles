@@ -15,12 +15,12 @@ export default {
     getPetById(petId) {
         return axios.get(`/pet/${petId}`);
     },
-    getPetsByUserId(petByUserDTO) {
-        return axios.get('/pet/user', petByUserDTO);
-    },
-    // getPetByUserId(userId) {
-    //     return axios.get(`/pet/${userId}`);
+    // getPetsByUserId(petByUserDTO) {
+    //     return axios.get('/pet/user', petByUserDTO);
     // },
+    getPetsByUserId(userId) {
+        return axios.get(`/pet/user/${userId}`);
+    },
     //POST-update
     updatePet(petId, pet) {
         return axios.put(`/pet/${petId}`, pet);

@@ -91,10 +91,10 @@ public class JdbcPetDao implements PetDao{
     }
 
     @Override
-    public List<Pet> getPetsByUserId(PetByUserDTO petByUserDTO) {
+    public List<Pet> getPetsByUserId(int userId) {
         List<Pet> petsByUserId = new ArrayList<>();
         String sql = "SELECT * FROM pets WHERE user_id = ?";
-        int userId = petByUserDTO.getUserId();
+//        int userId = petByUserDTO.getUserId();
 
         SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
         while(rs.next()) {
@@ -110,7 +110,7 @@ public class JdbcPetDao implements PetDao{
             pet.setFixed(rs.getBoolean("is_fixed"));
             pet.setHasVaccinations(rs.getBoolean("has_vaccinations"));
             pet.setSize(rs.getInt("size"));
-            pet.setUserId(rs.getInt("user_id"));
+            pet.setUserId(userId);
 //            mapRowToPet(rs, getPersonalitiesForPet(rs.getInt("pet_id")));
             pet.setPersonality(getPersonalitiesForPet(pet.getPetId()));
             petsByUserId.add(pet);
