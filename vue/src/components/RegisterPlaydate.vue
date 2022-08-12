@@ -16,12 +16,12 @@
      <h2> You are scheduling a playdate for </h2>
      <p v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.id">{{pet.name}}</p>
 
-      <label for="location">Location: </label>
+      <label for="zip-code">Zip Code: </label>
       <input type="text"
-      id="location"
+      id="zip-code"
       class="form-control"
-      placeholder="Location"
-      v-model="playdate.location"
+      placeholder="Zip Code"
+      v-model="playdate.zipcode"
       required
       autofocus
       >
@@ -113,36 +113,26 @@ export default {
     data() {
         return {
             playdate: {
-                location: '',
+                zipcode: '',
                 dateTime: '',
                 details: '',
-                pets: [], 
+                petId: [], 
+                rating: '',
+                playdatePhoto: '',
+                userId: ''
             },
             date: '',
             time: '',
         }
     },
-    // created() {
-      // this.user = this.$store.state.user;
-      // this.petArray = petService.getPetByUserId(this.user.id)
-      // .then(response => {
-      //   if (response.status === 200) {
-      //     return; // add commit mutation to update $store.state?
-      //   }
-      // }
-      // )
-      // for (var pet of this.$store.state.petArray) {
-      //   //console.log(this.$store.state.user.id);
-      //   if (pet.userId === this.$store.state.user.id) {
-      //     console.log(pet.userId);
-      //     this.playdate.pets.push(pet);
-      //   }
-    //   }
-    // },
     methods: {
       registerPlaydate() {
-        this.playdate.dateTime = this.date + ", " + this.time;
-        playdateService.createPlaydate(this.pet)
+        this.playdate.dateTime = this.date + "T" + this.time;
+        this.playdate.userId = this.$store.state.user.id;
+        console.log(this.$store.state.currentUserPetArray[0]);
+        this.playdate.petId.push(this.$store.state.currentUserPetArray[0].petId);
+        console.log(this.playdate.petId);
+        playdateService.createPlaydate(this.playdate)
          .then(response => {
            if (response.status === 200) 
             return;  // add commit mutation to update the $store.state
