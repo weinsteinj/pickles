@@ -16,7 +16,7 @@
      <h2> You are scheduling a playdate for </h2>
      <!-- <p v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.id">{{pet.name}}</p> -->
 
-      <multiselect id="pets" v-model="value" :options="options" :close-on-select="false" track-by="id" label="name" :hide-selected="false" multiple=true></multiselect> 
+      <multiselect id="pets"  multiple=true v-model="value" :options="options" :close-on-select="false" track-by="petId" label="name" :hide-selected="false" ></multiselect> 
 
       <label for="location">Location: </label>
       <input type="text"
