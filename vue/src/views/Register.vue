@@ -49,6 +49,19 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiand
         />
       <!-- </div> -->
 
+        <!-- <div class="zipcode"> -->
+        <label class="zipCode-label" for="zipCode">Zipcode</label>
+        <input
+          class="zipCode-input"
+          type="text"
+          id="zipCode"
+          v-model="user.zipCode"
+          placeholder="Zip Code"
+          required
+          autofocus
+        />
+      <!-- </div> -->
+
       <!-- <div class="username"> -->
         <label for="username" class="username-label">Username</label>
       <input
@@ -119,6 +132,7 @@ export default {
         email: "",
         confirmPassword: "",
         role: "user",
+        zipCode: ""
       },
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
@@ -150,12 +164,13 @@ export default {
             }
           });
       }
+    
+}
     },
     clearErrors() {
       this.registrationErrors = false;
       this.registrationErrorMsg = "There were problems registering this user.";
     },
-  },
 };
 </script>
 

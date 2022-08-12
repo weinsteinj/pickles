@@ -1,14 +1,11 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.PetNotFoundException;
 import com.techelevator.model.Playdate;
 import com.techelevator.model.PlaydateNotFoundException;
-import org.springframework.data.relational.core.sql.SQL;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,11 +21,11 @@ public class JdbcPlaydateDao implements PlaydateDao{
     }
 
     @Override
-    public void create(int hostUserId, String location, LocalDateTime dateTime, String details, int rating, String status, List<Integer> petId) {
-        String sql = "INSERT INTO playdate (host_id, location, date_and_time, details, rating, status) " +
-                "VALUES (?, ?, ?, ?, ?, ?) RETURNING playdate_id";
+    public void create(int hostUserId, int zipCode, LocalDateTime dateTime, String details, int rating, String status, String playdatePhoto, List<Integer> petId) {
+        String sql = "INSERT INTO playdate (host_id, zip_code, date_and_time, details, rating, status, playdate_photo) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING playdate_id";
         Integer newPlaydateId;
-        newPlaydateId = jdbcTemplate.queryForObject(sql, Integer.class, hostUserId, location, dateTime, details, rating, status);
+        newPlaydateId = jdbcTemplate.queryForObject(sql, Integer.class, hostUserId, zipCode, dateTime, details, rating, status, playdatePhoto);
 
         String petsSql = "INSERT INTO pet_playdate (playdate_id, pet_id) " +
                 "VALUES (?, ?)";
@@ -63,6 +60,25 @@ public class JdbcPlaydateDao implements PlaydateDao{
         return playdateList;
     }
 
+    @Override
+    public Playdate updatePlaydate(Playdate playdate, int playdateId) {
+        String sql = "UPDATE playdate SET host_id = ?, visitor_id = ?, " +
+                "zip_code = ?, date_and_time = ?, details = ?, rating = ?, " +
+                "status = ?, playdate_photo = ? " +
+                "WHERE playdate_id = ?;";
+        jdbcTemplate.update(sql,
+                playdate.getHostUserId(),
+                playdate.getVisitingUserId(),
+                playdate.getZipCode(),
+                playdate.getDateTime(),
+                playdate.getDetails(),
+                playdate.getRating(),
+                playdate.getStatus(),
+                playdate.getPlaydatePhoto(),
+                playdateId);
+        return playdate;
+    }
+
     private List<Integer> getPetsForPlaydate(int playdateId) {
         String sqlPets = "SELECT * FROM pet_playdate WHERE playdate_id = ?";
         SqlRowSet resultsPets = jdbcTemplate.queryForRowSet(sqlPets, playdateId);
@@ -78,7 +94,7 @@ public class JdbcPlaydateDao implements PlaydateDao{
         playdate.setPlaydateId(rs.getInt("playdate_id"));
         playdate.setHostUserId(rs.getInt("host_id"));
         playdate.setVisitingUserId(rs.getInt("visitor_id"));
-        playdate.setLocation(rs.getString("location"));
+        playdate.setZipCode(rs.getInt("zip_code"));
 //        playdate.setDateTime(rs.getTimestamp("date_and_time"));
         Timestamp dateTime = rs.getTimestamp("date_and_time");
         if (dateTime != null) {
@@ -87,6 +103,7 @@ public class JdbcPlaydateDao implements PlaydateDao{
         playdate.setDetails(rs.getString("details"));
         playdate.setRating(rs.getInt("rating"));
         playdate.setStatus(rs.getString("status"));
+        playdate.setPlaydatePhoto(rs.getString("playdate_photo"));
         playdate.setPetId(petList);
 
         return playdate;

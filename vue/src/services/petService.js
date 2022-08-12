@@ -18,6 +18,9 @@ export default {
     getPetsByUserId(petByUserDTO) {
         return axios.get('/pet/user', petByUserDTO);
     },
+    // getPetByUserId(userId) {
+    //     return axios.get(`/pet/${userId}`);
+    // },
     //POST-update
     updatePet(petId, pet) {
         return axios.put(`/pet/${petId}`, pet);
