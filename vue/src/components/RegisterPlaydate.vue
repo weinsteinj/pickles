@@ -31,7 +31,7 @@
       <label for="date">Select a date: </label>
       <input id="date" type="date" class="form-control" v-model="date" required>
 
-        <label for="time">Time: </label>
+        <label for="time">Time (hh:mm:ss): </label>
       <input id="time" type="text" class="form-control" v-model="time" required>
       
       <label for="details">Details: </label>
@@ -143,7 +143,6 @@ export default {
       registerPlaydate() {
         this.playdate.dateTime = this.date + "T" + this.time;
         this.playdate.userId = this.$store.state.user.id;
-        //this.playdate.petId.push(this.$store.state.currentUserPetArray[0].petId);
         for (var i of this.value) {
           this.playdate.petId.push(i.petId);
         }

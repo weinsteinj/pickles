@@ -8,6 +8,7 @@ import store from '../store/index'
 import petRegister from '../views/RegisterPet.vue'
 import GoogleMapView from '@/views/GoogleMapView.vue'
 import RegisterPlaydate from '@/views/RegisterPlaydate.vue'
+import PlaydateDetails from '@/views/PlaydateDetails.vue'
 import PlaydateView from '@/views/PlaydateView.vue'
 
 Vue.use(Router)
@@ -85,6 +86,14 @@ const router = new Router({
       path: "/map",
       name: "map",
       component: GoogleMapView,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/playdate/:playdateId",
+      name: "playdate-details",
+      component: PlaydateDetails,
       meta: {
         requiresAuth: false
       }
