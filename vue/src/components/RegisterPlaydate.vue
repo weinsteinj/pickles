@@ -150,7 +150,7 @@ export default {
             return;  // add commit mutation to update the $store.state
          })
          for (var i of this.value) {
-          this.playdate.petId.push(i.petId)
+          this.playdate.petId.push(i.petId);
         }
 
       },
