@@ -16,7 +16,6 @@ export default {
   data() {
     return {
       playdate: {},
-      pets: []
     }
   },
   created() {
@@ -28,12 +27,14 @@ export default {
   computed: {
       getPetsForPlaydateDetails() {
         console.log(this.playdate);
-        // for (var petid of this.playdate.petId) {
-        //     this.pets.push(this.$store.state.petArray.filter(x => {
-        //         x.petId === petid;
-        //     });
-        // }
-        return this.pets;
+        for (var petid of this.playdate.petId) {
+            for (var pet of this.$store.state.petArray) {
+                if (pet.petId===petid) {
+                  //  this.pet.push(pet); //this is what is not working!
+                }
+            }
+        }
+        return this.pets; //next try to move this back to created
       }
    
   }
