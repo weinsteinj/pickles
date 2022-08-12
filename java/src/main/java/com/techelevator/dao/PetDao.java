@@ -18,4 +18,6 @@ public interface PetDao {
     Integer[] getPersonalitiesForPet(int petId);
 
     List<Pet> getPetsByUserId(PetByUserDTO petByUserDTO);
+
+    Pet updatePet(Pet pet, int petId);
 }

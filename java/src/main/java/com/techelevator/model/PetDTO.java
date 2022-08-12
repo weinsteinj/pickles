@@ -16,6 +16,7 @@ public class PetDTO {
     private boolean hasVaccinations;
     private int size;
     private int userId;
+    private String petPhoto;
 
     public PetDTO(int petId, String name, String species, String sex, LocalDate birthDate,
                   Integer[] personality, boolean isFixed, boolean hasVaccinations, int size, int userId) {
@@ -113,6 +114,14 @@ public class PetDTO {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getPetPhoto() {
+        return petPhoto;
+    }
+
+    public void setPetPhoto(String petPhoto) {
+        this.petPhoto = petPhoto;
     }
 
     @Override
