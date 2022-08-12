@@ -16,7 +16,7 @@
           <router-link class="main-nav-link" :to="{/* TODO */}">profile</router-link>
         </li>
         <li>
-          <router-link class="main-nav-link" :to="{/* TODO */}">play-dates</router-link>
+          <router-link class="main-nav-link" :to="{/* TODO */}">schedule a playdate</router-link>
         </li>
         <li>
           <router-link class="main-nav-link" :to="{/* TODO */}">about us</router-link>

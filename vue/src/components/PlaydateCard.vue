@@ -1,6 +1,8 @@
 <template>
     <body>
-        <h2> {{playdate.hostId}}{{playdate.zipcode}}</h2>
+        <h2> Host User ID: {{playdate.hostUserId}}  
+            <br>
+        ZipCode of Playdate: {{playdate.zipCode}}</h2>
     </body>
 </template>
 

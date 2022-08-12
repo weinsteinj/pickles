@@ -5,7 +5,9 @@
 <script>
 import PlayDate from '../components/PlayDate.vue'
 export default {
-  components: { PlayDate },
+  components: { 
+      PlayDate,
+      },
 
 }
 </script>
