@@ -17,5 +17,5 @@ public interface PetDao {
 
     Integer[] getPersonalitiesForPet(int petId);
 
-//    List<Pet> getPetsByUserId(PetByUserDTO petByUserDTO);
+    List<Pet> getPetsByUserId(PetByUserDTO petByUserDTO);
 }

@@ -11,6 +11,9 @@ export default {
     getById(playdateId) {
         return axios.get(`/playdate/${playdateId}`);
     },
+    createPlaydate(playdate) {
+        return axios.post('/playdate',playdate);
+    },
     //POST-update
     updatePlaydate(playdateId) {
         return axios.put(`/playdate/${playdateId}`);

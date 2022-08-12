@@ -10,42 +10,29 @@
 
       <img src="../assets\images\playful_cat_re_ac9g.svg" alt="playful cat" class="playful-cat">
     </div>
-      <form class="pet-form-register" @submit.prevent="registerPet">
+      <form class="playdate-form-register" @submit.prevent="registerPlaydate">
           
-      <h1>Register New Playdate: </h1>
-      <label for="petName">Name: </label>
+      <h1>Hi, {{this.$store.state.user.firstName}}! Register New Playdate: </h1>
+     <h2> You are scheduling a playdate for </h2>
+
+      <label for="location">Location: </label>
       <input type="text"
-      id="petName"
+      id="location"
       class="form-control"
-      placeholder="Name"
-      v-model="pet.name"
+      placeholder="Location"
+      v-model="playdate.location"
       required
       autofocus
       >
 
+      <label for="date">Select a date: </label>
+      <input id="date" type="date" class="form-control" v-model="date" required>
+
+        <label for="time">Time: </label>
+      <input id="time" type="text" class="form-control" v-model="time" required>
       
-       <div></div>
-<!-- 
-      <label for="Pet">Species:</label>
-      <select id="petName" class="form-control" v-for="p in petbyUserArray" v-model="USER.PET" v-bind:key="" required>
-        <option value="Dog">Dog</option>
-        <option value="Cat">Cat</option>
-        <option value="Rabbit">Rabbit</option>
-        <option value="Reptile">Reptile</option>
-        <option value="Other">Other</option>
-      </select>
-      <div></div> -->
-
-      <div></div>
-
-       <div></div>
-
-        <label for="petVac">Vaccinated:</label>
-      <select id="petVac" class="form-control" v-model="pet.hasVaccinations" required>
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-      </select>
-      <div></div>
+      <label for="details">Details: </label>
+      <input id="details" type="text" class="form-control" v-model="playdate.details" required>
 
       
 
@@ -68,7 +55,8 @@
 </template>
 
 <script>
-import petService from '@/services/petService.js'
+import playdateService from '@/services/playdateService.js'
+//import petService from '@/services/petService.js'
 // import NavBar from '@/components/NavBar.vue'
 //import {Cloudinary} from 'cloudinary-core';
 
@@ -106,92 +94,46 @@ export default {
      
     // NavBar,
     },
-    name: 'pet-register',
+    name: 'playdate-register',
     data() {
         return {
-            pet: {
-                name: '',
-                species: '',
-                sex: '',
-                birthDate: '',
-                personality: [],
-                fixed: false,
-                hasVaccinations: false,
-                size:''   
+            playdate: {
+                location: '',
+                dateTime: '',
+                details: '',
+                pets: [], 
             },
-             value: [],
-        options: [
-          {
-            "id" : 1,
-           "personality":'Timid',  
-          },
-          
-           {
-            "id" : 2,
-           "personality":'Tires Quickly',   
-          },
-          
-           {
-            "id" : 3,
-           "personality":'Independent',
-          },
-
-           {
-            "id" : 4,
-           "personality":'Playful', 
-          },
-
-           {
-            "id" : 5,
-           "personality":'Toy Sharing', 
-          },
-
-           {
-            "id" : 6,
-           "personality": 'Confident', 
-          },
-
-           {
-            "id" : 7,
-           "personality":'High Energy', 
-          },
-
-           {
-            "id" : 8,
-           "personality":'Toy Possessive'
-          }
-          ]         
+            date: '',
+            time: ''
         }
     },
+    created() {
+      // this.user = this.$store.state.user;
+      // this.petArray = petService.getPetByUserId(this.user.id)
+      // .then(response => {
+      //   if (response.status === 200) {
+      //     return; // add commit mutation to update $store.state?
+      //   }
+      // }
+      // )
+      for (var pet of this.$store.state.petArray) {
+        //console.log(this.$store.state.user.id);
+        if (pet.userId === this.$store.state.user.id) {
+          console.log(pet.userId);
+          this.playdate.pets.push(pet);
+        }
+      }
+    },
     methods: {
-      registerPet() {
-
-        for (var i of this.value) {
-          this.pet.personality.push(i.id)
-        }
-
-        if (this.pet.fixed === "true") {
-          this.pet.fixed = true;
-        } else if (this.pet.fixed === "false") {
-          this.pet.fixed = false;
-        }
-
-
-        if (this.pet.hasVaccinations === "true") {
-          this.pet.hasVaccinations = true;
-        } else if (this.pet.hasVaccinations === "false") {
-          this.pet.hasVaccinations = false;
-        }
-
-        // this.pet.isFixed = Boolean(this.pet.isFixed);
-        // this.pet.hasVaccinations = Boolean(this.pet.hasVaccinations);
-
-        petService.createPet(this.pet)
+      registerPlaydate() {
+        this.playdate.dateTime = this.date + ", " + this.time;
+        playdateService.createPlaydate(this.pet)
          .then(response => {
            if (response.status === 200) 
             return;  // add commit mutation to update the $store.state
          })
       },
+    
     },
 }
 </script>
@@ -210,7 +152,7 @@ export default {
   justify-content: space-between;
 }
  
-.pet-form-register {
+.playdate-form-register {
   display: flex;
   flex-direction: column;
   width: 40%;
