@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="pet-card" v-for="pet in $store.state.petArray" v-bind:key="pet.id"> 
+    <!-- <div class="pet-card" v-for="pet in $store.state.petArray" v-bind:key="pet.id"> 
       {{`Click here to learn more about ${pet.name}`}}. {{ pet.sex == 'Male' ? 'He' : 'She' }} is a {{pet.species.toLowerCase()}}.
-      </div>
+      </div> -->
       <div>
         <playdate-card v-for="playdate in $store.state.playdateArray" v-bind:key="playdate.id" 
         v-bind:playdate="playdate"></playdate-card>
@@ -11,11 +11,13 @@
 </template>
 
 <script>
-import playdateService from '@/services/playdateService.js'
+// import playdateService from '@/services/playdateService.js'
+import PlaydateCard from '@/components/PlaydateCard.vue'
 
 export default {
   name: "play",
   components: {
+    PlaydateCard,
   },
   created () {
     this.savePlaydatesToStore;
@@ -26,18 +28,18 @@ export default {
     }
   },
   methods: {
-    savePlaydatesToStore() {
-      playdateService.getAllPlaydates()
-       .then(response => {
-         if(response.status === 200) {
-           let playdateArray = response.data;
-           this.$store.commit('ADD_ALL_PLAYDATE', playdateArray);
-         }
-       })
-       .catch(() => {
-           alert("Sorry. An error occurred.")
-         })
-    },
+    // savePlaydatesToStore() {
+    //   playdateService.getAllPlaydates()
+    //    .then(response => {
+    //      if(response.status === 200) {
+    //        let playdateArray = response.data;
+    //        this.$store.commit('ADD_ALL_PLAYDATE', playdateArray);
+    //      }
+    //    })
+    //    .catch(() => {
+    //        alert("Sorry. An error occurred.")
+    //      })
+    // },
   }
 }
 </script>

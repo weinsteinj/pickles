@@ -12,6 +12,7 @@
 <script>
 import NavBar from '@/components/NavBar.vue'
 import petService from '@/services/petService.js';
+import playdateService from '@/services/playdateService.js'
 
 
 export default {
@@ -25,8 +26,18 @@ export default {
          this.$store.commit('ADD_ALL_PETS', response.data )
          }
        });
+      playdateService.getAllPlaydates()
+       .then(response => {
+         if(response.status === 200) {
+           this.$store.commit('ADD_ALL_PLAYDATE', response.data);
+         }
+       })
+       .catch(() => {
+           alert("Sorry. An error occurred.")
+         })
+    },
   }
-}
+
 
 </script>
 
