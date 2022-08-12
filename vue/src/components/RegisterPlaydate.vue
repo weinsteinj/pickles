@@ -14,7 +14,9 @@
           
       <h1>Hi, {{this.$store.state.user.firstName}}! Register New Playdate: </h1>
      <h2> You are scheduling a playdate for </h2>
-     <p v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.id">{{pet.name}}</p>
+     <!-- <p v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.id">{{pet.name}}</p> -->
+
+      <multiselect id="pets" v-model="value" :options="options" :close-on-select="false" track-by="id" label="name" :hide-selected="false" multiple=true></multiselect> 
 
       <label for="zip-code">Zip Code: </label>
       <input type="text"
@@ -58,6 +60,7 @@
 <script>
 import playdateService from '@/services/playdateService.js'
 import petService from '@/services/petService.js'
+import Multiselect from 'vue-multiselect'
 // import NavBar from '@/components/NavBar.vue'
 //import {Cloudinary} from 'cloudinary-core';
 
@@ -65,12 +68,17 @@ const cloudName = "picklepoints";
 const uploadPreset = "uw_test"; 
 const cloudinary = window.cloudinary;
 
+
 export default {
      created () {
        petService.getPetsByUserId(this.$store.state.user.id)
        .then(response => {
          if(response.status === 200) {
          this.$store.commit('ADD_PETS_TO_USER', response.data )
+
+         for (var pet of this.$store.state.currentUserPetArray) {
+          this.options.push(pet);
+        }
          }
        })
        .catch(error => {
@@ -79,6 +87,8 @@ export default {
            alert("Error: Bad Request!")
          }
          })
+      
+    
   },
      mounted() {
        const myWidget = cloudinary.createUploadWidget(
@@ -106,7 +116,7 @@ export default {
       );
      },
      components: {
-     
+     Multiselect
     // NavBar,
     },
     name: 'playdate-register',
@@ -121,22 +131,28 @@ export default {
                 playdatePhoto: '',
                 userId: ''
             },
+            value: [],
+          options: [],
+
             date: '',
             time: '',
         }
     },
-    methods: {
+ methods: {
+      
       registerPlaydate() {
         this.playdate.dateTime = this.date + "T" + this.time;
         this.playdate.userId = this.$store.state.user.id;
-        console.log(this.$store.state.currentUserPetArray[0]);
-        this.playdate.petId.push(this.$store.state.currentUserPetArray[0].petId);
-        console.log(this.playdate.petId);
+        //this.playdate.petId.push(this.$store.state.currentUserPetArray[0].petId);
         playdateService.createPlaydate(this.playdate)
          .then(response => {
            if (response.status === 200) 
             return;  // add commit mutation to update the $store.state
          })
+         for (var i of this.value) {
+          this.playdate.petId.push(i.petId)
+        }
+
       },
     
     },

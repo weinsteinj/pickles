@@ -47,7 +47,7 @@ export default new Vuex.Store({
     },
     ADD_PETS_TO_USER(state, petByUserArray) {
       state.currentUserPetArray = petByUserArray;    
-
+      //localStorage.setItem("currentUserPetArray", state.currentUserPetArray)
     }
   }
 })
