@@ -77,6 +77,22 @@ const uploadPreset = "uw_test";
 const cloudinary = window.cloudinary;
 
 export default {
+     created () {
+       let requestBody;
+       requestBody = {"userId" : 1};
+         petService.getPetsByUserId(requestBody)
+       .then(response => {
+         if(response.status === 200) {
+         this.$store.commit('ADD_PETS_TO_USER', response.data )
+         }
+       })
+       .catch(error => {
+         const response = error.response;
+         if(response.status >= 400 && response.status < 500) {
+           alert("Error: Bad Request!")
+         }
+         })
+  },
      mounted() {
        const myWidget = cloudinary.createUploadWidget(
         {
@@ -120,73 +136,14 @@ export default {
                 size:''   
             },
              value: [],
-        options: [
-          {
-            "id" : 1,
-           "personality":'Timid',  
-          },
-          
-           {
-            "id" : 2,
-           "personality":'Tires Quickly',   
-          },
-          
-           {
-            "id" : 3,
-           "personality":'Independent',
-          },
-
-           {
-            "id" : 4,
-           "personality":'Playful', 
-          },
-
-           {
-            "id" : 5,
-           "personality":'Toy Sharing', 
-          },
-
-           {
-            "id" : 6,
-           "personality": 'Confident', 
-          },
-
-           {
-            "id" : 7,
-           "personality":'High Energy', 
-          },
-
-           {
-            "id" : 8,
-           "personality":'Toy Possessive'
-          }
-          ]         
+              
         }
     },
     methods: {
-      registerPet() {
-
-        for (var i of this.value) {
-          this.pet.personality.push(i.id)
-        }
-
-        if (this.pet.fixed === "true") {
-          this.pet.fixed = true;
-        } else if (this.pet.fixed === "false") {
-          this.pet.fixed = false;
-        }
+      registerPlaydate() {
 
 
-        if (this.pet.hasVaccinations === "true") {
-          this.pet.hasVaccinations = true;
-        } else if (this.pet.hasVaccinations === "false") {
-          this.pet.hasVaccinations = false;
-        }
-
-        // this.pet.isFixed = Boolean(this.pet.isFixed);
-        // this.pet.hasVaccinations = Boolean(this.pet.hasVaccinations);
-
-        petService.createPet(this.pet)
+        petService.getPetsByUserId
          .then(response => {
            if (response.status === 200) 
             return;  // add commit mutation to update the $store.state
@@ -196,7 +153,7 @@ export default {
 }
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css">
+<style>
  
 #personality {
     width: 150px;
