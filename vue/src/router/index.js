@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import petRegister from '../views/RegisterPet.vue'
 import GoogleMapView from '@/views/GoogleMapView.vue'
+import RegisterPlaydate from '@/views/RegisterPlaydate.vue'
 
 Vue.use(Router)
 
@@ -59,6 +60,14 @@ const router = new Router({
       path: "/pet",
       name: "pet-register",
       component: petRegister,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/playdate",
+      name: "register-playdate",
+      component: RegisterPlaydate,
       meta: {
         requiresAuth: true
       }
