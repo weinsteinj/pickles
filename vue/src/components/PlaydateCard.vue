@@ -24,6 +24,10 @@ export default {
         playdate: Object,
     },
     created() {
+        const unique = (value, index, self) => {
+        return self.indexOf(value) === index
+    }
+    
         let allPetsArray = this.$store.state.petArray;
         let playdatePets = this.playdate.petId;
         
@@ -39,8 +43,9 @@ export default {
                     
                      })
 
-                     
+                 
                 })
+            this.pets(unique);  
         }
             
         
