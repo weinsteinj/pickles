@@ -70,7 +70,7 @@ const cloudinary = window.cloudinary;
 
 
 export default {
-     created () {
+     created() {  //we should be able to get this from the store at this point
        petService.getPetsByUserId(this.$store.state.user.id)
        .then(response => {
          if(response.status === 200) {
@@ -99,7 +99,7 @@ export default {
         },
         (error, result) => {
           if (!error && result && result.event === "success") {
-            console.log("Done! Here is the image info: ", result.info);
+            console.log("Done! Here is the image info: ", result.info.secure_url);
             document
               .getElementById("uploadedimage")
               .setAttribute("src", result.info.secure_url);
@@ -150,8 +150,8 @@ export default {
          .then(response => {
            if (response.status === 200) 
             return;  // add commit mutation to update the $store.state
-         })
-         
+         });
+         this.$router.push("/");
 
       },
     

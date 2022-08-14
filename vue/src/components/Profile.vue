@@ -1,7 +1,10 @@
 <template>
   <div>
       <h1>Welcome to {{$store.state.user.firstName}}'s Profile. Your pets:</h1>
-      <div v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.petId" > {{pet.name}} </div>
+      <div v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.petId" > {{pet.name}}, {{pet.petPhoto}}
+        <img :src="pet.petPhoto" />
+      </div>
+
   </div>
 </template>
 
