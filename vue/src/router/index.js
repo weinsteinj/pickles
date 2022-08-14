@@ -10,6 +10,7 @@ import GoogleMapView from '@/views/GoogleMapView.vue'
 import RegisterPlaydate from '@/views/RegisterPlaydate.vue'
 import PlaydateDetails from '@/views/PlaydateDetails.vue'
 import PlaydateView from '@/views/PlaydateView.vue'
+import Profile from '@/views/Profile.vue'
 
 Vue.use(Router)
 
@@ -96,6 +97,14 @@ const router = new Router({
       component: PlaydateDetails,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/profile/:userId",
+      name: "profile",
+      component: Profile,
+      meta: {
+        requiresAuth: true
       }
     }
   ]

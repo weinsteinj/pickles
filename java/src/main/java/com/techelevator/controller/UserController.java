@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @RequestMapping(path = "/user/{user_id}", method = RequestMethod.GET)
-    public User getPetById(@PathVariable int user_id) {
+    public User getUserById(@PathVariable int user_id) {
         User user = new User();
         try {
             user = userDao.getUserById(user_id);
