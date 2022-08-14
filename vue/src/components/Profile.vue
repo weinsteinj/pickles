@@ -1,7 +1,7 @@
 <template>
   <div>
-      <h1>Welcome to {{user.firstName}}'s Profile. Your pets:</h1>
-      <div v-for="pet in pets" v-bind:key="pet.petId" > {{pet.name}} </div>
+      <h1>Welcome to {{$store.state.user.firstName}}'s Profile. Your pets:</h1>
+      <div v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.petId" > {{pet.name}} </div>
   </div>
 </template>
 
@@ -14,15 +14,23 @@ export default {
     data() {
         return {
             user: {},
-            pets: []
+            pets: [],
+            playdateArray: []
         }
     },
 
     created() {
-        this.user = this.$store.state.user;
-        petService.getPetsByUserId(this.user.id).then((response) => {
+      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
+          if(response.status === 200) {
             this.pets = response.data;
-        });
+            this.$store.commit('ADD_PETS_TO_USER', response.data )
+            }
+          });
+       // this.pets = ;
+        // for (var playdate of this.$store.state.playdateArray) {
+        //     if (playdate.user.)
+        // }
+
     },
     mounted () {
         
