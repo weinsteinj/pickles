@@ -21,17 +21,31 @@ public class JdbcPlaydateDao implements PlaydateDao{
     }
 
     @Override
-    public void create(int hostUserId, int zipCode, LocalDateTime dateTime, String details, int rating, String status, String playdatePhoto, List<Integer> petId) {
-        String sql = "INSERT INTO playdate (host_id, zip_code, date_and_time, details, rating, status, playdate_photo) " +
+    public Playdate create(int hostUserId, int zipCode, LocalDateTime dateTime, String details, int rating, String status, String playdatePhoto, List<Integer> petId) {
+        Playdate newPlaydate = new Playdate();
+        String sql = "INSERT INTO playdate (host_id, zip_code, date_and_time, " +
+                "details, rating, status, playdate_photo) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING playdate_id";
         Integer newPlaydateId;
-        newPlaydateId = jdbcTemplate.queryForObject(sql, Integer.class, hostUserId, zipCode, dateTime, details, rating, status, playdatePhoto);
-
+        newPlaydateId = jdbcTemplate.queryForObject(sql, Integer.class,
+                newPlaydate.getHostUserId(), newPlaydate.getZipCode(), newPlaydate.getDateTime(),
+                newPlaydate.getDetails(), newPlaydate.getRating(), newPlaydate.getStatus(),
+                newPlaydate.getPlaydatePhoto());
+        newPlaydate.setPlaydateId(newPlaydate.getPlaydateId());
+        newPlaydate.setHostUserId(newPlaydate.getHostUserId());
+        newPlaydate.setZipCode(newPlaydate.getZipCode());
+        newPlaydate.setDateTime(newPlaydate.getDateTime());
+        newPlaydate.setDetails(newPlaydate.getDetails());
+        newPlaydate.setRating(newPlaydate.getRating());
+        newPlaydate.setStatus(newPlaydate.getStatus());
+        newPlaydate.setPlaydatePhoto(newPlaydate.getPlaydatePhoto());
         String petsSql = "INSERT INTO pet_playdate (playdate_id, pet_id) " +
                 "VALUES (?, ?)";
         for (int pet_id : petId) {
             jdbcTemplate.update(petsSql, newPlaydateId, pet_id);
         }
+
+        return newPlaydate;
     }
 
     @Override
