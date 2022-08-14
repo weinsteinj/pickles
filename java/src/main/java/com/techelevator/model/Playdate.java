@@ -21,6 +21,18 @@ public class Playdate {
 
     public Playdate() {
     }
+    public Playdate(int playdateId, int hostUserId, int visitingUserId, int zipCode, LocalDateTime dateTime, String details, int rating, String status, String playdatePhoto, List petId) {
+        this.playdateId = playdateId;
+        this.hostUserId = hostUserId;
+        this.visitingUserId = visitingUserId;
+        this.zipCode = zipCode;
+        this.dateTime = dateTime;
+        this.details = details;
+        this.rating = rating;
+        this.status = status;
+        this.playdatePhoto = playdatePhoto;
+        this.petId = petId;
+    }
 
     public int getPlaydateId() {
         return playdateId;

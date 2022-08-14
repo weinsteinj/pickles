@@ -27,9 +27,9 @@ public class JdbcPetDao implements PetDao{
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING pet_id";
 
         Integer newPetId;
-        newPetId = jdbcTemplate.queryForObject(sql, Integer.class, newPetDTO.getName(), newPetDTO.getSpecies(),
-                newPetDTO.getSex(), newPetDTO.getBirthDate(), newPetDTO.isFixed(), newPetDTO.isHasVaccinations(),
-                newPetDTO.getSize(), userId, newPetDTO.getPetPhoto());
+        newPetId = jdbcTemplate.queryForObject(sql, Integer.class, newPetDTO.getName(),
+                newPetDTO.getSpecies(), newPetDTO.getSex(), newPetDTO.getBirthDate(), newPetDTO.isFixed(),
+                newPetDTO.isHasVaccinations(), newPetDTO.getSize(), userId, newPetDTO.getPetPhoto());
         newPet.setPetId(newPetDTO.getPetId());
         newPet.setName(newPetDTO.getName());
         newPet.setSpecies(newPetDTO.getSpecies());

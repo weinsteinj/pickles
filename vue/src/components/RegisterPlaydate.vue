@@ -148,10 +148,19 @@ export default {
         }
         playdateService.createPlaydate(this.playdate)
          .then(response => {
-           if (response.status === 200) 
-            return;  // add commit mutation to update the $store.state
-         });
-         this.$router.push("/");
+
+           if (response.status === 200) {
+             playdateService.getAllPlaydates()
+            .then(response => {
+              if(response.status === 200) {
+                this.$store.commit('ADD_ALL_PLAYDATE', response.data);
+              }
+            })
+            this.$router.push("/");
+           }
+            
+         })
+         
 
       },
     
