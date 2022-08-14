@@ -41,8 +41,6 @@ export default {
                     this.pets.push(pet.name)
                     
                      })
-
-                 
                 })
             this.pets(unique);  
         }

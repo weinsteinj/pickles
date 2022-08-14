@@ -1,5 +1,8 @@
 <template>
-  <playdate-details></playdate-details>
+<div>
+   <playdate-details></playdate-details>
+</div>
+ 
 </template>
 
 <script>
