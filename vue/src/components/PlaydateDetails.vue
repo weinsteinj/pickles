@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       pets: [],
-      activePlaydate: {},
+      activePlaydate: [],
     };
   },
   // created() {
@@ -33,8 +33,8 @@ export default {
     playdateService.getById(this.$route.params.playdateId).then((response) => {
       this.activePlaydate = response.data;
       this.$store.commit("SET_ACTIVE_PLAYDATE", this.activePlaydate);
-    });
-    const unique = (value, index, self) => {
+
+      const unique = (value, index, self) => {
       return self.indexOf(value) === index;
     };
 
@@ -47,10 +47,12 @@ export default {
           let petIdHere = pet.petId;
 
           if (element === petIdHere) this.pets.push(pet.name);
-        });
-      });
+        })
+      })
       this.pets(unique);
     }
+    });
+    
   },
   // computed: {
   //     getPetsForPlaydateDetails() {
