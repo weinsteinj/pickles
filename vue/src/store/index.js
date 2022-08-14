@@ -23,7 +23,8 @@ export default new Vuex.Store({
     petArray: [
     ],
     currentUserPetArray: [],
-    playdateArray: [],    
+    playdateArray: [],  
+    activePlaydate: {}  
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -34,6 +35,9 @@ export default new Vuex.Store({
     SET_USER(state, user) {
       state.user = user;
       localStorage.setItem('user',JSON.stringify(user));
+    },
+    SET_ACTIVE_PLAYDATE(state, activePlaydate) {
+      state.activePlaydate = activePlaydate;
     },
     LOGOUT(state) {
       localStorage.removeItem('token');
