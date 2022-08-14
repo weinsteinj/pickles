@@ -1,7 +1,30 @@
 <template>
   <div>
-      <h1>Welcome to {{$store.state.user.firstName}}'s Profile. Your pets:</h1>
-      <div v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.petId" > {{pet.name}} </div>
+      <h1>Welcome to {{$store.state.user.firstName}}'s Profile.</h1>
+      <h2>{{$store.state.user.username}}'s Pets:</h2>
+      <div v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.petId" >
+           <ul>
+               <li>Name: {{pet.name}} </li>
+               <li>Age: {{getAge(pet.birthDate)}}</li>
+               <li>Species: {{pet.species}}</li>
+               <li>Sex: {{pet.sex}}</li>
+               <li>Personality: 
+                   <ul>
+                       <li>{{pet.personality}}</li>
+                   </ul>
+               </li>
+               <li>Vaccinations: {{ pet.hasVaccinations.toString() }}</li>
+               <li>Spayed/Neutered: {{spayedToString(pet.fixed)}}</li>
+               <li>Size: {{ pet.size }}</li>
+           </ul>
+        </div>
+    <h2>Playdates: </h2>
+    <div v-for="playdate in playdateArray" v-bind:key="playdate.playdateId">
+       <p>{{playdate.details}}</p> 
+       <p>{{playdate.dateTime}}</p>
+    </div>
+      
+      <!-- <button @click="test">Test</button> -->
   </div>
 </template>
 
@@ -13,9 +36,25 @@ export default {
 
     data() {
         return {
-            user: {},
+            // user: {},
             pets: [],
-            playdateArray: []
+            playdateArray: {}
+        }
+    },
+
+    methods: {
+        getAge(birthDate) {
+            let today = new Date();
+            let birthday = new Date(birthDate);
+            let age = today.getFullYear() - birthday.getFullYear();
+            let month = today.getMonth() - birthday.getMonth();
+            if (month < 0 || (month === 0 && today.getDate() < birthday.getDate())) {
+                age--;
+            }
+            return age;
+        },
+        spayedToString(isFixed) {
+            return isFixed.toString();
         }
     },
 
@@ -24,12 +63,12 @@ export default {
           if(response.status === 200) {
             this.pets = response.data;
             this.$store.commit('ADD_PETS_TO_USER', response.data )
+            this.playdateArray = this.$store.state.playdateArray.filter(playdate => playdate.hostUserId === this.$store.state.user.id); // will need to adjust to allow for visitingUserId
             }
           });
-       // this.pets = ;
-        // for (var playdate of this.$store.state.playdateArray) {
-        //     if (playdate.user.)
-        // }
+       
+       
+
 
     },
     mounted () {
