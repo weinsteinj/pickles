@@ -16,7 +16,6 @@ export default {
     name: 'playdate-card',
     data() {
         return {
-            
             pets: []
         }
     },

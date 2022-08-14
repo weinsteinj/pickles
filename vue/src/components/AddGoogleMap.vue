@@ -4,6 +4,8 @@
       <h2>Vue Js Search and Add Marker</h2>
       <label>
         <gmap-autocomplete @place_changed="initMarker"></gmap-autocomplete>
+        <button @click.prevent="getGeocode15217">Get 15217</button>
+         <button @click.prevent="getGeocodeByZip">Get Geocode by Zip</button>
         <button @click="addLocationMarker">Add</button>
       </label>
       <label>Please enter your zip code below!
@@ -26,10 +28,20 @@
         @click="center=m.position"
       ></gmap-marker>
     </gmap-map>
+    <div>
+      <form v-on:submit.prevent="getGeocodeByZip">
+        <label for="zipCode">Please enter your 5-digit Zipcode below: </label>
+        <input type="text" minlength="5" maxlength="5" v-model="currentPlace.zipCode">
+        <button type="submit"> Submit </button>
+      </form>
+      <!-- <p> {{newPlaceByZip.results[0].toString()}}</p> -->
+    </div>
   </div>
 </template>
  
 <script>
+import geocodeService from '@/services/geocodeService.js'
+
 export default {
   name: "AddGoogleMap",
   data() {
@@ -40,7 +52,16 @@ export default {
       },
       locationMarkers: [],
       locPlaces: [],
-      existingPlace: null
+      existingPlace: null,
+      place15217: null,
+      currentPlace: {
+        zipCode: '',
+        lat: null,
+        lng: null,
+      },
+      newPlaceByZip: null,
+      placeHolder: null,
+      
     };
   },
  
@@ -49,6 +70,27 @@ export default {
   },
  
   methods: {
+    getGeocode15217() {
+      geocodeService.getLatLngZip15217()
+      .then(response => {
+        this.place15217 = response.data;
+        
+      })
+    },
+    getGeocodeByZip() {
+      geocodeService.getLatLngByZip(this.currentPlace.zipCode)
+      .then(response => {
+        this.newPlaceByZip = response.data;
+        this.placeHolder = this.newPlaceByZip.results[0];
+        // const newMarker = {
+        //     lat: this.placeHolder.geometry.location.lat(),
+        //     lng: this.placeHolder.geometry.location.lng(),
+        // };
+        // this.locationMarkers.push({ position: newMarker });
+        // this.center = newMarker;
+      })
+    },
+
     initMarker(loc) {
       this.existingPlace = loc;
     },

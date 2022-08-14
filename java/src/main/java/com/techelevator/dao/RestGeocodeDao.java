@@ -14,22 +14,32 @@ public class RestGeocodeDao implements GeocodeDao{
 
 
     @Override
-    public String getGeocodeByZip() {
+    public String getGeocodeByZip(int zipCode) {
+        RestTemplate restTemplate = new RestTemplate();
+        Place playPlace = new Place();
+        String uri = "https://maps.googleapis.com/maps/api/geocode/json?address="
+        + zipCode + "&key=AIzaSyCbMJBc_MS9mlIMfrzc96ZgSAZWe-ZvpnA";
+        String stringPlace = restTemplate.getForObject(uri, String.class);
+        return stringPlace;
+    }
+
+
+    @Override
+    public String getGeocodeTest15217() {
         RestTemplate restTemplate = new RestTemplate();
         Place playPlace = new Place();
         String uri = "https://maps.googleapis.com/maps/api/geocode/json?address=15217&key=AIzaSyCbMJBc_MS9mlIMfrzc96ZgSAZWe-ZvpnA";
         String stringPlace = restTemplate.getForObject(uri, String.class);
-//        var json = @"
+        return stringPlace;
+    }
+}
+//    var json = @"
 //        {
 //            ""someObj"": 5
 //        }
 //        ";
 //        var result = JsonConvert.DeserializeObject<JToken>(json);
 //        var t = result["someObj"];
-        return stringPlace;
-    }
-}
-
 //
 //    private static void getEmployees()
 //    {
