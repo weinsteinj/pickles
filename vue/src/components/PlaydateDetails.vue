@@ -9,7 +9,7 @@
       <h2>Host:</h2>
       <p>{{ activePlaydate.hostUserId }}</p>
       <h2>Pets:</h2>
-      <p>{{pets.join(', ')}}
+      <p>{{pets.name.join(', ')}}
 </p>
     </div>
   </div>
@@ -22,7 +22,9 @@ export default {
   name: "playdate-details",
   data() {
     return {
-      pets: [],
+      pets: [{
+        
+      }],
       activePlaydate: [],
     };
   },
@@ -46,7 +48,7 @@ export default {
         allPetsArray.forEach((pet) => {
           let petIdHere = pet.petId;
 
-          if (element === petIdHere) this.pets.push(pet.name);
+          if (element == petIdHere) this.pets.push(pet);
         })
       })
       this.pets(unique);
