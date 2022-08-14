@@ -6,7 +6,7 @@
         <br>
         <div>
             Pets: 
-            {{pets}}
+            {{pets.join(', ')}}
         </div>
             </body>
 </template>
@@ -16,7 +16,6 @@ export default {
     name: 'playdate-card',
     data() {
         return {
-            
             pets: []
         }
     },

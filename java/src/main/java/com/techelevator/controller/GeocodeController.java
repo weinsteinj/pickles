@@ -2,13 +2,10 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.GeocodeDao;
 import com.techelevator.model.Pet;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class GeocodeController {
     private GeocodeDao geocodeDao;
@@ -19,11 +16,16 @@ public class GeocodeController {
     }
 
     @RequestMapping(path = "/geocode", method = RequestMethod.GET)
-    public String geocodebyZip() {
+    public String geocodeTest15217() {
 
-        return geocodeDao.getGeocodeByZip();
+        return geocodeDao.getGeocodeTest15217();
     }
 
+    @RequestMapping(path = "/geocode/{zipCode}", method = RequestMethod.GET)
+    public String geocodebyZip(@PathVariable int zipCode) {
+
+        return geocodeDao.getGeocodeByZip(zipCode);
+    }
 }
 //    @PathVariable int zipcode
 //path = "/geocode/{zipcode}"
