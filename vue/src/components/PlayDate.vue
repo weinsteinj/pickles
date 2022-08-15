@@ -4,7 +4,7 @@
          <h1>Check out our current Playdates</h1>
         <div class ="scroll">
          
-          <div></div>
+        
         <playdate-card v-for="playdate in $store.state.playdateArray" v-bind:key="playdate.id" 
         v-bind:playdate="playdate" ></playdate-card>
         </div>
@@ -84,7 +84,7 @@ h1 {
 }
 .scroll{
   overflow-x: hidden;
-	max-height: 397px;
+	max-height: 22rem;
 	overflow-y: scroll;
 
 	margin-bottom: 20px;

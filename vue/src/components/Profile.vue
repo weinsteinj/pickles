@@ -25,9 +25,12 @@
         <!-- <li>Species: {{pet.species}}</li> -->
         <div v-if="!isEditing">
           <label for="pet-species">Species:</label>
-          <input v-model="pet.species" :disabled="!isEditing" :class="{ view: !isEditing }"/>
+          <input
+            v-model="pet.species"
+            :disabled="!isEditing"
+            :class="{ view: !isEditing }"
+          />
         </div>
-
 
         <div v-if="isEditing">
           <label for="pet-species">Species:</label>
@@ -47,7 +50,11 @@
         <!-- <li>Sex: {{pet.sex}}</li> -->
         <div v-if="!isEditing">
           <label for="pet-sex">Sex:</label>
-          <input v-model="pet.sex" :disabled="!isEditing" :class="{ view: !isEditing }"/>
+          <input
+            v-model="pet.sex"
+            :disabled="!isEditing"
+            :class="{ view: !isEditing }"
+          />
         </div>
 
         <div v-if="isEditing">
@@ -130,10 +137,9 @@
 
         <!-- <li>Size: {{ pet.size }}</li> -->
         <div v-if="!isEditing">
-          <label for="pet-size">Size:</label>
+          <label for="pet-size">Size: {{ sizeToString(pet.size) }}</label>
           <input
             type="text"
-            v-model="pet.size"
             :disabled="!isEditing"
             :class="{ view: !isEditing }"
           />
@@ -156,36 +162,18 @@
 
         <!-- <li>Personality: {{pet.personality}}</li> -->
         <div v-if="!isEditing">
-          <label for="pet-personality">Personality:</label>
-          <input
-            type="text"
-            v-model="pet.personality"
-            :disabled="!isEditing"
-            :class="{ view: !isEditing }"
-          />
+          <label for="pet-personality">Personality: <span>{{ personalityToString(pet.personality) }}</span></label>
+          
         </div>
 
         <div v-if="isEditing">
           <label for="pet-personality">Personality:</label>
-          <multiselect
-            id="personality"
-            v-model="value"
-            :options="options"
-            :close-on-select="false"
-            track-by="id"
-            label="personality"
-            :hide-selected="true"
-            multiple="true"
-          ></multiselect>
+          <multiselect id="personality" v-model="value" :options="options" :close-on-select="false" track-by="id" label="personality" :hide-selected="true" multiple=true></multiselect> 
         </div>
 
-        <button @click="savePet(pet)" v-if="isEditing">
-          Save
-        </button>
+        <button @click="savePet(pet)" v-if="isEditing">Save</button>
 
-        <button @click="isEditing = !isEditing" v-if="!isEditing">
-          Edit
-        </button>
+        <button @click="isEditing = !isEditing" v-if="!isEditing">Edit</button>
 
         <button v-if="isEditing" @click="isEditing = false">Cancel</button>
       </div>
@@ -209,12 +197,10 @@
       <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
       <p>Status: <br />{{ playdate.status }}</p>
       <div v-if="playdate.status === 'Pending'">
-      <p> User requesting an invitation: {{playdate.visitingUserId}} </p>
-      <button @click="acceptInvite(playdate)"> Accept </button>
-      <button @click="rejectInvite(playdate)"> Reject </button>
-    
-    </div>
-
+        <p>User requesting an invitation: {{ playdate.visitingUserId }}</p>
+        <button @click="acceptInvite(playdate)">Accept</button>
+        <button @click="rejectInvite(playdate)">Reject</button>
+      </div>
     </div>
 
     <h2>Playdates you may attend:</h2>
@@ -234,7 +220,6 @@
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
       <p>Status: <br />{{ playdate.status }}</p>
-     
     </div>
 
     <!-- <button @click="test">Test</button> -->
@@ -258,7 +243,53 @@ export default {
       pets: [],
       playdateArray: {},
       visitingPlaydateArray: {},
+      value: [],
+      options: [
+        {
+          id: 1,
+          personality: "Timid",
+        },
+
+        {
+          id: 2,
+          personality: "Tires Quickly",
+        },
+
+        {
+          id: 3,
+          personality: "Independent",
+        },
+
+        {
+          id: 4,
+          personality: "Playful",
+        },
+
+        {
+          id: 5,
+          personality: "Toy Sharing",
+        },
+
+        {
+          id: 6,
+          personality: "Confident",
+        },
+
+        {
+          id: 7,
+          personality: "High Energy",
+        },
+
+        {
+          id: 8,
+          personality: "Toy Possessive",
+        },
+      ],
     };
+  },
+
+  computed: {
+      
   },
 
   methods: {
@@ -273,65 +304,119 @@ export default {
       return age;
     },
     savePet(pet) {
-        this.isEditing = false;
-        petService.updatePet(pet, pet.petId)
-            .then((response) => {
-                if (response.status === 200 || response.status === 204) {
-                    console.log(response);
-                }
+    //     pet.personality = [];
+    //   for (let i of this.value) {
+    //       pet.personality.push(i);
+    //   }
+      this.isEditing = false;
+      petService.updatePet(pet, pet.petId).then((response) => {
+        if (response.status === 200 || response.status === 204) {
+          console.log(response);
+          petService.getPetsByUserId(this.$store.state.user.id)
+          .then((response) => {
+              if (response.status === 200) {
+                  this.$store.commit("ADD_PETS_TO_USER", response.data); 
+              }
+              
+          })
+        }
+      });
+    },
+    sizeToString(sizeNum) {
+        let size = "";
+        switch(sizeNum) {
+            case 1:
+                size = 'Up to 15 pounds';
+                return size;
+            case 2:
+                size = '15 - 30 pounds';
+                return size;
+            case 3:
+                size = '30 - 50 pounds';
+                return size;
+            case 4:
+                size = '50 - 90 pounds';
+                return size;
+            case 5:
+                size = 'Bigger than 90 pounds';
+                return size;
                 
-            })
+
+        }
+        return size;
+    },
+    personalityToString(personalityArr) {
+        let personalityString = '';
+
+        personalityArr.forEach(personalityId => {
+            
+            if (personalityId === 1) {
+                personalityString += '| Timid |';
+            } else if (personalityId === 2) {
+                personalityString += '| Tires Quickly |';
+            } else if (personalityId === 3) {
+                personalityString += '| Independent |';
+            } else if (personalityId === 4) {
+                personalityString += '| Playful |';
+            } else if (personalityId === 5) {
+                personalityString += '| Toy Sharing |';
+            } else if (personalityId === 6) {
+                personalityString += '| Confident |';
+            } else if (personalityId === 7) {
+                personalityString += '| High Energy |';
+            } else if (personalityId === 8) {
+                personalityString += '| Toy Possessive |';
+            }
+        });
+
+        return personalityString;
     },
     acceptRequest(playdate) {
-        playdate.status = "Accepted";
-        playdateService.updatePlaydate(playdate.playdateId,playdate)
+      playdate.status = "Accepted";
+      playdateService
+        .updatePlaydate(playdate.playdateId, playdate)
         .then((response) => {
-             if (response.status === 200 || response.status === 204) {
-                    console.log(response);
-                } 
-        })
-
+          if (response.status === 200 || response.status === 204) {
+            console.log(response);
+          }
+        });
     },
     rejectInvite(playdate) {
-        playdate.status = "Pending";
-        playdate.visitingUserId = null;
+      playdate.status = "Pending";
+      playdate.visitingUserId = null;
     },
     rejectRequest(playdate) {
-        playdate.status = "Rejected";
-        //playdate.visitingUserId = null;
-        playdateService.updatePlaydate(playdate.playdateId,playdate)
+      playdate.status = "Rejected";
+      //playdate.visitingUserId = null;
+      playdateService
+        .updatePlaydate(playdate.playdateId, playdate)
         .then((response) => {
-             if (response.status === 200 || response.status === 204) {
-                    console.log(response);
-                } 
-        })
-
-    }
+          if (response.status === 200 || response.status === 204) {
+            console.log(response);
+          }
+        });
+    },
   },
 
   created() {
-    playdateService.getAllPlaydates()
-      .then(response => {
-       if(response.status===200) {
-         this.$store.commit("ADD_ALL_PLAYDATE",response.data);
-       }
-      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
+    playdateService.getAllPlaydates().then((response) => {
       if (response.status === 200) {
-        this.pets = response.data;
-        this.$store.commit("ADD_PETS_TO_USER", response.data);
-        this.playdateArray = this.$store.state.playdateArray.filter(
-          (playdate) => playdate.hostUserId === this.$store.state.user.id
-        );
-        this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
-          (playdate) => playdate.visitingUserId === this.$store.state.user.id
-        );
+        this.$store.commit("ADD_ALL_PLAYDATE", response.data);
       }
+      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
+        if (response.status === 200) {
+          this.pets = response.data;
+          this.$store.commit("ADD_PETS_TO_USER", response.data);
+          this.playdateArray = this.$store.state.playdateArray.filter(
+            (playdate) => playdate.hostUserId === this.$store.state.user.id
+          );
+          this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
+            (playdate) => playdate.visitingUserId === this.$store.state.user.id
+          );
+        }
+      });
     });
-  });
-   
-     
   },
-  
 
   mounted() {},
 
@@ -347,12 +432,16 @@ export default {
   display: flex;
   border-radius: 10px;
   margin-top: 1rem;
+  height: 15rem;
 }
 
 .pet-img {
-  width: 25rem;
-  height: 100%;
+  display: block;
+  max-width: 25rem;
+  max-height: 15rem;
+  
   border-radius: 10px;
+  
 }
 
 .playdate-img {

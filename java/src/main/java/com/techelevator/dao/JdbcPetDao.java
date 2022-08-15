@@ -92,7 +92,7 @@ public class JdbcPetDao implements PetDao{
     @Override
     public List<Pet> getPetsByUserId(int userId) {
         List<Pet> petsByUserId = new ArrayList<>();
-        String sql = "SELECT * FROM pets WHERE user_id = ?";
+        String sql = "SELECT * FROM pets WHERE user_id = ? ORDER BY pet_id";
 //        int userId = petByUserDTO.getUserId();
 
         SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
