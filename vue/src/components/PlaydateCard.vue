@@ -59,7 +59,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 h2 {
     display: flex;
     font-size: 22px;
