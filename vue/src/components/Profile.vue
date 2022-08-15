@@ -282,8 +282,8 @@ export default {
 
     },
     rejectRequest(playdate) {
-        playdate.status = "Pending";
-        playdate.visitingUserId = null;
+        playdate.status = "Rejected";
+        //playdate.visitingUserId = null;
         playdateService.updatePlaydate(playdate.playdateId,playdate)
         .then((response) => {
              if (response.status === 200 || response.status === 204) {
