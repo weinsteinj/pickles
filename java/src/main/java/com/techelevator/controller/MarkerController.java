@@ -38,7 +38,7 @@ public class MarkerController {
     public Marker getMarkerByPlaydateId(@PathVariable int playdateId) {
         Marker newMarker = new Marker();
         try {
-            newMarker = markerDao.getMarkerByUserId(playdateId);
+            newMarker = markerDao.getMarkerByPlaydateId(playdateId);
         } catch (MarkerNotFoundException e) {
 
         }
