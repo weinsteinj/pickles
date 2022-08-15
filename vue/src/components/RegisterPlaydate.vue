@@ -143,6 +143,7 @@ export default {
       registerPlaydate() {
         this.playdate.dateTime = this.date + "T" + this.time;
         this.playdate.userId = this.$store.state.user.id;
+        this.playdate.zipCode = Number.parseInt(this.playdate.zipCode);
         for (var i of this.value) {
           this.playdate.petId.push(i.petId);
         }

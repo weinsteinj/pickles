@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -51,8 +52,6 @@ public class JdbcPlaydateDao implements PlaydateDao{
         for (int pet_id : petId) {
             jdbcTemplate.update(petsSql, newPlaydateId, pet_id);
         }
-        // // do an insert of zip lat & lng to ---> markers TABLE in DB
-
         return newPlaydate;
     }
 
@@ -100,6 +99,16 @@ public class JdbcPlaydateDao implements PlaydateDao{
                 playdate.getPlaydatePhoto(),
                 playdate.getPlaydateId());
         return playdate;
+    }
+
+    @Override
+    public int addPlaydateMarker(int zipCode, BigDecimal lat, BigDecimal lng) {
+        String insertMarkerSql = "INSERT INTO markers (zip_code, lat, lng ) " +
+                "VALUES (?, ? , ? ) ON CONFLICT DO NOTHING";
+        // do an insert of zip lat & lng to ---> markers TABLE in DB
+        // if unique zipCode to table---> returns 1;
+        // if conflict--> do nothing, returns 0;
+        return jdbcTemplate.update(insertMarkerSql, zipCode, lat, lng);
     }
 
     private List<Integer> getPetsForPlaydate(int playdateId) {
