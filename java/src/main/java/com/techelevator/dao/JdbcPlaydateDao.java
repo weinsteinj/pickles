@@ -34,7 +34,7 @@ public class JdbcPlaydateDao implements PlaydateDao{
         newPlaydate.setDateTime(dateTime);
         newPlaydate.setDetails(details);
         newPlaydate.setRating(rating);
-        newPlaydate.setStatus(status);
+        //newPlaydate.setStatus("Posted");
         newPlaydate.setPetId(petId);
         newPlaydate.setPlaydatePhoto(playdatePhoto);
 

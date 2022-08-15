@@ -13,7 +13,7 @@ public class Playdate {
     private LocalDateTime dateTime;
     private String details;
     private int rating;
-    private String status;
+    private String status = "Posted";
     private int hostUserId;
     private int visitingUserId;
     List<Integer> petId;
