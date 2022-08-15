@@ -61,14 +61,21 @@ export default {
 
 <style>
 h2 {
+    display: flex;
     font-size: 22px;
     text-decoration: underline;
     margin-bottom: 0px;
+    padding-top: 0px;
+    text-align: top;
+
 }
 h3 {
     margin: 0px;
 }
 body {
     text-align: center;
+    padding-top: 0px;
+    margin-top: 0px;
+
 }
 </style>
