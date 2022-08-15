@@ -116,7 +116,9 @@ public class JdbcPlaydateDao implements PlaydateDao{
     }
 
     public int deletePlaydate(int playdateId) {
-        String deleteSql = "DELETE FROM playdate WHERE playdate.playdate_id = ?;";
+        String deletePetSql = "DELETE FROM pet_playdate WHERE playdate_id = ?;";
+        jdbcTemplate.update(deletePetSql,playdateId);
+        String deleteSql = "DELETE FROM playdate WHERE playdate_id = ?;";
         return jdbcTemplate.update(deleteSql,playdateId);
     }
 
