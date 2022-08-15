@@ -81,15 +81,17 @@ public class JdbcUserDao implements UserDao {
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
-        return jdbcTemplate.update(insertUserSql, firstName, lastName, username, password_hash, ssRole, email, zipCode) == 1;
+        return jdbcTemplate.update(insertUserSql, firstName, lastName, username, password_hash, ssRole, email, zipCode) == (1);
     }
 
     @Override
-    public boolean addUserMarker(int zipCode, BigDecimal lat, BigDecimal lng) {
+    public int addUserMarker(int zipCode, BigDecimal lat, BigDecimal lng) {
         String insertMarkerSql = "INSERT INTO markers (zip_code, lat, lng ) " +
-                "VALUES (?, ? , ? )";
+                "VALUES (?, ? , ? ) ON CONFLICT DO NOTHING";
         // do an insert of zip lat & lng to ---> markers TABLE in DB
-        return jdbcTemplate.update(insertMarkerSql, zipCode, lat, lng) == 1;
+        // if unique zipCode to table---> returns 1;
+        // if conflict--> do nothing, returns 0;
+        return jdbcTemplate.update(insertMarkerSql, zipCode, lat, lng);
     }
 
     private User mapRowToUser(SqlRowSet rs) {

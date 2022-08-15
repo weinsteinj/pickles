@@ -2,6 +2,10 @@ package com.techelevator.controller;
 
 import javax.validation.Valid;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.techelevator.dao.RestGeocodeDao;
+import com.techelevator.model.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +18,11 @@ import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.techelevator.dao.UserDao;
-import com.techelevator.model.LoginDTO;
-import com.techelevator.model.RegisterUserDTO;
-import com.techelevator.model.User;
-import com.techelevator.model.UserAlreadyExistsException;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
+
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 @RestController
 @CrossOrigin
@@ -28,11 +31,13 @@ public class AuthenticationController {
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private UserDao userDao;
+    private RestGeocodeDao restGeocodeDao;
 
-    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDao userDao) {
+    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDao userDao, RestGeocodeDao restGeocodeDao) {
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDao = userDao;
+        this.restGeocodeDao = restGeocodeDao;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -54,14 +59,20 @@ public class AuthenticationController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public void register(@Valid @RequestBody RegisterUserDTO newUser) {
+    public void register(@Valid @RequestBody RegisterUserDTO newUser) throws JsonProcessingException {
         try {
             User user = userDao.findByUsername(newUser.getUsername());
             throw new UserAlreadyExistsException();
         } catch (UsernameNotFoundException e) {
             userDao.create(newUser.getFirstName(), newUser.getLastName(), newUser.getUsername(),newUser.getPassword(),
                     newUser.getRole(), newUser.getEmail(), newUser.getZipCode());
-            userDao.addUserMarker(newUser.getZipCode(), newUser.getLat(), newUser.getLng());
+            // use zipCode from newUser to get lat lng via RestWebClient...
+            Marker newMarker = restGeocodeDao.getGeocodeByZip(newUser.getZipCode());
+            MathContext m = new MathContext(8);
+            MathContext n = new MathContext(9);
+            BigDecimal lat = newMarker.getLat().round(m);
+            BigDecimal lng = newMarker.getLng().round(n);
+            userDao.addUserMarker(newUser.getZipCode(), lat, lng);
         }
     }
 

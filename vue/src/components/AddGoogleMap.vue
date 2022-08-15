@@ -55,7 +55,7 @@ export default {
       existingPlace: null,
       // place15217: null,
       currentPlace: {
-        zipCode: '',
+        zipCode: null,
         lat: null,
         lng: null,
       },
@@ -78,19 +78,29 @@ export default {
     //   })
     // },
     getGeocodeByZip() {
-      geocodeService.getLatLngByZip(this.currentPlace.zipCode)
+      geocodeService.getLatLngByZip(Number.parseInt(this.currentPlace.zipCode))
       .then(response => {
         this.newPlaceByZip = response.data;
+        if(this.newPlaceByZip.length === 0) {
+          alert("Please enter a valid 5-digit zipcode and try again.")
+        } else {
         this.placeHolder = this.newPlaceByZip.results[0];
         this.currentPlace.lat = (Math.round(this.placeHolder.geometry.location.lat*1000000))/1000000;
         this.currentPlace.lng = (Math.round(this.placeHolder.geometry.location.lng*1000000))/1000000;
+
+        // this.currentPlace.lat = (Math.round(this.newPlaceByZip.results[0].geometry.location.lat*1000000))/1000000;
+        // this.currentPlace.lng = (Math.round(this.newPlaceByZip.results[0].geometry.location.lng*1000000))/1000000;
+
         // const newMarker = {
         //     lat: this.placeHolder.geometry.location.lat(),
         //     lng: this.placeHolder.geometry.location.lng(),
         // };
         // this.locationMarkers.push({ position: newMarker });
         // this.center = newMarker;
-      })
+        // (Math.round(    *1000000))/1000000;
+          }
+        })
+      }
     },
     addLocationMarkerByZipcode() {
       if (this.currentPlace) {
@@ -128,5 +138,4 @@ export default {
       });
     }
   }
-};
 </script>

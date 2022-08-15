@@ -1,6 +1,10 @@
 package com.techelevator.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.techelevator.dao.GeocodeDao;
+import com.techelevator.model.GeocodeResponse;
+import com.techelevator.model.Marker;
 import com.techelevator.model.Pet;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +26,7 @@ public class GeocodeController {
     }
 
     @RequestMapping(path = "/geocode/{zipCode}", method = RequestMethod.GET)
-    public String geocodebyZip(@PathVariable int zipCode) {
+    public Marker geocodebyZip(@PathVariable int zipCode) throws JsonProcessingException {
 
         return geocodeDao.getGeocodeByZip(zipCode);
     }
