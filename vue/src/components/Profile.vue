@@ -197,6 +197,13 @@
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
       <p>Status: <br />{{ playdate.status }}</p>
+      <div v-if="playdate.status == 'Pending'">
+      <p> User requesting an invitation: {{playdate.visitingUserId}} </p>
+      <button @click="acceptRequest(playdate)"> Accept </button>
+      <button @click="rejectRequest(playdate)"> Reject </button>
+    
+    </div>
+
     </div>
 
     <h2>Playdates you may attend:</h2>
@@ -216,6 +223,7 @@
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
       <p>Status: <br />{{ playdate.status }}</p>
+     
     </div>
 
     <!-- <button @click="test">Test</button> -->
@@ -225,6 +233,7 @@
 <script>
 //import userService from '@/services/userService.js';
 import petService from "@/services/petService.js";
+import playdateService from "@/services/playdateService.js";
 import Multiselect from "vue-multiselect";
 export default {
   name: "profile-component",
@@ -261,6 +270,27 @@ export default {
                 }
                 
             })
+    },
+    acceptInvite(playdate) {
+        playdate.status = "Accepted";
+        playdateService.updatePlaydate(playdate.id,playdate)
+        .then((response) => {
+             if (response.status === 200 || response.status === 204) {
+                    console.log(response);
+                } 
+        })
+
+    },
+    rejectInvite(playdate) {
+        playdate.status = "Pending";
+        playdate.visitingUserId = null;
+        playdateService.updatePlaydate(playdate.id,playdate)
+        .then((response) => {
+             if (response.status === 200 || response.status === 204) {
+                    console.log(response);
+                } 
+        })
+
     }
   },
 
