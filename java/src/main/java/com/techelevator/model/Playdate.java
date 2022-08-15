@@ -19,6 +19,8 @@ public class Playdate {
     private int visitingUserId;
     List<Integer> petId;
     private String playdatePhoto;
+    private String hostUsername;
+    private String visitorUsername;
 
     public Playdate() {
     }
@@ -115,8 +117,21 @@ public class Playdate {
         this.playdatePhoto = playdatePhoto;
     }
 
+    public String getHostUsername() {
+        return hostUsername;
+    }
 
+    public void setHostUsername(String hostUsername) {
+        this.hostUsername = hostUsername;
+    }
 
+    public String getVisitorUsername() {
+        return visitorUsername;
+    }
+
+    public void setVisitorUsername(String visitorUsername) {
+        this.visitorUsername = visitorUsername;
+    }
 
     @Override
     public boolean equals(Object o) {
