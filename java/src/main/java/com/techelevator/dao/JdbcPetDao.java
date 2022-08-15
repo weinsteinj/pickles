@@ -85,7 +85,7 @@ public class JdbcPetDao implements PetDao{
         while(resultsPersonality.next()) {
             personality.add(resultsPersonality.getInt("personality_id"));
         }
-        Integer[] personalityArray = personality.toArray(new Integer[0]);
+        Integer[] personalityArray = personality.toArray(new Integer[personality.size()]); // <--- This was Integer[0]
         return personalityArray;
     }
 

@@ -15,5 +15,7 @@ public interface UserDao {
 
     int findIdByUsername(String username);
 
-    boolean create(String firstName, String lastName, String username, String password, String role, String email, int zipCode, BigDecimal lat, BigDecimal lng);
+    boolean create(String firstName, String lastName, String username, String password, String role, String email, int zipCode);
+
+    boolean addUserMarker(int zipCode, BigDecimal lat, BigDecimal lng);
 }
