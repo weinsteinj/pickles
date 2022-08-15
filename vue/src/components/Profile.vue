@@ -18,11 +18,13 @@
         </div>
     <h2>Playdates: </h2>
     <div v-for="playdate in playdateArray" v-bind:key="playdate.playdateId" class="user-playdates">
+        <div><img :src="playdate.playdatePhoto" alt="playdate photo" class="playdate-img"></div>
        <p>Details: <br>{{playdate.details}}</p> 
        <p>Time: <br>{{playdate.dateTime}}</p>
     </div>
       
       <!-- <button @click="test">Test</button> -->
+
   </div>
 </template>
 
@@ -87,11 +89,18 @@ export default {
     
 }
 
+
 .pet-img {
     width: 25rem;
     height: 100%;
     border-radius: 10px;
     
+}
+
+.playdate-img {
+    width: 25rem;
+    height: 100%;
+    border-radius: 10px;
 }
 
 .pet-info {
@@ -104,6 +113,14 @@ li {
 
 .user-playdates {
     background-color: #D9ED92;
+    display: flex;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+h1 {
+    margin-top: 0;
 }
 
 </style>
+
