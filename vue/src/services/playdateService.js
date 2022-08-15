@@ -15,8 +15,8 @@ export default {
         return axios.post('/playdate',playdate);
     },
     //POST-update
-    updatePlaydate(playdateId) {
-        return axios.put(`/playdate/${playdateId}`);
+    updatePlaydate(playdateId, playdate) {
+        return axios.put(`/playdate/${playdateId}`,playdate);
     },
     deletePlaydate(playdateId) {
         return axios.delete(`/playdate/${playdateId}`);
