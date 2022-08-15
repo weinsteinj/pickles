@@ -206,8 +206,8 @@
       </div>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
-      <p>Pets: {{ petNames }}</p>
-      <!-- <p v-for="pet in pets" v-bind:key="pet.id">{{pet.name}}</p> -->
+      <!-- <p>Pets: {{ petNames }}</p> -->
+      <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
       <p>Status: <br />{{ playdate.status }}</p>
       <div v-if="playdate.status === 'Pending'">
       <p> User requesting an invitation: {{playdate.visitingUserId}} </p>
