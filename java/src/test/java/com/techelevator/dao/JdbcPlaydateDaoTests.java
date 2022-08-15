@@ -48,8 +48,8 @@ public class JdbcPlaydateDaoTests extends BaseDaoTests {
         List<Integer> pets = new ArrayList<>();
         pets.add(1);
         pets.add(2);
-        Playdate testPlaydate = new Playdate(1, 1, 2, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Pending", "photoURL", pets);
-        Playdate createdPlaydate = sut.create(1, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Pending", "photoURL", pets);
+        Playdate testPlaydate = new Playdate(1, 1, 2, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
+        Playdate createdPlaydate = sut.create(1, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
         createdPlaydate.setPlaydateId(testPlaydate.getPlaydateId());
         testPlaydate.setVisitingUserId(0);
 
