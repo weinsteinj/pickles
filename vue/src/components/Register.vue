@@ -91,6 +91,7 @@ export default {
       this.registrationErrors = false;
       this.registrationErrorMsg = 'There were problems registering this user.';
     },
+    
   },
 };
 </script>

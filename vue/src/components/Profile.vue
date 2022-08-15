@@ -21,6 +21,7 @@
         <div><img :src="playdate.playdatePhoto" alt="playdate photo" class="playdate-img"></div>
        <p>Details: <br>{{playdate.details}}</p> 
        <p>Time: <br>{{playdate.dateTime}}</p>
+       <p>Pets (Ids): <br>{{playdate.petId[0]}} {{playdate.petId[1]}}</p>
     </div>
       
       <!-- <button @click="test">Test</button> -->

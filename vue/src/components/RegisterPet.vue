@@ -82,6 +82,12 @@
        <multiselect id="personality" v-model="value" :options="options" :close-on-select="false" track-by="id" label="personality" :hide-selected="true" multiple=true></multiselect> 
        
       <div></div>
+      <button 
+      type="button"
+      id="upload_widget" 
+      class="cloudinary-button">
+        Upload photo
+      </button>
       
       <div class="submitButtonPet">
         <button id="selectBtn" class="btn" type="submit">
@@ -90,12 +96,8 @@
       </div>
       </form>
       
-       <button 
-      id="upload_widget" 
-      class="cloudinary-button">
-        Upload photo
-      </button>
-       <img id="uploadedimage" src="" /> 
+       
+       
       <div class="right-panel"></div>
   </div>
 </template>
@@ -230,6 +232,9 @@ export default {
 
          this.$router.push("/");
       },
+      submitAlert() {
+      alert('Photo Successfully Submited, Thanks!');
+    }
     },
 }
 </script>
