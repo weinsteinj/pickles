@@ -59,10 +59,10 @@ export default {
     // },
   },
   mounted() {
-			this.scrollToEnd();
+			this.scrollTop();
 		},
 		updated() {
-			this.scrollToEnd();
+			this.scrollToTop();
     }
 }
 </script>
@@ -89,7 +89,7 @@ h1 {
 }
 
 body {
-  padding-top: 0rem;
+  padding-top: 1rem;
   padding-bottom: 5px;
 }
 
@@ -128,7 +128,7 @@ div > ::-webkit-scrollbar-thumb {
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 50px;   
+    border-radius: 50px;   
     
     -webkit-border-radius: 10px;
     border-radius: 10px;
