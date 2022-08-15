@@ -2,7 +2,7 @@
   <div>
       <h1>Welcome to {{$store.state.user.firstName}}'s Profile.</h1>
       <h2>{{$store.state.user.username}}'s Pets:</h2>
-      <div v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.petId" >
+      <div v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.petId" class="user-pets">
            <ul>
                <li>Name: {{pet.name}} </li>
                <li>Age: {{getAge(pet.birthDate)}}</li>
@@ -19,9 +19,9 @@
            </ul>
         </div>
     <h2>Playdates: </h2>
-    <div v-for="playdate in playdateArray" v-bind:key="playdate.playdateId">
-       <p>{{playdate.details}}</p> 
-       <p>{{playdate.dateTime}}</p>
+    <div v-for="playdate in playdateArray" v-bind:key="playdate.playdateId" class="user-playdates">
+       <p>Details: <br>{{playdate.details}}</p> 
+       <p>Time: <br>{{playdate.dateTime}}</p>
     </div>
       
       <!-- <button @click="test">Test</button> -->
@@ -82,6 +82,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.user-pets {
+    background-color: #52B69A;
+}
 
 </style>
