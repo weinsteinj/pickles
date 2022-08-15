@@ -24,12 +24,14 @@ public class GeocodeController {
 
         return geocodeDao.getGeocodeTest15217();
     }
-
     @RequestMapping(path = "/geocode/{zipCode}", method = RequestMethod.GET)
     public Marker geocodebyZip(@PathVariable int zipCode) throws JsonProcessingException {
 
         return geocodeDao.getGeocodeByZip(zipCode);
     }
+
+
+
 }
 //    @PathVariable int zipcode
 //path = "/geocode/{zipcode}"
