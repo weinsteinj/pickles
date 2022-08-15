@@ -132,7 +132,9 @@ export default {
         email: "",
         confirmPassword: "",
         role: "user",
-        zipCode: ""
+        zipCode: "",
+        lat: null,
+        lng: null
       },
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
@@ -144,6 +146,7 @@ export default {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Password & Confirm Password do not match.";
       } else {
+        // send zipcode to back end ---> get back string with lat lng ---> drill down and then add to this.user.lat / .lng --> then:
         authService
           .register(this.user)
           .then((response) => {
