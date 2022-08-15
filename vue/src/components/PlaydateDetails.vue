@@ -69,7 +69,8 @@ export default {
       this.activePlaydate.status = "Pending";
       playdateService.updatePlaydate(this.activePlaydate.playdateId,this.activePlaydate)
       .then((response) => {
-      console.log(response.data)})
+      console.log(response.data);})
+     //commit this to the store?
       .catch((err)=>console.error(err));
     }
   }

@@ -282,7 +282,7 @@ export default {
                 
             })
     },
-    acceptInvite(playdate) {
+    acceptRequest(playdate) {
         playdate.status = "Accepted";
         playdateService.updatePlaydate(playdate.playdateId,playdate)
         .then((response) => {
@@ -295,6 +295,10 @@ export default {
     rejectInvite(playdate) {
         playdate.status = "Pending";
         playdate.visitingUserId = null;
+    },
+    rejectRequest(playdate) {
+        playdate.status = "Rejected";
+        //playdate.visitingUserId = null;
         playdateService.updatePlaydate(playdate.playdateId,playdate)
         .then((response) => {
              if (response.status === 200 || response.status === 204) {
@@ -306,7 +310,12 @@ export default {
   },
 
   created() {
-    petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
+    playdateService.getAllPlaydates()
+      .then(response => {
+       if(response.status===200) {
+         this.$store.commit("ADD_ALL_PLAYDATE",response.data);
+       }
+      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
       if (response.status === 200) {
         this.pets = response.data;
         this.$store.commit("ADD_PETS_TO_USER", response.data);
@@ -318,6 +327,9 @@ export default {
         );
       }
     });
+  });
+   
+     
   },
   
 
