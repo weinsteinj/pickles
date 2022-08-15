@@ -37,9 +37,12 @@
       <label for="details">Details: </label>
       <input id="details" type="text" class="form-control" v-model="playdate.details" required>
 
-      
-
-       <button 
+      <button id="selectBtn" class="btn" type="submit">
+          Add Playdate
+      </button>
+        
+      </form>
+      <button 
       id="upload_widget" 
       class="cloudinary-button">
         Upload photo
@@ -47,12 +50,6 @@
     
     <!-- placeholder for uploaded image -->
       <img id="uploadedimage" src="" /> 
-
-      <button id="selectBtn" class="btn" type="submit">
-          Add Playdate
-      </button>
-        
-      </form>
       <div class="right-panel"></div>
   </div>
 </template>
@@ -70,7 +67,7 @@ const cloudinary = window.cloudinary;
 
 
 export default {
-     created () {
+     created() {  //we should be able to get this from the store at this point
        petService.getPetsByUserId(this.$store.state.user.id)
        .then(response => {
          if(response.status === 200) {
@@ -99,7 +96,8 @@ export default {
         },
         (error, result) => {
           if (!error && result && result.event === "success") {
-            console.log("Done! Here is the image info: ", result.info);
+            console.log("Done! Here is the image info: ", result.info.secure_url);
+            this.playdate.playdatePhoto = result.info.secure_url;
             document
               .getElementById("uploadedimage")
               .setAttribute("src", result.info.secure_url);
@@ -148,8 +146,17 @@ export default {
         }
         playdateService.createPlaydate(this.playdate)
          .then(response => {
-           if (response.status === 200) 
-            return;  // add commit mutation to update the $store.state
+
+           if (response.status === 200) {
+             playdateService.getAllPlaydates()
+            .then(response => {
+              if(response.status === 200) {
+                this.$store.commit('ADD_ALL_PLAYDATE', response.data);
+              }
+            })
+            this.$router.push("/");
+           }
+            
          })
          
 

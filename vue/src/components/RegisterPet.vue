@@ -82,25 +82,20 @@
        <multiselect id="personality" v-model="value" :options="options" :close-on-select="false" track-by="id" label="personality" :hide-selected="true" multiple=true></multiselect> 
        
       <div></div>
-        
-       <button 
-      id="upload_widget" 
-      class="cloudinary-button">
-        Upload photo
-      </button>
       
-    
-    <!-- placeholder for uploaded image -->
-      <img id="uploadedimage" src="" /> 
-
       <div class="submitButtonPet">
         <button id="selectBtn" class="btn" type="submit">
           Add Pet
       </button>
       </div>
-      
-        
       </form>
+      
+       <button 
+      id="upload_widget" 
+      class="cloudinary-button">
+        Upload photo
+      </button>
+       <img id="uploadedimage" src="" /> 
       <div class="right-panel"></div>
   </div>
 </template>
@@ -126,6 +121,7 @@ export default {
         (error, result) => {
           if (!error && result && result.event === "success") {
             console.log("Done! Here is the image info: ", result.info);
+            this.pet.petPhoto = result.info.secure_url;
             document
               .getElementById("uploadedimage")
               .setAttribute("src", result.info.secure_url);
@@ -157,7 +153,8 @@ export default {
                 personality: [],
                 fixed: false,
                 hasVaccinations: false,
-                size:''   
+                size:'',
+                petPhoto: '' 
             },
              value: [],
         options: [
@@ -225,12 +222,13 @@ export default {
 
         // this.pet.isFixed = Boolean(this.pet.isFixed);
         // this.pet.hasVaccinations = Boolean(this.pet.hasVaccinations);
-
         petService.createPet(this.pet)
          .then(response => {
            if (response.status === 200) 
             return;  // add commit mutation to update the $store.state
-         })
+         });
+
+         this.$router.push("/");
       },
     },
 }

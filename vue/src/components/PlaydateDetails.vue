@@ -9,8 +9,9 @@
       <h2>Host:</h2>
       <p>{{ activePlaydate.hostUserId }}</p>
       <h2>Pets:</h2>
-      <p>{{pets.name.join(', ')}}
-</p>
+      <p v-for="pet in pets" v-bind:key="pet.id">{{pet.name}}</p>
+      <h2>Playdate Image</h2>
+     <img v-if="activePlaydate.playdatePhoto!==''" :src="activePlaydate.playdatePhoto" />
     </div>
   </div>
 </template>

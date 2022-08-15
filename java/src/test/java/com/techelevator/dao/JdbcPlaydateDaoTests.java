@@ -1,15 +1,24 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Playdate;
+import com.techelevator.model.*;
+import com.techelevator.model.PlaydateNotFoundException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
+import java.time.LocalDateTime;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcPlaydateDaoTests extends BaseDaoTests {
-
+    private static LocalDateTime DATETIME = LocalDateTime.of(2022, 8, 20, 12, 30, 00);
+    private static LocalDateTime DATETIME2 = LocalDateTime.of(2022, 10, 2, 12, 00, 00);
+    private static LocalDateTime DATETIME3 = LocalDateTime.of(2022, 9, 15, 12, 45, 00);
+//    private static Playdate testPlaydate = new Playdate (1, 1, 2, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL");
+//    private static Playdate testPlaydate2 = new Playdate (2, 2, 3, 15212, DATETIME2, "Super fun playdate at the park!",  5, "Accepted", "photoURL");
+//    private static Playdate testPlaydate3 = new Playdate (3, 1, 2, 15202, DATETIME3, "Go on a walk with us!",  2, "Declined", "photoURL");
 
     private JdbcPlaydateDao sut;
 
@@ -20,15 +29,45 @@ public class JdbcPlaydateDaoTests extends BaseDaoTests {
     }
     @Test
     public void listAllPlaydates_returns_3() {
+        List<Integer> pets = new ArrayList<>();
+        pets.add(1);
+        pets.add(2);
         List<Playdate> playdates = sut.listAllPlaydates();
-//        Playdate testPlaydate = new Playdate (1, 2, "15212", "2022-08-22T12:00:00", "Join me at my house for snacks and fetch!");
-//
-//        Playdate testPlaydate2 = new Playdate (2, 3, "15212", "2022-08-15T12:00:00", "Super fun playdate at the park!");
-//
-//        Playdate testPlaydate3 = new Playdate (1, 3, "15202", "2022-09-30T12:00:00", "Go on a walk with us!");
-//
+        Playdate testPlaydate = new Playdate (1, 1, 2, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
+        Playdate testPlaydate2 = new Playdate (2, 2, 3, 15212, DATETIME2, "Super fun playdate at the park!",  5, "Accepted", "photoURL", pets);
+        Playdate testPlaydate3 = new Playdate (3, 1, 2, 15202, DATETIME3, "Go on a walk with us!",  2, "Declined", "photoURL", pets);
+
         Assert.assertNotNull(playdates);
         Assert.assertEquals(3, playdates.size());
+        Assert.assertEquals(testPlaydate, playdates.get(0));
+        Assert.assertEquals(testPlaydate2, playdates.get(1));
+        Assert.assertEquals(testPlaydate3, playdates.get(2));
+    }
+    @Test
+    public void create_playdate_creates_new_playdate() {
+        List<Integer> pets = new ArrayList<>();
+        pets.add(1);
+        pets.add(2);
+        Playdate testPlaydate = new Playdate(1, 1, 2, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
+        Playdate createdPlaydate = sut.create(1, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
+        createdPlaydate.setPlaydateId(testPlaydate.getPlaydateId());
+        testPlaydate.setVisitingUserId(0);
 
+        Assert.assertEquals(testPlaydate, createdPlaydate);
+    }
+
+    @Test
+    public void getPlaydateById_returns_correct_id() {
+        List<Integer> pets = new ArrayList<>();
+        pets.add(1);
+        pets.add(2);
+        Playdate testPlaydate = new Playdate (1, 1, 2, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
+        Playdate playdate = sut.getPlaydateById(1);
+    Assert.assertEquals(playdate, testPlaydate);
+    }
+    @Test(expected = PlaydateNotFoundException.class)
+    public void getPlaydateNotFoundExceptionWhenGivenPetIdThatDoesntExist(){
+        sut.getPlaydateById(-1);
     }
 }
+

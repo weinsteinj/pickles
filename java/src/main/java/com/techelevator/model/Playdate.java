@@ -13,13 +13,25 @@ public class Playdate {
     private LocalDateTime dateTime;
     private String details;
     private int rating;
-    private String status;
+    private String status = "Posted";
     private int hostUserId;
     private int visitingUserId;
     List<Integer> petId;
     private String playdatePhoto;
 
     public Playdate() {
+    }
+    public Playdate(int playdateId, int hostUserId, int visitingUserId, int zipCode, LocalDateTime dateTime, String details, int rating, String status, String playdatePhoto, List petId) {
+        this.playdateId = playdateId;
+        this.hostUserId = hostUserId;
+        this.visitingUserId = visitingUserId;
+        this.zipCode = zipCode;
+        this.dateTime = dateTime;
+        this.details = details;
+        this.rating = rating;
+        this.status = status;
+        this.playdatePhoto = playdatePhoto;
+        this.petId = petId;
     }
 
     public int getPlaydateId() {
