@@ -95,6 +95,7 @@ export default {
     height: 100%;
     border-radius: 10px;
     
+    
 }
 
 .playdate-img {
