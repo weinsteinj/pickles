@@ -16,12 +16,22 @@
            </ul>
            
         </div>
-    <h2>Playdates: </h2>
+    <h2>Playdates you're hosting: </h2>
     <div v-for="playdate in playdateArray" v-bind:key="playdate.playdateId" class="user-playdates">
         <div><img :src="playdate.playdatePhoto" alt="playdate photo" class="playdate-img"></div>
        <p>Details: <br>{{playdate.details}}</p> 
        <p>Time: <br>{{playdate.dateTime}}</p>
        <p>Pets (Ids): <br>{{playdate.petId[0]}} {{playdate.petId[1]}}</p>
+       <p>Status: <br>{{playdate.status}}</p>
+    </div>
+
+    <h2>Playdates you may attend: </h2>
+    <div v-for="playdate in visitingPlaydateArray" v-bind:key="playdate.playdateId" class="user-playdates">
+        <div><img :src="playdate.playdatePhoto" alt="playdate photo" class="playdate-img"></div>
+       <p>Details: <br>{{playdate.details}}</p> 
+       <p>Time: <br>{{playdate.dateTime}}</p>
+       <p>Pets (Ids): <br>{{playdate.petId[0]}} {{playdate.petId[1]}}</p>
+       <p>Status: <br>{{playdate.status}}</p>
     </div>
       
       <!-- <button @click="test">Test</button> -->
@@ -39,7 +49,8 @@ export default {
         return {
             // user: {},
             pets: [],
-            playdateArray: {}
+            playdateArray: {},
+            visitingPlaydateArray: {}
         }
     },
 
@@ -62,7 +73,8 @@ export default {
           if(response.status === 200) {
             this.pets = response.data;
             this.$store.commit('ADD_PETS_TO_USER', response.data )
-            this.playdateArray = this.$store.state.playdateArray.filter(playdate => playdate.hostUserId === this.$store.state.user.id); // will need to adjust to allow for visitingUserId
+            this.playdateArray = this.$store.state.playdateArray.filter(playdate => playdate.hostUserId === this.$store.state.user.id); 
+            this.visitingPlaydateArray = this.$store.state.playdateArray.filter(playdate => playdate.visitingUserId === this.$store.state.user.id); 
             }
           });
        
