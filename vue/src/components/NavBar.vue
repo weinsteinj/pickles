@@ -13,7 +13,7 @@
       <router-link class="main-nav-link" v-bind:to="{ name:'register' }" v-else>register</router-link>
         </li>
         <li>
-          <router-link class="main-nav-link" :to="{name: 'profile', params: {userId: user.userId}}">profile</router-link>
+          <router-link class="main-nav-link" :to="{path: '/profile/'+this.$store.state.user.id}">profile</router-link>
         </li>
         <li>
           <router-link class="main-nav-link" :to="{name: 'register-playdate'}">schedule a playdate</router-link>
@@ -41,9 +41,11 @@ export default {
   },
 
   created() {
+    //should just go to the store to get the current user? there is not necessarily a userId parameter in the path so this usually won't work
     userService.getById(this.$route.params.userId)
       .then(response => {
         this.user = response.data;
+
       })
   }
 }
