@@ -17,7 +17,6 @@
      <!-- <p v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.id">{{pet.name}}</p> -->
 
       <multiselect id="pets"  multiple=true v-model="value" :options="options" :close-on-select="false" track-by="petId" label="name" :hide-selected="false" ></multiselect> 
-      <br>
 
       <label for="zip-code">Zip Code: </label>
       <input type="number"
@@ -44,13 +43,10 @@
         Upload photo
       </button>
 
-      <div id="submitButton">
-          <button id="selectBtn" class="btn" type="submit">
+      <button id="selectBtn" class="btn" type="submit">
           Add Playdate
       </button>
         
-      </div>
-    
       </form>
       
     
@@ -89,7 +85,8 @@ export default {
          if(response.status >= 400 && response.status < 500) {
            alert("Error: Bad Request!")
          }
-         })
+         });
+     
       
     
   },
@@ -179,13 +176,6 @@ export default {
 </style>
 
 <style scoped>
-h1{
-  text-align: center;
-}
-#submitButton{
-  display: flex;
-  justify-content: center;
-}
 #pet-register {
   display: flex;
   justify-content: space-between;

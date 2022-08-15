@@ -64,5 +64,8 @@ export default new Vuex.Store({
     ADD_ALL_PLAYDATE(state, playdateArray) {
       state.playdateArray = playdateArray;
     },
+    ADD_PLAYDATE_TO_ARRAY(state,playdate) {
+      state.playdateArray.push(playdate);
+    }
   }
 })
