@@ -17,6 +17,7 @@
                <li>Spayed/Neutered: {{spayedToString(pet.fixed)}}</li>
                <li>Size: {{ pet.size }}</li>
            </ul>
+           <img :src="pet.petPhoto" />
         </div>
     <h2>Playdates: </h2>
     <div v-for="playdate in playdateArray" v-bind:key="playdate.playdateId" class="user-playdates">

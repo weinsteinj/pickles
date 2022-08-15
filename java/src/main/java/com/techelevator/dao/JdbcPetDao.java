@@ -44,6 +44,7 @@ public class JdbcPetDao implements PetDao{
                 "VALUES (?,?)";
         Integer[] personality = newPetDTO.getPersonality();
         for (int personality_id : personality) {
+           // System.out.println(personality_id);
             jdbcTemplate.update(personalitySql,newPetId,personality_id);
         }
         newPet.setPersonality(personality);
@@ -96,21 +97,8 @@ public class JdbcPetDao implements PetDao{
 
         SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
         while(rs.next()) {
-            Pet pet = new Pet();
-            pet.setPetId(rs.getInt("pet_id"));
-            pet.setName(rs.getString("name"));
-            pet.setSpecies(rs.getString("species"));
-            pet.setSex(rs.getString("sex"));
-            Date date = rs.getDate("birth_date");
-            if (date != null) {
-                pet.setBirthDate(date.toLocalDate());
-            }
-            pet.setFixed(rs.getBoolean("is_fixed"));
-            pet.setHasVaccinations(rs.getBoolean("has_vaccinations"));
-            pet.setSize(rs.getInt("size"));
-            pet.setUserId(userId);
-//            mapRowToPet(rs, getPersonalitiesForPet(rs.getInt("pet_id")));
-            pet.setPersonality(getPersonalitiesForPet(pet.getPetId()));
+            Integer[] personality = getPersonalitiesForPet(userId);
+            Pet pet = mapRowToPet(rs,personality);
             petsByUserId.add(pet);
         }
         return petsByUserId;
@@ -152,6 +140,7 @@ public class JdbcPetDao implements PetDao{
         pet.setHasVaccinations(rs.getBoolean("has_vaccinations"));
         pet.setSize(rs.getInt("size"));
         pet.setUserId(rs.getInt("user_id"));
+        pet.setPetPhoto(rs.getString("pet_photo"));
         pet.setPersonality(personality);
 
         return pet;

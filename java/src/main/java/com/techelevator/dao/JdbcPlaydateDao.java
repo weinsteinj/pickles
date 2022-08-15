@@ -27,18 +27,25 @@ public class JdbcPlaydateDao implements PlaydateDao{
                 "details, rating, status, playdate_photo) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING playdate_id";
         Integer newPlaydateId;
+
+
+        newPlaydate.setHostUserId(hostUserId);
+        newPlaydate.setZipCode(zipCode);
+        newPlaydate.setDateTime(dateTime);
+        newPlaydate.setDetails(details);
+        newPlaydate.setRating(rating);
+        newPlaydate.setStatus(status);
+        newPlaydate.setPetId(petId);
+        newPlaydate.setPlaydatePhoto(playdatePhoto);
+
         newPlaydateId = jdbcTemplate.queryForObject(sql, Integer.class,
                 newPlaydate.getHostUserId(), newPlaydate.getZipCode(), newPlaydate.getDateTime(),
                 newPlaydate.getDetails(), newPlaydate.getRating(), newPlaydate.getStatus(),
                 newPlaydate.getPlaydatePhoto());
-        newPlaydate.setPlaydateId(newPlaydate.getPlaydateId());
-        newPlaydate.setHostUserId(newPlaydate.getHostUserId());
-        newPlaydate.setZipCode(newPlaydate.getZipCode());
-        newPlaydate.setDateTime(newPlaydate.getDateTime());
-        newPlaydate.setDetails(newPlaydate.getDetails());
-        newPlaydate.setRating(newPlaydate.getRating());
-        newPlaydate.setStatus(newPlaydate.getStatus());
-        newPlaydate.setPlaydatePhoto(newPlaydate.getPlaydatePhoto());
+        if (newPlaydateId != null) {
+            newPlaydate.setPlaydateId(newPlaydateId);
+        }
+
         String petsSql = "INSERT INTO pet_playdate (playdate_id, pet_id) " +
                 "VALUES (?, ?)";
         for (int pet_id : petId) {
@@ -47,6 +54,8 @@ public class JdbcPlaydateDao implements PlaydateDao{
 
         return newPlaydate;
     }
+
+
 
     @Override
     public Playdate getPlaydateById(int playdateId) {
