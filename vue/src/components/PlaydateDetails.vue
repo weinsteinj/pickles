@@ -41,6 +41,7 @@ export default {
   created() {
     playdateService.getById(this.$route.params.playdateId).then((response) => {
       this.activePlaydate = response.data;
+      console.log(this.activePlaydate.status);
       this.$store.commit("SET_ACTIVE_PLAYDATE", this.activePlaydate);
 
       const unique = (value, index, self) => {
@@ -58,7 +59,7 @@ export default {
           if (element == petIdHere) this.pets.push(pet);
         })
       })
-      this.pets(unique); //is this doing anything - keep getting errors
+      this.pets(unique); //what is this doing? - it keeps giving me errors
     }
     });
     

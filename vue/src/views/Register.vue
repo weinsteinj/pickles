@@ -119,7 +119,6 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiand
 
 <script>
 import authService from "../services/AuthService";
-// import geocodeService from '@/services/geocodeService.js'
 
 export default {
   name: "register-view",
@@ -147,12 +146,6 @@ export default {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Password & Confirm Password do not match.";
       } else {
-        // send zipcode to back end ---> get back string with lat lng ---> drill down and then add to this.user.lat / .lng --> then:
-        // geocodeService.getLatLngByZip(Number.parseInt(this.user.zipCode))
-        //  .then(response => {
-        // this.userPlaceByZip = response.data;
-        // this.user.lat = (Math.round(this.newPlaceByZip.results[0].geometry.location.lat*1000000))/1000000;
-        // this.user.lng = (Math.round(this.newPlaceByZip.results[0].geometry.location.lng*1000000))/1000000;
         authService
           .register(this.user)
             .then((response) => {
@@ -172,10 +165,6 @@ export default {
               this.registrationErrorMsg = "Bad Request: Validation Errors";
                 }
             });
-          // })
-          // .catch(() =>  {
-          //   alert("Please enter a valid 5-digit zip code and try again.")
-          // }) 
         }
       }
     },

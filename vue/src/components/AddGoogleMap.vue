@@ -1,17 +1,8 @@
 <template>
   <div>
     <div>
-      <h2>Vue Js Search and Add Marker</h2>
-      <label>
-        <gmap-autocomplete @place_changed="initMarker"></gmap-autocomplete>
-        <button @click.prevent="getGeocode15217">Get 15217</button>
-         <button @click.prevent="getGeocodeByZip">Get Geocode by Zip</button>
-        <button @click="addLocationMarker">Add</button>
-      </label>
-      <label>Please enter your zip code below!
-        
-        <button @click="addLocationMarkerByZipcode">Show Nearby Playdates</button>
-      </label>
+      <h2>Check Out the Scheduled Playdates in Your Area!</h2>
+      <h5>Zoom Out or Move the Map to Explore</h5>
       <br/>
  
     </div>
@@ -28,14 +19,6 @@
         @click="center=m.position"
       ></gmap-marker>
     </gmap-map>
-    <div>
-      <form >
-        <label for="zipCode">Please enter your 5-digit Zipcode below: </label>
-        <input type="text" minlength="5" maxlength="5" v-model="currentPlace.zipCode">
-        <button type="submit" @click.prevent="getGeocodeByZip"> Submit </button>
-      </form>
-      
-    </div>
   </div>
 </template>
  
@@ -47,73 +30,44 @@ export default {
   data() {
     return {
       center: { 
-        lat: 39.7837304,
-        lng: -100.4458825
+        lat: 41.039068,
+        //this.$store.currentUserMarker.lat
+        lng: -73.815439
+        //this.$store.currentUserMarker.lng
       },
       locationMarkers: [],
       locPlaces: [],
       existingPlace: null,
-      // place15217: null,
-      currentPlace: {
-        zipCode: null,
-        lat: null,
-        lng: null,
-      },
-      newPlaceByZip: null,
-      placeHolder: null,
-      
+      simulatedMarkerArrayViaDB: [
+        {position: {lat: 41.021447 , lng: -73.812498}}, 
+        {position: {lat: 41.039068 , lng: -73.815439}}, 
+        {position: {lat: 40.031013 , lng: -80.019956}}
+        ],
+        tempArray: [],
+        currentUserPosition: {},
     };
   },
- 
+  created(){
+    geocodeService.getAllPlaydateMarkers()
+     .then(response => {
+       if(response.status === 200) {
+         this.locationMarkers = response.data;
+         geocodeService.getMarkerByUserId(this.$store.state.user.id)
+          .then(reply => {
+       if(reply.status === 200) {
+         this.currentUserPosition = reply.data;
+         this.center.lat = this.currentUserPosition.position.lat;
+         this.center.lng = this.currentUserPosition.position.lng;
+            }
+         })
+        }
+     })
+  },
   mounted() {
     this.locateGeoLocation();
   },
  
   methods: {
-    // getGeocode15217() {
-    //   geocodeService.getLatLngZip15217()
-    //   .then(response => {
-    //     this.place15217 = response.data;
-        
-    //   })
-    // },
-    getGeocodeByZip() {
-      geocodeService.getLatLngByZip(Number.parseInt(this.currentPlace.zipCode))
-      .then(response => {
-        this.newPlaceByZip = response.data;
-        if(this.newPlaceByZip.length === 0) {
-          alert("Please enter a valid 5-digit zipcode and try again.")
-        } else {
-        this.placeHolder = this.newPlaceByZip.results[0];
-        this.currentPlace.lat = (Math.round(this.placeHolder.geometry.location.lat*1000000))/1000000;
-        this.currentPlace.lng = (Math.round(this.placeHolder.geometry.location.lng*1000000))/1000000;
-
-        // this.currentPlace.lat = (Math.round(this.newPlaceByZip.results[0].geometry.location.lat*1000000))/1000000;
-        // this.currentPlace.lng = (Math.round(this.newPlaceByZip.results[0].geometry.location.lng*1000000))/1000000;
-
-        // const newMarker = {
-        //     lat: this.placeHolder.geometry.location.lat(),
-        //     lng: this.placeHolder.geometry.location.lng(),
-        // };
-        // this.locationMarkers.push({ position: newMarker });
-        // this.center = newMarker;
-        // (Math.round(    *1000000))/1000000;
-          }
-        })
-      }
-    },
-    addLocationMarkerByZipcode() {
-      if (this.currentPlace) {
-        const marker = {
-          lat: this.currentPlace.lat,
-          lng: this.currentPlace.lng
-        };
-        this.locationMarkers.push({ position: marker });
-        this.locPlaces.push(this.currentPlace);
-        this.center = marker;
-        // this.currentPlace = null;
-      }
-    },
     initMarker(loc) {
       this.existingPlace = loc;
     },
@@ -138,4 +92,11 @@ export default {
       });
     }
   }
+};
 </script>
+
+<style scoped>
+h5 {
+  text-align: center;
+}
+</style>

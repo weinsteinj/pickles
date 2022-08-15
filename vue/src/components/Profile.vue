@@ -287,7 +287,7 @@ export default {
                 
             })
     },
-    acceptRequest(playdate) {
+    acceptInvite(playdate) {
         playdate.status = "Accepted";
         playdateService.updatePlaydate(playdate.playdateId,playdate)
         .then((response) => {
@@ -298,19 +298,23 @@ export default {
 
     },
     rejectInvite(playdate) {
-        playdate.status = "Pending";
-        playdate.visitingUserId = null;
-    },
-    rejectRequest(playdate) {
         playdate.status = "Rejected";
-        //playdate.visitingUserId = null;
         playdateService.updatePlaydate(playdate.playdateId,playdate)
         .then((response) => {
              if (response.status === 200 || response.status === 204) {
                     console.log(response);
                 } 
-        })
 
+        var newPlaydate = playdate;
+        newPlaydate.status = "Posted";
+        newPlaydate.visitingUserId = null;
+        playdateService.createPlaydate(newPlaydate)
+        .then(response => {
+        if (response.status === 200) {
+            this.$store.commit('ADD_PLAYDATE_TO_ARRAY', newPlaydate);
+          }
+        })
+    })
     },
     getNamesFromId(id){
             this.$store.state.petArray.find(element => {
