@@ -42,6 +42,8 @@
 <script>
 import authService from "../services/AuthService";
 import petService from "../services/petService.js";
+import geocodeService from "@/services/geocodeService.js";
+
 export default {
   name: "login-component",
   components: {},
@@ -61,19 +63,24 @@ export default {
         .then(response => {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
-            this.$store.commit("SET_USER", response.data.user);      
+            this.$store.commit("SET_USER", response.data.user);    
           petService.getPetsByUserId(this.$store.state.user.id)
           .then(response => {
             if(response.status === 200) {
             this.$store.commit('ADD_PETS_TO_USER', response.data )
             }
           });
+          geocodeService.getMarkerByUserId(this.$store.state.user.id)
+          .then(response => {
+            if(response.status === 200) {
+              this.$store.commit("SET_USER_MARKER", response.data) 
+            }
+          })
             this.$router.push("/");
           }
           })
         .catch(error => {
           const response = error.response;
-
           if (response.status === 401) {
             this.invalidCredentials = true;
           }

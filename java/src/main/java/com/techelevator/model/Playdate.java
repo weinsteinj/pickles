@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 import org.springframework.cglib.core.Local;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,6 +19,8 @@ public class Playdate {
     private int visitingUserId;
     List<Integer> petId;
     private String playdatePhoto;
+    private BigDecimal lat;
+    private BigDecimal lng;
 
     public Playdate() {
     }
@@ -112,6 +115,22 @@ public class Playdate {
 
     public void setPlaydatePhoto(String playdatePhoto) {
         this.playdatePhoto = playdatePhoto;
+    }
+
+    public BigDecimal getLat() {
+        return lat;
+    }
+
+    public void setLat(BigDecimal lat) {
+        this.lat = lat;
+    }
+
+    public BigDecimal getLng() {
+        return lng;
+    }
+
+    public void setLng(BigDecimal lng) {
+        this.lng = lng;
     }
 
     @Override

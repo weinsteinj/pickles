@@ -53,7 +53,7 @@ export default {
       locationMarkers: [],
       locPlaces: [],
       existingPlace: null,
-      place15217: null,
+      // place15217: null,
       currentPlace: {
         zipCode: '',
         lat: null,

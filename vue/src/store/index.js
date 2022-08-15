@@ -22,8 +22,13 @@ export default new Vuex.Store({
     user: currentUser || {},
     petArray: [
     ],
+    currentUserMarker: { 
+      lat: null,
+      lng: null
+    },
     currentUserPetArray: [],
-    playdateArray: [],  
+    playdateArray: [],
+    playdateLocationsArray: [],  
     activePlaydate: {}  
   },
   mutations: {
@@ -35,6 +40,9 @@ export default new Vuex.Store({
     SET_USER(state, user) {
       state.user = user;
       localStorage.setItem('user',JSON.stringify(user));
+    },
+    SET_USER_MARKER(state, locationMarker) {
+      state.currentUserMarker = locationMarker;
     },
     SET_ACTIVE_PLAYDATE(state, activePlaydate) {
       state.activePlaydate = activePlaydate;

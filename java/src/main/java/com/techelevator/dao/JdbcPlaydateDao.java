@@ -51,6 +51,7 @@ public class JdbcPlaydateDao implements PlaydateDao{
         for (int pet_id : petId) {
             jdbcTemplate.update(petsSql, newPlaydateId, pet_id);
         }
+        // // do an insert of zip lat & lng to ---> markers TABLE in DB
 
         return newPlaydate;
     }

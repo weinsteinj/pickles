@@ -51,15 +51,13 @@ CREATE TABLE playdate
 	constraint fk_visitor_id FOREIGN KEY (visitor_id) references users (user_id)
 );
 
-CREATE TABLE geocodes
+CREATE TABLE markers
 (
-	geocode_id serial,
 	zip_code int,
-	lat
-    lng
+	lat numeric(8,6), --max/min value 90/-90.000000 N/S
+    lng numeric(9,6),  --max/min value 180/-180.000000 E/W
 
-	constraint pk_geocode PRIMARY KEY (geocode_id),
-	constraint fk_zip FOREIGN KEY (zip_code) references playdate (zip_code),
+	constraint pk_zip PRIMARY KEY (zip_code)
 );
 CREATE TABLE pet_playdate
 (
