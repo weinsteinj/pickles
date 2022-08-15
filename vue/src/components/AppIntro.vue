@@ -1,7 +1,9 @@
 <template>
 <body>
   <div class="app-intro-container">
-      <h2>{{introHeader}}</h2><p>{{introDescription}}</p>
+      <h2>{{introHeader}}</h2>
+      <h3>{{introSubHeader}}</h3>
+      <p>{{introDescription}}</p>
   </div>    
 </body>
   
@@ -17,7 +19,8 @@ export default {
     name: 'app-intro',
     data () {
         return {
-            introHeader: 'Welcome to Pickles! Find the perfect pet playmate for your precious pet pals (please)!',
+            introHeader: 'Welcome to Pickles!',
+            introSubHeader: 'Find the perfect pet playmate for your precious pet pals (please)!',
             introDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur dignissimos omnis quidem ut,' 
             + 'odit aliquid esse voluptates sequi ipsum veniam vitae, sint unde. Voluptates repellendus, magni porro distinctio'
              + 'praesentium dolor!'
@@ -52,7 +55,13 @@ img {
 
 h2 {
     /* display: inline-block; */
-    text-align: left;
+    text-align: center;
+    margin: 0px;
+
+}
+h3 {
+    margin: 0px;
+    text-align: center;
 }
 
 
