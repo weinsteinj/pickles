@@ -156,7 +156,16 @@
 
         <div v-if="isEditing">
           <label for="pet-personality">Personality:</label>
-          <multiselect id="personality" v-model="value" :options="options" :close-on-select="false" track-by="id" label="personality" :hide-selected="true" multiple=true></multiselect> 
+          <multiselect
+            id="personality"
+            v-model="value"
+            :options="options"
+            :close-on-select="false"
+            track-by="id"
+            label="personality"
+            :hide-selected="true"
+            multiple="true"
+          ></multiselect>
         </div>
 
         <button @click="isEditing = !isEditing">
@@ -166,7 +175,8 @@
         <button v-if="isEditing" @click="isEditing = false">Cancel</button>
       </div>
     </div>
-    <h2>Playdates:</h2>
+
+    <h2>Playdates you're hosting:</h2>
     <div
       v-for="playdate in playdateArray"
       v-bind:key="playdate.playdateId"
@@ -182,6 +192,26 @@
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
+      <p>Status: <br />{{ playdate.status }}</p>
+    </div>
+
+    <h2>Playdates you may attend:</h2>
+    <div
+      v-for="playdate in visitingPlaydateArray"
+      v-bind:key="playdate.playdateId"
+      class="user-playdates"
+    >
+      <div>
+        <img
+          :src="playdate.playdatePhoto"
+          alt="playdate photo"
+          class="playdate-img"
+        />
+      </div>
+      <p>Details: <br />{{ playdate.details }}</p>
+      <p>Time: <br />{{ playdate.dateTime }}</p>
+      <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
+      <p>Status: <br />{{ playdate.status }}</p>
     </div>
 
     <!-- <button @click="test">Test</button> -->
@@ -191,19 +221,19 @@
 <script>
 //import userService from '@/services/userService.js';
 import petService from "@/services/petService.js";
-import Multiselect from 'vue-multiselect';
+import Multiselect from "vue-multiselect";
 export default {
   name: "profile-component",
   components: {
-      Multiselect,
+    Multiselect,
   },
-
   data() {
     return {
       isEditing: false,
       // user: {},
       pets: [],
       playdateArray: {},
+      visitingPlaydateArray: {},
     };
   },
 
@@ -227,10 +257,15 @@ export default {
         this.$store.commit("ADD_PETS_TO_USER", response.data);
         this.playdateArray = this.$store.state.playdateArray.filter(
           (playdate) => playdate.hostUserId === this.$store.state.user.id
-        ); // will need to adjust to allow for visitingUserId
+        );
+        this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
+          (playdate) => playdate.visitingUserId === this.$store.state.user.id
+        );
       }
     });
   },
+  
+
   mounted() {},
 
   //need:

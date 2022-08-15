@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class PlaydateController {
     private PlaydateDao playdateDao;
@@ -36,6 +36,7 @@ public class PlaydateController {
         }
     }
 
+    @CrossOrigin
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = "/playdate/{playdateId}", method = RequestMethod.PUT)
     public Playdate updatePlaydate(@PathVariable int playdateId, @RequestBody Playdate playdate) throws PlaydateNotFoundException {

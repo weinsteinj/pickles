@@ -9,9 +9,15 @@
       <h2>Host:</h2>
       <p>{{ activePlaydate.hostUserId }}</p>
       <h2>Pets:</h2>
-      <p v-for="pet in pets" v-bind:key="pet.id">{{pet.name}}</p>
-      <h2>Playdate Image</h2>
+      <p v-for="pet in pets" v-bind:key="pet.id">{{pet.name}}</p> 
      <img v-if="activePlaydate.playdatePhoto!==''" :src="activePlaydate.playdatePhoto" />
+     <div v-if="activePlaydate.status=='Posted'">
+     <h2>Want to come to this playdate? Request an invitation!</h2>
+     <button class="btn" @click="requestInvite"> Request an Invite </button>
+     </div>
+     <div v-if="activePlaydate.status=='Pending'">
+       <h2>An invite has been requested, check back soon!</h2>
+       </div>
     </div>
   </div>
 </template>
@@ -52,11 +58,21 @@ export default {
           if (element == petIdHere) this.pets.push(pet);
         })
       })
-      this.pets(unique);
+      this.pets(unique); //is this doing anything - keep getting errors
     }
     });
     
   },
+  methods: {
+    requestInvite() {
+      this.activePlaydate.visitingUserId = this.$store.state.user.id;
+      this.activePlaydate.status = "Pending";
+      playdateService.updatePlaydate(this.activePlaydate.playdateId,this.activePlaydate)
+      .then((response) => {
+      console.log(response.data)})
+      .catch((err)=>console.error(err));
+    }
+  }
   // computed: {
   //     getPetsForPlaydateDetails() {
   //       console.log(this.playdate);
