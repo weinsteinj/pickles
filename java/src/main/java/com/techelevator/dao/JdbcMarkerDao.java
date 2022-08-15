@@ -4,11 +4,13 @@ import com.techelevator.model.Marker;
 import com.techelevator.model.MarkerNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 import org.yaml.snakeyaml.error.Mark;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcMarkerDao implements MarkerDao{
     private final JdbcTemplate jdbcTemplate;
 
