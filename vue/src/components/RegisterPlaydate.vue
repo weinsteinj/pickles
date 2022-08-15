@@ -51,7 +51,7 @@
       
     
     <!-- placeholder for uploaded image -->
-      <img id="uploadedimage" src="" /> 
+      <!-- <img id="uploadedimage" src="" />  -->
       <div class="right-panel"></div>
   </div>
 </template>
