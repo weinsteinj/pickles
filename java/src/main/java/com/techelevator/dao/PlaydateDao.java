@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Playdate;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface PlaydateDao {
     List<Playdate> listAllPlaydates();
 
     Playdate updatePlaydate(Playdate playdate);
+
+    int addPlaydateMarker(int zipCode, BigDecimal lat, BigDecimal lng);
 }
