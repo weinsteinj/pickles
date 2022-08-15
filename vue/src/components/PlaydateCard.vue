@@ -1,10 +1,11 @@
 <template>
     <body>
         <h2> Host User ID: {{playdate.hostUserId}}  
-            <br>
-        ZipCode of Playdate: {{playdate.zipCode}}</h2>
-        <br>
-        <div>
+        </h2>
+        <h3>
+            Playdate ZipCode: {{playdate.zipCode}}
+            </h3>
+            <div>
             Pets: 
             {{pets.join(', ')}}
         </div>
@@ -59,5 +60,15 @@ export default {
 </script>
 
 <style>
-
+h2 {
+    font-size: 22px;
+    text-decoration: underline;
+    margin-bottom: 0px;
+}
+h3 {
+    margin: 0px;
+}
+body {
+    text-align: center;
+}
 </style>
