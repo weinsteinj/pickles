@@ -85,7 +85,7 @@ public class JdbcPetDao implements PetDao{
         while(resultsPersonality.next()) {
             personality.add(resultsPersonality.getInt("personality_id"));
         }
-        Integer[] personalityArray = personality.toArray(new Integer[0]);
+        Integer[] personalityArray = personality.toArray(new Integer[personality.size()]); // <--- This was Integer[0]
         return personalityArray;
     }
 
@@ -97,7 +97,7 @@ public class JdbcPetDao implements PetDao{
 
         SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
         while(rs.next()) {
-            Integer[] personality = getPersonalitiesForPet(userId);
+            Integer[] personality = getPersonalitiesForPet(rs.getInt("pet_id"));
             Pet pet = mapRowToPet(rs,personality);
             petsByUserId.add(pet);
         }

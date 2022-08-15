@@ -3,21 +3,18 @@
       <h1>Welcome to {{$store.state.user.firstName}}'s Profile.</h1>
       <h2>{{$store.state.user.username}}'s Pets:</h2>
       <div v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.petId" class="user-pets">
-           <ul>
+           <div><img :src="pet.petPhoto" alt="pet photo" class="pet-img"></div>
+           <ul class="pet-info">
                <li>Name: {{pet.name}} </li>
                <li>Age: {{getAge(pet.birthDate)}}</li>
                <li>Species: {{pet.species}}</li>
                <li>Sex: {{pet.sex}}</li>
-               <li>Personality: 
-                   <ul>
-                       <li>{{pet.personality}}</li>
-                   </ul>
-               </li>
+               <li>Personality: {{pet.personality}}</li>
                <li>Vaccinations: {{ pet.hasVaccinations.toString() }}</li>
-               <li>Spayed/Neutered: {{spayedToString(pet.fixed)}}</li>
+               <li>Spayed/Neutered: {{pet.fixed.toString()}}</li>
                <li>Size: {{ pet.size }}</li>
            </ul>
-           <img :src="pet.petPhoto" />
+           
         </div>
     <h2>Playdates: </h2>
     <div v-for="playdate in playdateArray" v-bind:key="playdate.playdateId" class="user-playdates">
@@ -54,9 +51,7 @@ export default {
             }
             return age;
         },
-        spayedToString(isFixed) {
-            return isFixed.toString();
-        }
+        
     },
 
     created() {
@@ -86,6 +81,29 @@ export default {
 <style scoped>
 .user-pets {
     background-color: #52B69A;
+    display: flex;
+    border-radius: 10px;
+    margin-top: 1rem;
+    
+}
+
+.pet-img {
+    width: 25rem;
+    height: 100%;
+    border-radius: 10px;
+    
+}
+
+.pet-info {
+    flex-grow: 1;
+}
+
+li {
+    list-style: none;
+}
+
+.user-playdates {
+    background-color: #D9ED92;
 }
 
 </style>

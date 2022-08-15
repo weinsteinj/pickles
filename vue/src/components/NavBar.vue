@@ -13,7 +13,7 @@
       <router-link class="main-nav-link" v-bind:to="{ name:'register' }" v-else>register</router-link>
         </li>
         <li>
-          <router-link class="main-nav-link" :to="{/* TODO */}">profile</router-link>
+          <router-link class="main-nav-link" :to="{name: 'profile', params: {userId: user.userId}}">profile</router-link>
         </li>
         <li>
           <router-link class="main-nav-link" :to="{/* TODO */}">schedule a playdate</router-link>
@@ -31,8 +31,21 @@
 </template>
 
 <script>
+import userService from '@/services/userService.js';
 export default {
+  name: 'nav-bar',
+  data() {
+    return {
+      user: {}
+    }
+  },
 
+  created() {
+    userService.getById(this.$route.params.userId)
+      .then(response => {
+        this.user = response.data;
+      })
+  }
 }
 </script>
 
@@ -43,8 +56,13 @@ export default {
   align-items: center;
   /* background-color: #52B69A; */
   height: 5rem;
-  position: relative;
   font-family: 'Cabin', sans-serif;
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  
 
 }
 
