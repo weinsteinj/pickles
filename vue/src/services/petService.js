@@ -22,7 +22,7 @@ export default {
         return axios.get(`/pet/user/${userId}`);
     },
     //POST-update
-    updatePet(petId, pet) {
+    updatePet(pet, petId) {
         return axios.put(`/pet/${petId}`, pet);
     },
     deletePet(petId) {
