@@ -168,7 +168,7 @@
           ></multiselect>
         </div>
 
-        <button @click="isEditing = !isEditing">
+        <button @click="isEditing = !isEditing; savePet" >
           {{ isEditing ? "Save" : "Edit" }}
         </button>
 
@@ -248,6 +248,17 @@ export default {
       }
       return age;
     },
+    savePet() {
+        this.pets.push(this.pet);
+
+        petService.updatePet(this.pet, this.pet.petId)
+            .then((response) => {
+                if (response.status === 200 || response.status === 204) {
+                    this.pets.push(this.pet);
+                }
+                
+            })
+    }
   },
 
   created() {
