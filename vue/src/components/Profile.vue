@@ -23,7 +23,13 @@
         </div>
 
         <!-- <li>Species: {{pet.species}}</li> -->
-        <div>
+        <div v-if="!isEditing">
+          <label for="pet-species">Species:</label>
+          <input v-model="pet.species" :disabled="!isEditing" :class="{ view: !isEditing }"/>
+        </div>
+
+
+        <div v-if="isEditing">
           <label for="pet-species">Species:</label>
           <select
             v-model="pet.species"
@@ -39,7 +45,12 @@
         </div>
 
         <!-- <li>Sex: {{pet.sex}}</li> -->
-        <div>
+        <div v-if="!isEditing">
+          <label for="pet-sex">Sex:</label>
+          <input v-model="pet.sex" :disabled="!isEditing" :class="{ view: !isEditing }"/>
+        </div>
+
+        <div v-if="isEditing">
           <label for="pet-sex">Sex:</label>
           <select
             v-model="pet.sex"
@@ -197,10 +208,10 @@
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
       <p>Status: <br />{{ playdate.status }}</p>
-      <div v-if="playdate.status == 'Pending'">
+      <div v-if="playdate.status === 'Pending'">
       <p> User requesting an invitation: {{playdate.visitingUserId}} </p>
-      <button @click="acceptRequest(playdate)"> Accept </button>
-      <button @click="rejectRequest(playdate)"> Reject </button>
+      <button @click="acceptInvite(playdate)"> Accept </button>
+      <button @click="rejectInvite(playdate)"> Reject </button>
     
     </div>
 
@@ -273,7 +284,7 @@ export default {
     },
     acceptInvite(playdate) {
         playdate.status = "Accepted";
-        playdateService.updatePlaydate(playdate.id,playdate)
+        playdateService.updatePlaydate(playdate.playdateId,playdate)
         .then((response) => {
              if (response.status === 200 || response.status === 204) {
                     console.log(response);
@@ -284,7 +295,7 @@ export default {
     rejectInvite(playdate) {
         playdate.status = "Pending";
         playdate.visitingUserId = null;
-        playdateService.updatePlaydate(playdate.id,playdate)
+        playdateService.updatePlaydate(playdate.playdateId,playdate)
         .then((response) => {
              if (response.status === 200 || response.status === 204) {
                     console.log(response);
