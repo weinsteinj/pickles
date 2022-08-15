@@ -66,8 +66,18 @@ public class JdbcPlaydateDaoTests extends BaseDaoTests {
     Assert.assertEquals(playdate, testPlaydate);
     }
     @Test(expected = PlaydateNotFoundException.class)
-    public void getPlaydateNotFoundExceptionWhenGivenPetIdThatDoesntExist(){
+    public void getPlaydateNotFoundExceptionWhenGivenPlaydateIdThatDoesntExist(){
         sut.getPlaydateById(-1);
+    }
+    @Test
+    public void updatePlaydate_updates_properly() {
+        List<Integer> pets = new ArrayList<>();
+        pets.add(1);
+        pets.add(2);
+        Playdate testPlaydate = new Playdate (1, 1, 2, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
+        sut.updatePlaydate(testPlaydate);
+        Playdate actualUpdate = sut.getPlaydateById(1);
+        Assert.assertEquals(testPlaydate, actualUpdate);
     }
 }
 
