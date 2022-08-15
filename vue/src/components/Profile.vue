@@ -168,8 +168,12 @@
           ></multiselect>
         </div>
 
-        <button @click="isEditing = !isEditing; savePet" >
-          {{ isEditing ? "Save" : "Edit" }}
+        <button @click="savePet(pet)" v-if="isEditing">
+          Save
+        </button>
+
+        <button @click="isEditing = !isEditing" v-if="!isEditing">
+          Edit
         </button>
 
         <button v-if="isEditing" @click="isEditing = false">Cancel</button>
@@ -248,13 +252,12 @@ export default {
       }
       return age;
     },
-    savePet() {
-        this.pets.push(this.pet);
-
-        petService.updatePet(this.pet, this.pet.petId)
+    savePet(pet) {
+        this.isEditing = false;
+        petService.updatePet(pet, pet.petId)
             .then((response) => {
                 if (response.status === 200 || response.status === 204) {
-                    this.pets.push(this.pet);
+                    console.log(response);
                 }
                 
             })
