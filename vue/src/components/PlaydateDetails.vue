@@ -7,7 +7,7 @@
       <h2>Time:</h2>
       <p>{{ activePlaydate.dateTime }}</p>
       <h2>Host:</h2>
-      <p>{{ activePlaydate.hostUserId }}</p>
+      <p>{{ activePlaydate.hostUsername }}</p>
       <h2>Pets:</h2>
       <p v-for="pet in pets" v-bind:key="pet.id">{{pet.name}}</p> 
      <img v-if="activePlaydate.playdatePhoto!==''" :src="activePlaydate.playdatePhoto" />
@@ -41,6 +41,7 @@ export default {
   created() {
     playdateService.getById(this.$route.params.playdateId).then((response) => {
       this.activePlaydate = response.data;
+      console.log(this.activePlaydate.status);
       this.$store.commit("SET_ACTIVE_PLAYDATE", this.activePlaydate);
 
       const unique = (value, index, self) => {
@@ -58,7 +59,7 @@ export default {
           if (element == petIdHere) this.pets.push(pet);
         })
       })
-      this.pets(unique); //is this doing anything - keep getting errors
+      this.pets(unique); //what is this doing? - it keeps giving me errors
     }
     });
     

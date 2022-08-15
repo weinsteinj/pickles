@@ -73,6 +73,16 @@ public class PlaydateController {
         return playdateDao.listAllPlaydates();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @RequestMapping(path = "playdate/{playdate_id}", method = RequestMethod.DELETE)
+    public int deletePlaydate(@PathVariable int playdate_id) {
+        int response = 0;
+        try {
+            response = playdateDao.deletePlaydate(playdate_id);
+        } catch (PlaydateNotFoundException e) {
 
+        }
+        return response;
+    }
 
 }

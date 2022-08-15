@@ -194,6 +194,7 @@
       </div>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
+      <!-- <p>Pets: {{ petNames }}</p> -->
       <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
       <p>Status: <br />{{ playdate.status }}</p>
       <div v-if="playdate.status === 'Pending'">
@@ -241,6 +242,7 @@ export default {
       isEditing: false,
       // user: {},
       pets: [],
+      petNames: [],
       playdateArray: {},
       visitingPlaydateArray: {},
       value: [],
@@ -371,10 +373,9 @@ export default {
 
         return personalityString;
     },
-    acceptRequest(playdate) {
-      playdate.status = "Accepted";
-      playdateService
-        .updatePlaydate(playdate.playdateId, playdate)
+    acceptInvite(playdate) {
+        playdate.status = "Accepted";
+        playdateService.updatePlaydate(playdate.playdateId,playdate)
         .then((response) => {
           if (response.status === 200 || response.status === 204) {
             console.log(response);
@@ -382,26 +383,67 @@ export default {
         });
     },
     rejectInvite(playdate) {
-      playdate.status = "Pending";
-      playdate.visitingUserId = null;
-    },
-    rejectRequest(playdate) {
-      playdate.status = "Rejected";
-      //playdate.visitingUserId = null;
-      playdateService
-        .updatePlaydate(playdate.playdateId, playdate)
+        playdate.status = "Rejected";
+        playdateService.updatePlaydate(playdate.playdateId,playdate)
         .then((response) => {
-          if (response.status === 200 || response.status === 204) {
-            console.log(response);
+             if (response.status === 200 || response.status === 204) {
+                    console.log(response);
+                } 
+
+        var newPlaydate = playdate;
+        newPlaydate.status = "Posted";
+        newPlaydate.visitingUserId = null;
+        playdateService.createPlaydate(newPlaydate)
+        .then(response => {
+        if (response.status === 200) {
+            this.$store.commit('ADD_PLAYDATE_TO_ARRAY', newPlaydate);
           }
-        });
+        })
+    })
     },
+    getNamesFromId(id){
+            this.$store.state.petArray.find(element => {
+                element.id === id;
+            })
+        }
   },
 
   created() {
-    playdateService.getAllPlaydates().then((response) => {
+    playdateService.getAllPlaydates()
+      .then(response => {
+       if(response.status===200) {
+         this.$store.commit("ADD_ALL_PLAYDATE",response.data);
+      }
+      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
       if (response.status === 200) {
-        this.$store.commit("ADD_ALL_PLAYDATE", response.data);
+        this.pets = response.data;
+        this.$store.commit("ADD_PETS_TO_USER", response.data);
+        this.playdateArray = this.$store.state.playdateArray.filter(
+          (playdate) => playdate.hostUserId === this.$store.state.user.id
+        );
+        this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
+          (playdate) => playdate.visitingUserId === this.$store.state.user.id
+        );
+      const unique = (value, index, self) => {
+      return self.indexOf(value) === index;
+    };
+        let allPetsArray = this.$store.state.petArray;
+        let playdatePets = this.playdate.petId;
+        
+        for(let i=0; i<allPetsArray.length; i++) {
+            
+            playdatePets.forEach((element) => {
+                
+                allPetsArray.forEach(pet => {
+                    let petIdHere = pet.petId;
+               
+                    if (element === petIdHere)
+                    this.petNames.push("does this work")
+                    
+                     })
+                })
+            this.petNames(unique);  
+        }
       }
       petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
         if (response.status === 200) {
@@ -416,6 +458,10 @@ export default {
         }
       });
     });
+      
+  });
+   
+     
   },
 
   mounted() {},

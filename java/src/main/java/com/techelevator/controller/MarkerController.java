@@ -3,11 +3,10 @@ package com.techelevator.controller;
 import com.techelevator.dao.MarkerDao;
 import com.techelevator.dao.PlaydateDao;
 import com.techelevator.dao.UserDao;
-import com.techelevator.model.Marker;
-import com.techelevator.model.MarkerNotFoundException;
-import com.techelevator.model.Pet;
+import com.techelevator.model.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -24,30 +23,46 @@ public class MarkerController {
     }
 
     @RequestMapping(path = "/geocode/user/{userId}")
-    public Marker getMarkerByUserId(@PathVariable int userId) {
+    public LocationMarkerDTO getMarkerByUserId(@PathVariable int userId) {
         Marker newMarker = new Marker();
         try {
             newMarker = markerDao.getMarkerByUserId(userId);
         } catch (MarkerNotFoundException e) {
 
         }
-        return newMarker;
+        //map marker to position, set position in loc-marker-dto
+        Position position = new Position(newMarker.getLat(), newMarker.getLng());
+        LocationMarkerDTO locDTO = new LocationMarkerDTO(position);
+
+        return locDTO;
     }
 
     @RequestMapping(path = "/geocode/playdate/{playdateId}")
-    public Marker getMarkerByPlaydateId(@PathVariable int playdateId) {
+    public LocationMarkerDTO getMarkerByPlaydateId(@PathVariable int playdateId) {
         Marker newMarker = new Marker();
         try {
             newMarker = markerDao.getMarkerByPlaydateId(playdateId);
         } catch (MarkerNotFoundException e) {
 
         }
-        return newMarker;
+        Position position = new Position(newMarker.getLat(), newMarker.getLng());
+        LocationMarkerDTO locDTO = new LocationMarkerDTO(position);
+
+        return locDTO;
     }
 
     @RequestMapping(path = "/geocode/playdate", method = RequestMethod.GET)
-    public List<Marker> petList() {
-        return markerDao.getAllPlaydateMarkers();
+    public List<LocationMarkerDTO> petList() {
+         List<Marker> markerList = markerDao.getAllPlaydateMarkers();
+         List<LocationMarkerDTO> locList = new ArrayList<>();
+         for(Marker newMarker : markerList) {
+             Position position = new Position(newMarker.getLat(), newMarker.getLng());
+             LocationMarkerDTO locDTO = new LocationMarkerDTO(position);
+             locList.add(locDTO);
+         }
+         return locList;
+
+
     }
 
 

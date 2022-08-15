@@ -115,6 +115,13 @@ public class JdbcPlaydateDao implements PlaydateDao{
         return jdbcTemplate.update(insertMarkerSql, zipCode, lat, lng);
     }
 
+    public int deletePlaydate(int playdateId) {
+        String deletePetSql = "DELETE FROM pet_playdate WHERE playdate_id = ?;";
+        jdbcTemplate.update(deletePetSql,playdateId);
+        String deleteSql = "DELETE FROM playdate WHERE playdate_id = ?;";
+        return jdbcTemplate.update(deleteSql,playdateId);
+    }
+
     private List<Integer> getPetsForPlaydate(int playdateId) {
         String sqlPets = "SELECT * FROM pet_playdate WHERE playdate_id = ?";
         SqlRowSet resultsPets = jdbcTemplate.queryForRowSet(sqlPets, playdateId);

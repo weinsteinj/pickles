@@ -15,5 +15,7 @@ public interface PlaydateDao {
 
     Playdate updatePlaydate(Playdate playdate);
 
+    int deletePlaydate(int playdateId);
+
     int addPlaydateMarker(int zipCode, BigDecimal lat, BigDecimal lng);
 }
