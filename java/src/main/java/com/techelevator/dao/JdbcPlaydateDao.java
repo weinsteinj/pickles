@@ -83,8 +83,7 @@ public class JdbcPlaydateDao implements PlaydateDao{
         return playdateList;
     }
 
-    @Override
-    public Playdate updatePlaydate(Playdate playdate, int playdateId) {
+    public Playdate updatePlaydate(Playdate playdate) {
         String sql = "UPDATE playdate SET host_id = ?, visitor_id = ?, " +
                 "zip_code = ?, date_and_time = ?, details = ?, rating = ?, " +
                 "status = ?, playdate_photo = ? " +
@@ -98,7 +97,7 @@ public class JdbcPlaydateDao implements PlaydateDao{
                 playdate.getRating(),
                 playdate.getStatus(),
                 playdate.getPlaydatePhoto(),
-                playdateId);
+                playdate.getPlaydateId());
         return playdate;
     }
 

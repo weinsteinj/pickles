@@ -50,6 +50,17 @@ CREATE TABLE playdate
 	constraint fk_host_id FOREIGN KEY (host_id) references users (user_id),
 	constraint fk_visitor_id FOREIGN KEY (visitor_id) references users (user_id)
 );
+
+CREATE TABLE geocodes
+(
+	geocode_id serial,
+	zip_code int,
+	lat
+    lng
+
+	constraint pk_geocode PRIMARY KEY (geocode_id),
+	constraint fk_zip FOREIGN KEY (zip_code) references playdate (zip_code),
+);
 CREATE TABLE pet_playdate
 (
 	playdate_id int NOT NULL,

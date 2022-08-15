@@ -12,5 +12,5 @@ public interface PlaydateDao {
 
     List<Playdate> listAllPlaydates();
 
-    Playdate updatePlaydate(Playdate playdate, int playdateId);
+    Playdate updatePlaydate(Playdate playdate);
 }

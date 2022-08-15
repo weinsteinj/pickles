@@ -40,7 +40,7 @@ public class PlaydateController {
     @RequestMapping(path = "/playdate/{playdateId}", method = RequestMethod.PUT)
     public Playdate updatePlaydate(@PathVariable int playdateId, @RequestBody Playdate playdate) throws PlaydateNotFoundException {
         playdate.setPlaydateId(playdateId);
-        return playdateDao.updatePlaydate(playdate, playdateId);
+        return playdateDao.updatePlaydate(playdate);
     }
 
     @RequestMapping(path = "/playdate/{playdate_id}", method = RequestMethod.GET)
