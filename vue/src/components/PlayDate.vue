@@ -76,18 +76,25 @@ h1 {
   padding: 0px;
   margin: 0px;
   text-align: center;
+  background: #52B69A;
+  border-radius: 10px 10px 0px 0px;
 }
 .scroll{
   overflow-x: hidden;
-	max-height: 435px;
+	max-height: 397px;
 	overflow-y: scroll;
-	margin-top: 5px;
+
 	margin-bottom: 20px;
   border-radius: 10px;
 }
 
 body {
-  padding-top: 1rem;
+  padding-top: 0rem;
+  padding-bottom: 5px;
+}
+
+#scroll > body {
+  padding-top: 0px;
   padding-bottom: 5px;
 }
 
