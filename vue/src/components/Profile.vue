@@ -206,7 +206,8 @@
       </div>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
-      <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
+      <p>Pets: {{ petNames }}</p>
+      <!-- <p v-for="pet in pets" v-bind:key="pet.id">{{pet.name}}</p> -->
       <p>Status: <br />{{ playdate.status }}</p>
       <div v-if="playdate.status === 'Pending'">
       <p> User requesting an invitation: {{playdate.visitingUserId}} </p>
@@ -256,9 +257,13 @@ export default {
       isEditing: false,
       // user: {},
       pets: [],
+      petNames: [],
       playdateArray: {},
       visitingPlaydateArray: {},
-    };
+    }
+    },
+    props: {
+        playdate: Object,
   },
 
   methods: {
@@ -300,17 +305,6 @@ export default {
                     console.log(response);
                 } 
 
-        //making an entire new object because I can't figure out how to make visitingUserId null 
-        // var newPlaydate =  {
-        //         zipCode: 0,
-        //         dateTime: '',
-        //         details: '',
-        //         petId: [], 
-        //         rating: 0,
-        //         playdatePhoto: '',
-        //         userId: 0
-        //     }
-        // newPlaydate.zipCode = playdate.zipCode;
         var newPlaydate = playdate;
         newPlaydate.status = "Posted";
         newPlaydate.visitingUserId = null;
@@ -321,7 +315,12 @@ export default {
           }
         })
     })
-    }
+    },
+    getNamesFromId(id){
+            this.$store.state.petArray.find(element => {
+                element.id === id;
+            })
+        }
   },
 
   created() {
@@ -329,7 +328,7 @@ export default {
       .then(response => {
        if(response.status===200) {
          this.$store.commit("ADD_ALL_PLAYDATE",response.data);
-       }
+      }
       petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
       if (response.status === 200) {
         this.pets = response.data;
@@ -340,8 +339,29 @@ export default {
         this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
           (playdate) => playdate.visitingUserId === this.$store.state.user.id
         );
+      const unique = (value, index, self) => {
+      return self.indexOf(value) === index;
+    };
+        let allPetsArray = this.$store.state.petArray;
+        let playdatePets = this.playdate.petId;
+        
+        for(let i=0; i<allPetsArray.length; i++) {
+            
+            playdatePets.forEach((element) => {
+                
+                allPetsArray.forEach(pet => {
+                    let petIdHere = pet.petId;
+               
+                    if (element === petIdHere)
+                    this.petNames.push("does this work")
+                    
+                     })
+                })
+            this.petNames(unique);  
+        }
       }
     });
+      
   });
    
      
