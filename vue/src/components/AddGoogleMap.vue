@@ -9,8 +9,8 @@
         <button @click="addLocationMarker">Add</button>
       </label>
       <label>Please enter your zip code below!
-        <gmap-autocomplete @place_changed="initMarker"></gmap-autocomplete>
-        <button @click="addLocationMarker">Show Nearby Playdates</button>
+        
+        <button @click="addLocationMarkerByZipcode">Show Nearby Playdates</button>
       </label>
       <br/>
  
@@ -29,12 +29,12 @@
       ></gmap-marker>
     </gmap-map>
     <div>
-      <form v-on:submit.prevent="getGeocodeByZip">
+      <form >
         <label for="zipCode">Please enter your 5-digit Zipcode below: </label>
         <input type="text" minlength="5" maxlength="5" v-model="currentPlace.zipCode">
-        <button type="submit"> Submit </button>
+        <button type="submit" @click.prevent="getGeocodeByZip"> Submit </button>
       </form>
-      <!-- <p> {{newPlaceByZip.results[0].toString()}}</p> -->
+      
     </div>
   </div>
 </template>
@@ -70,18 +70,20 @@ export default {
   },
  
   methods: {
-    getGeocode15217() {
-      geocodeService.getLatLngZip15217()
-      .then(response => {
-        this.place15217 = response.data;
+    // getGeocode15217() {
+    //   geocodeService.getLatLngZip15217()
+    //   .then(response => {
+    //     this.place15217 = response.data;
         
-      })
-    },
+    //   })
+    // },
     getGeocodeByZip() {
       geocodeService.getLatLngByZip(this.currentPlace.zipCode)
       .then(response => {
         this.newPlaceByZip = response.data;
         this.placeHolder = this.newPlaceByZip.results[0];
+        this.currentPlace.lat = (Math.round(this.placeHolder.geometry.location.lat*1000000))/1000000;
+        this.currentPlace.lng = (Math.round(this.placeHolder.geometry.location.lng*1000000))/1000000;
         // const newMarker = {
         //     lat: this.placeHolder.geometry.location.lat(),
         //     lng: this.placeHolder.geometry.location.lng(),
@@ -90,7 +92,18 @@ export default {
         // this.center = newMarker;
       })
     },
-
+    addLocationMarkerByZipcode() {
+      if (this.currentPlace) {
+        const marker = {
+          lat: this.currentPlace.lat,
+          lng: this.currentPlace.lng
+        };
+        this.locationMarkers.push({ position: marker });
+        this.locPlaces.push(this.currentPlace);
+        this.center = marker;
+        // this.currentPlace = null;
+      }
+    },
     initMarker(loc) {
       this.existingPlace = loc;
     },

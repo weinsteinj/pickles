@@ -30,6 +30,7 @@ export default {
        .then(response => {
          if(response.status === 200) {
            this.$store.commit('ADD_ALL_PLAYDATE', response.data);
+           
          }
        })
        .catch(() => {
