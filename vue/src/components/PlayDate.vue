@@ -67,11 +67,14 @@ export default {
 }
 </script>
 
-<style>
+<style >
 body {
     overflow-x: hidden;
-  
 }
+</style>
+
+<style scoped>
+
 h1 {
   padding: 0px;
   margin: 0px;
@@ -89,7 +92,7 @@ h1 {
 }
 
 body {
-  padding-top: 1rem;
+  padding-top: 0rem;
   padding-bottom: 5px;
 }
 
