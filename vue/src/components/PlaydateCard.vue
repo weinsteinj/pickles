@@ -67,6 +67,7 @@ h2 {
     margin-bottom: 0px;
     padding-top: 0px;
     text-align: top;
+    justify-content: center;
 
 }
 h3 {
