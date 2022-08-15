@@ -37,16 +37,18 @@
       <label for="details">Details: </label>
       <input id="details" type="text" class="form-control" v-model="playdate.details" required>
 
+      <button type="button"
+      id="upload_widget" 
+      class="cloudinary-button">
+        Upload photo
+      </button>
+
       <button id="selectBtn" class="btn" type="submit">
           Add Playdate
       </button>
         
       </form>
-      <button 
-      id="upload_widget" 
-      class="cloudinary-button">
-        Upload photo
-      </button>
+      
     
     <!-- placeholder for uploaded image -->
       <img id="uploadedimage" src="" /> 
