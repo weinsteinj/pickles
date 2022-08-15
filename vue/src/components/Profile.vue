@@ -273,7 +273,7 @@ export default {
     },
     acceptRequest(playdate) {
         playdate.status = "Accepted";
-        playdateService.updatePlaydate(playdate.id,playdate)
+        playdateService.updatePlaydate(playdate.playdateId,playdate)
         .then((response) => {
              if (response.status === 200 || response.status === 204) {
                     console.log(response);
@@ -284,7 +284,7 @@ export default {
     rejectRequest(playdate) {
         playdate.status = "Pending";
         playdate.visitingUserId = null;
-        playdateService.updatePlaydate(playdate.id,playdate)
+        playdateService.updatePlaydate(playdate.playdateId,playdate)
         .then((response) => {
              if (response.status === 200 || response.status === 204) {
                     console.log(response);
