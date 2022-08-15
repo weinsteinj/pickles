@@ -59,7 +59,9 @@ public class JdbcPlaydateDao implements PlaydateDao{
 
     @Override
     public Playdate getPlaydateById(int playdateId) {
-       String sql = "SELECT * FROM playdate WHERE playdate_id = ?";
+       String sql = "SELECT playdate.*, host_user.username AS host_username, visitor_user.username AS visitor_username " +
+               "FROM playdate JOIN users AS host_user ON playdate.host_id = host_user.user_id " +
+               "LEFT JOIN users AS visitor_user ON playdate.visitor_id = visitor_user.user_id WHERE playdate_id = ?";
        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, playdateId);
        List<Integer> petsList = getPetsForPlaydate(playdateId);
        if (results.next()) {
@@ -72,7 +74,9 @@ public class JdbcPlaydateDao implements PlaydateDao{
     @Override
     public List<Playdate> listAllPlaydates() {
         List<Playdate> playdateList = new ArrayList<>();
-        String sql = "SELECT * FROM playdate";
+        String sql = "SELECT playdate.*, host_user.username AS host_username, visitor_user.username AS visitor_username " +
+                "FROM playdate JOIN users AS host_user ON playdate.host_id = host_user.user_id " +
+                "LEFT JOIN users AS visitor_user ON playdate.visitor_id = visitor_user.user_id;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
             int playdateId = results.getInt("playdate_id");
@@ -137,6 +141,11 @@ public class JdbcPlaydateDao implements PlaydateDao{
         playdate.setStatus(rs.getString("status"));
         playdate.setPlaydatePhoto(rs.getString("playdate_photo"));
         playdate.setPetId(petList);
+        playdate.setHostUsername(rs.getString("host_username"));
+        String visitorUsername = rs.getString("visitor_username");
+        if (visitorUsername != null) {
+            playdate.setVisitorUsername(visitorUsername);
+        }
 
         return playdate;
     }
