@@ -16,7 +16,7 @@
           <router-link class="main-nav-link" :to="{name: 'profile', params: {userId: user.userId}}">profile</router-link>
         </li>
         <li>
-          <router-link class="main-nav-link" :to="{/* TODO */}">schedule a playdate</router-link>
+          <router-link class="main-nav-link" :to="{name: 'register-playdate'}">schedule a playdate</router-link>
         </li>
         <li>
           <router-link class="main-nav-link" :to="{/* TODO */}">about us</router-link>
