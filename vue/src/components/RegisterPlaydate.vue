@@ -17,6 +17,7 @@
      <!-- <p v-for="pet in $store.state.currentUserPetArray" v-bind:key="pet.id">{{pet.name}}</p> -->
 
       <multiselect id="pets"  multiple=true v-model="value" :options="options" :close-on-select="false" track-by="petId" label="name" :hide-selected="false" ></multiselect> 
+      <br>
 
       <label for="zip-code">Zip Code: </label>
       <input type="number"
@@ -43,10 +44,13 @@
         Upload photo
       </button>
 
-      <button id="selectBtn" class="btn" type="submit">
+      <div id="submitButton">
+          <button id="selectBtn" class="btn" type="submit">
           Add Playdate
       </button>
         
+      </div>
+    
       </form>
       
     
@@ -175,6 +179,13 @@ export default {
 </style>
 
 <style scoped>
+h1{
+  text-align: center;
+}
+#submitButton{
+  display: flex;
+  justify-content: center;
+}
 #pet-register {
   display: flex;
   justify-content: space-between;
