@@ -1,10 +1,10 @@
 <template>
   <div id="nav-bar">
       
-      <router-link v-bind:to="{name: 'home' }">
-          <img class="logo" src="@/assets/images/TurtleTransparent.png" alt="cute green turtle logo">
-      </router-link>
-      <h1 class="title">Pickles</h1>
+      <div>
+          <img class="logo" src="@/assets/images/TurtleTransparent.png" alt="cute green turtle logo" @click="homeReload">
+      </div>
+      <h1 class="title" @click="homeReload">Pickles</h1>
       <ul class="main-nav-list">
         <li>
           <router-link class="main-nav-link" :to="{name:'pet-register'}" v-if="$store.state.token != ''">register a pet</router-link>
@@ -40,7 +40,13 @@ export default {
       user: {}
     }
   },
+  methods: {
+    homeReload() {
+      this.$router.push({name:'home'});
+      this.$router.go(0);
 
+    },
+  },
   created() {
     //should just go to the store to get the current user? there is not necessarily a userId parameter in the path so this usually won't work
     // userService.getById(this.$route.params.userId)
@@ -78,6 +84,11 @@ export default {
 
 .logo:hover {
   height: 4.05rem;
+  cursor: pointer; 
+}
+.title:hover {
+  line-height: 4.05rem;
+  cursor: pointer; 
 }
 
 .main-nav-list {
