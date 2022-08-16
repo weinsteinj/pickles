@@ -136,14 +136,6 @@ public class JdbcPetDao implements PetDao{
                 pet.getPetPhoto(),
                 petId);
                 updatePersonality(pet, petId);
-//        String personalitySql = "DELETE FROM pet_personality WHERE pet_id = ?;" +
-//                "INSERT INTO pet_personality (pet_id, personality_id) VALUES (?, ?);";
-//        Integer[] personality = pet.getPersonality();
-//        for (int personality_id : personality) {
-//            Object pet_id = pet.getPetId();
-//            jdbcTemplate.update(personalitySql, pet_id, personality_id);
-//        }
-//        pet.setPersonality(personality);
         return pet;
     }
     @Override
@@ -155,7 +147,7 @@ public class JdbcPetDao implements PetDao{
         for (int personality_id : personality) {
             jdbcTemplate.update( personalityInsertSql, petId, personality_id);
         }
-        
+
         return personality;
     }
 
