@@ -1,13 +1,18 @@
 <template>
 <div class="root">
   <div class="home">
+    
       <div class="playdate-panel">
-        
-          <add-google-map></add-google-map>
-      
-        <div class="playdate-list"> 
+          <div class="playdate-list"> 
           <play></play>
         </div>
+        <div class="map-panel">
+            <add-google-map></add-google-map>
+        </div>
+        <div>
+          
+        </div>
+       
       </div>
     <div class="login-panel" v-if="$store.state.token == ''">
     <login></login>
@@ -46,6 +51,15 @@ export default {
 </script>
 
 <style scoped>
+.map-panel {
+  
+  
+  width: 50%;
+}
+
+div.vue-map {
+  opacity: 10%;
+}
 .home {
   display: flex;
   justify-content: space-around;
@@ -53,6 +67,8 @@ export default {
 .login-panel,.playdate-panel{
   /* flex-grow: 1 */
   flex-basis: 33%;
+  justify-content: space-between;
+  align-items: top;
   
 }
 .login-panel {
