@@ -15,6 +15,9 @@ export default {
     getPetsByUserId(userId) {
         return axios.get(`/pet/user/${userId}`);
     },
+    getPetsByPlaydateId(playdateId) {
+        return axios.get(`/pets/playdate/${playdateId}`);
+    },
     updatePet(pet, petId) {
         return axios.put(`/pet/${petId}`, pet);
     },
