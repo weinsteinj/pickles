@@ -336,7 +336,6 @@ input {
 }
 
 h1 {
-  margin-top: 7rem;
   text-align: center;
 }
 
@@ -362,4 +361,6 @@ p {
   justify-content: center;
   align-items: center;
 }
+
+
 </style>

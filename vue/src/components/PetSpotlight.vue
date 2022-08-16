@@ -137,7 +137,10 @@ img {
   border: none;
 }
 
-
+body {
+  padding-top: 1rem;
+  margin-top: 0;
+}
 
  /* {
   margin-right: ;
