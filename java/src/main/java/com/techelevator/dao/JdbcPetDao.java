@@ -105,6 +105,19 @@ public class JdbcPetDao implements PetDao{
         return petsByUserId;
     }
 
+    public List<Pet> getPetsByPlaydateId(int playdateId) {
+        List<Pet> pets = new ArrayList<>();
+        String sql = "SELECT * FROM pets INNER JOIN pet_playdate ON pets.pet_id=pet_playdate.pet_id WHERE playdate_id = ? ORDER BY pets.pet_id";
+
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, playdateId);
+        while(rs.next()) {
+            Integer[] personality = getPersonalitiesForPet(rs.getInt("pet_id"));
+            Pet pet = mapRowToPet(rs,personality);
+            pets.add(pet);
+        }
+        return pets;
+    }
+
 
     @Override
     public Pet updatePet(Pet pet, int petId) {

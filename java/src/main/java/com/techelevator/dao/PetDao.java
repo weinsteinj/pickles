@@ -20,6 +20,8 @@ public interface PetDao {
     List<Pet> getPetsByUserId(int userId);
 
     Pet updatePet(Pet pet, int petId);
+
+    List<Pet> getPetsByPlaydateId(int playdateId);
 }
 //    List<Pet> getPetsByUserId(PetByUserDTO petByUserDTO);
 

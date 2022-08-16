@@ -45,7 +45,6 @@ public class PetController {
         newPet.setHasVaccinations(newPetDTO.isHasVaccinations());
         newPet.setSize(newPetDTO.getSize());
         newPet.setUserId(currentUser.getId());
-        System.out.println(newPetDTO.getPetPhoto());
         newPet.setPetPhoto(newPetDTO.getPetPhoto());
 
         HttpHeaders responseHeaders = new HttpHeaders();
@@ -80,6 +79,11 @@ public class PetController {
     @RequestMapping(path = "/pet/user/{userId}", method = RequestMethod.GET)
     public List<Pet> getPetsByUserId(@PathVariable int userId) {
         return petDao.getPetsByUserId(userId);
+    }
+
+    @RequestMapping(path = "/pet/playdate/{playdateId}", method = RequestMethod.GET)
+    public List<Pet> getPetsByPlaydateId(@PathVariable int playdateId) {
+        return petDao.getPetsByPlaydateId(playdateId);
     }
 
 //    @RequestMapping(path = "/pet/user", method = RequestMethod.GET)
