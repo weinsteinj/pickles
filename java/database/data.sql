@@ -83,4 +83,8 @@ INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (2, 3);
 INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (3, 1);
 INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (3, 3);
 
+--MARKER INSERTS--
+INSERT INTO markers (lat, long) VALUES (40.482805, -80.036726) WHERE zip_code = '15212'
+INSERT INTO markers (lat, long) VALUES (40.497452, -80.060345) WHERE zip_code = '15222'
+
 COMMIT TRANSACTION;
