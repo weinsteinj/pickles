@@ -367,7 +367,8 @@ select,
   display: flex;
   flex-direction: column;
   width: 40%;
-  justify-content: center;
+  justify-content:flex-start;
+  
   
 }
 .left-panel {
@@ -405,6 +406,8 @@ div.text-center {
 }
 h1{
   text-align: center;
+  margin-top: 0;
 }
+
 
 </style>

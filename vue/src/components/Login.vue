@@ -103,6 +103,7 @@ export default {
 
 h2 {
   color: black;
+  line-height: 0;
 }
 
 label {
@@ -114,9 +115,11 @@ input {
   margin: 0px;
   display: inline-block;
   margin-bottom: 1rem;
+  
 }
 #login {
-    width: 100%
+    width: 100%;
+
 }
 
 .btn {

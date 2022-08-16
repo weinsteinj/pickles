@@ -4,6 +4,7 @@
       <router-link v-bind:to="{name: 'home' }">
           <img class="logo" src="@/assets/images/TurtleTransparent.png" alt="cute green turtle logo">
       </router-link>
+      <h1 class="title">Pickles</h1>
       <ul class="main-nav-list">
         <li>
           <router-link class="main-nav-link" :to="{name:'pet-register'}" v-if="$store.state.token != ''">register a pet</router-link>
@@ -100,5 +101,12 @@ export default {
 
 .main-nav-link:hover {
   text-decoration: underline;
+}
+
+.title {
+  flex-grow: 1;
+  color: var(--primary-green);
+  margin: 0;
+  padding-left: 1rem;
 }
 </style>
