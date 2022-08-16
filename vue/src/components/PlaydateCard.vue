@@ -1,6 +1,6 @@
 <template>
     <body>
-        <h2> Host User ID: {{playdate.hostUserId}}  
+        <h2> Host: {{playdate.hostUsername}}  
         </h2>
         <h3>
             Playdate ZipCode: {{playdate.zipCode}}

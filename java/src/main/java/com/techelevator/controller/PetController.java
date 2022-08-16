@@ -70,11 +70,6 @@ public class PetController {
         return petDao.updatePet(pet, petId);
     }
 
-//    @RequestMapping(path = "/pet/{petId}/personality", method = RequestMethod.PUT)
-//    public Integer[] updatePersonality(@PathVariable int petId, @RequestBody Pet pet) throws PetNotFoundException {
-//        pet.setPetId(petId);
-//        return  petDao.updatePersonality(pet, petId);
-//    }
 
     @RequestMapping(path = "/pet", method = RequestMethod.GET)
     public List<Pet> petList() {
