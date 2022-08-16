@@ -11,7 +11,7 @@
       <div class="pet-info">
         <!-- <li>Name: {{pet.name}} </li> -->
 
-        <div>
+        <div class="pet-item name">
           <label for="pet-name">Name:</label>
           <input
             name="pet-name"
@@ -23,7 +23,7 @@
         </div>
 
         <!-- <li>Species: {{pet.species}}</li> -->
-        <div v-if="!isEditing">
+        <div v-if="!isEditing" class="pet-item">
           <label for="pet-species">Species:</label>
           <input
             v-model="pet.species"
@@ -48,7 +48,7 @@
         </div>
 
         <!-- <li>Sex: {{pet.sex}}</li> -->
-        <div v-if="!isEditing">
+        <div v-if="!isEditing" class="pet-item">
           <label for="pet-sex">Sex:</label>
           <input
             v-model="pet.sex"
@@ -70,7 +70,7 @@
         </div>
 
         <!-- <li>Age: {{getAge(pet.birthDate)}}</li> -->
-        <div v-if="!isEditing">
+        <div v-if="!isEditing" class="pet-item">
           <label for="pet-age">Age:</label>
           <input
             type="text"
@@ -90,7 +90,7 @@
         </div>
 
         <!-- <li>Spayed/Neutered: {{pet.fixed.toString()}}</li> -->
-        <div v-if="!isEditing">
+        <div v-if="!isEditing" class="pet-item">
           <label for="pet-fixed">Spayed/Neutered:</label>
           <input
             type="text"
@@ -113,7 +113,7 @@
         </div>
 
         <!-- <li>Vaccinations: {{ pet.hasVaccinations.toString() }}</li> -->
-        <div v-if="!isEditing">
+        <div v-if="!isEditing" class="pet-item">
           <label for="pet-vaccinations">Vaccinated:</label>
           <input
             type="text"
@@ -136,8 +136,8 @@
         </div>
 
         <!-- <li>Size: {{ pet.size }}</li> -->
-        <div v-if="!isEditing">
-          <label for="pet-size">Size: {{ sizeToString(pet.size) }}</label>
+        <div v-if="!isEditing" class="pet-item">
+          <label for="pet-size">Size: <span>{{ sizeToString(pet.size) }}</span></label>
           <input
             type="text"
             :disabled="!isEditing"
@@ -161,7 +161,7 @@
         </div>
 
         <!-- <li>Personality: {{pet.personality}}</li> -->
-        <div v-if="!isEditing">
+        <div v-if="!isEditing" class="pet-item">
           <label for="pet-personality">Personality: <span>{{ personalityToString(pet.personality) }}</span></label>
           
         </div>
@@ -176,7 +176,10 @@
         <button @click="isEditing = !isEditing" v-if="!isEditing">Edit</button>
 
         <button v-if="isEditing" @click="isEditing = false">Cancel</button>
+
+        
       </div>
+      <div class="right-panel"></div>
     </div>
 
     <h2>Playdates you're hosting:</h2>
@@ -306,10 +309,10 @@ export default {
       return age;
     },
     savePet(pet) {
-    //     pet.personality = [];
-    //   for (let i of this.value) {
-    //       pet.personality.push(i);
-    //   }
+        pet.personality = [];
+      for (let i of this.value) {
+          pet.personality.push(i.id);
+      }
       this.isEditing = false;
       petService.updatePet(pet, pet.petId).then((response) => {
         if (response.status === 200 || response.status === 204) {
@@ -478,7 +481,34 @@ export default {
   display: flex;
   border-radius: 10px;
   margin-top: 1rem;
-  height: 15rem;
+  justify-content: space-between;
+  height: auto;
+  
+  
+}
+
+input,
+select {
+    margin: 0;
+    line-height: 1rem;
+    display: inline-block;
+    padding: 0;
+    text-align: left;
+    border-radius: 5px;
+    width: 50%;
+}    
+
+.name {
+    margin-top: .75rem;
+}
+
+.right-panel {
+    
+}
+
+.pet-item {
+    
+    padding: 0;
 }
 
 .pet-img {
@@ -497,7 +527,17 @@ export default {
 }
 
 .pet-info {
-  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  justify-content: center;
+}
+
+button {
+    border-radius: 5px;
+    width: 50%;
+    
 }
 
 li {
@@ -521,6 +561,10 @@ h1 {
   color: initial;
   font-family: "Cabin", sans-serif;
   font-size: initial;
+}
+
+span {
+    font-weight: normal;
 }
 </style>
 
