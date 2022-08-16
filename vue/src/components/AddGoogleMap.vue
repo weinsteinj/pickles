@@ -8,7 +8,7 @@
     </div>
     <br>
     <gmap-map
-        :zoom="14"    
+        :zoom="10"    
         :center="center"
         style="width:100%;  height: 600px;"
       >
