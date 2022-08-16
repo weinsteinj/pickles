@@ -89,7 +89,7 @@ body {
 .left-panel {
     width: 20%;
     background-color: var(--secondary-green);
-    height: 1000px;
+    height: 1100px;
     display: flex;
     flex-direction: column;
 }
