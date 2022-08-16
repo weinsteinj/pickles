@@ -84,7 +84,7 @@ h1 {
 }
 .scroll{
   overflow-x: hidden;
-	max-height: 21rem;
+	height: 34.5vh;
 	overflow-y: scroll;
 
 	margin-bottom: 20px;

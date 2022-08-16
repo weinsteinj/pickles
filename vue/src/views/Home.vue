@@ -86,7 +86,11 @@ export default {
   width: 10%;
 }
 
-.playdate-list{}
+.playdate-list{
+  display: flex;
+  height: 40vh;
+  flex-wrap: wrap;
+}
 
 body {
   padding-top: 1rem;
