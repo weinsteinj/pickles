@@ -53,7 +53,7 @@ export default {
 <style scoped>
 .map-panel {
   
-  
+  overflow: hidden;
   width: 50%;
 }
 
