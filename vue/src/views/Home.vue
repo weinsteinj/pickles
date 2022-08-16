@@ -52,9 +52,18 @@ export default {
 
 <style scoped>
 .map-panel {
-  
   overflow: hidden;
   width: 50%;
+}
+.map-panel[data-v-fae5bece] {
+    width: 50%;
+    display: flex;
+    flex-shrink: 5;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: flex-end;
+    align-items: stretch;
 }
 
 div.vue-map {
@@ -68,7 +77,6 @@ div.vue-map {
   /* flex-grow: 1 */
   flex-basis: 33%;
   justify-content: space-between;
-  align-items: top;
   
 }
 .login-panel {

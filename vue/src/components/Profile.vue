@@ -196,17 +196,18 @@
           class="playdate-img"
         />
       </div>
+      <button class='btn' @click="deletePlaydate(playdate.playdateId)">Delete Playdate</button>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <!-- <p>Pets: {{ petNames }}</p> -->
-      <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
+      <p>Pets: <br /> <ul><li v-for="pet in playdatePetArray" v-bind:key="pet.id"> {{ pet.name }} the {{pet.species}} </li>
+      </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
       <div v-if="playdate.status === 'Pending'">
         <p>User requesting an invitation: {{ playdate.visitingUserId }}</p>
         <button @click="acceptInvite(playdate)">Accept</button>
         <button @click="rejectInvite(playdate)">Reject</button>
       </div>
-       <button @click="deletePlaydate(playdate.playdateId)">Delete</button>
     </div>
 
     <h2>Playdates you may attend:</h2>
@@ -222,9 +223,11 @@
           class="playdate-img"
         />
       </div>
+       <p>Host: <br />{{ playdate.hostUsername }}</p>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
-      <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
+       <p>Pets: <br /> <ul><li v-for="pet in visitingPlaydatePetArray" v-bind:key="pet.id"> {{ pet.name }} the {{pet.species}}</li>
+      </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
     </div>
 
@@ -244,12 +247,14 @@ export default {
   },
   data() {
     return {
-      isEditing: false,
+      isEditing: false, //aubrey wants to try making this an array
       // user: {},
       pets: [],
       petNames: [],
-      playdateArray: {},
-      visitingPlaydateArray: {},
+      playdateArray: [],
+      playdatePetArray: [],
+      visitingPlaydateArray: [],
+      visitingPlaydatePetArray: [],
       value: [],
       options: [
         {
@@ -435,36 +440,57 @@ export default {
          this.playdateArray = this.$store.state.playdateArray.filter(
           (playdate) => playdate.hostUserId === this.$store.state.user.id
         );
-        this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
-          (playdate) => playdate.visitingUserId === this.$store.state.user.id
-        );
+          this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
+            (playdate) => playdate.visitingUserId === this.$store.state.user.id
+          );
+        }
+      for (var playdate of this.playdateArray) {
+        petService.getPetsByPlaydateId(playdate.playdateId)
+        .then((response) => {
+          if (response.status===200) {
+            this.playdatePetArray = response.data;
+          }
+        })
       }
+      for (var visitingPlaydate of this.visitingPlaydateArray) {
+        petService.getPetsByPlaydateId(visitingPlaydate.playdateId)
+        .then((response) => {
+          if (response.status===200) {
+            this.visitingPlaydatePetArray = response.data;
+          }
+        }).catch((error)=> {
+          console.log(error);
+        })
+      }
+      
       petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
       if (response.status === 200) {
         this.pets = response.data;
         this.$store.commit("ADD_PETS_TO_USER", response.data);
-        
-      const unique = (value, index, self) => {
-      return self.indexOf(value) === index;
-    };
-        let allPetsArray = this.$store.state.petArray;
-        let playdatePets = this.playdate.petId;
-        
-        for(let i=0; i<allPetsArray.length; i++) {
-            
-            playdatePets.forEach((element) => {
-                
-                allPetsArray.forEach(pet => {
-                    let petIdHere = pet.petId;
-               
-                    if (element === petIdHere)
-                    this.petNames.push("does this work")
-                    
-                     })
-                })
-            this.petNames(unique);  
-        }
       }
+      });
+    //   const unique = (value, index, self) => {
+    //   return self.indexOf(value) === index;
+    // };
+    //     let allPetsArray = this.$store.state.petArray;
+    //     let playdatePets = this.playdate.petId; //this.playdate does not exist
+        
+    //     for(let i=0; i<allPetsArray.length; i++) {
+            
+    //         playdatePets.forEach((element) => {
+                
+    //             allPetsArray.forEach(pet => {
+    //                 let petIdHere = pet.petId;
+               
+    //                 if (element === petIdHere)
+    //                 this.petNames.push("does this work")
+                    
+    //                  })
+    //             })
+    //         this.petNames(unique);  
+    //     }
+    //   }
+      //I think the below is extra
       // petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
       //   if (response.status === 200) {
       //     this.pets = response.data;
@@ -477,7 +503,7 @@ export default {
       //     );
       //   }
       // });
-    });
+  //  });
       
   });
    
