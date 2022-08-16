@@ -139,6 +139,10 @@ export default {
  methods: {
       
       registerPlaydate() {
+        if(this.$store.state.currentUserPetArray.length === 0) {
+          alert("Please register a pet before scheduling a playdate!");
+          this.$router.push({name: 'pet-register'});
+        } else {
         this.playdate.dateTime = this.date + "T" + this.time;
         this.playdate.userId = this.$store.state.user.id;
         this.playdate.zipCode = Number.parseInt(this.playdate.zipCode);
@@ -160,7 +164,7 @@ export default {
            }
             
          })
-         
+        }
 
       },
     
