@@ -2,12 +2,13 @@
   <div>
     <h1>Welcome to {{ $store.state.user.firstName }}'s Profile.</h1>
     <h2>{{ $store.state.user.username }}'s Pets:</h2>
+    <button @click="isEditing = !isEditing" v-if="!isEditing">Edit</button>
     <div
       v-for="pet in $store.state.currentUserPetArray"
       v-bind:key="pet.petId"
       class="user-pets"
     >
-      <div><img :src="pet.petPhoto" alt="pet photo" class="pet-img" /></div>
+      <div class = "petImage"><img :src="pet.petPhoto" alt="pet photo" class="pet-img" /></div>
       <div class="pet-info">
         <!-- <li>Name: {{pet.name}} </li> -->
 
@@ -173,7 +174,7 @@
 
         <button @click="savePet(pet)" v-if="isEditing">Save</button>
 
-        <button @click="isEditing = !isEditing" v-if="!isEditing">Edit</button>
+        
 
         <button v-if="isEditing" @click="isEditing = false">Cancel</button>
 
@@ -492,6 +493,10 @@ export default {
 </script>
 
 <style scoped>
+
+.petImage {
+  width: 33%;
+}
 .user-pets {
   background-color: #52b69a;
   display: flex;
