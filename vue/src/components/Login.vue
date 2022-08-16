@@ -77,6 +77,7 @@ export default {
             }
           })
             this.$router.push("/");
+            this.$router.go(0);
           }
           })
         .catch(error => {

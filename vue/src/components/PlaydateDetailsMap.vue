@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div>
+    <!-- <div>
       <h2></h2>
       <h5></h5>
       <br/>
  
-    </div>
-    <br>
+    </div> -->
+    <!-- <br> -->
     <gmap-map
         :zoom="14"    
         :center="center"
-        style="width:100%;  height: 600px;"
+        style="width:100%;  height: 400px;"
       >
       <gmap-marker
         :key="index"
