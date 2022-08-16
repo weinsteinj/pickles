@@ -196,7 +196,9 @@
           class="playdate-img"
         />
       </div>
+      <div>
       <button class='btn' @click="deletePlaydate(playdate.playdateId)">Delete Playdate</button>
+      </div>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <!-- <p>Pets: {{ petNames }}</p> -->
@@ -205,8 +207,8 @@
       <p>Status: <br />{{ playdate.status }}</p>
       <div v-if="playdate.status === 'Pending'">
         <p>User requesting an invitation: {{ playdate.visitingUserId }}</p>
-        <button @click="acceptInvite(playdate)">Accept</button>
-        <button @click="rejectInvite(playdate)">Reject</button>
+        <button class='btn' @click="acceptInvite(playdate)">Accept</button>
+        <button class='btn' @click="rejectInvite(playdate)">Reject</button>
       </div>
     </div>
 
