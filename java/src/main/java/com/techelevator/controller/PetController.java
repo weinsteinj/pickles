@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.sql.Date;
 import java.util.List;
 
 @CrossOrigin
@@ -70,6 +69,12 @@ public class PetController {
         pet.setPetId(petId);
         return petDao.updatePet(pet, petId);
     }
+
+//    @RequestMapping(path = "/pet/{petId}/personality", method = RequestMethod.PUT)
+//    public Integer[] updatePersonality(@PathVariable int petId, @RequestBody Pet pet) throws PetNotFoundException {
+//        pet.setPetId(petId);
+//        return  petDao.updatePersonality(pet, petId);
+//    }
 
     @RequestMapping(path = "/pet", method = RequestMethod.GET)
     public List<Pet> petList() {
