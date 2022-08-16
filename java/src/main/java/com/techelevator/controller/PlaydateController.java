@@ -73,14 +73,20 @@ public class PlaydateController {
         return playdateDao.listAllPlaydates();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = "playdate/{playdate_id}", method = RequestMethod.DELETE)
-    public int deletePlaydate(@PathVariable int playdate_id) {
+    public int deletePlaydate(@PathVariable int playdate_id, Principal principal) throws UserAuthorizationException {
         int response = 0;
-        try {
-            response = playdateDao.deletePlaydate(playdate_id);
-        } catch (PlaydateNotFoundException e) {
+        Playdate playdate = playdateDao.getPlaydateById(playdate_id);
+        User user = userDao.findByUsername(principal.getName());
+        if (playdate.getHostUserId() == user.getId()) {
+            try {
+                response = playdateDao.deletePlaydate(playdate_id);
+            } catch (PlaydateNotFoundException e) {
 
+            }
+        } else {
+            throw new UserAuthorizationException();
         }
         return response;
     }
