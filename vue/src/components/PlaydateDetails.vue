@@ -1,34 +1,61 @@
 <template>
-  <div>
-    <playdate-details-map ></playdate-details-map>
-    <div>
-      <h1 class='play-details'>Welcome to Playdate</h1>
-      <div class='play-details'>
-      <h2>Details:</h2>
-      <p>{{ activePlaydate.details }}</p>
-      </div>
-      <div class='play-details'>
-      <h2>Time:</h2>
-      <p>{{ activePlaydate.dateTime }}</p>
-      </div>
-      <div class='play-details'>
-      <h2>Host:</h2>
-      <p>{{ activePlaydate.hostUsername }}</p>
-      </div>
-      <div class='play-details'>
-      <h2>Pets:</h2>
-      <p v-for="pet in pets" v-bind:key="pet.id">{{pet.name}}</p> 
-      </div>
-     <img v-if="activePlaydate.playdatePhoto!==''" :src="activePlaydate.playdatePhoto" />
-     <div class='play-details' v-if="activePlaydate.status=='Posted'">
-     <h2>Want to come to this playdate? Request an invitation!</h2>
-     <button class="btn" @click="requestInvite"> Request an Invite </button>
-     </div>
-     <div v-if="activePlaydate.status=='Pending'">
-       <h2>An invite has been requested, check back soon!</h2>
-       </div>
+  <div class="main-container">
+    <div class="left-panel">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora
+      repudiandae necessitatibus architecto. Reiciendis adipisci at fuga aut
+      ratione! Obcaecati deleniti architecto aliquam repellendus optio ea,
+      dolorem voluptatum nulla fuga.
+      <h2>Pickles</h2>
+      <p></p>
+
+      <img
+        src="../assets/images/woman-withdog.svg"
+        alt="woman with dog"
+        class="woman-with-dog"
+      />
     </div>
-    <div></div>
+
+    <div class="info-container">
+      <h1 class="play-details">{{ activePlaydate.hostUsername }}'s Playdate</h1>
+      <div class="play-details">
+        <h2>Details:</h2>
+        <p>{{ activePlaydate.details }}</p>
+      </div>
+      <div class="play-details">
+        <h2>Time:</h2>
+        <p>{{ activePlaydate.dateTime }}</p>
+      </div>
+      <div class="play-details">
+        <h2>Host:</h2>
+        <p>{{ activePlaydate.hostUsername }}</p>
+      </div>
+      <div class="play-details">
+        <h2>Pets:</h2>
+        <p v-for="pet in pets" v-bind:key="pet.id">{{ pet.name }}</p>
+      </div>
+      <h2>Location:</h2>
+      <div class="location-details">
+        <div class="map-panel">
+          <playdate-details-map></playdate-details-map>
+        </div>
+        <div class="img-panel">
+          <img
+            v-if="activePlaydate.playdatePhoto !== ''"
+            :src="activePlaydate.playdatePhoto"
+          />
+        </div>
+      </div>
+
+      <div class="play-details" v-if="activePlaydate.status == 'Posted'">
+        <h2>Want to come to this playdate? Request an invitation!</h2>
+        <button class="btn" @click="requestInvite">Request an Invite</button>
+      </div>
+      <div v-if="activePlaydate.status == 'Pending'">
+        <h2>An invite has been requested, check back soon!</h2>
+      </div>
+    </div>
+
+    <!-- <div class="right-panel"></div> -->
   </div>
 </template>
 
@@ -39,13 +66,11 @@ import PlaydateDetailsMap from "@/components/PlaydateDetailsMap.vue";
 export default {
   name: "playdate-details",
   components: {
-    PlaydateDetailsMap
+    PlaydateDetailsMap,
   },
   data() {
     return {
-      pets: [{
-        
-      }],
+      pets: [{}],
       activePlaydate: {},
     };
   },
@@ -59,36 +84,37 @@ export default {
       this.$store.commit("SET_ACTIVE_PLAYDATE", this.activePlaydate);
 
       const unique = (value, index, self) => {
-      return self.indexOf(value) === index;
-    };
+        return self.indexOf(value) === index;
+      };
 
-    let allPetsArray = this.$store.state.petArray;
-    let playdatePets = this.activePlaydate.petId;
+      let allPetsArray = this.$store.state.petArray;
+      let playdatePets = this.activePlaydate.petId;
 
-    for (let i = 0; i < allPetsArray.length; i++) {
-      playdatePets.forEach((element) => {
-        allPetsArray.forEach((pet) => {
-          let petIdHere = pet.petId;
+      for (let i = 0; i < allPetsArray.length; i++) {
+        playdatePets.forEach((element) => {
+          allPetsArray.forEach((pet) => {
+            let petIdHere = pet.petId;
 
-          if (element == petIdHere) this.pets.push(pet);
-        })
-      })
-      this.pets(unique); //what is this doing? - it keeps giving me errors
-    }
+            if (element == petIdHere) this.pets.push(pet);
+          });
+        });
+        this.pets(unique); //what is this doing? - it keeps giving me errors
+      }
     });
-    
   },
   methods: {
     requestInvite() {
       this.activePlaydate.visitingUserId = this.$store.state.user.id;
       this.activePlaydate.status = "Pending";
-      playdateService.updatePlaydate(this.activePlaydate.playdateId,this.activePlaydate)
-      .then((response) => {
-      console.log(response.data);})
-     //commit this to the store?
-      .catch((err)=>console.error(err));
-    }
-  }
+      playdateService
+        .updatePlaydate(this.activePlaydate.playdateId, this.activePlaydate)
+        .then((response) => {
+          console.log(response.data);
+        })
+        //commit this to the store?
+        .catch((err) => console.error(err));
+    },
+  },
   // computed: {
   //     getPetsForPlaydateDetails() {
   //       console.log(this.playdate);
@@ -108,8 +134,58 @@ export default {
 
 <style scoped>
 .play-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.map-panel {
+  overflow: hidden;
+  width: 50%;
+  flex-grow: 1;
+}
+.map-panel[data-v-fae5bece] {
+  width: 50%;
+  display: flex;
+  /* flex-shrink: 5; */
+  flex-direction: column;
+  flex-wrap: nowrap;
+  /* align-content: stretch; */
+  /* justify-content: flex-end; */
+  /* align-items: stretch; */
+}
+
+
+
+.img-panel {
+  width: 50%;
+  display: flex;
+  height: 400px;
+  flex-grow: 1;
+
+} 
+
+.vue-map {
+  overflow: initial;
+}
+
+.location-details {
+  display: flex;
+  flex-direction: row;
+  height: 400px;
+  justify-content: flex-end;
+  align-items: center;
+}
+div.vue-map {
+  opacity: 10%;
+}
+
+h1 {
+  margin-top: 0;
 }
 </style>
