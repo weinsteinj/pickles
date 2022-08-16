@@ -73,9 +73,11 @@ export default {
           .then((response) => {
             if (response.status == 201) {
               this.$router.push({
-                path: '/login',
-                query: { registration: 'success' },
+                name: 'home',
+                // path: '/login',
+                // query: { registration: 'success' },
               });
+            this.$router.go(0);
             }
           })
           .catch((error) => {
