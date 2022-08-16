@@ -205,6 +205,7 @@
         <button @click="acceptInvite(playdate)">Accept</button>
         <button @click="rejectInvite(playdate)">Reject</button>
       </div>
+       <button @click="deletePlaydate(playdate.playdateId)">Delete</button>
     </div>
 
     <h2>Playdates you may attend:</h2>
@@ -408,7 +409,21 @@ export default {
             this.$store.state.petArray.find(element => {
                 element.id === id;
             })
+        },
+    deletePlaydate(playdateId) {
+      playdateService.deletePlaydate(playdateId)
+      .then((response) => {
+        if (response===200) {
+          playdateService.getAllPlaydates()
+          .then((response) => {
+            if (response===200) {
+              this.$store.commit("ADD_ALL_PLAYDATE", response.data);
+            }
+          })
         }
+      })
+    }
+    
   },
 
   created() {
@@ -416,17 +431,18 @@ export default {
       .then(response => {
        if(response.status===200) {
          this.$store.commit("ADD_ALL_PLAYDATE",response.data);
-      }
-      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
-      if (response.status === 200) {
-        this.pets = response.data;
-        this.$store.commit("ADD_PETS_TO_USER", response.data);
-        this.playdateArray = this.$store.state.playdateArray.filter(
+         this.playdateArray = this.$store.state.playdateArray.filter(
           (playdate) => playdate.hostUserId === this.$store.state.user.id
         );
         this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
           (playdate) => playdate.visitingUserId === this.$store.state.user.id
         );
+      }
+      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
+      if (response.status === 200) {
+        this.pets = response.data;
+        this.$store.commit("ADD_PETS_TO_USER", response.data);
+        
       const unique = (value, index, self) => {
       return self.indexOf(value) === index;
     };
@@ -448,18 +464,18 @@ export default {
             this.petNames(unique);  
         }
       }
-      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
-        if (response.status === 200) {
-          this.pets = response.data;
-          this.$store.commit("ADD_PETS_TO_USER", response.data);
-          this.playdateArray = this.$store.state.playdateArray.filter(
-            (playdate) => playdate.hostUserId === this.$store.state.user.id
-          );
-          this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
-            (playdate) => playdate.visitingUserId === this.$store.state.user.id
-          );
-        }
-      });
+      // petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
+      //   if (response.status === 200) {
+      //     this.pets = response.data;
+      //     this.$store.commit("ADD_PETS_TO_USER", response.data);
+      //     this.playdateArray = this.$store.state.playdateArray.filter(
+      //       (playdate) => playdate.hostUserId === this.$store.state.user.id
+      //     );
+      //     this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
+      //       (playdate) => playdate.visitingUserId === this.$store.state.user.id
+      //     );
+      //   }
+      // });
     });
       
   });
