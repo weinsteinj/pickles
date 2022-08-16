@@ -96,6 +96,7 @@ export default {
 
           cloudName: cloudName,
           uploadPreset: uploadPreset,
+          tags: ['playdate']
         },
         (error, result) => {
           if (!error && result && result.event === "success") {
