@@ -1,7 +1,7 @@
 <template>
 <body>
-  <!-- <div class="pet-spotlight-container"> -->
-      <div class="flexslider carousel" >
+<div class="pet-spotlight-container">
+      <!-- <div class="flexslider carousel" >
           <ul class="slides">
             <li>
               <img class="img-left" src="../assets/images/caitosdog.jpg" />
@@ -40,7 +40,7 @@
               <img class="img-right" src="../assets/images/stockcuteturtle.jpg" />
             </li>
             
-        </ul>
+        </ul> -->
     </div>
   <!-- </div>     -->
 </body>
@@ -52,29 +52,36 @@
 </template>
 
 <script>
-const $ = window.$;
+//const $ = window.$;
+const cloudinary = window.cloudinary;
 
 export default {
     name: 'pet-spotlight',
 
     mounted() {
-      let recaptchaScript = document.createElement('script')
-      recaptchaScript.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
-      document.head.appendChild(recaptchaScript)
+      const myGallery = cloudinary.galleryWidget({ 
+        container: "#pet-spotlight-container", 
+        cloudName: "picklepoints", 
+        mediaAssets: [{ tag: "pet" }] 
+      });
+      myGallery.render();
+  //     let recaptchaScript = document.createElement('script')
+  //     recaptchaScript.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+  //     document.head.appendChild(recaptchaScript)
 
-      $('.flexslider').flexslider({
-     animation: "slide",
-    animationLoop: true,
-    itemWidth: 40,
-    itemMargin: 5,
-    minItems: 4,
-    maxItems: 4,
-    slideshow: true,                //Boolean: Animate slider automatically
-    slideshowSpeed: 7000,           //Integer: Set the speed of the slideshow cycling, in milliseconds
-    animationSpeed: 600,   
-    randomize: true
+  //     $('.flexslider').flexslider({
+  //    animation: "slide",
+  //   animationLoop: true,
+  //   itemWidth: 40,
+  //   itemMargin: 5,
+  //   minItems: 4,
+  //   maxItems: 4,
+  //   slideshow: true,                //Boolean: Animate slider automatically
+  //   slideshowSpeed: 7000,           //Integer: Set the speed of the slideshow cycling, in milliseconds
+  //   animationSpeed: 600,   
+  //   randomize: true
     
-  });
+  // });
     }
 }
 </script>
