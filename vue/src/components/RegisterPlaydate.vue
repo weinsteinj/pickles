@@ -31,8 +31,8 @@
       <label for="date">Select a date: </label>
       <input id="date" type="date" class="form-control" v-model="date" required>
 
-        <label for="time">Time (hh:mm:ss): </label>
-      <input id="time" type="text" class="form-control" v-model="time" required>
+        <label for="time">Time: </label>
+      <input id="time" type="time" class="form-control" v-model="time" required>
       
       <label for="details">Details: </label>
       <input id="details" type="text" class="form-control" v-model="playdate.details" required>
