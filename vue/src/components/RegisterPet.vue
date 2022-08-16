@@ -119,6 +119,7 @@ export default {
 
           cloudName: cloudName,
           uploadPreset: uploadPreset,
+          tags: ['pet']
         },
         (error, result) => {
           if (!error && result && result.event === "success") {

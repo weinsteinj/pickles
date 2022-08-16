@@ -53,6 +53,7 @@
 
 <script>
 const $ = window.$;
+
 export default {
     name: 'pet-spotlight',
 

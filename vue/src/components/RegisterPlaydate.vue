@@ -43,9 +43,12 @@
         Upload photo
       </button>
 
-      <button id="selectBtn" class="btn" type="submit">
-          Add Playdate
-      </button>
+        <div class="addButton">
+          <button id="selectBtn" class="btn" type="submit">
+                  Add Playdate
+              </button>
+        </div>
+      
         
       </form>
       
@@ -96,6 +99,7 @@ export default {
 
           cloudName: cloudName,
           uploadPreset: uploadPreset,
+          tags: ['playdate']
         },
         (error, result) => {
           if (!error && result && result.event === "success") {
@@ -181,6 +185,14 @@ export default {
 </style>
 
 <style scoped>
+
+.addButton {
+  display: flex;
+  justify-content: center;
+}
+h1 {
+  text-align: center;
+}
 #pet-register {
   display: flex;
   justify-content: space-between;
