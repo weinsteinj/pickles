@@ -206,7 +206,7 @@
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <!-- <p>Pets: {{ petNames }}</p> -->
-      <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
+      <p>Pets (Ids): <br /></p><p v-for="pet in playdate.petId" v-bind:key="pet"> {{ pet }}</p>
       <p>Status: <br />{{ playdate.status }}</p>
       <div v-if="playdate.status === 'Pending'">
       <p> User requesting an invitation: {{playdate.visitingUserId}} </p>
@@ -232,7 +232,7 @@
       </div>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
-      <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
+      <p>Pets (Ids): <br /></p><p v-for="pet in playdate.petId" v-bind:key="pet"> {{ pet }}</p>
       <p>Status: <br />{{ playdate.status }}</p>
      
     </div>
@@ -343,17 +343,18 @@ export default {
       .then(response => {
        if(response.status===200) {
          this.$store.commit("ADD_ALL_PLAYDATE",response.data);
-      }
-      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
-      if (response.status === 200) {
-        this.pets = response.data;
-        this.$store.commit("ADD_PETS_TO_USER", response.data);
-        this.playdateArray = this.$store.state.playdateArray.filter(
+         this.playdateArray = this.$store.state.playdateArray.filter(
           (playdate) => playdate.hostUserId === this.$store.state.user.id
         );
         this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
           (playdate) => playdate.visitingUserId === this.$store.state.user.id
         );
+      }
+      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
+      if (response.status === 200) {
+        this.pets = response.data;
+        this.$store.commit("ADD_PETS_TO_USER", response.data);
+ 
       const unique = (value, index, self) => {
       return self.indexOf(value) === index;
     };

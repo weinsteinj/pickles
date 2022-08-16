@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import userService from '@/services/userService.js';
+//import userService from '@/services/userService.js';
 export default {
   name: 'nav-bar',
   data() {
@@ -42,11 +42,12 @@ export default {
 
   created() {
     //should just go to the store to get the current user? there is not necessarily a userId parameter in the path so this usually won't work
-    userService.getById(this.$route.params.userId)
-      .then(response => {
-        this.user = response.data;
+    // userService.getById(this.$route.params.userId)
+    //   .then(response => {
+    //     this.user = response.data;
 
-      })
+    //   })
+    this.user = this.$store.user;
   }
 }
 </script>
