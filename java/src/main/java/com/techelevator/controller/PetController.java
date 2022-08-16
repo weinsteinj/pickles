@@ -81,6 +81,7 @@ public class PetController {
         return petDao.getPetsByUserId(userId);
     }
 
+    @CrossOrigin
     @RequestMapping(path = "/pet/playdate/{playdateId}", method = RequestMethod.GET)
     public List<Pet> getPetsByPlaydateId(@PathVariable int playdateId) {
         return petDao.getPetsByPlaydateId(playdateId);

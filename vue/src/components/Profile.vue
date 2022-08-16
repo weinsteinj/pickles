@@ -196,6 +196,7 @@
           class="playdate-img"
         />
       </div>
+      <button class='btn' @click="deletePlaydate(playdate.playdateId)">Delete</button>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <!-- <p>Pets: {{ petNames }}</p> -->
@@ -206,7 +207,6 @@
         <button @click="acceptInvite(playdate)">Accept</button>
         <button @click="rejectInvite(playdate)">Reject</button>
       </div>
-       <button @click="deletePlaydate(playdate.playdateId)">Delete</button>
     </div>
 
     <h2>Playdates you may attend:</h2>
@@ -455,6 +455,8 @@ export default {
           if (response===200) {
             this.visitingPlaydatePetArray = response.data;
           }
+        }).catch((error)=> {
+          console.log(error);
         })
       }
       
