@@ -1,9 +1,9 @@
 <template>
   <div>
     <div>
-      <h2>Check Out the Scheduled Playdates in Your Area!</h2>
+      <!-- <h2>Check Out the Scheduled Playdates in Your Area!</h2>
       <h5>Zoom Out or Move the Map to Explore</h5>
-      <br/>
+      <br/> -->
  
     </div>
     <br>

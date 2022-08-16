@@ -2,7 +2,12 @@
 <div class="root">
   <div class="home">
       <div class="playdate-panel">
-        <play></play>
+        
+          <add-google-map></add-google-map>
+      
+        <div class="playdate-list"> 
+          <play></play>
+        </div>
       </div>
     <div class="login-panel" v-if="$store.state.token == ''">
     <login></login>
@@ -24,6 +29,7 @@ import Login from '@/components/Login.vue';
 import PetSpotlight from '@/components/PetSpotlight.vue';
 import AppIntro from '@/components/AppIntro.vue';
 import play from '../components/PlayDate.vue';
+import AddGoogleMap from '@/components/AddGoogleMap.vue';
 
 export default {
   name: "home",
@@ -32,6 +38,7 @@ export default {
     PetSpotlight,
     AppIntro,
     play,
+    AddGoogleMap,
   
 
   }
@@ -65,6 +72,7 @@ export default {
 }
 
 .playdate-panel{
+  display: flex;
   background-color: var(--secondary-green);
   flex-grow: 1;
   margin: 0 1rem 0 1rem;
@@ -73,6 +81,12 @@ export default {
   height: 45vh;
   
 }
+.playdate-map{
+  height: 10%;
+  width: 10%;
+}
+
+.playdate-list{}
 
 
 </style>
