@@ -10,7 +10,7 @@
             {{pets.join(', ')}}
         </div>
         <router-link :to="{path: '/playdate/'+playdate.playdateId}"> See more details! </router-link>
-            </body>
+    </body>
 </template>
 
 <script>

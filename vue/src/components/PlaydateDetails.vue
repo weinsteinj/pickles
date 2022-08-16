@@ -1,17 +1,26 @@
 <template>
   <div>
+    <playdate-details-map ></playdate-details-map>
     <div>
-      <h1>Welcome to Playdate</h1>
+      <h1 class='play-details'>Welcome to Playdate</h1>
+      <div class='play-details'>
       <h2>Details:</h2>
       <p>{{ activePlaydate.details }}</p>
+      </div>
+      <div class='play-details'>
       <h2>Time:</h2>
       <p>{{ activePlaydate.dateTime }}</p>
+      </div>
+      <div class='play-details'>
       <h2>Host:</h2>
       <p>{{ activePlaydate.hostUsername }}</p>
+      </div>
+      <div class='play-details'>
       <h2>Pets:</h2>
       <p v-for="pet in pets" v-bind:key="pet.id">{{pet.name}}</p> 
+      </div>
      <img v-if="activePlaydate.playdatePhoto!==''" :src="activePlaydate.playdatePhoto" />
-     <div v-if="activePlaydate.status=='Posted'">
+     <div class='play-details' v-if="activePlaydate.status=='Posted'">
      <h2>Want to come to this playdate? Request an invitation!</h2>
      <button class="btn" @click="requestInvite"> Request an Invite </button>
      </div>
@@ -19,20 +28,25 @@
        <h2>An invite has been requested, check back soon!</h2>
        </div>
     </div>
+    <div></div>
   </div>
 </template>
 
 <script>
 import playdateService from "@/services/playdateService.js";
+import PlaydateDetailsMap from "@/components/PlaydateDetailsMap.vue";
 
 export default {
   name: "playdate-details",
+  components: {
+    PlaydateDetailsMap
+  },
   data() {
     return {
       pets: [{
         
       }],
-      activePlaydate: [],
+      activePlaydate: {},
     };
   },
   // created() {
@@ -91,3 +105,11 @@ export default {
   // }
 };
 </script>
+
+<style scoped>
+.play-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+</style>
