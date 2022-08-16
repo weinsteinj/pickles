@@ -495,7 +495,7 @@ export default {
 <style scoped>
 
 .petImage {
-  width: 33%;
+  width: 1%;
 }
 .user-pets {
   background-color: #52b69a;
