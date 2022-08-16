@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.model.Marker;
 import com.techelevator.model.Place;
+import com.techelevator.model.ZipCodeNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,7 +21,7 @@ public class RestGeocodeDao implements GeocodeDao{
 
 
     @Override
-    public Marker getGeocodeByZip(int zipCode) throws JsonProcessingException {
+    public Marker getGeocodeByZip(int zipCode) throws JsonProcessingException, ZipCodeNotFoundException {
         RestTemplate restTemplate = new RestTemplate();
         Place place = new Place();
         String uri = "https://maps.googleapis.com/maps/api/geocode/json?address="
@@ -31,6 +32,9 @@ public class RestGeocodeDao implements GeocodeDao{
         JsonNode rootNode = mapper.readTree(stringPlace);
         List<JsonNode> geoLatitudes = new ArrayList<>();
         geoLatitudes = rootNode.findValues("lat");
+        if (geoLatitudes.isEmpty()) {
+            throw new ZipCodeNotFoundException();
+        }
         BigDecimal lat = BigDecimal.valueOf(Double.parseDouble(String.valueOf(geoLatitudes.get(2))));
         List<JsonNode> geoLongitudes = new ArrayList<>();
         geoLongitudes = rootNode.findValues("lng");
