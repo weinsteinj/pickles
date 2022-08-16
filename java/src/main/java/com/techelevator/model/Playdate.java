@@ -22,6 +22,7 @@ public class Playdate {
     private String hostUsername;
     private String visitorUsername;
 
+
     public Playdate() {
     }
     public Playdate(int playdateId, int hostUserId, int visitingUserId, int zipCode, LocalDateTime dateTime, String details, int rating, String status, String playdatePhoto, List petId) {

@@ -22,6 +22,8 @@ public interface PetDao {
     Pet updatePet(Pet pet, int petId);
 
     List<Pet> getPetsByPlaydateId(int playdateId);
+
+    Integer[] updatePersonality(Pet pet, int petId);
 }
 //    List<Pet> getPetsByUserId(PetByUserDTO petByUserDTO);
 
