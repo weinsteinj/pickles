@@ -196,11 +196,12 @@
           class="playdate-img"
         />
       </div>
-      <button class='btn' @click="deletePlaydate(playdate.playdateId)">Delete</button>
+      <button class='btn' @click="deletePlaydate(playdate.playdateId)">Delete Playdate</button>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <!-- <p>Pets: {{ petNames }}</p> -->
-      <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
+      <p>Pets: <br /> <ul><li v-for="pet in playdatePetArray" v-bind:key="pet.id"> {{ pet.name }} the {{pet.species}} </li>
+      </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
       <div v-if="playdate.status === 'Pending'">
         <p>User requesting an invitation: {{ playdate.visitingUserId }}</p>
@@ -222,9 +223,11 @@
           class="playdate-img"
         />
       </div>
+       <p>Host: <br />{{ playdate.hostUsername }}</p>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
-      <p>Pets (Ids): <br />{{ playdate.petId[0] }} {{ playdate.petId[1] }}</p>
+       <p>Pets: <br /> <ul><li v-for="pet in visitingPlaydatePetArray" v-bind:key="pet.id"> {{ pet.name }} the {{pet.species}}</li>
+      </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
     </div>
 
@@ -444,7 +447,7 @@ export default {
       for (var playdate of this.playdateArray) {
         petService.getPetsByPlaydateId(playdate.playdateId)
         .then((response) => {
-          if (response===200) {
+          if (response.status===200) {
             this.playdatePetArray = response.data;
           }
         })
@@ -452,7 +455,7 @@ export default {
       for (var visitingPlaydate of this.visitingPlaydateArray) {
         petService.getPetsByPlaydateId(visitingPlaydate.playdateId)
         .then((response) => {
-          if (response===200) {
+          if (response.status===200) {
             this.visitingPlaydatePetArray = response.data;
           }
         }).catch((error)=> {
