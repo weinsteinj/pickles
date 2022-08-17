@@ -216,7 +216,7 @@ export default {
         return {
             petId: null,
             pet: null,
-            isEditing: true,
+            isEditing: false,
             value: [],
             options: [
                 {
