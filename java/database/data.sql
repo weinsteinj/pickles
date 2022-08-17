@@ -36,22 +36,22 @@ INSERT INTO users (first_name,last_name,username,password_hash,role,email_addres
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user4','user4','ROLE_USER','email@email.com','15217');
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user5','user5','ROLE_USER','email@email.com','15212');
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user6','user6','ROLE_USER','email@email.com','15202');
+--
+INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user7','user7','ROLE_USER','email@email.com','45214');
+INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user8','user8','ROLE_USER','email@email.com','45201');
+INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user9','user9','ROLE_USER','email@email.com','45202');
+INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user10','user10','ROLE_USER','email@email.com','45203');
+INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user11','user11','ROLE_USER','email@email.com','45204');
+INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user12','user12','ROLE_USER','email@email.com','45205');
 
-INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user1','user1','ROLE_USER','email@email.com','45214');
-INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user2','user2','ROLE_USER','email@email.com','45201');
-INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user3','user3','ROLE_USER','email@email.com','45202');
-INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user4','user4','ROLE_USER','email@email.com','45203');
-INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user5','user5','ROLE_USER','email@email.com','45204');
-INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user6','user6','ROLE_USER','email@email.com','45205');
+INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size, pet_photo)
+VALUES ('Junebug', 'Dog', 'female', '2015-06-10', true, true, 1, 'https://res.cloudinary.com/picklepoints/image/upload/v1660761609/ssz1fqrza97qtqwrib57.jpg');
 
-INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size)
-VALUES ('Junebug', 'Dog', 'female', '2015-06-10', true, true, 1);
+INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size, pet_photo)
+VALUES ('Kona', 'Dog', 'female', '2017-04-15', true, true, 1, 'https://res.cloudinary.com/picklepoints/image/upload/v1660761571/p78ufgsztlhufjyovc5e.jpg');
 
-INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size)
-VALUES ('Kona', 'Dog', 'female', '2017-04-15', true, true, 1);
-
-INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size)
-VALUES ('James Franco', 'Dog', 'male', '2013-08-15', true, true, 3);
+INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size, pet_photo)
+VALUES ('James Franco', 'Dog', 'male', '2013-08-15', true, true, 3, 'https://res.cloudinary.com/picklepoints/image/upload/v1660761411/hx2ffssdor562smvaum8.jpg');
 
 
 --USER IDS IN PETS--
@@ -76,15 +76,15 @@ INSERT INTO pet_personality (pet_id, personality_id) VALUES (3,1);
 
 
 -- --PLAYDATES--
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (1, 2, '15212', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (2, 4, '15212', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (1, 3, '15202', '2022-09-30T12:00:00', 'Go on a walk with us!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (1, 4, '15203', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (2, 5, '15204', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (1, 6, '15205', '2022-09-30T12:00:00', 'Go on a walk with us!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (4, 2, '15206', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (5, 3, '15207', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (6, 3, '15208', '2022-09-30T12:00:00', 'Go on a walk with us!');
+INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (1, 2, '15212', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://www.flickr.com/photos/31273703@N02/3028758923/');
+INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (2, 4, '15212', '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://www.flickr.com/photos/irisphotos/4180530938/');
+INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (1, 3, '15202', '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://www.flickr.com/photos/bknabel/40739687510/');
+INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (1, 4, '15203', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://www.flickr.com/photos/leafy/3824106375/');
+INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (2, 5, '15204', '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://www.flickr.com/photos/dmuth/38170994821/');
+INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (1, 6, '15205', '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://www.flickr.com/photos/oldonliner/8698152143/');
+INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (4, 2, '15206', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://www.flickr.com/photos/dagnygromer/30216177444/');
+INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (5, 3, '15207', '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://www.flickr.com/photos/jimwallace57/5774022019/');
+INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (6, 3, '15208', '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://www.flickr.com/photos/omardearmas/3357451975/');
 --INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (4, 3, '15209', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
 --INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (5, 2, '15210', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
 --INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (6, 1, '15217', '2022-09-30T12:00:00', 'Go on a walk with us!');
