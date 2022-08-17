@@ -7,6 +7,9 @@
    
     </div>
     
+    <div class="petList">
+
+    
     <div
       v-for="p in $store.state.currentUserPetArray"
       v-bind:key="p.petId"
@@ -15,7 +18,7 @@
       <router-link class="router-link-pets" :to="{name: 'pet-info', params: {petId: p.petId}}">{{p.name}}</router-link>
       <div class="right-panel"></div>
     </div>
-
+</div>
     
 
     <h2>Playdates you're hosting:</h2>
@@ -362,6 +365,11 @@ export default {
 </script>
 
 <style scoped>
+.petList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .petImage {
   width: 1%;
 }
@@ -372,6 +380,7 @@ export default {
   margin-top: 1rem;
   justify-content: center;
   width: 33%;
+  padding: 10px;
 }
 
 input,
