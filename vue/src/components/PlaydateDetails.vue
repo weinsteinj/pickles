@@ -55,7 +55,8 @@
       </div>
     </div>
 
-    <!-- <div class="right-panel"></div> -->
+    <div class="right-panel"></div>
+    <div class="right-panel"></div>
   </div>
 </template>
 
