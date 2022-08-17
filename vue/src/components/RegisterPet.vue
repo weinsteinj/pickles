@@ -225,6 +225,10 @@ export default {
 
         // this.pet.isFixed = Boolean(this.pet.isFixed);
         // this.pet.hasVaccinations = Boolean(this.pet.hasVaccinations);
+        if (this.pet.petPhoto === '') {
+          this.pet.petPhoto = "https://res.cloudinary.com/picklepoints/image/upload/v1660761862/TurtleTransparent_pdnmzd.png";
+        }
+
         petService.createPet(this.pet)
          .then(response => {
            if (response.status === 200) 
