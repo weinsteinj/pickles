@@ -24,14 +24,15 @@
           <img :src="pet.petPhoto" alt="pet photo" class="pet-img" />
         </div>
         <div class="pet-info">
-          <div class="pet-item name" v-if="!isEditing">
+          <div class="pet-item" v-if="!isEditing">
             <label for="pet-name">Name:</label>
             <span>{{ pet.name }}</span>
           </div>
 
-          <div class="pet-item name" v-if="isEditing">
+          <div class="pet-item-edit" v-if="isEditing">
             <label for="pet-name">Name:</label>
             <input
+              class="field"
               name="pet-name"
               type="text"
               v-model="pet.name"
@@ -45,9 +46,10 @@
             <span>{{ pet.species }}</span>
           </div>
 
-          <div v-if="isEditing">
+          <div v-if="isEditing" class="pet-item-edit">
             <label for="pet-species">Species:</label>
             <select
+              class="field"
               v-model="pet.species"
               :disabled="!isEditing"
               :class="{ view: !isEditing }"
@@ -65,9 +67,10 @@
             <span>{{ pet.sex }}</span>
           </div>
 
-          <div v-if="isEditing">
+          <div v-if="isEditing" class="pet-item-edit">
             <label for="pet-sex">Sex:</label>
             <select
+              class="field"
               v-model="pet.sex"
               :disabled="!isEditing"
               :class="{ view: !isEditing }"
@@ -82,9 +85,10 @@
             <span>{{ getAge(pet.birthDate) }}</span>
           </div>
 
-          <div v-if="isEditing">
+          <div v-if="isEditing" class="pet-item-edit">
             <label for="pet-age">Birthday:</label>
             <input
+              class="field"
               type="date"
               v-model="pet.birthDate"
               :class="{ view: !isEditing }"
@@ -96,9 +100,10 @@
             <span>{{ pet.fixed }}</span>
           </div>
 
-          <div v-if="isEditing">
+          <div v-if="isEditing" class="pet-item-edit">
             <label for="pet-fixed">Spayed/Neutered:</label>
             <select
+              class="field"
               v-model="pet.fixed"
               :disabled="!isEditing"
               :class="{ view: !isEditing }"
@@ -113,9 +118,10 @@
             <span>{{ pet.hasVaccinations }}</span>
           </div>
 
-          <div v-if="isEditing">
+          <div v-if="isEditing" class="pet-item-edit">
             <label for="pet-vaccinations">Vaccinated:</label>
             <select
+              class="field"
               v-model="pet.hasVaccinations"
               :disabled="!isEditing"
               :class="{ view: !isEditing }"
@@ -131,9 +137,10 @@
             >
           </div>
 
-          <div v-if="isEditing">
+          <div v-if="isEditing" class="pet-item-edit">
             <label for="pet-size">Size:</label>
             <select
+              class="field"
               v-model="pet.size"
               :disabled="!isEditing"
               :class="{ view: !isEditing }"
@@ -153,7 +160,7 @@
             >
           </div>
 
-          <div v-if="isEditing">
+          <div v-if="isEditing" class="pet-item-edit">
             <label for="pet-personality">Personality:</label>
             <multiselect
               id="personality"
@@ -439,6 +446,33 @@ select {
 
 .pet-item {
   padding-bottom: .44rem;
+}
+
+.pet-item-edit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#upload_widget {
+  /* height: 21px; */
+  width: 100%;
+  line-height: initial;
+  background-color: var(--primary-green);
+  font-family: 'Cabin', sans-serif;
+  font-size: 1rem;
+}
+
+button {
+  font-size: .9rem;
+  font-family: 'Cabin', sans-serif;
+}
+
+
+.field {
+  width: 288px;
+}
+
+.multiselect {
 }
 
 .pet-img {
