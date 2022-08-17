@@ -37,7 +37,7 @@ img {
     max-width: 10rem;
 }
 .app-intro-container[data-v-7c98290a] {
-    margin: 1rem 1rem 2rem 1rem;
+    margin: .25rem 1rem 1rem 1rem;
 }
 .app-intro-container {
     padding: 5px;

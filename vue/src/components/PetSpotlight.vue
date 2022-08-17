@@ -142,7 +142,7 @@ export default {
 
 .slides img:hover {
   box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.18);
-  
+  background: white;
   
 }
 
