@@ -35,6 +35,8 @@
         :hide-selected="false"
       ></multiselect>
 
+      <br>
+
       <label for="zip-code">Zip Code: </label>
       <input
         maxlength="5"
