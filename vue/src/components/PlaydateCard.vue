@@ -44,7 +44,7 @@ export default {
                     
                      })
                 })
-            this.pets(unique);  
+            this.pets = this.pets.filter(unique);  
         }
             
         
