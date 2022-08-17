@@ -4,188 +4,19 @@
     <div class="header">
       
     <h2>Your Pets:</h2>
-    <button @click="isEditing = !isEditing" v-if="!isEditing" class="edit-btn">Edit Pets</button>
+   
     </div>
     
     <div
-      v-for="pet in $store.state.currentUserPetArray"
-      v-bind:key="pet.petId"
+      v-for="p in $store.state.currentUserPetArray"
+      v-bind:key="p.petId"
       class="user-pets"
     >
-      <div class = "petImage"><img :src="pet.petPhoto" alt="pet photo" class="pet-img" /></div>
-      <div class="pet-info">
-        <!-- <li>Name: {{pet.name}} </li> -->
-
-        <div class="pet-item name">
-          <label for="pet-name">Name:</label>
-          <input
-            name="pet-name"
-            type="text"
-            v-model="pet.name"
-            :disabled="!isEditing"
-            :class="{ view: !isEditing }"
-          />
-        </div>
-
-        <!-- <li>Species: {{pet.species}}</li> -->
-        <div v-if="!isEditing" class="pet-item">
-          <label for="pet-species">Species:</label>
-          <input
-            v-model="pet.species"
-            :disabled="!isEditing"
-            :class="{ view: !isEditing }"
-          />
-        </div>
-
-        <div v-if="isEditing">
-          <label for="pet-species">Species:</label>
-          <select
-            v-model="pet.species"
-            :disabled="!isEditing"
-            :class="{ view: !isEditing }"
-          >
-            <option value="Dog">Dog</option>
-            <option value="Cat">Cat</option>
-            <option value="Rabbit">Rabbit</option>
-            <option value="Reptile">Reptile</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        <!-- <li>Sex: {{pet.sex}}</li> -->
-        <div v-if="!isEditing" class="pet-item">
-          <label for="pet-sex">Sex:</label>
-          <input
-            v-model="pet.sex"
-            :disabled="!isEditing"
-            :class="{ view: !isEditing }"
-          />
-        </div>
-
-        <div v-if="isEditing">
-          <label for="pet-sex">Sex:</label>
-          <select
-            v-model="pet.sex"
-            :disabled="!isEditing"
-            :class="{ view: !isEditing }"
-          >
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        </div>
-
-        <!-- <li>Age: {{getAge(pet.birthDate)}}</li> -->
-        <div v-if="!isEditing" class="pet-item">
-          <label for="pet-age">Age:</label>
-          <input
-            type="text"
-            :placeholder="getAge(pet.birthDate)"
-            :disabled="true"
-            :class="{ view: !isEditing }"
-          />
-        </div>
-
-        <div v-if="isEditing">
-          <label for="pet-age">Birthday:</label>
-          <input
-            type="date"
-            v-model="pet.birthDate"
-            :class="{ view: !isEditing }"
-          />
-        </div>
-
-        <!-- <li>Spayed/Neutered: {{pet.fixed.toString()}}</li> -->
-        <div v-if="!isEditing" class="pet-item">
-          <label for="pet-fixed">Spayed/Neutered:</label>
-          <input
-            type="text"
-            v-model="pet.fixed"
-            :disabled="!isEditing"
-            :class="{ view: !isEditing }"
-          />
-        </div>
-
-        <div v-if="isEditing">
-          <label for="pet-fixed">Spayed/Neutered:</label>
-          <select
-            v-model="pet.fixed"
-            :disabled="!isEditing"
-            :class="{ view: !isEditing }"
-          >
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-
-        <!-- <li>Vaccinations: {{ pet.hasVaccinations.toString() }}</li> -->
-        <div v-if="!isEditing" class="pet-item">
-          <label for="pet-vaccinations">Vaccinated:</label>
-          <input
-            type="text"
-            v-model="pet.hasVaccinations"
-            :disabled="!isEditing"
-            :class="{ view: !isEditing }"
-          />
-        </div>
-
-        <div v-if="isEditing">
-          <label for="pet-vaccinations">Vaccinated:</label>
-          <select
-            v-model="pet.hasVaccinations"
-            :disabled="!isEditing"
-            :class="{ view: !isEditing }"
-          >
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-
-        <!-- <li>Size: {{ pet.size }}</li> -->
-        <div v-if="!isEditing" class="pet-item">
-          <label for="pet-size">Size: <span>{{ sizeToString(pet.size) }}</span></label>
-          <input
-            type="text"
-            :disabled="!isEditing"
-            :class="{ view: !isEditing }"
-          />
-        </div>
-
-        <div v-if="isEditing">
-          <label for="pet-size">Size:</label>
-          <select
-            v-model="pet.size"
-            :disabled="!isEditing"
-            :class="{ view: !isEditing }"
-          >
-            <option value="1">Up to 15 pounds</option>
-            <option value="2">15 - 30 pounds</option>
-            <option value="3">30 - 50 pounds</option>
-            <option value="4">50-90 pounds</option>
-            <option value="5">Bigger than 90 pounds</option>
-          </select>
-        </div>
-
-        <!-- <li>Personality: {{pet.personality}}</li> -->
-        <div v-if="!isEditing" class="pet-item">
-          <label for="pet-personality">Personality: <span>{{ personalityToString(pet.personality) }}</span></label>
-          
-        </div>
-
-        <div v-if="isEditing">
-          <label for="pet-personality">Personality:</label>
-          <multiselect id="personality" v-model="value" :options="options" :close-on-select="false" track-by="id" label="personality" :hide-selected="true" multiple=true></multiselect> 
-        </div>
-
-        <button @click="savePet(pet)" v-if="isEditing">Save</button>
-
-        
-
-        <button v-if="isEditing" @click="isEditing = false">Cancel</button>
-
-        
-      </div>
+      <router-link :to="{name: 'pet-info', params: {petId: p.petId}}">{{p.name}}</router-link>
       <div class="right-panel"></div>
     </div>
+
+    
 
     <h2>Playdates you're hosting:</h2>
     <div
@@ -250,11 +81,12 @@
 //import userService from '@/services/userService.js';
 import petService from "@/services/petService.js";
 import playdateService from "@/services/playdateService.js";
-import Multiselect from "vue-multiselect";
+// import PetDetails from '@/components/PetDetails.vue';
+
 export default {
   name: "profile-component",
   components: {
-    Multiselect,
+    // PetDetails
   },
   data() {
     return {

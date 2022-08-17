@@ -11,6 +11,7 @@ import RegisterPlaydate from '@/views/RegisterPlaydate.vue'
 import PlaydateDetails from '@/views/PlaydateDetails.vue'
 import PlaydateView from '@/views/PlaydateView.vue'
 import Profile from '@/views/Profile.vue'
+import PetDetails from '@/views/PetDetails.vue'
 
 Vue.use(Router)
 
@@ -106,7 +107,15 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+      {
+        path: "/pet/:petId",
+        name: "pet-info",
+        component: PetDetails,
+        meta: {
+          requiresAuth: false
+        }
+    },
   ]
 })
 
