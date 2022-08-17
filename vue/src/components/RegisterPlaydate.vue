@@ -185,6 +185,9 @@ export default {
         for (var i of this.value) {
           this.playdate.petId.push(i.petId);
         }
+         if (this.playdate.playdatePhoto === "") {
+          this.playdate.playdatePhoto = "https://res.cloudinary.com/picklepoints/image/upload/v1660761862/TurtleTransparent_pdnmzd.png";
+        }
         playdateService.createPlaydate(this.playdate).then((response) => {
           if (response.status === 200) {
             playdateService.getAllPlaydates().then((response) => {
