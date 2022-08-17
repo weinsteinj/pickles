@@ -1,7 +1,7 @@
 <template>
 <body>
-<div class="pet-spotlight-container">
-      <div class="flexslider-carousel" >
+<!-- <div class="pet-spotlight-container"> -->
+      <div class="flexslider carousel" >
           <ul class="slides">
             <li v-for="img_link in photos"  v-bind:key="img_link" ><img class="img" v-bind:src="img_link" /></li>
             <!-- <li>
@@ -43,7 +43,7 @@
              -->
         </ul> 
     </div>
-  </div>   
+  <!-- </div>    -->
 </body>
   
 
@@ -144,12 +144,12 @@ img {
 }
 
  img {
-  display: inline;
+  display: block;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   object-fit: cover;
-  justify-content: normal;
+  justify-content: center;
   align-items: center;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -157,8 +157,7 @@ img {
   padding-right: 2px;
 }
 
-.flexslider-carousel {
-  display: inline;
+.flexslider {
   background: none; 
   margin: 0px;
   border: none;
