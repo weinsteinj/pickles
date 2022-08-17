@@ -190,7 +190,7 @@ export default {
   grid-template-columns: 1fr 0.75fr 1fr;
   grid-template-rows: 80px 150px 350px 80px;
   grid-template-areas:
-    " . username . "
+    " username username username "
     "time host play"
     "map pets image"
     ". invite .";
