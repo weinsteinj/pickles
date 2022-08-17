@@ -174,7 +174,13 @@
           multiple="true"
         ></multiselect>
       </div>
-
+        <div></div>
+       <button v-if="isEditing" @click="uploadWidget"
+        type="button"
+        id="upload_widget" 
+        class="cloudinary-button">
+        Upload new photo
+      </button>
       <button @click="savePet(pet)" v-if="isEditing">Save</button>
 
       <button v-if="isEditing" @click="isEditing = false">Cancel</button>
@@ -186,6 +192,9 @@
 <script>
 import petService from '@/services/petService.js'
 import Multiselect from "vue-multiselect";
+const cloudName = "picklepoints"; 
+const uploadPreset = "uw_test"; 
+const cloudinary = window.cloudinary;
 
 export default {
     name: 'pet-details',
@@ -253,6 +262,18 @@ export default {
         }
      
     },
+
+    mounted() {
+     
+
+      // document.getElementById("upload_widget").addEventListener(
+      //   "click",
+      //   function () {
+      //     myWidget.open();
+      //   },
+      //   false
+      // );
+     },
 
   methods: {
     getAge(birthDate) {
@@ -330,6 +351,26 @@ export default {
 
       return personalityString;
     },
+    uploadWidget() {
+        const myWidget = cloudinary.createUploadWidget(
+        {
+
+          cloudName: cloudName,
+          uploadPreset: uploadPreset,
+          tags: ['pet']
+        },
+        (error, result) => {
+          if (!error && result && result.event === "success") {
+            console.log("Done! Here is the image info: ", result.info);
+            this.pet.petPhoto = result.info.secure_url;
+            document
+              .getElementById("uploadedimage")
+              .setAttribute("src", result.info.secure_url);
+          }
+        }
+      );
+      myWidget.open();
+    }
   }
 }
 </script>
