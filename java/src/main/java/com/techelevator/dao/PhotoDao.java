@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface PhotoDao {
 
-    List<String> getAllPhotoUrls();
+    String getAllPhotoUrls();
 
 }
