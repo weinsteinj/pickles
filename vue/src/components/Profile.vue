@@ -34,7 +34,7 @@
       
       <div class="hosting-info">
       <p>Details: <br />{{ playdate.details }}</p>
-      <p>Time: <br />{{ playdate.dateTime }}</p>
+      <p>Time: <br />{{ changeDateTime(playdate.dateTime) }}</p>
       <!-- <p>Pets: {{ petNames }}</p> -->
       <p>Pets: <br /> <ul><li v-for="pet in playdatePetArray" v-bind:key="pet.id"> {{ pet.name }} the {{pet.species}} </li>
       </ul> </p>
@@ -67,7 +67,7 @@
       </div>
        <p>Host: <br />{{ playdate.hostUsername }}</p>
       <p>Details: <br />{{ playdate.details }}</p>
-      <p>Time: <br />{{ playdate.dateTime }}</p>
+      <p>Time: <br />{{ changeDateTime(playdate.dateTime) }}</p>
        <p>Pets: <br /> <ul><li v-for="pet in visitingPlaydatePetArray" v-bind:key="pet.id"> {{ pet.name }} the {{pet.species}}</li>
       </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
@@ -81,6 +81,7 @@
 //import userService from '@/services/userService.js';
 import petService from "@/services/petService.js";
 import playdateService from "@/services/playdateService.js";
+import moment from "moment";
 // import PetDetails from '@/components/PetDetails.vue';
 
 export default {
@@ -146,6 +147,10 @@ export default {
   computed: {},
 
   methods: {
+    changeDateTime(dateTime) {
+      let dateTimeFormat = moment(dateTime).format("MMMM Do YYYY, h:mm a");
+      return dateTimeFormat;
+    },
     getAge(birthDate) {
       let today = new Date();
       let birthday = new Date(birthDate);
