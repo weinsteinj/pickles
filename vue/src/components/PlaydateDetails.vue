@@ -58,7 +58,7 @@
         <h2>Want to come to this playdate? Request an invitation!</h2>
         <button class="btn" @click="requestInvite">Request an Invite</button>
       </div>
-      <div v-if="activePlaydate.status == 'Pending'">
+      <div id="invSent" v-if="activePlaydate.status == 'Pending'">
         <h2>An invite has been requested, check back soon!</h2>
       </div>
     </div>
@@ -169,6 +169,9 @@ export default {
   grid-area: image;
 }
 #invite {
+  grid-area: invite;
+}
+#invSent{
   grid-area: invite;
 }
 
