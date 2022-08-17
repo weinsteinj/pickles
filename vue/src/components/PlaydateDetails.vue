@@ -124,7 +124,7 @@ export default {
         .catch((err) => console.error(err));
     },
     changeDateTime(dateTime) {
-      let dateTimeFormat = moment(dateTime).format("MMMM Do YYYY, h:mm:ss a");
+      let dateTimeFormat = moment(dateTime).format("MMMM Do YYYY, h:mm a");
       return dateTimeFormat;
     },
   },
