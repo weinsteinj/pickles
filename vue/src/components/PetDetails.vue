@@ -42,6 +42,21 @@
           </div>
 
           <div v-if="!isEditing" class="pet-item">
+            <label for="pet-age">Age:</label>
+            <span>{{ getAge(pet.birthDate) }}</span>
+          </div>
+
+          <div v-if="isEditing" class="pet-item-edit">
+            <label for="pet-age">Birthday:</label>
+            <input
+              class="field"
+              type="date"
+              v-model="pet.birthDate"
+              :class="{ view: !isEditing }"
+            />
+          </div>
+
+          <div v-if="!isEditing" class="pet-item">
             <label for="pet-species">Species:</label>
             <span>{{ pet.species }}</span>
           </div>
@@ -80,20 +95,7 @@
             </select>
           </div>
 
-          <div v-if="!isEditing" class="pet-item">
-            <label for="pet-age">Age:</label>
-            <span>{{ getAge(pet.birthDate) }}</span>
-          </div>
-
-          <div v-if="isEditing" class="pet-item-edit">
-            <label for="pet-age">Birthday:</label>
-            <input
-              class="field"
-              type="date"
-              v-model="pet.birthDate"
-              :class="{ view: !isEditing }"
-            />
-          </div>
+          
 
           <div v-if="!isEditing" class="pet-item">
             <label for="pet-fixed">Spayed/Neutered:</label>
@@ -457,8 +459,10 @@ select {
   /* height: 21px; */
   width: 100%;
   line-height: initial;
-  background-color: var(--primary-green);
+  background-color: var(--btn-green);
   font-family: 'Cabin', sans-serif;
+  color: black;
+  font-weight: bold;
   font-size: 1rem;
 }
 
@@ -470,6 +474,8 @@ button {
 
 .field {
   width: 288px;
+  border-width: 1px;
+  padding-inline-start: 0px;
 }
 
 .multiselect {
