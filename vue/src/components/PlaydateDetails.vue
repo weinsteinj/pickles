@@ -14,17 +14,18 @@
         class="woman-with-dog"
       />
     </div>
-    
 
     <div class="info-container">
-      <h1 id="usernameDetails" class="play-details">{{ activePlaydate.hostUsername }}'s Playdate</h1>
+      <h1 id="usernameDetails" class="play-details">
+        {{ activePlaydate.hostUsername }}'s Playdate
+      </h1>
       <div id="playDetails" class="play-details">
         <h2>Details:</h2>
         <p>{{ activePlaydate.details }}</p>
       </div>
       <div id="timeDetails" class="play-details">
         <h2>Time:</h2>
-        <p>  {{ changeDateTime(activePlaydate.dateTime) }}</p>
+        <p>{{ changeDateTime(activePlaydate.dateTime) }}</p>
       </div>
       <div id="hostDetails" class="play-details">
         <h2>Host:</h2>
@@ -34,23 +35,26 @@
         <h2>Pets:</h2>
         <p v-for="pet in pets" v-bind:key="pet.id">{{ pet.name }}</p>
       </div>
-     
-      <div id="locDetails"  class="location-details">
-         <h2>Location:</h2>
+
+      <div id="locDetails" class="location-details">
+        <h2>Location:</h2>
         <div class="map-panel">
           <playdate-details-map></playdate-details-map>
         </div>
-        </div>
-        <div id=imgDetails class="img-panel">
-          <h2>Photo:</h2>
-          <img
-            v-if="activePlaydate.playdatePhoto !== ''"
-            :src="activePlaydate.playdatePhoto"
-          />
-        </div>
-      
+      </div>
+      <div id="imgDetails" class="img-panel">
+        <h2>Photo:</h2>
+        <img
+          v-if="activePlaydate.playdatePhoto !== ''"
+          :src="activePlaydate.playdatePhoto"
+        />
+      </div>
 
-      <div id="invite" class="play-details" v-if="activePlaydate.status == 'Posted'">
+      <div
+        id="invite"
+        class="play-details"
+        v-if="activePlaydate.status == 'Posted'"
+      >
         <h2>Want to come to this playdate? Request an invitation!</h2>
         <button class="btn" @click="requestInvite">Request an Invite</button>
       </div>
@@ -66,8 +70,7 @@
 <script>
 import playdateService from "@/services/playdateService.js";
 import PlaydateDetailsMap from "@/components/PlaydateDetailsMap.vue";
- import moment from 'moment';
-
+import moment from "moment";
 
 export default {
   name: "playdate-details",
@@ -106,9 +109,6 @@ export default {
         });
         this.pets(unique); //what is this doing? - it keeps giving me errors
       }
-      
-      
-
     });
   },
   methods: {
@@ -123,11 +123,10 @@ export default {
         //commit this to the store?
         .catch((err) => console.error(err));
     },
-      changeDateTime(dateTime){
-         let dateTimeFormat = moment(dateTime).format('MMMM Do YYYY, h:mm:ss a');
-         return dateTimeFormat;
-      }
-     
+    changeDateTime(dateTime) {
+      let dateTimeFormat = moment(dateTime).format("MMMM Do YYYY, h:mm:ss a");
+      return dateTimeFormat;
+    },
   },
   // computed: {
   //     getPetsForPlaydateDetails() {
@@ -147,31 +146,30 @@ export default {
 </script>
 
 <style scoped>
-
 #usernameDetails {
- grid-area: username
+  grid-area: username;
 }
 
-#playDetails{
-  grid-area: play
+#playDetails {
+  grid-area: play;
 }
-#timeDetails{
-  grid-area: time
+#timeDetails {
+  grid-area: time;
 }
-#hostDetails{
-  grid-area: host
+#hostDetails {
+  grid-area: host;
 }
-#petDetails{
-  grid-area: pets
+#petDetails {
+  grid-area: pets;
 }
-#locDetails{
-  grid-area: map
+#locDetails {
+  grid-area: map;
 }
-#imgDetails{
-  grid-area: image
+#imgDetails {
+  grid-area: image;
 }
-#invite{
-  grid-area: invite
+#invite {
+  grid-area: invite;
 }
 
 .play-details {
@@ -186,12 +184,13 @@ export default {
 }
 .info-container {
   display: grid;
-grid-template-columns: 1fr .75fr 1fr;
-grid-template-rows: 80px 150px 350px 80px;
-grid-template-areas: " . username . "
-                    "play host time"
-                    "map pets image"
-                    ". invite ."
+  grid-template-columns: 1fr 0.75fr 1fr;
+  grid-template-rows: 80px 150px 350px 80px;
+  grid-template-areas:
+    " . username . "
+    "time host play"
+    "map pets image"
+    ". invite .";
 }
 
 .map-panel {
@@ -217,7 +216,7 @@ grid-template-areas: " . username . "
 div > p {
   font-size: 20px;
 }
-.img-panel{
+.img-panel {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -225,16 +224,16 @@ div > p {
   align-items: center;
 }
 
-#imgDetails> img {
- object-fit: cover;
+#imgDetails > img {
+  object-fit: cover;
   height: 100%;
   max-width: 100%;
 }
-.left-panel{
+.left-panel {
   width: 20rem;
   margin-right: 50px;
 }
-.right-panel{
+.right-panel {
   width: 20rem;
   margin-left: 50px;
 }
