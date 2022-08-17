@@ -174,8 +174,8 @@
           multiple="true"
         ></multiselect>
       </div>
-
-       <button v-if="isEditing"
+        <div></div>
+       <button v-if="isEditing" @click="uploadWidget"
         type="button"
         id="upload_widget" 
         class="cloudinary-button">
@@ -264,31 +264,15 @@ export default {
     },
 
     mounted() {
-       const myWidget = cloudinary.createUploadWidget(
-        {
+     
 
-          cloudName: cloudName,
-          uploadPreset: uploadPreset,
-          tags: ['pet']
-        },
-        (error, result) => {
-          if (!error && result && result.event === "success") {
-            console.log("Done! Here is the image info: ", result.info);
-            this.pet.petPhoto = result.info.secure_url;
-            document
-              .getElementById("uploadedimage")
-              .setAttribute("src", result.info.secure_url);
-          }
-        }
-      );
-
-      document.getElementById("upload_widget").addEventListener(
-        "click",
-        function () {
-          myWidget.open();
-        },
-        false
-      );
+      // document.getElementById("upload_widget").addEventListener(
+      //   "click",
+      //   function () {
+      //     myWidget.open();
+      //   },
+      //   false
+      // );
      },
 
   methods: {
@@ -367,6 +351,26 @@ export default {
 
       return personalityString;
     },
+    uploadWidget() {
+        const myWidget = cloudinary.createUploadWidget(
+        {
+
+          cloudName: cloudName,
+          uploadPreset: uploadPreset,
+          tags: ['pet']
+        },
+        (error, result) => {
+          if (!error && result && result.event === "success") {
+            console.log("Done! Here is the image info: ", result.info);
+            this.pet.petPhoto = result.info.secure_url;
+            document
+              .getElementById("uploadedimage")
+              .setAttribute("src", result.info.secure_url);
+          }
+        }
+      );
+      myWidget.open();
+    }
   }
 }
 </script>
