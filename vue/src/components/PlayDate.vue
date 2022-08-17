@@ -58,12 +58,6 @@ export default {
     //      })
     // },
   },
-  mounted() {
-			this.scrollTop();
-		},
-		updated() {
-			this.scrollToTop();
-    }
 }
 </script>
 
