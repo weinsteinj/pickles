@@ -8,11 +8,13 @@ import com.techelevator.model.GeocodeResponse;
 import com.techelevator.model.Marker;
 import com.techelevator.model.Pet;
 import com.techelevator.model.ZipCodeNotFoundException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin
+@PreAuthorize("permitAll()")
 @RestController
 public class PhotoController {
     private PhotoDao photoDao;
