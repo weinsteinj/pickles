@@ -30,9 +30,9 @@ export default {
   data() {
     return {
       center: { 
-        lat: 41.039068,
+        lat: 40.445502,
         //this.$store.currentUserMarker.lat
-        lng: -73.815439
+        lng: -80.003282
         //this.$store.currentUserMarker.lng
       },
       locationMarkers: [],
