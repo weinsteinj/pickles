@@ -45,7 +45,7 @@ img {
     /* justify-content: space-around; */
     border-radius: 15px 15px 15px 15px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.18);
-    margin: 0 1rem 0 1rem;
+    margin: 1rem 1rem 1rem 1rem;
     height: 10rem;
     
 }

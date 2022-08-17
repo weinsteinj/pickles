@@ -1,5 +1,5 @@
 <template>
-<body>
+<div>
 <!-- <div class="pet-spotlight-container"> -->
       <div class="flexslider carousel" >
           <ul class="slides">
@@ -44,7 +44,7 @@
         </ul> 
     </div>
   <!-- </div>    -->
-</body>
+</div>
   
 
 
@@ -86,31 +86,26 @@ export default {
       recaptchaScript.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
       document.head.appendChild(recaptchaScript)
 
-      $('.flexslider').flexslider({
-      animation: "slide",
-      animationLoop: true,
-      itemWidth: 40,
-      itemMargin: 5,
-      minItems: 4,
-      maxItems: 4,
-      slideshow: true,                //Boolean: Animate slider automatically
-      slideshowSpeed: 7000,           //Integer: Set the speed of the slideshow cycling, in milliseconds
-      animationSpeed: 600,   
-      randomize: true
-      
-    });
+    $(window).load(function() {
+    $('.flexslider').flexslider({
+    animation: "slide",
+    animationLoop: true,
+    itemWidth: 10,
+    itemMargin: 0,
+    minItems: 6,
+    maxItems: 6,
+    slideshow: true,                //Boolean: Animate slider automatically
+    slideshowSpeed: 7000,           //Integer: Set the speed of the slideshow cycling, in milliseconds
+    animationSpeed: 600,   
+    randomize: true
+
+  });
+});
   }
 }
 </script>
 
 <style scoped>
-
-
-
-img {
-    height: 230px;
-    width: 280px;
-  }
 
 
 
@@ -139,8 +134,16 @@ img {
 
 
 .slides {
-  background: none;
-  display: inline;
+  padding-top: 15px;
+   padding-bottom: 15px;
+  background: var(--secondary-green);
+  
+}
+
+.slides img:hover {
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.18);
+  
+  
 }
 
  img {
@@ -153,18 +156,22 @@ img {
   align-items: center;
   padding-top: 5px;
   padding-bottom: 5px;
-  padding-left: 2px;
-  padding-right: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+     height: 230px;
+    width: 280px;
+    border-radius: 30px 30px 30px 30px;
 }
 
 .flexslider {
   background: none; 
   margin: 0px;
   border: none;
+  
 }
 
 body {
-  padding-top: 1rem;
+  padding-top: 0rem;
   margin-top: 0;
 }
 
