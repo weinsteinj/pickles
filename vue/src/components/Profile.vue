@@ -1,8 +1,12 @@
 <template>
   <div>
-    <h1>Welcome to {{ $store.state.user.firstName }}'s Profile.</h1>
-    <h2>{{ $store.state.user.username }}'s Pets:</h2>
-    <button @click="isEditing = !isEditing" v-if="!isEditing">Edit</button>
+<h1>Welcome to {{ $store.state.user.firstName }}'s Profile.</h1>
+    <div class="header">
+      
+    <h2>Your Pets:</h2>
+    <button @click="isEditing = !isEditing" v-if="!isEditing" class="edit-btn">Edit Pets</button>
+    </div>
+    
     <div
       v-for="pet in $store.state.currentUserPetArray"
       v-bind:key="pet.petId"
@@ -302,9 +306,7 @@ export default {
     };
   },
 
-  computed: {
-      
-  },
+  computed: {},
 
   methods: {
     getAge(birthDate) {
@@ -318,76 +320,74 @@ export default {
       return age;
     },
     savePet(pet) {
-        pet.personality = [];
+      pet.personality = [];
       for (let i of this.value) {
-          pet.personality.push(i.id);
+        pet.personality.push(i.id);
       }
       this.isEditing = false;
       petService.updatePet(pet, pet.petId).then((response) => {
         if (response.status === 200 || response.status === 204) {
           console.log(response);
-          petService.getPetsByUserId(this.$store.state.user.id)
-          .then((response) => {
+          petService
+            .getPetsByUserId(this.$store.state.user.id)
+            .then((response) => {
               if (response.status === 200) {
-                  this.$store.commit("ADD_PETS_TO_USER", response.data); 
+                this.$store.commit("ADD_PETS_TO_USER", response.data);
               }
-              
-          })
+            });
         }
       });
     },
     sizeToString(sizeNum) {
-        let size = "";
-        switch(sizeNum) {
-            case 1:
-                size = 'Up to 15 pounds';
-                return size;
-            case 2:
-                size = '15 - 30 pounds';
-                return size;
-            case 3:
-                size = '30 - 50 pounds';
-                return size;
-            case 4:
-                size = '50 - 90 pounds';
-                return size;
-            case 5:
-                size = 'Bigger than 90 pounds';
-                return size;
-                
-
-        }
-        return size;
+      let size = "";
+      switch (sizeNum) {
+        case 1:
+          size = "Up to 15 pounds";
+          return size;
+        case 2:
+          size = "15 - 30 pounds";
+          return size;
+        case 3:
+          size = "30 - 50 pounds";
+          return size;
+        case 4:
+          size = "50 - 90 pounds";
+          return size;
+        case 5:
+          size = "Bigger than 90 pounds";
+          return size;
+      }
+      return size;
     },
     personalityToString(personalityArr) {
-        let personalityString = '';
+      let personalityString = "";
 
-        personalityArr.forEach(personalityId => {
-            
-            if (personalityId === 1) {
-                personalityString += '| Timid |';
-            } else if (personalityId === 2) {
-                personalityString += '| Tires Quickly |';
-            } else if (personalityId === 3) {
-                personalityString += '| Independent |';
-            } else if (personalityId === 4) {
-                personalityString += '| Playful |';
-            } else if (personalityId === 5) {
-                personalityString += '| Toy Sharing |';
-            } else if (personalityId === 6) {
-                personalityString += '| Confident |';
-            } else if (personalityId === 7) {
-                personalityString += '| High Energy |';
-            } else if (personalityId === 8) {
-                personalityString += '| Toy Possessive |';
-            }
-        });
+      personalityArr.forEach((personalityId) => {
+        if (personalityId === 1) {
+          personalityString += "| Timid |";
+        } else if (personalityId === 2) {
+          personalityString += "| Tires Quickly |";
+        } else if (personalityId === 3) {
+          personalityString += "| Independent |";
+        } else if (personalityId === 4) {
+          personalityString += "| Playful |";
+        } else if (personalityId === 5) {
+          personalityString += "| Toy Sharing |";
+        } else if (personalityId === 6) {
+          personalityString += "| Confident |";
+        } else if (personalityId === 7) {
+          personalityString += "| High Energy |";
+        } else if (personalityId === 8) {
+          personalityString += "| Toy Possessive |";
+        }
+      });
 
-        return personalityString;
+      return personalityString;
     },
     acceptInvite(playdate) {
-        playdate.status = "Accepted";
-        playdateService.updatePlaydate(playdate.playdateId,playdate)
+      playdate.status = "Accepted";
+      playdateService
+        .updatePlaydate(playdate.playdateId, playdate)
         .then((response) => {
           if (response.status === 200 || response.status === 204) {
             console.log(response);
@@ -395,103 +395,100 @@ export default {
         });
     },
     rejectInvite(playdate) {
-        playdate.status = "Rejected";
-        playdateService.updatePlaydate(playdate.playdateId,playdate)
+      playdate.status = "Rejected";
+      playdateService
+        .updatePlaydate(playdate.playdateId, playdate)
         .then((response) => {
-             if (response.status === 200 || response.status === 204) {
-                    console.log(response);
-                } 
-
-        var newPlaydate = playdate;
-        newPlaydate.status = "Posted";
-        newPlaydate.visitingUserId = null;
-        playdateService.createPlaydate(newPlaydate)
-        .then(response => {
-        if (response.status === 200) {
-            this.$store.commit('ADD_PLAYDATE_TO_ARRAY', newPlaydate);
+          if (response.status === 200 || response.status === 204) {
+            console.log(response);
           }
-        })
-    })
+
+          var newPlaydate = playdate;
+          newPlaydate.status = "Posted";
+          newPlaydate.visitingUserId = null;
+          playdateService.createPlaydate(newPlaydate).then((response) => {
+            if (response.status === 200) {
+              this.$store.commit("ADD_PLAYDATE_TO_ARRAY", newPlaydate);
+            }
+          });
+        });
     },
-    getNamesFromId(id){
-            this.$store.state.petArray.find(element => {
-                element.id === id;
-            })
-        },
+    getNamesFromId(id) {
+      this.$store.state.petArray.find((element) => {
+        element.id === id;
+      });
+    },
     deletePlaydate(playdateId) {
-      playdateService.deletePlaydate(playdateId)
-      .then((response) => {
-        if (response===200) {
-          playdateService.getAllPlaydates()
-          .then((response) => {
-            if (response===200) {
+      playdateService.deletePlaydate(playdateId).then((response) => {
+        if (response === 200) {
+          playdateService.getAllPlaydates().then((response) => {
+            if (response === 200) {
               this.$store.commit("ADD_ALL_PLAYDATE", response.data);
             }
-          })
+          });
         }
-      })
-    }
-    
+      });
+    },
   },
 
   created() {
-    playdateService.getAllPlaydates()
-      .then(response => {
-       if(response.status===200) {
-         this.$store.commit("ADD_ALL_PLAYDATE",response.data);
-         this.playdateArray = this.$store.state.playdateArray.filter(
+    playdateService.getAllPlaydates().then((response) => {
+      if (response.status === 200) {
+        this.$store.commit("ADD_ALL_PLAYDATE", response.data);
+        this.playdateArray = this.$store.state.playdateArray.filter(
           (playdate) => playdate.hostUserId === this.$store.state.user.id
         );
-          this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
-            (playdate) => playdate.visitingUserId === this.$store.state.user.id
-          );
-        }
+        this.visitingPlaydateArray = this.$store.state.playdateArray.filter(
+          (playdate) => playdate.visitingUserId === this.$store.state.user.id
+        );
+      }
       for (var playdate of this.playdateArray) {
-        petService.getPetsByPlaydateId(playdate.playdateId)
-        .then((response) => {
-          if (response.status===200) {
+        petService.getPetsByPlaydateId(playdate.playdateId).then((response) => {
+          if (response.status === 200) {
             this.playdatePetArray = response.data;
           }
-        })
+        });
       }
       for (var visitingPlaydate of this.visitingPlaydateArray) {
-        petService.getPetsByPlaydateId(visitingPlaydate.playdateId)
-        .then((response) => {
-          if (response.status===200) {
-            this.visitingPlaydatePetArray = response.data;
-          }
-        }).catch((error)=> {
-          console.log(error);
-        })
+        petService
+          .getPetsByPlaydateId(visitingPlaydate.playdateId)
+          .then((response) => {
+            if (response.status === 200) {
+              this.visitingPlaydatePetArray = response.data;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
-      
+
       petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
-      if (response.status === 200) {
-        this.pets = response.data;
-        this.$store.commit("ADD_PETS_TO_USER", response.data);
-      }
+        if (response.status === 200) {
+          this.pets = response.data;
+          this.$store.commit("ADD_PETS_TO_USER", response.data);
+        }
       });
-    //   const unique = (value, index, self) => {
-    //   return self.indexOf(value) === index;
-    // };
-    //     let allPetsArray = this.$store.state.petArray;
-    //     let playdatePets = this.playdate.petId; //this.playdate does not exist
-        
-    //     for(let i=0; i<allPetsArray.length; i++) {
-            
-    //         playdatePets.forEach((element) => {
-                
-    //             allPetsArray.forEach(pet => {
-    //                 let petIdHere = pet.petId;
-               
-    //                 if (element === petIdHere)
-    //                 this.petNames.push("does this work")
-                    
-    //                  })
-    //             })
-    //         this.petNames(unique);  
-    //     }
-    //   }
+      //   const unique = (value, index, self) => {
+      //   return self.indexOf(value) === index;
+      // };
+      //     let allPetsArray = this.$store.state.petArray;
+      //     let playdatePets = this.playdate.petId; //this.playdate does not exist
+
+      //     for(let i=0; i<allPetsArray.length; i++) {
+
+      //         playdatePets.forEach((element) => {
+
+      //             allPetsArray.forEach(pet => {
+      //                 let petIdHere = pet.petId;
+
+      //                 if (element === petIdHere)
+      //                 this.petNames.push("does this work")
+
+      //                  })
+      //             })
+      //         this.petNames(unique);
+      //     }
+      //   }
       //I think the below is extra
       // petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
       //   if (response.status === 200) {
@@ -505,11 +502,8 @@ export default {
       //     );
       //   }
       // });
-  //  });
-      
-  });
-   
-     
+      //  });
+    });
   },
 
   mounted() {},
@@ -521,7 +515,6 @@ export default {
 </script>
 
 <style scoped>
-
 .petImage {
   width: 1%;
 }
@@ -532,41 +525,36 @@ export default {
   margin-top: 1rem;
   justify-content: space-between;
   height: auto;
-  
-  
 }
 
 input,
 select {
-    margin: 0;
-    line-height: 1rem;
-    display: inline-block;
-    padding: 0;
-    text-align: left;
-    border-radius: 5px;
-    width: 50%;
-}    
+  margin: 0;
+  line-height: 1rem;
+  display: inline-block;
+  padding: 0;
+  text-align: left;
+  border-radius: 5px;
+  width: 50%;
+}
 
 .name {
-    margin-top: .75rem;
+  margin-top: 0.75rem;
 }
 
 .right-panel {
-    
 }
 
 .pet-item {
-    
-    padding: 0;
+  padding: 0;
 }
 
 .pet-img {
   display: block;
   max-width: 25rem;
   max-height: 15rem;
-  
+
   border-radius: 10px;
-  
 }
 
 .playdate-img {
@@ -576,7 +564,6 @@ select {
 }
 
 .pet-info {
-
   display: flex;
   flex-direction: column;
   width: 40%;
@@ -584,9 +571,8 @@ select {
 }
 
 button {
-    border-radius: 5px;
-    width: 50%;
-    
+  border-radius: 5px;
+  width: 50%;
 }
 
 li {
@@ -613,7 +599,38 @@ h1 {
 }
 
 span {
-    font-weight: normal;
+  font-weight: normal;
+}
+
+.edit-btn {
+  width: 5rem;
+  height: 2rem;
+  font-family: "Cabin", sans-serif;
+  background-color: var(--btn-green);
+  font-weight: bold;
+  font-size: 1rem;
+  align-self: flex-end;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1,
+h2 {
+  margin: 0;
+  padding: 0;
+  align-self: flex-end;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  flex-grow: 1;
+  margin-top: 1rem;
 }
 </style>
 
