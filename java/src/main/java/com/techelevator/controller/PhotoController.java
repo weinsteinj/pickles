@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @CrossOrigin
-@PreAuthorize("permitAll()")
 @RestController
 public class PhotoController {
     private PhotoDao photoDao;
@@ -25,7 +24,7 @@ public class PhotoController {
     }
 
     @RequestMapping(path = "/photos", method = RequestMethod.GET)
-    public String getAllPhotos() {
+    public List<JsonNode> getAllPhotos() throws JsonProcessingException {
 
         return photoDao.getAllPhotoUrls();
     }

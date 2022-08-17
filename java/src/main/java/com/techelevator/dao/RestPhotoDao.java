@@ -1,5 +1,8 @@
 package com.techelevator.dao;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,7 +18,7 @@ import java.util.List;
 public class RestPhotoDao implements PhotoDao {
 
     @Override
-    public String getAllPhotoUrls() {
+    public List<JsonNode> getAllPhotoUrls() throws JsonProcessingException {
         RestTemplate restTemplate = new RestTemplate();
         String uri = "https://api.cloudinary.com/v1_1/picklepoints/resources/image";
 
@@ -30,8 +33,13 @@ public class RestPhotoDao implements PhotoDao {
 
         HttpEntity<String> request = new HttpEntity<String>(headers);
         ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, request, String.class);
-        //String photoUrls = new ArrayList<>();
-        //profit
-        return response.getBody();
+        //end stack exchange snippet
+
+       // List<String> photoUrls = new ArrayList<String>();
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode rootNode = mapper.readTree(response.getBody());
+        List<JsonNode> photoUrls = new ArrayList<>();
+        photoUrls = rootNode.findValues("secure_url");
+        return photoUrls;
     };
 }
