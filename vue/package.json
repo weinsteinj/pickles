@@ -14,6 +14,7 @@
     "cloudinary-vue": "^1.2.4",
     "core-js": "^3.9.1",
     "jquery": "^3.6.0",
+    "moment": "^2.29.4",
     "vue": "^2.6.12",
     "vue-multiselect": "^2.1.6",
     "vue-router": "^3.5.1",
