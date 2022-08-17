@@ -193,14 +193,15 @@
       v-bind:key="playdate.playdateId"
       class="user-playdates"
     >
-      <div>
+      <div class="playdateImage">
         <img
           :src="playdate.playdatePhoto"
           alt="playdate photo"
-          class="playdate-img"
+          class="pet-img"
         />
       </div>
       
+      <div class="hosting-info">
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <!-- <p>Pets: {{ petNames }}</p> -->
@@ -216,6 +217,8 @@
         <button class='btn' @click="rejectInvite(playdate)">Reject</button>
         
       </div>
+      </div>
+      <div></div>
     </div>
 
     <h2>Playdates you may attend:</h2>
@@ -224,11 +227,11 @@
       v-bind:key="playdate.playdateId"
       class="user-playdates"
     >
-      <div>
+      <div class="petImage">
         <img
           :src="playdate.playdatePhoto"
           alt="playdate photo"
-          class="playdate-img"
+          class="pet-img"
         />
       </div>
        <p>Host: <br />{{ playdate.hostUsername }}</p>
@@ -561,6 +564,7 @@ select {
 }
 
 .playdate-img {
+  display: block;
   width: 25rem;
   height: 100%;
   border-radius: 10px;
@@ -587,6 +591,15 @@ li {
   display: flex;
   border-radius: 10px;
   margin-top: 1rem;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.hosting-info {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  justify-content: center;
 }
 
 h1 {
@@ -643,11 +656,15 @@ h2 {
   color: black;
   font-weight: bold;
   font-size: 1rem;
-  
 }
 
 .edit-btn:hover {
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.18);
 }
+
+.playdateImage {
+  width: 1%;
+}
+
 </style>
 
