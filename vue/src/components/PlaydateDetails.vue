@@ -33,7 +33,9 @@
       </div>
       <div id="petDetails" class="play-details">
         <h2>Pets:</h2>
-        <p v-for="pet in pets" v-bind:key="pet.id">{{ pet.name }}</p>
+        <p v-for="pet in pets" v-bind:key="pet.id">
+         <router-link :to="{name: 'pet-info', params: {petId: pet.petId}}"> {{ pet.name }}</router-link>
+          </p>
       </div>
 
       <div id="locDetails" class="location-details">
