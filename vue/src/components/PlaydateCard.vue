@@ -9,6 +9,10 @@
             Pets: 
             {{pets.join(', ')}}
         </div>
+            <div>
+            Species:
+            {{species.join(', ')}}
+            </div>
         <router-link :to="{path: '/playdate/'+playdate.playdateId}"> See more details! </router-link>
     </body>
 </template>
@@ -18,7 +22,8 @@ export default {
     name: 'playdate-card',
     data() {
         return {
-            pets: []
+            pets: [],
+            species: []
         }
     },
     props: {
@@ -39,12 +44,15 @@ export default {
                 allPetsArray.forEach(pet => {
                     let petIdHere = pet.petId;
                
-                    if (element === petIdHere)
+                    if (element === petIdHere) {
                     this.pets.push(pet.name)
+                    this.species.push(pet.species);
+                    }
                     
                      })
                 })
             this.pets = this.pets.filter(unique);  
+            this.species = this.species.filter(unique);  
         }
             
         

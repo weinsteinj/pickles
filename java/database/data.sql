@@ -35,13 +35,13 @@ INSERT INTO users (first_name,last_name,username,password_hash,role,email_addres
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('a','b','user3','user3','ROLE_USER','email@email.com','15202');
 
 INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size)
-VALUES ('Junebug', 'dog', 'female', '2015-06-10', true, true, 1);
+VALUES ('Junebug', 'Dog', 'female', '2015-06-10', true, true, 1);
 
 INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size)
-VALUES ('Kona', 'dog', 'female', '2017-04-15', true, true, 1);
+VALUES ('Kona', 'Dog', 'female', '2017-04-15', true, true, 1);
 
 INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size)
-VALUES ('James Franco', 'dog', 'male', '2013-08-15', true, true, 3);
+VALUES ('James Franco', 'Dog', 'male', '2013-08-15', true, true, 3);
 
 
 --USER IDS IN PETS--
