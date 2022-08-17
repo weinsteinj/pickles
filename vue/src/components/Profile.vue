@@ -200,19 +200,21 @@
           class="playdate-img"
         />
       </div>
-      <div>
-      <button class='btn' @click="deletePlaydate(playdate.playdateId)">Delete Playdate</button>
-      </div>
+      
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <!-- <p>Pets: {{ petNames }}</p> -->
       <p>Pets: <br /> <ul><li v-for="pet in playdatePetArray" v-bind:key="pet.id"> {{ pet.name }} the {{pet.species}} </li>
       </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
+      <div>
+      <button class='btn' @click="deletePlaydate(playdate.playdateId)">Delete Playdate</button>
+      </div>
       <div v-if="playdate.status === 'Pending'">
         <p>User requesting an invitation: {{ playdate.visitingUserId }}</p>
         <button class='btn' @click="acceptInvite(playdate)">Accept</button>
         <button class='btn' @click="rejectInvite(playdate)">Reject</button>
+        
       </div>
     </div>
 
@@ -427,6 +429,7 @@ export default {
             }
           });
         }
+        this.$router.go();
       });
     },
   },
@@ -631,6 +634,20 @@ h1 {
 h2 {
   flex-grow: 1;
   margin-top: 1rem;
+}
+
+.btn {
+  width: 10rem;
+  height: 3rem;
+  line-height: initial;
+  color: black;
+  font-weight: bold;
+  font-size: 1rem;
+  
+}
+
+.edit-btn:hover {
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.18);
 }
 </style>
 
