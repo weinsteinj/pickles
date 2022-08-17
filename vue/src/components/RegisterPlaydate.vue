@@ -365,6 +365,6 @@ div.text-center {
 .multiselect__tags {
   background-color: rgb(226, 223, 223);
   font-size: 1rem;
-  background: none;
+  background: rgb(226, 223, 223);
 }
 </style>
