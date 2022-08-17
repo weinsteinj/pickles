@@ -13,7 +13,7 @@
             Species:
             {{species.join(', ')}}
             </div>
-        <router-link :to="{path: '/playdate/'+playdate.playdateId}"> See more details! </router-link>
+        <router-link class="router-link" :to="{path: '/playdate/'+playdate.playdateId}"> See more details! </router-link>
     </body>
 </template>
 
@@ -87,5 +87,10 @@ body {
     padding-top: 0px;
     margin-top: 0px;
 
+}
+
+.router-link {
+    text-decoration: none;
+    color: var(--primary-green);
 }
 </style>

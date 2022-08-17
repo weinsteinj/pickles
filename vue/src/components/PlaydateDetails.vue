@@ -34,7 +34,7 @@
       <div id="petDetails" class="play-details">
         <h2>Pets:</h2>
         <p v-for="pet in pets" v-bind:key="pet.id">
-         <router-link :to="{name: 'pet-info', params: {petId: pet.petId}}"> {{ pet.name }}</router-link>
+         <router-link class="router-link" :to="{name: 'pet-info', params: {petId: pet.petId}}"> {{ pet.name }}</router-link>
           </p>
       </div>
 
@@ -260,5 +260,10 @@ div.vue-map {
 
 h1 {
   margin-top: 0;
+}
+
+.router-link {
+    text-decoration: none;
+    color: var(--primary-green);
 }
 </style>

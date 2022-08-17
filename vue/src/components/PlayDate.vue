@@ -70,7 +70,8 @@ body {
 <style scoped>
 
 h1 {
-  padding: 0px;
+  font-size: 25px;
+  padding: 5px;
   margin: 0px;
   text-align: center;
   background: #52B69A;

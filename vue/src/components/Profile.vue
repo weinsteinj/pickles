@@ -7,15 +7,18 @@
    
     </div>
     
+    <div class="petList">
+
+    
     <div
       v-for="p in $store.state.currentUserPetArray"
       v-bind:key="p.petId"
       class="user-pets"
     >
-      <router-link :to="{name: 'pet-info', params: {petId: p.petId}}">{{p.name}}</router-link>
+      <router-link class="router-link-pets" :to="{name: 'pet-info', params: {petId: p.petId}}">{{p.name}}</router-link>
       <div class="right-panel"></div>
     </div>
-
+</div>
     
 
     <h2>Playdates you're hosting:</h2>
@@ -37,7 +40,7 @@
       <p>Time: <br />{{ changeDateTime(playdate.dateTime) }}</p>
       <!-- <p>Pets: {{ petNames }}</p> -->
       <p>Pets: <br /> <ul><li v-for="pet in playdatePetArray" v-bind:key="pet.id"> 
-        <router-link :to="{name: 'pet-info', params: {petId: pet.petId}}"> {{ pet.name }} the {{pet.species}}</router-link>
+        <router-link class="router-link" :to="{name: 'pet-info', params: {petId: pet.petId}}"> {{ pet.name }} the {{pet.species}}</router-link>
          </li>
       </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
@@ -71,7 +74,7 @@
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ changeDateTime(playdate.dateTime) }}</p>
        <p>Pets: <br /> <ul><li v-for="pet in visitingPlaydatePetArray" v-bind:key="pet.id"> 
-         <router-link :to="{name: 'pet-info', params: {petId: pet.petId}}"> {{ pet.name }} the {{pet.species}}</router-link>
+         <router-link class="router-link" :to="{name: 'pet-info', params: {petId: pet.petId}}"> {{ pet.name }} the {{pet.species}}</router-link>
          </li>
       </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
@@ -362,6 +365,11 @@ export default {
 </script>
 
 <style scoped>
+.petList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .petImage {
   width: 1%;
 }
@@ -370,8 +378,9 @@ export default {
   display: flex;
   border-radius: 10px;
   margin-top: 1rem;
-  justify-content: space-between;
-  height: auto;
+  justify-content: center;
+  width: 33%;
+  padding: 10px;
 }
 
 input,
@@ -506,6 +515,16 @@ h2 {
 
 .playdateImage {
   width: 1%;
+}
+
+.router-link-pets {
+  text-decoration: none;
+  color: white;
+}
+
+.router-link {
+    text-decoration: none;
+    color: var(--primary-green);
 }
 
 </style>

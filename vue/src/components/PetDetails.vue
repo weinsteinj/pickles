@@ -2,9 +2,14 @@
   <div>
     <h2>{{pet.name}}'s Details</h2>
     <div class='pet-details'>
-    <button @click="isEditing = !isEditing" v-if="!isEditing" class="edit-btn">
-      Edit Pets
-    </button>
+    <div class="left-panel">
+      <h2 class="h2">Pickles</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiandae necessitatibus architecto. Reiciendis adipisci at fuga aut ratione! Obcaecati deleniti architecto aliquam repellendus optio ea, dolorem voluptatum nulla fuga.</p>
+      
+      <p></p>
+
+      <img src="../assets\images\playful_cat_re_ac9g.svg" alt="playful cat" class="playful-cat">
+    </div>
     <div class="petImage">
       <img :src="pet.petPhoto" alt="pet photo" class="pet-img" />
     </div>
@@ -184,6 +189,10 @@
       <button @click="savePet(pet)" v-if="isEditing">Save</button>
 
       <button v-if="isEditing" @click="isEditing = false">Cancel</button>
+
+      <button @click="isEditing = !isEditing" v-if="!isEditing" class="edit-btn">
+      Edit
+    </button>
       </div>
     </div>
   </div>
@@ -376,16 +385,27 @@ export default {
 </script>
 
 <style scoped>
-.pet-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
+.playful-cat {
+  width: 100%;
+  justify-self: flex-end;
+  flex-grow: 2;
 }
 
-.petImage {
-  width: 1%;
+.left-panel {
+  display: flex;
+  flex-direction: column;
 }
+
+.h2 {
+  align-self: center;
+}
+
+.pet-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .user-pets {
   background-color: #52b69a;
   display: flex;
@@ -421,7 +441,7 @@ select {
   display: block;
   max-width: 25rem;
   max-height: 15rem;
-
+  align-self: center;
   border-radius: 10px;
 }
 
@@ -532,4 +552,7 @@ label {
     padding: 10px;
     text-align: left;
 }
+
+
+
 </style>
