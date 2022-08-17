@@ -155,7 +155,7 @@
             </select>
           </div>
 
-          <div v-if="!isEditing" class="pet-item">
+          <div v-if="!isEditing" class="pet-item-last">
             <label for="pet-personality"
               >Personality:
               <span>{{ personalityToString(pet.personality) }}</span></label
@@ -405,16 +405,24 @@ export default {
 .left-panel {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  border-radius: 10px;
 }
 
 .pet-panel {
   display: flex;
-  width: 60rem;
+  width: 58rem;
   justify-content: space-between;
+  padding-top: 4rem;
+}
+
+.playful-cat {
+  padding-top: 20rem;
 }
 
 .h2 {
   align-self: center;
+  flex-grow: 0;
 }
 
 .pet-details {
@@ -444,10 +452,15 @@ select {
 }
 
 .right-panel {
+  width: 10%;
 }
 
 .pet-item {
   padding-bottom: .44rem;
+}
+
+.pet-item-last {
+  padding-bottom: .4rem;
 }
 
 .pet-item-edit {
@@ -497,7 +510,8 @@ button {
 }
 
 .pet-info {
-  width: 60%;
+  flex-grow: 1;
+  padding-left: 1rem;
 }
 
 button {
