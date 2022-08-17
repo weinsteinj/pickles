@@ -190,9 +190,12 @@
 
       <button v-if="isEditing" @click="isEditing = false">Cancel</button>
 
-      <button @click="isEditing = !isEditing" v-if="!isEditing" class="edit-btn">
+      <div v-if="$store.state.user.id === pet.userId">
+        <button @click="isEditing = !isEditing" v-if="!isEditing" class="edit-btn">
       Edit
     </button>
+      </div>
+      
       </div>
     </div>
   </div>
@@ -223,7 +226,6 @@ export default {
     },
     data () {
         return {
-            petId: null,
             pet: null,
             isEditing: false,
             value: [],
@@ -285,6 +287,13 @@ export default {
      },
 
   methods: {
+    hideEdit() {
+      if (!this.isEditing && this.$store.state.user.id === this.pet.userId) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     getAge(birthDate) {
       let today = new Date();
       let birthday = new Date(birthDate);

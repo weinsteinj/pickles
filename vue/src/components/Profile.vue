@@ -45,7 +45,7 @@
       </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
       <div>
-      <button class='btn' @click="deletePlaydate(playdate.playdateId)">Delete Playdate</button>
+      <button class='btn' @click="deletePlaydate(playdate.playdateId)" v-if="$store.state.user.id === playdate.hostUserId">Delete Playdate</button>
       </div>
       <div v-if="playdate.status === 'Pending'">
         <p>User requesting an invitation: {{ playdate.visitingUserId }}</p>
@@ -434,7 +434,6 @@ button {
 
 li {
   list-style: none;
-  text-decoration:
 }
 
 .user-playdates {
