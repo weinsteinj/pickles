@@ -193,27 +193,32 @@
       v-bind:key="playdate.playdateId"
       class="user-playdates"
     >
-      <div>
+      <div class="playdateImage">
         <img
           :src="playdate.playdatePhoto"
           alt="playdate photo"
-          class="playdate-img"
+          class="pet-img"
         />
       </div>
-      <div>
-      <button class='btn' @click="deletePlaydate(playdate.playdateId)">Delete Playdate</button>
-      </div>
+      
+      <div class="hosting-info">
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ playdate.dateTime }}</p>
       <!-- <p>Pets: {{ petNames }}</p> -->
       <p>Pets: <br /> <ul><li v-for="pet in playdatePetArray" v-bind:key="pet.id"> {{ pet.name }} the {{pet.species}} </li>
       </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
+      <div>
+      <button class='btn' @click="deletePlaydate(playdate.playdateId)">Delete Playdate</button>
+      </div>
       <div v-if="playdate.status === 'Pending'">
         <p>User requesting an invitation: {{ playdate.visitingUserId }}</p>
         <button class='btn' @click="acceptInvite(playdate)">Accept</button>
         <button class='btn' @click="rejectInvite(playdate)">Reject</button>
+        
       </div>
+      </div>
+      <div></div>
     </div>
 
     <h2>Playdates you may attend:</h2>
@@ -222,11 +227,11 @@
       v-bind:key="playdate.playdateId"
       class="user-playdates"
     >
-      <div>
+      <div class="petImage">
         <img
           :src="playdate.playdatePhoto"
           alt="playdate photo"
-          class="playdate-img"
+          class="pet-img"
         />
       </div>
        <p>Host: <br />{{ playdate.hostUsername }}</p>
@@ -427,6 +432,7 @@ export default {
             }
           });
         }
+        this.$router.go();
       });
     },
   },
@@ -558,6 +564,7 @@ select {
 }
 
 .playdate-img {
+  display: block;
   width: 25rem;
   height: 100%;
   border-radius: 10px;
@@ -584,6 +591,15 @@ li {
   display: flex;
   border-radius: 10px;
   margin-top: 1rem;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.hosting-info {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  justify-content: center;
 }
 
 h1 {
@@ -632,5 +648,23 @@ h2 {
   flex-grow: 1;
   margin-top: 1rem;
 }
+
+.btn {
+  width: 10rem;
+  height: 3rem;
+  line-height: initial;
+  color: black;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.edit-btn:hover {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.18);
+}
+
+.playdateImage {
+  width: 1%;
+}
+
 </style>
 
