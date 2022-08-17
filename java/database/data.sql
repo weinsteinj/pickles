@@ -85,22 +85,22 @@ INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VAL
 INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (4, 2, '15206', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
 INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (5, 3, '15207', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
 INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (6, 3, '15208', '2022-09-30T12:00:00', 'Go on a walk with us!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (4, 3, '15209', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (5, 2, '15210', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (6, 1, '15217', '2022-09-30T12:00:00', 'Go on a walk with us!');
-
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (1, 2, '45201', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (2, 4, '45202', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (1, 3, '45203', '2022-09-30T12:00:00', 'Go on a walk with us!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (1, 4, '45204', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (2, 5, '45205', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (1, 6, '45206', '2022-09-30T12:00:00', 'Go on a walk with us!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (4, 2, '45214', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (5, 3, '45207', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (6, 3, '45208', '2022-09-30T12:00:00', 'Go on a walk with us!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (4, 3, '45209', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (5, 2, '45215', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (6, 1, '45216', '2022-09-30T12:00:00', 'Go on a walk with us!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (4, 3, '15209', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (5, 2, '15210', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (6, 1, '15217', '2022-09-30T12:00:00', 'Go on a walk with us!');
+--
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (1, 2, '45201', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (2, 4, '45202', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (1, 3, '45203', '2022-09-30T12:00:00', 'Go on a walk with us!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (1, 4, '45204', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (2, 5, '45205', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (1, 6, '45206', '2022-09-30T12:00:00', 'Go on a walk with us!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (4, 2, '45214', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (5, 3, '45207', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (6, 3, '45208', '2022-09-30T12:00:00', 'Go on a walk with us!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (4, 3, '45209', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (5, 2, '45215', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
+--INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (6, 1, '45216', '2022-09-30T12:00:00', 'Go on a walk with us!');
 
 
 
