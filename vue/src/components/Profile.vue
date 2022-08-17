@@ -36,7 +36,9 @@
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ changeDateTime(playdate.dateTime) }}</p>
       <!-- <p>Pets: {{ petNames }}</p> -->
-      <p>Pets: <br /> <ul><li v-for="pet in playdatePetArray" v-bind:key="pet.id"> {{ pet.name }} the {{pet.species}} </li>
+      <p>Pets: <br /> <ul><li v-for="pet in playdatePetArray" v-bind:key="pet.id"> 
+        <router-link :to="{name: 'pet-info', params: {petId: pet.petId}}"> {{ pet.name }} the {{pet.species}}</router-link>
+         </li>
       </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
       <div>
@@ -51,8 +53,8 @@
       </div>
       <div></div>
     </div>
-
-    <h2>Playdates you may attend:</h2>
+    
+    <h2 v-if="visitingPlaydateArray.length > 0">Playdates you've Requested:</h2>
     <div
       v-for="playdate in visitingPlaydateArray"
       v-bind:key="playdate.playdateId"
@@ -68,7 +70,9 @@
        <p>Host: <br />{{ playdate.hostUsername }}</p>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ changeDateTime(playdate.dateTime) }}</p>
-       <p>Pets: <br /> <ul><li v-for="pet in visitingPlaydatePetArray" v-bind:key="pet.id"> {{ pet.name }} the {{pet.species}}</li>
+       <p>Pets: <br /> <ul><li v-for="pet in visitingPlaydatePetArray" v-bind:key="pet.id"> 
+         <router-link :to="{name: 'pet-info', params: {petId: pet.petId}}"> {{ pet.name }} the {{pet.species}}</router-link>
+         </li>
       </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
     </div>
@@ -421,6 +425,7 @@ button {
 
 li {
   list-style: none;
+  text-decoration:
 }
 
 .user-playdates {
