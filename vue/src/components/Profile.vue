@@ -89,6 +89,7 @@
 import petService from "@/services/petService.js";
 import playdateService from "@/services/playdateService.js";
 import moment from "moment";
+import userService from "@/services/userService.js";
 // import PetDetails from '@/components/PetDetails.vue';
 
 export default {
@@ -98,7 +99,7 @@ export default {
   },
   data() {
     return {
-      isEditing: false, //aubrey wants to try making this an array
+      isEditing: false, 
       // user: {},
       pets: [],
       petNames: [],
@@ -106,6 +107,7 @@ export default {
       playdatePetArray: [],
       visitingPlaydateArray: [],
       visitingPlaydatePetArray: [],
+      visitingUserPets: [],
       value: [],
       options: [
         {
@@ -296,6 +298,29 @@ export default {
         petService.getPetsByPlaydateId(playdate.playdateId).then((response) => {
           if (response.status === 200) {
             this.playdatePetArray = response.data;
+            if (playdate.visitingUserId > 0) {
+              userService.getById(playdate.visitingUserId) 
+              .then( (response) =>{
+                if (response.status === 200) {
+                  var visitingUser = response.data;
+                  petService.getPetsByUserId(visitingUser.id)
+                  .then((response) =>{
+                    if (response.status === 200) {
+                      var visitingPets = response.data;
+                      console.log(visitingPets);
+                      for (var pet of visitingPets) {
+                        this.visitingUserPets.push({
+                          playdateId: playdate.playdateId,
+                          visitingUserId: visitingUser.id,
+                          petId: pet.id,
+                          petName: pet.name
+                        });
+                      }
+                    }
+                  });
+                }
+              });
+            }
           }
         });
       }
@@ -312,11 +337,12 @@ export default {
           });
       }
 
-      petService.getPetsByUserId(this.$router.params.userId).then((response) => {
+      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
         if (response.status === 200) {
           this.pets = response.data;
           this.$store.commit("ADD_PETS_TO_USER", response.data);
         }
+      
       });
       //   const unique = (value, index, self) => {
       //   return self.indexOf(value) === index;

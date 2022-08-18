@@ -76,15 +76,15 @@ INSERT INTO pet_personality (pet_id, personality_id) VALUES (3,1);
 
 
 -- --PLAYDATES--
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (1, 2, '15212', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://www.flickr.com/photos/31273703@N02/3028758923/');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (2, 4, '15212', '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://www.flickr.com/photos/irisphotos/4180530938/');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (1, 3, '15202', '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://www.flickr.com/photos/bknabel/40739687510/');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (1, 4, '15203', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://www.flickr.com/photos/leafy/3824106375/');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (2, 5, '15204', '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://www.flickr.com/photos/dmuth/38170994821/');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (1, 6, '15205', '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://www.flickr.com/photos/oldonliner/8698152143/');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (4, 2, '15206', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://www.flickr.com/photos/dagnygromer/30216177444/');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (5, 3, '15207', '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://www.flickr.com/photos/jimwallace57/5774022019/');
-INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details, playdate_photo) VALUES (6, 3, '15208', '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://www.flickr.com/photos/omardearmas/3357451975/');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (1, '15212', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://www.flickr.com/photos/31273703@N02/3028758923/');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (2, '15212', '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://www.flickr.com/photos/irisphotos/4180530938/');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (1, '15202', '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://www.flickr.com/photos/bknabel/40739687510/');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (1, '15203', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://www.flickr.com/photos/leafy/3824106375/');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (2, '15204', '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://www.flickr.com/photos/dmuth/38170994821/');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (1, '15205', '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://www.flickr.com/photos/oldonliner/8698152143/');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (4, '15206', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://www.flickr.com/photos/dagnygromer/30216177444/');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (5, '15207', '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://www.flickr.com/photos/jimwallace57/5774022019/');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (6, '15208', '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://www.flickr.com/photos/omardearmas/3357451975/');
 --INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (4, 3, '15209', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!');
 --INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (5, 2, '15210', '2022-08-15T12:00:00', 'Super fun playdate at the park!');
 --INSERT INTO playdate (host_id, visitor_id, zip_code, date_and_time, details) VALUES (6, 1, '15217', '2022-09-30T12:00:00', 'Go on a walk with us!');
