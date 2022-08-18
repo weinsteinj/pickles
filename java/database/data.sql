@@ -129,6 +129,7 @@ INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (7, 7);
 
 
 --MARKER INSERTS--
+--Pgh, PA Area
 INSERT INTO markers (zip_code, lat, lng) VALUES ('15212', 40.482805, -80.036726);
 INSERT INTO markers (zip_code, lat, lng) VALUES ('15202', 40.497452, -80.060345);
 INSERT INTO markers (zip_code, lat, lng) VALUES ('15203', 40.429303, -79.972425);
@@ -137,6 +138,43 @@ INSERT INTO markers (zip_code, lat, lng) VALUES ('15205', 40.441770, -80.087015)
 INSERT INTO markers (zip_code, lat, lng) VALUES ('15206', 40.472064, -79.913673);
 INSERT INTO markers (zip_code, lat, lng) VALUES ('15207', 40.403418, -79.955328);
 INSERT INTO markers (zip_code, lat, lng) VALUES ('15208', 40.450914, -79.902478);
+
+--Cinnci, OH Area
+INSERT into markers (zip_code, lat, lng) VALUES ( 45214, 39.11728189999999, -84.530083);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45201, 39.1052864197085, -84.537671);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45202, 39.1031971, -84.506488);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45203, 39.1019553, -84.53532469999999);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45204, 39.0930395, -84.56676650000001);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45205, 39.1066278, -84.5798623);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45206, 39.130628, -84.4828838);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45207, 39.1405079, -84.47239);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45208, 39.13357329999999, -84.4356468);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45209, 39.1511025, -84.42251859999999);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45211, 39.1654029, -84.6165146);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45212, 39.1629772, -84.4540213);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45213, 39.1822152, -84.42251859999999);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45215, 39.2414664, -84.46976629999999);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45216, 39.2059442, -84.485507);
+INSERT into markers (zip_code, lat, lng) VALUES ( 45217, 39.1676821, -84.498621);
+
+
+--Buffalo, NY Area
+INSERT into markers (zip_code, lat, lng) VALUES ( 14201, 42.89676739999999, -78.8863847);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14202, 42.8943161, -78.8736493);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14203, 42.8667771, -78.8750644);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14204, 42.8801089, -78.8637428);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14205, 42.88274411970851, -78.87382048029151);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14206, 42.8820351, -78.8099472);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14207, 42.9486552, -78.90053329999999);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14208, 42.9174901, -78.8524199);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14209, 42.91379209999999, -78.8637428);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14210, 42.8671413, -78.82977009999999);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14211, 42.9109033, -78.8099472);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14212, 42.8954613, -78.8241068);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14213, 42.9165666, -78.8920444);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14214, 42.9334868, -78.84392679999999);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14215, 42.93975529999999, -78.8099472);
+INSERT into markers (zip_code, lat, lng) VALUES ( 14216, 42.9474532, -78.8637428);
 
 
 
