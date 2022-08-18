@@ -35,19 +35,20 @@
           alt="playdate photo"
           class="pet-img"
         />
+        <p>Details: <br />{{ playdate.details }}</p>
       </div>
       
       <div class="hosting-info">
-      <p>Details: <br />{{ playdate.details }}</p>
-      <p>Time: <br />{{ changeDateTime(playdate.dateTime) }}</p>
+      
+      <p class="hosting-p">Time: <br />{{ changeDateTime(playdate.dateTime) }}</p>
       <!-- <p>Pets: {{ petNames }}</p> -->
-      <p>Pets: <br /> <ul><li v-for="pet in playdatePetArray" v-bind:key="pet.id"> 
+      <p class="hosting-p">Pets: <br /> <ul class="hosting-p"><li v-for="pet in playdatePetArray" v-bind:key="pet.id"> 
         <router-link class="router-link" :to="{name: 'pet-info', params: {petId: pet.petId}}"> {{ pet.name }} the {{pet.species}}</router-link>
          </li>
       </ul> </p>
-      <p>Status: <br />{{ playdate.status }}</p>
-      <div>
-      <button class='btn' @click="deletePlaydate(playdate.playdateId)" v-if="$store.state.user.id === playdate.hostUserId">Delete Playdate</button>
+      <p class="hosting-p">Status: <br />{{ playdate.status }}</p>
+      <div class="delete-container">
+      <button class='btn delete-btn' @click="deletePlaydate(playdate.playdateId)" v-if="$store.state.user.id === playdate.hostUserId">Delete Playdate</button>
       </div>
       <div v-if="playdate.status === 'Pending'">
         <p> {{getVisitingUserInfo(playdate.playdateId)[0].visitingUserName}} would like to come to your playdate! View their pets here: </p>
@@ -408,6 +409,9 @@ export default {
 </script>
 
 <style scoped>
+.hosting-p {
+  margin-bottom: 0;
+}
 
 .main-container {
   display: flex;
@@ -417,6 +421,23 @@ export default {
 li > .router-link {
   color: blue;
   font-weight: bold;
+}
+
+.delete-container {
+  display: flex;
+  justify-content: center;
+}
+
+.delete-btn {
+  
+}
+
+img.pet-img {
+  margin: 1rem 1rem 1rem 1rem;
+}
+
+.btn[data-v-bf1681ae] {
+  width: 11rem;
 }
 
 ul {
@@ -575,7 +596,8 @@ h2 {
 }
 
 .playdateImage {
-  /* width: 1%; */
+  display: flex;
+  
 }
 
 .petImage[data-v-bf1681ae] {
