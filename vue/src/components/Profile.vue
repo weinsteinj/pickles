@@ -423,9 +423,12 @@ li > .router-link {
   font-weight: bold;
 }
 
+.delete-container {
+  display: flex;
+  justify-content: center;
+}
+
 .delete-btn {
-  float: right;
-  margin-bottom: 0;
   
 }
 
