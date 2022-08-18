@@ -2,7 +2,8 @@
   <div>
 <h1>Welcome to {{ $store.state.user.firstName }}'s Profile.</h1>
     <div class="header">
-      
+    
+
     <h2>Your Pets:</h2>
    
     </div>
@@ -20,6 +21,7 @@
     </div>
 </div>
     
+    <div class="main-container">
 
     <h2 v-if="playdateArray.length > 0">Playdates you're hosting:</h2>
     <div
@@ -70,7 +72,9 @@
           class="pet-img"
         />
       </div>
-       <p>Host: <br />{{ playdate.hostUsername }}</p>
+
+      <div class="hosting-info">
+        <p>Host: <br />{{ playdate.hostUsername }}</p>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ changeDateTime(playdate.dateTime) }}</p>
        <p>Pets: <br /> <ul><li v-for="pet in visitingPlaydatePetArray" v-bind:key="pet.id"> 
@@ -78,6 +82,10 @@
          </li>
       </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
+      
+      </div>
+       <div></div>
+       </div>  
     </div>
 
     <!-- <button @click="test">Test</button> -->
@@ -400,6 +408,22 @@ export default {
 </script>
 
 <style scoped>
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+li > .router-link {
+  color: blue;
+  font-weight: bold;
+}
+
+ul {
+padding: 0px;
+margin-top: 0px;
+}
+
 .petList{
   display: flex;
   flex-direction: column;
@@ -478,6 +502,8 @@ li {
   margin-top: 1rem;
   justify-content: space-between;
   flex-direction: row;
+  width: 50%;
+  align-self: center;
 }
 
 .hosting-info {
@@ -532,6 +558,7 @@ h1 {
 h2 {
   flex-grow: 1;
   margin-top: 1rem;
+  align-self: center;
 }
 
 .btn {
@@ -548,7 +575,11 @@ h2 {
 }
 
 .playdateImage {
-  width: 1%;
+  /* width: 1%; */
+}
+
+.petImage[data-v-bf1681ae] {
+  width: 40%;
 }
 
 .router-link-pets {
