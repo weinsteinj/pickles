@@ -51,7 +51,7 @@
           :src="activePlaydate.playdatePhoto"
         />
       </div>
-      <div id="invite" v-cloakv-if="activePlaydate.hostUserId !== $store.state.user.id">
+      <div id="invite" v-if="activePlaydate.hostUserId !== $store.state.user.id">
        <div
         class="play-details"
         v-if="activePlaydate.status == 'Posted'"

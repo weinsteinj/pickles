@@ -185,6 +185,10 @@ export default {
         for (var i of this.value) {
           this.playdate.petId.push(i.petId);
         }
+        if (this.playdate.petId.length === 0) {
+          alert("Please choose a pet to include in this playdate!");
+          return;
+        }
          if (this.playdate.playdatePhoto === "") {
           this.playdate.playdatePhoto = "https://res.cloudinary.com/picklepoints/image/upload/v1660761862/TurtleTransparent_pdnmzd.png";
         }
