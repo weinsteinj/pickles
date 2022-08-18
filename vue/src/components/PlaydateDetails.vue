@@ -57,10 +57,10 @@
         class="play-details"
         v-if="activePlaydate.status == 'Posted'"
       >
-        <h2>Want to come to this playdate? Request an invitation!</h2>
+        <h2 class="h2-last">Want to come to this playdate? Request an invitation!</h2>
         <button class="btn" @click="requestInvite">Request an Invite</button>
       </div>
-      <div id="invSent" v-if="activePlaydate.status == 'Pending'">
+      <div class="h2-last" id="invSent" v-if="activePlaydate.status == 'Pending'">
         <h2>An invite has been requested, check back soon!</h2>
       </div>
     </div>
@@ -265,5 +265,9 @@ h1 {
 .router-link {
     text-decoration: none;
     color: var(--primary-green);
+}
+
+.h2-last {
+  margin-top: 4rem;
 }
 </style>

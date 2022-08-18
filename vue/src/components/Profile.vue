@@ -312,7 +312,7 @@ export default {
           });
       }
 
-      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
+      petService.getPetsByUserId(this.$router.params.userId).then((response) => {
         if (response.status === 200) {
           this.pets = response.data;
           this.$store.commit("ADD_PETS_TO_USER", response.data);
