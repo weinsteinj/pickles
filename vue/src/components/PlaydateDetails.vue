@@ -60,7 +60,7 @@
        </div>
       </div> 
       <div class="h2-last" id="invSent" v-if="activePlaydate.status == 'Pending'">
-        <h2>An invite has been requested, check back soon!</h2>
+        <h2>An invite has been requested, check back in your profile page soon!</h2>
       </div>
     </div>
 
