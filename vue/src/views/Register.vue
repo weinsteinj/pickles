@@ -150,13 +150,9 @@ export default {
         authService
           .register(this.user)
             .then((response) => {
-            if (response.status == 201) {
-              this.$router.go(-1
-              //   {
-              //   path: "/login",
-              //   query: { registration: "success" },
-              // }
-              );
+            if (response.status === 201) {
+              this.$router.push({name: 'home'});
+              this.$router.go(0);
             }
           })
           .catch((error) => { // TODO: Figure out accurate response.messages

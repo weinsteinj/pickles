@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -84,6 +85,7 @@ public class JdbcPlaydateDao implements PlaydateDao{
             Playdate playdate = mapRowToPlaydate(results, pets);
             playdateList.add(playdate);
         }
+
         return playdateList;
     }
 
