@@ -48,7 +48,8 @@
       <button class='btn' @click="deletePlaydate(playdate.playdateId)" v-if="$store.state.user.id === playdate.hostUserId">Delete Playdate</button>
       </div>
       <div v-if="playdate.status === 'Pending'">
-        <p>{{ getVistingUserInfo(playdate.playdateId) }}</p>
+        <p> {{getVisitingUserInfo(playdate.playdateId)[0].visitingUserName}} would like to come to your playdate! View their pets here: </p>
+        <p v-for="visitingPet in getVisitingUserInfo(playdate.playdateId)" v-bind:key="visitingPet.petId"><router-link :to="{path: '/pet/'+visitingPet.petId}">{{visitingPet.petName}}</router-link></p>
         <button class='btn' @click="acceptInvite(playdate)">Accept</button>
         <button class='btn' @click="rejectInvite(playdate)">Reject</button>
         
@@ -107,12 +108,7 @@ export default {
       playdatePetArray: [],
       visitingPlaydateArray: [],
       visitingPlaydatePetArray: [],
-      visitingUserPets: [{
-        playdateId: 0,
-        visitingUserName: '',
-        petId: 0,
-        petName: ''
-      }],
+      visitingUserPets: [],
       value: [],
       options: [
         {
@@ -161,14 +157,13 @@ export default {
   computed: {} ,
 
   methods: {
-    getVistingUserInfo(id) {
-      console.log(id);
-      for (var vup in this.visitingUserPets) {
-        console.log(vup.playdateId);
+    getVisitingUserInfo(id) {
+      var allPets = []
+      for (var vup of this.visitingUserPets) {
         if (id===vup.playdateId) {
-          console.log("hello");
-          return "hello";
+          allPets.push(vup);
         }
+        return allPets
       }
     },
     changeDateTime(dateTime) {
