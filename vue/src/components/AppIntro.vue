@@ -21,9 +21,8 @@ export default {
         return {
             introHeader: 'Welcome to Pickles!',
             introSubHeader: 'Find the perfect pet playmate for your precious pet pals (please)!',
-            introDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur dignissimos omnis quidem ut,' 
-            + 'odit aliquid esse voluptates sequi ipsum veniam vitae, sint unde. Voluptates repellendus, magni porro distinctio'
-             + 'praesentium dolor!'
+            introDescription: "Socialization is vital to your pet's quality of life but finding a playdate can be easier said than done. Whether it be dealing with scheduling conflicts, finding a pet pal that is compatible with your fur-baby, or your loved ones simply do not have pets for yours to play with. With Pickles we want to make that task stress free so you can focus on having fun with your animals. Pickles will help you find playdates in your area, schedule with other pet-parents, or create your own playdate to invite others to. Let us help you maximize your pet's fun with ease!"
+
         }
     }
 

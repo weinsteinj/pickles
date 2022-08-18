@@ -400,6 +400,17 @@ export default {
 </script>
 
 <style scoped>
+
+li > .router-link {
+  color: blue;
+  font-weight: bold;
+}
+
+ul {
+padding: 0px;
+margin-top: 0px;
+}
+
 .petList{
   display: flex;
   flex-direction: column;
