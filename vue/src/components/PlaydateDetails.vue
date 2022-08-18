@@ -236,6 +236,7 @@ div > p {
 .left-panel {
   width: 20rem;
   margin-right: 50px;
+  border-radius: 10px;
 }
 .right-panel {
   width: 20rem;
