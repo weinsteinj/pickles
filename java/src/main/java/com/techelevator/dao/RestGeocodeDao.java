@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,5 +57,21 @@ public class RestGeocodeDao implements GeocodeDao{
         String stringPlace = restTemplate.getForObject(uri, String.class);
 
         return stringPlace;
+    }
+
+    @Override
+    public ArrayList<String> getMarkerInsertsByZipArray(int[] zipsToGeocode) throws JsonProcessingException, ZipCodeNotFoundException {
+        ArrayList<String> insertStrings = new ArrayList<>();
+        try {
+            for (int zip : zipsToGeocode) {
+                Marker zipMarker = getGeocodeByZip(zip);
+                String insertString = "INSERT into markers (zip_code, lat, lng) VALUES ( " +
+                        zipMarker.getZipCode() + ", " + zipMarker.getLat() + ", " + zipMarker.getLng() + ");";
+                insertStrings.add(insertString);
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return insertStrings;
     }
 }

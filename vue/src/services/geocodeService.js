@@ -18,4 +18,7 @@ export default {
     getAllPlaydateMarkers() {
         return axios.get('/geocode/playdate')
     },
+    getInsertStringsFromArrayZips(arrayOfZips) {
+        return axios.post('/geocode/insert', arrayOfZips)
+    },
 }

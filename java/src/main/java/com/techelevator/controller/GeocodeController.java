@@ -9,6 +9,7 @@ import com.techelevator.model.Pet;
 import com.techelevator.model.ZipCodeNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
@@ -31,8 +32,15 @@ public class GeocodeController {
         return geocodeDao.getGeocodeByZip(zipCode);
     }
 
+    @RequestMapping(path = "/geocode/insert", method = RequestMethod.POST)
+    public ArrayList<String> geocodebyZip(@RequestBody int[] zipsToGeocode) throws JsonProcessingException, ZipCodeNotFoundException {
+        return geocodeDao.getMarkerInsertsByZipArray(zipsToGeocode);
+    }
+
 
 
 }
 //    @PathVariable int zipcode
 //path = "/geocode/{zipcode}"
+
+//  /geocode/insert

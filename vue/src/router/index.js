@@ -12,6 +12,7 @@ import PlaydateDetails from '@/views/PlaydateDetails.vue'
 import PlaydateView from '@/views/PlaydateView.vue'
 import Profile from '@/views/Profile.vue'
 import PetDetails from '@/views/PetDetails.vue'
+import Utility from '@/views/UtilityView.vue'
 
 Vue.use(Router)
 
@@ -116,6 +117,14 @@ const router = new Router({
           requiresAuth: false
         }
     },
+    {
+      path: "/utility",
+      name: "utility",
+      component: Utility,
+      meta: {
+        requiresAuth: false
+      }
+  },
   ]
 })
 
