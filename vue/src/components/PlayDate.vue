@@ -4,8 +4,7 @@
          <h1>Check out our current Playdates</h1>
         <div class ="scroll">
          
-        
-        <playdate-card v-for="playdate in $store.state.playdateArray" v-bind:key="playdate.id" 
+        <playdate-card v-for="playdate in filteredPlaydateArray" v-bind:key="playdate.id" 
         v-bind:playdate="playdate" ></playdate-card>
         </div>
       </div>
@@ -25,13 +24,20 @@ export default {
     PlaydateCard,
   },
   
-  created () {
-    this.savePlaydatesToStore;
-  },
+  created () {},
   data () {
     return {
     
     }
+  },
+  computed: {
+    filteredPlaydateArray() {
+      if(this.$store.state.token == '') {
+        return this.$store.state.playdateArray;
+      } else {
+      return this.$store.state.playdateArray.filter(p => p.zipCode > (this.$store.state.user.zipCode-100) && p.zipCode < (this.$store.state.user.zipCode+100));
+      }
+    },
   },
   methods: {
     scrollToEnd() {
@@ -39,25 +45,7 @@ export default {
 				var scrollHeight = container.scrollHeight;
 				container.scrollTop = scrollHeight;
 			},
-    //  scrollToElement() {
-    //   const [el] = this.$refs.last;
-    //   if (el) {
-    //     el.scrollIntoView({ behavior: "smooth" });
-    //   }
-    // },
-    // savePlaydatesToStore() {
-    //   playdateService.getAllPlaydates()
-    //    .then(response => {
-    //      if(response.status === 200) {
-    //        let playdateArray = response.data;
-    //        this.$store.commit('ADD_ALL_PLAYDATE', playdateArray);
-    //      }
-    //    })
-    //    .catch(() => {
-    //        alert("Sorry. An error occurred.")
-    //      })
-    // },
-  },
+  }
 }
 </script>
 
