@@ -48,7 +48,7 @@
       <button class='btn' @click="deletePlaydate(playdate.playdateId)" v-if="$store.state.user.id === playdate.hostUserId">Delete Playdate</button>
       </div>
       <div v-if="playdate.status === 'Pending'">
-        <p>User requesting an invitation: {{ playdate.visitingUserId }}</p>
+        <p>{{ getVistingUserInfo(playdate.playdateId) }}</p>
         <button class='btn' @click="acceptInvite(playdate)">Accept</button>
         <button class='btn' @click="rejectInvite(playdate)">Reject</button>
         
@@ -107,7 +107,12 @@ export default {
       playdatePetArray: [],
       visitingPlaydateArray: [],
       visitingPlaydatePetArray: [],
-      visitingUserPets: [],
+      visitingUserPets: [{
+        playdateId: 0,
+        visitingUserName: '',
+        petId: 0,
+        petName: ''
+      }],
       value: [],
       options: [
         {
@@ -153,9 +158,19 @@ export default {
     };
   },
 
-  computed: {},
+  computed: {} ,
 
   methods: {
+    getVistingUserInfo(id) {
+      console.log(id);
+      for (var vup in this.visitingUserPets) {
+        console.log(vup.playdateId);
+        if (id===vup.playdateId) {
+          console.log("hello");
+          return "hello";
+        }
+      }
+    },
     changeDateTime(dateTime) {
       let dateTimeFormat = moment(dateTime).format("MMMM Do YYYY, h:mm a");
       return dateTimeFormat;
@@ -311,8 +326,8 @@ export default {
                       for (var pet of visitingPets) {
                         this.visitingUserPets.push({
                           playdateId: playdate.playdateId,
-                          visitingUserId: visitingUser.id,
-                          petId: pet.id,
+                          visitingUserName: visitingUser.username,
+                          petId: pet.petId,
                           petName: pet.name
                         });
                       }
