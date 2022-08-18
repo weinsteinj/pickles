@@ -402,18 +402,18 @@ export default {
   flex-grow: 2;
 }
 
-.left-panel {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  border-radius: 10px;
-}
-
 .pet-panel {
   display: flex;
   width: 58rem;
   justify-content: space-between;
   padding-top: 4rem;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-radius: 10px;
 }
 
 .playful-cat {

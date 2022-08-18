@@ -262,7 +262,7 @@ export default {
 .pet-form-register {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 20%;
   justify-content: center;
 }
 
@@ -372,10 +372,21 @@ select,
   /* grid-area: form; */
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 20%;
   justify-content:flex-start;
   
   
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-radius: 10px;
+}
+
+.playful-cat {
+  padding-top: 20rem;
 }
 .left-panel {
   /* grid-area: left-panel; */
@@ -410,9 +421,13 @@ div.text-center {
   display: flex;
   justify-content: center;
 }
-h1{
+h1 {
   text-align: center;
-  margin-top: 0;
+  margin-top: 3.5rem;
+}
+
+.right-panel {
+  width: 20%;
 }
 
 

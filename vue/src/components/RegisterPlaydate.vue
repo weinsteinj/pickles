@@ -236,7 +236,7 @@ h1 {
 .playdate-form-register {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 30%;
 }
 
 #petName {
@@ -349,7 +349,7 @@ select,
 }
 .right-panel {
   /* grid-area: right-panel; */
-  /* width: 20%; */
+  width: 20%;
 }
 div.text-center {
   /* display: flex;
