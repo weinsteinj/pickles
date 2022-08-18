@@ -155,6 +155,30 @@ INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (5, 5);
 INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (6, 6);
 INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (7, 7);
 
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (8, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (9, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (10, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (11, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (12, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (13, 7);
+
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (14, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (15, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (16, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (17, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (18, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (19, 7);
+
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (20, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (21, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (22, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (23, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (24, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (25, 7);
+
+
+
+
 
 --MARKER INSERTS--
 --Pgh, PA Area
