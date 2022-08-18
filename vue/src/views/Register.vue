@@ -275,7 +275,7 @@ export default {
     "create-btn create-btn"
     "has-accnt-link has-accnt-link"; */
   flex-direction: column;
-  width: 40%;
+  width: 20%;
 }
 
 #register {
@@ -289,6 +289,10 @@ export default {
   height: 1000px;
   display: flex;
   flex-direction: column;
+}
+
+.right-panel {
+  width: 20%;
 }
 
 label {
@@ -337,6 +341,7 @@ input {
 
 h1 {
   text-align: center;
+  margin-top: 3.5rem;
 }
 
 h2 {

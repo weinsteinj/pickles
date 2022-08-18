@@ -452,7 +452,9 @@ select {
 }
 
 .right-panel {
-  width: 10%;
+  width: 5%;
+  /* background-color: var(--primary-green); */
+  border-radius: 10px;
 }
 
 .pet-item {
