@@ -7,7 +7,7 @@ INSERT INTO users (first_name,last_name,username,password_hash,role,email_addres
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('bradley','m','JamesFrancophile','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','bradley@bradley.com','45214');
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('caito','n','Junebuggy','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','caito@caito.com','15212');
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('josh','w','Voltron4life','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','josh@josh.com','15217');
-
+INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('joe','w','VoltronLives','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER', 'john@john.com','14213');
 
 ----PERSONALITY INSERTS--
 
@@ -114,6 +114,34 @@ INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo)
 INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (5, '45214', '2022-09-30T12:00:00', 'Even James Franco needs a friend!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836414/a4f191c0ed6bb46091476d2620ae31cab2-jamesfranco.rsquare.w330_ji1vaf.jpg');
 INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (6, '15212', '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660765957/etp5bb0ivqtyokwn8ivc.jpg');
 INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (7, '15217', '2022-08-22T12:00:00', 'Let’s Fly Into The Cosmic Death Storm.', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836623/voltron-seasons-3-6-dvd-release_rnhohd.jpg');
+
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (5, 45201, '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660750512/xxc1pbb8avuzbxw3n0os.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (5, 45202, '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660577639/z2qy9virlkkpwehypxcl.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (5, 45203, '2022-08-15T12:00:00', 'Flop needs a nap buddy.', 'https://res.cloudinary.com/picklepoints/image/upload/v1660761609/ssz1fqrza97qtqwrib57.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (5, 45204, '2022-08-22T12:00:00', 'A birthday party for my turtle Pickles!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660786126/upetkwiod7otqipihv4l.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (5, 45205, '2022-09-30T12:00:00', 'Even James Franco needs a friend!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836414/a4f191c0ed6bb46091476d2620ae31cab2-jamesfranco.rsquare.w330_ji1vaf.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (5, 45206, '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660765957/etp5bb0ivqtyokwn8ivc.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (5, 45207, '2022-08-22T12:00:00', 'Let’s Fly Into The Cosmic Death Storm.', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836623/voltron-seasons-3-6-dvd-release_rnhohd.jpg');
+
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (3, 15202, '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660750512/xxc1pbb8avuzbxw3n0os.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (4, 15202, '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660577639/z2qy9virlkkpwehypxcl.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (6, 15203, '2022-08-15T12:00:00', 'Flop needs a nap buddy.', 'https://res.cloudinary.com/picklepoints/image/upload/v1660761609/ssz1fqrza97qtqwrib57.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (7, 15204, '2022-08-22T12:00:00', 'A birthday party for my turtle Pickles!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660786126/upetkwiod7otqipihv4l.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (3, 15205, '2022-09-30T12:00:00', 'Even James Franco needs a friend!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836414/a4f191c0ed6bb46091476d2620ae31cab2-jamesfranco.rsquare.w330_ji1vaf.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (4, 15206, '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660765957/etp5bb0ivqtyokwn8ivc.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (6, 15207, '2022-08-22T12:00:00', 'Let’s Fly Into The Cosmic Death Storm.', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836623/voltron-seasons-3-6-dvd-release_rnhohd.jpg');
+
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (3, 14201, '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660750512/xxc1pbb8avuzbxw3n0os.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (4, 14202, '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660577639/z2qy9virlkkpwehypxcl.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (6, 14203, '2022-08-15T12:00:00', 'Flop needs a nap buddy.', 'https://res.cloudinary.com/picklepoints/image/upload/v1660761609/ssz1fqrza97qtqwrib57.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (7, 14204, '2022-08-22T12:00:00', 'A birthday party for my turtle Pickles!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660786126/upetkwiod7otqipihv4l.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (3, 14205, '2022-09-30T12:00:00', 'Even James Franco needs a friend!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836414/a4f191c0ed6bb46091476d2620ae31cab2-jamesfranco.rsquare.w330_ji1vaf.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (4, 14206, '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660765957/etp5bb0ivqtyokwn8ivc.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (6, 14207, '2022-08-22T12:00:00', 'Let’s Fly Into The Cosmic Death Storm.', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836623/voltron-seasons-3-6-dvd-release_rnhohd.jpg');
+
+
+
+
 --INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (5, '15207', '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://www.flickr.com/photos/jimwallace57/5774022019/');
 --INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (6, '15208', '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://www.flickr.com/photos/omardearmas/3357451975/');
 
