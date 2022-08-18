@@ -6,21 +6,24 @@
       </div>
       <h1 class="title" @click="homeReload">Pickles</h1>
       <ul class="main-nav-list">
+        
+        
+
         <li>
           <router-link class="main-nav-link" :to="{name:'pet-register'}" v-if="$store.state.token != ''">register a pet</router-link>
         </li>
-        <li>
+
+        <li class="li-first">
           <router-link class="main-nav-link" v-bind:to="{ name:'logout' }" v-if="$store.state.token != ''">logout</router-link>
-      <router-link class="main-nav-link" v-bind:to="{ name:'register' }" v-else>register</router-link>
+           <router-link class="main-nav-link" v-bind:to="{ name:'register' }" v-else>register</router-link>
         </li>
-        <li>
-          <router-link class="main-nav-link" :to="{path: '/profile/'+this.$store.state.user.id}">profile</router-link>
-        </li>
+        
         <li>
           <router-link class="main-nav-link" :to="{name: 'register-playdate'}">schedule a playdate</router-link>
         </li>
+
         <li>
-          <router-link class="main-nav-link" :to="{/* TODO */}">about us</router-link>
+          <router-link class="main-nav-link" :to="{path: '/profile/'+this.$store.state.user.id}">profile</router-link>
         </li>
       </ul>
       
@@ -95,7 +98,7 @@ export default {
   list-style: none;
   display: flex;
   gap: 1.5rem;
-  padding-right: 1rem;
+  padding-right: 2.4rem;
   align-items: center;
   justify-content: space-around;
   
@@ -120,4 +123,5 @@ export default {
   margin: 0;
   padding-left: 1rem;
 }
+
 </style>

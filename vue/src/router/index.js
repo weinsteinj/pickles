@@ -106,7 +106,7 @@ const router = new Router({
       name: "profile",
       component: Profile,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
       {
@@ -133,8 +133,11 @@ router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
 
   // If it does and they are not logged in, send the user to "/login"
+  //voltron is changing this line to redirect home
   if (requiresAuth && store.state.token === '') {
-    next("/login");
+      alert("Please sign in or register!");
+      next("/");
+   // next("/login");
   } else {
     // Else let them go to their next destination
     next();

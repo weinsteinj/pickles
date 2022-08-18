@@ -1,7 +1,8 @@
 <template>
   <div id="register" class="text-center">
     <div class="left-panel">
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempora repudiandae necessitatibus architecto. Reiciendis adipisci at fuga aut ratione! Obcaecati deleniti architecto aliquam repellendus optio ea, dolorem voluptatum nulla fuga.      <h2>Pickles</h2>
+        Socialization is vital to your pet's quality of life but finding a playdate can be easier said than done. Whether it be dealing with scheduling conflicts, finding a pet pal that is compatible with your fur-baby, or your loved ones simply do not have pets for yours to play with. With Pickles we want to make that task stress free so you can focus on having fun with your animals. Pickles will help you find playdates in your area, schedule with other pet-parents, or create your own playdate to invite others to. Let us help you maximize your pet's fun with ease!
+      <h2>Pickles</h2>
       <p></p>
 
       <img src="../assets/images/woman-withdog.svg" alt="woman with dog" class="woman-with-dog">

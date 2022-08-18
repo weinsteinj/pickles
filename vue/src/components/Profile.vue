@@ -2,7 +2,8 @@
   <div>
 <h1>Welcome to {{ $store.state.user.firstName }}'s Profile.</h1>
     <div class="header">
-      
+    
+
     <h2>Your Pets:</h2>
    
     </div>
@@ -20,8 +21,9 @@
     </div>
 </div>
     
+    <div class="main-container">
 
-    <h2>Playdates you're hosting:</h2>
+    <h2 v-if="playdateArray.length > 0">Playdates you're hosting:</h2>
     <div
       v-for="playdate in playdateArray"
       v-bind:key="playdate.playdateId"
@@ -48,10 +50,10 @@
       <button class='btn' @click="deletePlaydate(playdate.playdateId)" v-if="$store.state.user.id === playdate.hostUserId">Delete Playdate</button>
       </div>
       <div v-if="playdate.status === 'Pending'">
-        <p>User requesting an invitation: {{ playdate.visitingUserId }}</p>
+        <p> {{getVisitingUserInfo(playdate.playdateId)[0].visitingUserName}} would like to come to your playdate! View their pets here: </p>
+        <p v-for="visitingPet in getVisitingUserInfo(playdate.playdateId)" v-bind:key="visitingPet.petId"><router-link :to="{path: '/pet/'+visitingPet.petId}">{{visitingPet.petName}}</router-link></p>
         <button class='btn' @click="acceptInvite(playdate)">Accept</button>
-        <button class='btn' @click="rejectInvite(playdate)">Reject</button>
-        
+        <button class='btn' @click="rejectInvite(playdate)">Reject</button>      
       </div>
       </div>
       <div></div>
@@ -70,7 +72,9 @@
           class="pet-img"
         />
       </div>
-       <p>Host: <br />{{ playdate.hostUsername }}</p>
+
+      <div class="hosting-info">
+        <p>Host: <br />{{ playdate.hostUsername }}</p>
       <p>Details: <br />{{ playdate.details }}</p>
       <p>Time: <br />{{ changeDateTime(playdate.dateTime) }}</p>
        <p>Pets: <br /> <ul><li v-for="pet in visitingPlaydatePetArray" v-bind:key="pet.id"> 
@@ -78,6 +82,10 @@
          </li>
       </ul> </p>
       <p>Status: <br />{{ playdate.status }}</p>
+      
+      </div>
+       <div></div>
+       </div>  
     </div>
 
     <!-- <button @click="test">Test</button> -->
@@ -89,6 +97,7 @@
 import petService from "@/services/petService.js";
 import playdateService from "@/services/playdateService.js";
 import moment from "moment";
+import userService from "@/services/userService.js";
 // import PetDetails from '@/components/PetDetails.vue';
 
 export default {
@@ -98,7 +107,7 @@ export default {
   },
   data() {
     return {
-      isEditing: false, //aubrey wants to try making this an array
+      isEditing: false, 
       // user: {},
       pets: [],
       petNames: [],
@@ -106,6 +115,7 @@ export default {
       playdatePetArray: [],
       visitingPlaydateArray: [],
       visitingPlaydatePetArray: [],
+      visitingUserPets: [],
       value: [],
       options: [
         {
@@ -151,9 +161,18 @@ export default {
     };
   },
 
-  computed: {},
+  computed: {} ,
 
   methods: {
+    getVisitingUserInfo(id) {
+      var allPets = []
+      for (var vup of this.visitingUserPets) {
+        if (id===vup.playdateId) {
+          allPets.push(vup);
+        }
+        return allPets
+      }
+    },
     changeDateTime(dateTime) {
       let dateTimeFormat = moment(dateTime).format("MMMM Do YYYY, h:mm a");
       return dateTimeFormat;
@@ -296,6 +315,29 @@ export default {
         petService.getPetsByPlaydateId(playdate.playdateId).then((response) => {
           if (response.status === 200) {
             this.playdatePetArray = response.data;
+            if (playdate.visitingUserId > 0) {
+              userService.getById(playdate.visitingUserId) 
+              .then( (response) =>{
+                if (response.status === 200) {
+                  var visitingUser = response.data;
+                  petService.getPetsByUserId(visitingUser.id)
+                  .then((response) =>{
+                    if (response.status === 200) {
+                      var visitingPets = response.data;
+                      console.log(visitingPets);
+                      for (var pet of visitingPets) {
+                        this.visitingUserPets.push({
+                          playdateId: playdate.playdateId,
+                          visitingUserName: visitingUser.username,
+                          petId: pet.petId,
+                          petName: pet.name
+                        });
+                      }
+                    }
+                  });
+                }
+              });
+            }
           }
         });
       }
@@ -312,11 +354,12 @@ export default {
           });
       }
 
-      petService.getPetsByUserId(this.$route.params.userId).then((response) => {
+      petService.getPetsByUserId(this.$store.state.user.id).then((response) => {
         if (response.status === 200) {
           this.pets = response.data;
           this.$store.commit("ADD_PETS_TO_USER", response.data);
         }
+      
       });
       //   const unique = (value, index, self) => {
       //   return self.indexOf(value) === index;
@@ -365,6 +408,22 @@ export default {
 </script>
 
 <style scoped>
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+li > .router-link {
+  color: blue;
+  font-weight: bold;
+}
+
+ul {
+padding: 0px;
+margin-top: 0px;
+}
+
 .petList{
   display: flex;
   flex-direction: column;
@@ -443,6 +502,8 @@ li {
   margin-top: 1rem;
   justify-content: space-between;
   flex-direction: row;
+  width: 50%;
+  align-self: center;
 }
 
 .hosting-info {
@@ -497,6 +558,7 @@ h1 {
 h2 {
   flex-grow: 1;
   margin-top: 1rem;
+  align-self: center;
 }
 
 .btn {
@@ -513,7 +575,11 @@ h2 {
 }
 
 .playdateImage {
-  width: 1%;
+  /* width: 1%; */
+}
+
+.petImage[data-v-bf1681ae] {
+  width: 40%;
 }
 
 .router-link-pets {
