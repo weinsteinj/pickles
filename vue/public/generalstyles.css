@@ -148,6 +148,7 @@ p {
     padding-left: 1rem;
     padding-right: 1rem;
     color: var(--primary-green);
+    text-align: center;
 }
 
 .woman-with-dog {
