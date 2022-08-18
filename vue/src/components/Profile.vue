@@ -21,7 +21,7 @@
 </div>
     
 
-    <h2>Playdates you're hosting:</h2>
+    <h2 v-if="playdateArray.length > 0">Playdates you're hosting:</h2>
     <div
       v-for="playdate in playdateArray"
       v-bind:key="playdate.playdateId"
@@ -51,8 +51,7 @@
         <p> {{getVisitingUserInfo(playdate.playdateId)[0].visitingUserName}} would like to come to your playdate! View their pets here: </p>
         <p v-for="visitingPet in getVisitingUserInfo(playdate.playdateId)" v-bind:key="visitingPet.petId"><router-link :to="{path: '/pet/'+visitingPet.petId}">{{visitingPet.petName}}</router-link></p>
         <button class='btn' @click="acceptInvite(playdate)">Accept</button>
-        <button class='btn' @click="rejectInvite(playdate)">Reject</button>
-        
+        <button class='btn' @click="rejectInvite(playdate)">Reject</button>      
       </div>
       </div>
       <div></div>

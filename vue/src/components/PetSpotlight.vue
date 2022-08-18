@@ -70,7 +70,6 @@ export default {
       .then((response) => {
         if (response.status === 200) {
           this.photos = response.data;
-          console.log(this.photos);
         }
       })
     },
