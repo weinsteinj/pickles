@@ -51,15 +51,16 @@
           :src="activePlaydate.playdatePhoto"
         />
       </div>
-
-      <div
-        id="invite"
+      <div id="invite" v-cloakv-if="activePlaydate.hostUserId !== $store.state.user.id">
+       <div
         class="play-details"
         v-if="activePlaydate.status == 'Posted'"
       >
+
         <h2 class="h2-last">Want to come to this playdate? Request an invitation!</h2>
         <button class="btn" @click="requestInvite">Request an Invite</button>
-      </div>
+       </div>
+      </div> 
       <div class="h2-last" id="invSent" v-if="activePlaydate.status == 'Pending'">
         <h2>An invite has been requested, check back soon!</h2>
       </div>
