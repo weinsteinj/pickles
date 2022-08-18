@@ -57,6 +57,8 @@ VALUES ('Junebug', 'Dog', 'female', '2015-06-10', true, true, 1, 'https://res.cl
 INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size, pet_photo)
 VALUES ('Voltron', 'Other', 'male', '1984-01-01', false, false, 5, 'https://res.cloudinary.com/picklepoints/image/upload/v1660833307/Voltron-Live-Action-Movie_fwhyea.jpg');
 
+INSERT INTO pets(name, species, sex, birth_date, is_fixed, has_vaccinations, size, pet_photo)
+ VALUES ('Voltron2', 'Other', 'male', '2020-01-01', false, false, 5, 'https://res.cloudinary.com/picklepoints/image/upload/v1660833307/Voltron-Live-Action-Movie_fwhyea.jpg');
 
 
 
@@ -89,6 +91,10 @@ UPDATE pets
 SET user_id = (SELECT user_id FROM users WHERE username = 'Nickles-and-Pickles')
 WHERE name = 'Pickles';
 
+UPDATE pets
+SET user_id = (SELECT user_id FROM users WHERE username = 'VoltronLives')
+WHERE name = 'Voltron2';
+
 
 --PET PERSONALITIES--
 
@@ -102,6 +108,7 @@ INSERT INTO pet_personality (pet_id, personality_id) VALUES (6,4);
 INSERT INTO pet_personality (pet_id, personality_id) VALUES (6,6);
 INSERT INTO pet_personality (pet_id, personality_id) VALUES (7,1);
 INSERT INTO pet_personality (pet_id, personality_id) VALUES (3,3);
+INSERT INTO pet_personality (pet_id, personality_id) VALUES (8,6);
 
 
 
@@ -131,13 +138,13 @@ INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo)
 INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (4, 15206, '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660765957/etp5bb0ivqtyokwn8ivc.jpg');
 INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (6, 15207, '2022-08-22T12:00:00', 'Let’s Fly Into The Cosmic Death Storm.', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836623/voltron-seasons-3-6-dvd-release_rnhohd.jpg');
 
-INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (3, 14201, '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660750512/xxc1pbb8avuzbxw3n0os.jpg');
-INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (4, 14202, '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660577639/z2qy9virlkkpwehypxcl.jpg');
-INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (6, 14203, '2022-08-15T12:00:00', 'Flop needs a nap buddy.', 'https://res.cloudinary.com/picklepoints/image/upload/v1660761609/ssz1fqrza97qtqwrib57.jpg');
-INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (7, 14204, '2022-08-22T12:00:00', 'A birthday party for my turtle Pickles!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660786126/upetkwiod7otqipihv4l.jpg');
-INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (3, 14205, '2022-09-30T12:00:00', 'Even James Franco needs a friend!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836414/a4f191c0ed6bb46091476d2620ae31cab2-jamesfranco.rsquare.w330_ji1vaf.jpg');
-INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (4, 14206, '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660765957/etp5bb0ivqtyokwn8ivc.jpg');
-INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (6, 14207, '2022-08-22T12:00:00', 'Let’s Fly Into The Cosmic Death Storm.', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836623/voltron-seasons-3-6-dvd-release_rnhohd.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (8, 14201, '2022-09-30T12:00:00', 'Go on a walk with us!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660750512/xxc1pbb8avuzbxw3n0os.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (8, 14202, '2022-08-15T12:00:00', 'Super fun playdate at the park!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660577639/z2qy9virlkkpwehypxcl.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (8, 14203, '2022-08-15T12:00:00', 'Flop needs a nap buddy.', 'https://res.cloudinary.com/picklepoints/image/upload/v1660761609/ssz1fqrza97qtqwrib57.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (8, 14204, '2022-08-22T12:00:00', 'A birthday party for my turtle Pickles!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660786126/upetkwiod7otqipihv4l.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (8, 14205, '2022-09-30T12:00:00', 'Even James Franco needs a friend!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836414/a4f191c0ed6bb46091476d2620ae31cab2-jamesfranco.rsquare.w330_ji1vaf.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (8, 14206, '2022-08-22T12:00:00', 'Join me at my house for snacks and fetch!', 'https://res.cloudinary.com/picklepoints/image/upload/v1660765957/etp5bb0ivqtyokwn8ivc.jpg');
+INSERT INTO playdate (host_id, zip_code, date_and_time, details, playdate_photo) VALUES (8, 14207, '2022-08-22T12:00:00', 'Let’s Fly Into The Cosmic Death Storm.', 'https://res.cloudinary.com/picklepoints/image/upload/v1660836623/voltron-seasons-3-6-dvd-release_rnhohd.jpg');
 
 
 
@@ -155,26 +162,29 @@ INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (5, 5);
 INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (6, 6);
 INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (7, 7);
 
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (8, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (9, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (10, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (11, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (12, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (13, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (8, 5);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (9, 5);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (10, 5);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (11, 5);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (12, 5);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (13, 5);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (14, 5);
 
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (14, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (15, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (16, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (17, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (15, 3);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (16, 4);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (17, 6);
 INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (18, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (19, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (19, 3);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (20, 4);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (21, 6);
 
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (20, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (21, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (22, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (23, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (24, 7);
-INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (25, 7);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (22, 8);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (23, 8);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (24, 8);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (25, 8);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (26, 8);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (27, 8);
+INSERT INTO pet_playdate (playdate_id, pet_id) VALUES (28, 8);
 
 
 
