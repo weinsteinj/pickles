@@ -72,7 +72,7 @@ export default {
           .register(this.user)
           .then((response) => {
             if (response.status === 201) {
-              this.$router.push({name: 'home'});
+              this.$router.push({name:'pet-register'});
               this.$router.go(0);
             }
           })
