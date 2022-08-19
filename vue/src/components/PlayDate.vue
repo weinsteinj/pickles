@@ -35,7 +35,7 @@ export default {
       if(this.$store.state.token == '') {
         return this.$store.state.playdateArray;
       } else {
-      return this.$store.state.playdateArray.filter(p => p.zipCode > (this.$store.state.user.zipCode-100) && p.zipCode < (this.$store.state.user.zipCode+100));
+      return this.$store.state.playdateArray.filter(p => p.zipCode > (this.$store.state.user.zipCode-200) && p.zipCode < (this.$store.state.user.zipCode+200));
       }
     },
   },
