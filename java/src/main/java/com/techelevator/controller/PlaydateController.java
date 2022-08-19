@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.security.Principal;
+import java.util.Collections;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
@@ -70,6 +71,7 @@ public class PlaydateController {
 
     @RequestMapping(path = "/playdate", method = RequestMethod.GET)
     public List<Playdate> playdateList() {
+         List<Playdate> listToSort = playdateDao.listAllPlaydates();
         return playdateDao.listAllPlaydates();
     }
 

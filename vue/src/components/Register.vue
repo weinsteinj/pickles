@@ -71,13 +71,9 @@ export default {
         authService
           .register(this.user)
           .then((response) => {
-            if (response.status == 201) {
-              this.$router.push({
-                name: 'home',
-                // path: '/login',
-                // query: { registration: 'success' },
-              });
-            this.$router.go(0);
+            if (response.status === 201) {
+              this.$router.push({name:'pet-register'});
+              this.$router.go(0);
             }
           })
           .catch((error) => {

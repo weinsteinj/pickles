@@ -60,7 +60,7 @@
        </div>
       </div> 
       <div class="h2-last" id="invSent" v-if="activePlaydate.status == 'Pending'">
-        <h2>An invite has been requested, check back soon!</h2>
+        <h2>An invite has been requested, check back in your profile page soon!</h2>
       </div>
     </div>
 
@@ -114,15 +114,19 @@ export default {
   },
   methods: {
     requestInvite() {
-      this.activePlaydate.visitingUserId = this.$store.state.user.id;
-      this.activePlaydate.status = "Pending";
-      playdateService
-        .updatePlaydate(this.activePlaydate.playdateId, this.activePlaydate)
-        .then((response) => {
-          console.log(response.data);
-        })
-        //commit this to the store?
-        .catch((err) => console.error(err));
+      if (this.$store.state.token === '') {
+        alert("Please sign in or register to request an invite!");
+      } else {
+        this.activePlaydate.visitingUserId = this.$store.state.user.id;
+        this.activePlaydate.status = "Pending";
+        playdateService
+          .updatePlaydate(this.activePlaydate.playdateId, this.activePlaydate)
+          .then((response) => {
+            console.log(response.data);
+          })
+          //commit this to the store?
+          .catch((err) => console.error(err));
+      }
     },
     changeDateTime(dateTime) {
       let dateTimeFormat = moment(dateTime).format("MMMM Do YYYY, h:mm a");
