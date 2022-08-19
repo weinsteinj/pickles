@@ -72,8 +72,6 @@ public class PlaydateController {
     @RequestMapping(path = "/playdate", method = RequestMethod.GET)
     public List<Playdate> playdateList() {
          List<Playdate> listToSort = playdateDao.listAllPlaydates();
-         listToSort.sort(null);
-        listToSort.sort("b, a" );
         return playdateDao.listAllPlaydates();
     }
 
