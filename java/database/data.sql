@@ -5,7 +5,7 @@ INSERT INTO users (first_name,last_name,username,password_hash,role,email_addres
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('aubrey','t','Flopmom','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','aubrey@aubrey.com','15224');
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('nicholas','s','Nickles-and-Pickles','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','nicholas@picholas.com','15068');
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('bradley','m','JamesFrancophile','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','bradley@bradley.com','45214');
-INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('caito','n','Junebuggy','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','caito@caito.com','15212');
+INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('caito','n','BlueLion','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','caito@caito.com','15212');
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('josh','w','Voltron4life','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN','josh@josh.com','15217');
 INSERT INTO users (first_name,last_name,username,password_hash,role,email_address,zip_code) VALUES ('joe','w','VoltronLives','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER', 'john@john.com','14213');
 
