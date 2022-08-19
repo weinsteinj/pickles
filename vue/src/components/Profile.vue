@@ -321,6 +321,7 @@ export default {
               .then( (response) =>{
                 if (response.status === 200) {
                   var visitingUser = response.data;
+                  console.log(visitingUser);
                   petService.getPetsByUserId(visitingUser.id)
                   .then((response) =>{
                     if (response.status === 200) {
