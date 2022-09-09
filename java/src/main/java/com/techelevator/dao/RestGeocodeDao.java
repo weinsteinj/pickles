@@ -21,16 +21,23 @@ public class RestGeocodeDao implements GeocodeDao{
 
 
     @Override
-    public Marker getGeocodeByZip(int zipCode) throws JsonProcessingException, ZipCodeNotFoundException {
+    public Marker getGeocodeByZip(String zipCode) throws JsonProcessingException, ZipCodeNotFoundException {
         RestTemplate restTemplate = new RestTemplate();
         String uri = "https://maps.googleapis.com/maps/api/geocode/json?address="
         + zipCode + "&key=AIzaSyCbMJBc_MS9mlIMfrzc96ZgSAZWe-ZvpnA";
-        String jsonString = restTemplate.getForObject(uri, String.class);
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode rootNode = mapper.readTree(jsonString);
-        JsonNode location = rootNode.findValue("location");
-        BigDecimal lat = location.get("lat").decimalValue();
-        BigDecimal lng = location.get("lng").decimalValue();
+
+        GeocodeResponse response = restTemplate.getForObject(uri, GeocodeResponse.class);
+        BigDecimal lat = (response.getResults().get(0).getGeometry().getLocation().getLat());
+        BigDecimal lng = (response.getResults().get(0).getGeometry().getLocation().getLng());
+
+
+//
+//        String jsonString = restTemplate.getForObject(uri, String.class);
+//        ObjectMapper mapper = new ObjectMapper();
+//        JsonNode rootNode = mapper.readTree(jsonString);
+//        JsonNode location = rootNode.findValue("location");
+//        BigDecimal lat = location.get("lat").decimalValue();
+//        BigDecimal lng = location.get("lng").decimalValue();
 
         return new Marker(zipCode, lat, lng);
     }
@@ -46,10 +53,10 @@ public class RestGeocodeDao implements GeocodeDao{
     }
 
     @Override
-    public ArrayList<String> getMarkerInsertsByZipArray(int[] zipsToGeocode) throws JsonProcessingException, ZipCodeNotFoundException {
+    public ArrayList<String> getMarkerInsertsByZipArray(String[] zipsToGeocode) throws JsonProcessingException, ZipCodeNotFoundException {
         ArrayList<String> insertStrings = new ArrayList<>();
         try {
-            for (int zip : zipsToGeocode) {
+            for (String zip : zipsToGeocode) {
                 Marker zipMarker = getGeocodeByZip(zip);
                 String insertString = "INSERT into markers (zip_code, lat, lng) VALUES ( " +
                         zipMarker.getZipCode() + ", " + zipMarker.getLat() + ", " + zipMarker.getLng() + ");";

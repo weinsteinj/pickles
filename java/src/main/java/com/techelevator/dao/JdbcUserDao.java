@@ -76,7 +76,7 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public boolean create(String firstName, String lastName, String username, String password, String role, String email, int zipCode) {
+    public boolean create(String firstName, String lastName, String username, String password, String role, String email, String zipCode) {
         String insertUserSql = "insert into users (first_name,last_name,username,password_hash,role,email_address,zip_code) values (?,?,?,?,?,?,?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
@@ -85,7 +85,7 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public int addUserMarker(int zipCode, BigDecimal lat, BigDecimal lng) {
+    public int addUserMarker(String zipCode, BigDecimal lat, BigDecimal lng) {
         String insertMarkerSql = "INSERT INTO markers (zip_code, lat, lng ) " +
                 "VALUES (?, ? , ? ) ON CONFLICT DO NOTHING";
         // do an insert of zip lat & lng to ---> markers TABLE in DB

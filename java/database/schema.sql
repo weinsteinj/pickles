@@ -13,7 +13,7 @@ CREATE TABLE users
 	role varchar(50),
 	email_address varchar(250) NOT NULL,
 	birth_date date,
-	zip_code int, --NOT NULL
+	zip_code varchar(5), --NOT NULL
 	pickle_points int,
 
 	constraint pk_user PRIMARY KEY (user_id)
@@ -39,7 +39,7 @@ CREATE TABLE playdate
 	playdate_id serial,
 	host_id int,
 	visitor_id int,
-	zip_code int,
+	zip_code varchar(5),
 	date_and_time timestamp,
 	details varchar(1000),
 	rating int,
@@ -53,7 +53,7 @@ CREATE TABLE playdate
 
 CREATE TABLE markers
 (
-	zip_code int,
+	zip_code varchar(5),
 	lat numeric(8,6), --max/min value 90/-90.000000 N/S
     lng numeric(9,6),  --max/min value 180/-180.000000 E/W
 

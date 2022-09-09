@@ -27,13 +27,13 @@ public class GeocodeController {
         return geocodeDao.getGeocodeTest15217();
     }
     @RequestMapping(path = "/geocode/{zipCode}", method = RequestMethod.GET)
-    public Marker geocodebyZip(@PathVariable int zipCode) throws JsonProcessingException, ZipCodeNotFoundException {
+    public Marker geocodebyZip(@PathVariable String zipCode) throws JsonProcessingException, ZipCodeNotFoundException {
 
         return geocodeDao.getGeocodeByZip(zipCode);
     }
 
     @RequestMapping(path = "/geocode/insert", method = RequestMethod.POST)
-    public ArrayList<String> geocodebyZip(@RequestBody int[] zipsToGeocode) throws JsonProcessingException, ZipCodeNotFoundException {
+    public ArrayList<String> geocodebyZip(@RequestBody String[] zipsToGeocode) throws JsonProcessingException, ZipCodeNotFoundException {
         return geocodeDao.getMarkerInsertsByZipArray(zipsToGeocode);
     }
 

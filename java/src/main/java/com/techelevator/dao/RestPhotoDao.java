@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
 public class RestPhotoDao implements PhotoDao {
 
     @Override
-    public List<JsonNode> getAllPhotoUrls() throws JsonProcessingException {
+    public List<JsonNode> getAllPhotoUrls() throws IOException {
         RestTemplate restTemplate = new RestTemplate();
         String uri = "https://api.cloudinary.com/v1_1/picklepoints/resources/image";
 

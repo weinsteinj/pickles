@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 public interface GeocodeDao {
 
-        Marker getGeocodeByZip(int zipCode) throws JsonProcessingException, ZipCodeNotFoundException;
+        Marker getGeocodeByZip(String zipCode) throws JsonProcessingException, ZipCodeNotFoundException;
 
         String getGeocodeTest15217();
 
-        ArrayList<String> getMarkerInsertsByZipArray(int[] zipsToGeocode) throws JsonProcessingException, ZipCodeNotFoundException;
+        ArrayList<String> getMarkerInsertsByZipArray(String[] zipsToGeocode) throws JsonProcessingException, ZipCodeNotFoundException;
 
 
 

@@ -23,7 +23,7 @@ public class JdbcPlaydateDao implements PlaydateDao{
     }
 
     @Override
-    public Playdate create(int hostUserId, int zipCode, LocalDateTime dateTime, String details, int rating, String status, String playdatePhoto, List<Integer> petId) {
+    public Playdate create(int hostUserId, String zipCode, LocalDateTime dateTime, String details, int rating, String status, String playdatePhoto, List<Integer> petId) {
         Playdate newPlaydate = new Playdate();
         String sql = "INSERT INTO playdate (host_id, zip_code, date_and_time, " +
                 "details, rating, status, playdate_photo) " +
@@ -108,7 +108,7 @@ public class JdbcPlaydateDao implements PlaydateDao{
     }
 
     @Override
-    public int addPlaydateMarker(int zipCode, BigDecimal lat, BigDecimal lng) {
+    public int addPlaydateMarker(String zipCode, BigDecimal lat, BigDecimal lng) {
         String insertMarkerSql = "INSERT INTO markers (zip_code, lat, lng ) " +
                 "VALUES (?, ? , ? ) ON CONFLICT DO NOTHING";
         // do an insert of zip lat & lng to ---> markers TABLE in DB
@@ -139,7 +139,7 @@ public class JdbcPlaydateDao implements PlaydateDao{
         playdate.setPlaydateId(rs.getInt("playdate_id"));
         playdate.setHostUserId(rs.getInt("host_id"));
         playdate.setVisitingUserId(rs.getInt("visitor_id"));
-        playdate.setZipCode(rs.getInt("zip_code"));
+        playdate.setZipCode(rs.getString("zip_code"));
 //        playdate.setDateTime(rs.getTimestamp("date_and_time"));
         Timestamp dateTime = rs.getTimestamp("date_and_time");
         if (dateTime != null) {

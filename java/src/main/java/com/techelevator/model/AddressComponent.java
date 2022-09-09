@@ -13,37 +13,49 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "results",
-        "status"
+        "long_name",
+        "short_name",
+        "types"
 })
 @Generated("jsonschema2pojo")
-public class GeocodeResponse {
-
-    @JsonProperty("results")
-    private List<Result> results = null;
-    @JsonProperty("status")
-    private String status;
+public class AddressComponent {
+    @JsonProperty("long_name")
+    private String longName;
+    @JsonProperty("short_name")
+    private String shortName;
+    @JsonProperty("types")
+    private List<String> types = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("results")
-    public List<Result> getResults() {
-        return results;
+    @JsonProperty("long_name")
+    public String getLongName() {
+        return longName;
     }
 
-    @JsonProperty("results")
-    public void setResults(List<Result> results) {
-        this.results = results;
+    @JsonProperty("long_name")
+    public void setLongName(String longName) {
+        this.longName = longName;
     }
 
-    @JsonProperty("status")
-    public String getStatus() {
-        return status;
+    @JsonProperty("short_name")
+    public String getShortName() {
+        return shortName;
     }
 
-    @JsonProperty("status")
-    public void setStatus(String status) {
-        this.status = status;
+    @JsonProperty("short_name")
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    @JsonProperty("types")
+    public List<String> getTypes() {
+        return types;
+    }
+
+    @JsonProperty("types")
+    public void setTypes(List<String> types) {
+        this.types = types;
     }
 
     @JsonAnyGetter
@@ -55,4 +67,6 @@ public class GeocodeResponse {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
+
+
 }

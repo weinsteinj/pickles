@@ -57,7 +57,7 @@ public class JdbcMarkerDao implements MarkerDao{
         Marker marker = new Marker();
         marker.setLat(rs.getBigDecimal("lat"));
         marker.setLng(rs.getBigDecimal("lng"));
-        marker.setZipCode(rs.getInt("zip_code"));
+        marker.setZipCode(rs.getString("zip_code"));
 
         return marker;
     }

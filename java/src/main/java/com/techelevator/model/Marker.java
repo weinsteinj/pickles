@@ -3,22 +3,22 @@ package com.techelevator.model;
 import java.math.BigDecimal;
 
 public class Marker {
-    private int zipCode;
+    private String zipCode;
     private BigDecimal lat;
     private BigDecimal lng;
 
-    public Marker(int zipCode, BigDecimal lat, BigDecimal lng){
+    public Marker(String zipCode, BigDecimal lat, BigDecimal lng){
         this.zipCode = zipCode;
         this.lat = lat;
         this.lng = lng;
     }
     public Marker () {}
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

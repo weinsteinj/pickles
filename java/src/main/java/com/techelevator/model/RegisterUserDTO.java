@@ -17,7 +17,7 @@ public class RegisterUserDTO {
     private String firstName;
     private String lastName;
     private String email;
-    private int zipCode;
+    private String zipCode;
 
 
     public String getUsername() {
@@ -75,11 +75,11 @@ public class RegisterUserDTO {
         this.email = email;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

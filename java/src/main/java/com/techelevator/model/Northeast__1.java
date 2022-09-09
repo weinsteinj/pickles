@@ -1,7 +1,6 @@
 package com.techelevator.model;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -13,37 +12,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "results",
-        "status"
+        "lat",
+        "lng"
 })
 @Generated("jsonschema2pojo")
-public class GeocodeResponse {
+public class Northeast__1 {
 
-    @JsonProperty("results")
-    private List<Result> results = null;
-    @JsonProperty("status")
-    private String status;
+    @JsonProperty("lat")
+    private Float lat;
+    @JsonProperty("lng")
+    private Float lng;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("results")
-    public List<Result> getResults() {
-        return results;
+    @JsonProperty("lat")
+    public Float getLat() {
+        return lat;
     }
 
-    @JsonProperty("results")
-    public void setResults(List<Result> results) {
-        this.results = results;
+    @JsonProperty("lat")
+    public void setLat(Float lat) {
+        this.lat = lat;
     }
 
-    @JsonProperty("status")
-    public String getStatus() {
-        return status;
+    @JsonProperty("lng")
+    public Float getLng() {
+        return lng;
     }
 
-    @JsonProperty("status")
-    public void setStatus(String status) {
-        this.status = status;
+    @JsonProperty("lng")
+    public void setLng(Float lng) {
+        this.lng = lng;
     }
 
     @JsonAnyGetter

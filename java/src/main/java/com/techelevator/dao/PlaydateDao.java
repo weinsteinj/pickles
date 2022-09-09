@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PlaydateDao {
 
-    Playdate create(int hostUserId, int zipCode, LocalDateTime dateTime, String details, int rating, String status, String playdatePhoto, List<Integer> petId);
+    Playdate create(int hostUserId, String zipCode, LocalDateTime dateTime, String details, int rating, String status, String playdatePhoto, List<Integer> petId);
     Playdate getPlaydateById(int playdateId);
 
     List<Playdate> listAllPlaydates();
@@ -17,5 +17,5 @@ public interface PlaydateDao {
 
     int deletePlaydate(int playdateId);
 
-    int addPlaydateMarker(int zipCode, BigDecimal lat, BigDecimal lng);
+    int addPlaydateMarker(String zipCode, BigDecimal lat, BigDecimal lng);
 }

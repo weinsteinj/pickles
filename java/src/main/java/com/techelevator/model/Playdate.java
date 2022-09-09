@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class Playdate {
     private int playdateId;
-    private int zipCode;
+    private String zipCode;
     private LocalDateTime dateTime;
     private String details;
     private int rating;
@@ -25,7 +25,7 @@ public class Playdate {
 
     public Playdate() {
     }
-    public Playdate(int playdateId, int hostUserId, int visitingUserId, int zipCode, LocalDateTime dateTime, String details, int rating, String status, String playdatePhoto, List petId) {
+    public Playdate(int playdateId, int hostUserId, int visitingUserId, String zipCode, LocalDateTime dateTime, String details, int rating, String status, String playdatePhoto, List petId) {
         this.playdateId = playdateId;
         this.hostUserId = hostUserId;
         this.visitingUserId = visitingUserId;
@@ -46,11 +46,11 @@ public class Playdate {
         this.playdateId = playdateId;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -139,7 +139,7 @@ public class Playdate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Playdate playdate = (Playdate) o;
-        return playdateId == playdate.playdateId && zipCode == playdate.zipCode && rating == playdate.rating && hostUserId == playdate.hostUserId && visitingUserId == playdate.visitingUserId && Objects.equals(dateTime, playdate.dateTime) && Objects.equals(details, playdate.details) && Objects.equals(status, playdate.status) && Objects.equals(petId, playdate.petId) && Objects.equals(playdatePhoto, playdate.playdatePhoto);
+        return playdateId == playdate.playdateId && zipCode.equals(playdate.zipCode) && rating == playdate.rating && hostUserId == playdate.hostUserId && visitingUserId == playdate.visitingUserId && Objects.equals(dateTime, playdate.dateTime) && Objects.equals(details, playdate.details) && Objects.equals(status, playdate.status) && Objects.equals(petId, playdate.petId) && Objects.equals(playdatePhoto, playdate.playdatePhoto);
     }
 
     @Override

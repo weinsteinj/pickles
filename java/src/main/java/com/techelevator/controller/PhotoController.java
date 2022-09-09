@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.io.IOException;
 import java.util.List;
 @CrossOrigin
 @RestController
@@ -24,7 +25,7 @@ public class PhotoController {
     }
 
     @RequestMapping(path = "/photos", method = RequestMethod.GET)
-    public List<JsonNode> getAllPhotos() throws JsonProcessingException {
+    public List<JsonNode> getAllPhotos() throws IOException {
 
         return photoDao.getAllPhotoUrls();
     }

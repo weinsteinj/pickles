@@ -1,46 +1,85 @@
 package com.techelevator.model;
 
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        "bounds",
+        "location",
+        "location_type",
+        "viewport"
+})
+@Generated("jsonschema2pojo")
 public class Geometry {
-    private Object bounds;
+
+    @JsonProperty("bounds")
+    private Bounds bounds;
+    @JsonProperty("location")
     private Location location;
-    private String location_type;
-    private Object viewport;
+    @JsonProperty("location_type")
+    private String locationType;
+    @JsonProperty("viewport")
+    private Viewport viewport;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-        public Geometry (Location location) {
-            this.location = location;
-
-        }
-        public Geometry(){}
-
-    public Object getBounds() {
+    @JsonProperty("bounds")
+    public Bounds getBounds() {
         return bounds;
     }
 
-    public void setBounds(Object bounds) {
+    @JsonProperty("bounds")
+    public void setBounds(Bounds bounds) {
         this.bounds = bounds;
     }
 
+    @JsonProperty("location")
     public Location getLocation() {
         return location;
     }
 
+    @JsonProperty("location")
     public void setLocation(Location location) {
         this.location = location;
     }
 
-    public String getLocation_type() {
-        return location_type;
+    @JsonProperty("location_type")
+    public String getLocationType() {
+        return locationType;
     }
 
-    public void setLocation_type(String location_type) {
-        this.location_type = location_type;
+    @JsonProperty("location_type")
+    public void setLocationType(String locationType) {
+        this.locationType = locationType;
     }
 
-    public Object getViewport() {
+    @JsonProperty("viewport")
+    public Viewport getViewport() {
         return viewport;
     }
 
-    public void setViewport(Object viewport) {
+    @JsonProperty("viewport")
+    public void setViewport(Viewport viewport) {
         this.viewport = viewport;
     }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
+    }
+
+
 }
