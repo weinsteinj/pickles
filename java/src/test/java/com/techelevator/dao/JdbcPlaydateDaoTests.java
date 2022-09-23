@@ -33,9 +33,9 @@ public class JdbcPlaydateDaoTests extends BaseDaoTests {
         pets.add(1);
         pets.add(2);
         List<Playdate> playdates = sut.listAllPlaydates();
-        Playdate testPlaydate = new Playdate (1, 1, 2, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
-        Playdate testPlaydate2 = new Playdate (2, 2, 3, 15212, DATETIME2, "Super fun playdate at the park!",  5, "Accepted", "photoURL", pets);
-        Playdate testPlaydate3 = new Playdate (3, 1, 2, 15202, DATETIME3, "Go on a walk with us!",  2, "Declined", "photoURL", pets);
+        Playdate testPlaydate = new Playdate (1, 1, 2, "15212", DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
+        Playdate testPlaydate2 = new Playdate (2, 2, 3, "15212", DATETIME2, "Super fun playdate at the park!",  5, "Accepted", "photoURL", pets);
+        Playdate testPlaydate3 = new Playdate (3, 1, 2, "15202", DATETIME3, "Go on a walk with us!",  2, "Declined", "photoURL", pets);
 
         Assert.assertNotNull(playdates);
         Assert.assertEquals(3, playdates.size());
@@ -48,8 +48,8 @@ public class JdbcPlaydateDaoTests extends BaseDaoTests {
         List<Integer> pets = new ArrayList<>();
         pets.add(1);
         pets.add(2);
-        Playdate testPlaydate = new Playdate(1, 1, 2, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
-        Playdate createdPlaydate = sut.create(1, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
+        Playdate testPlaydate = new Playdate(1, 1, 2, "15212", DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
+        Playdate createdPlaydate = sut.create(1, "15212", DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
         createdPlaydate.setPlaydateId(testPlaydate.getPlaydateId());
         testPlaydate.setVisitingUserId(0);
 
@@ -61,7 +61,7 @@ public class JdbcPlaydateDaoTests extends BaseDaoTests {
         List<Integer> pets = new ArrayList<>();
         pets.add(1);
         pets.add(2);
-        Playdate testPlaydate = new Playdate (1, 1, 2, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
+        Playdate testPlaydate = new Playdate (1, 1, 2, "15212", DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
         Playdate playdate = sut.getPlaydateById(1);
     Assert.assertEquals(playdate, testPlaydate);
     }
@@ -74,7 +74,7 @@ public class JdbcPlaydateDaoTests extends BaseDaoTests {
         List<Integer> pets = new ArrayList<>();
         pets.add(1);
         pets.add(2);
-        Playdate testPlaydate = new Playdate (1, 1, 2, 15212, DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
+        Playdate testPlaydate = new Playdate (1, 1, 2, "15212", DATETIME, "Join me at my house for snacks and fetch!",  3, "Posted", "photoURL", pets);
         sut.updatePlaydate(testPlaydate);
         Playdate actualUpdate = sut.getPlaydateById(1);
         Assert.assertEquals(testPlaydate, actualUpdate);

@@ -2,13 +2,13 @@ package com.techelevator.model;
 
 public class InsertMarkerString {
     private Marker marker;
-    private int zipCode;
+    private String zipCode;
 
     public InsertMarkerString () {
 
     }
 
-    public InsertMarkerString(Marker marker, int zipCode) {
+    public InsertMarkerString(Marker marker, String zipCode) {
         this.marker = marker;
         this.zipCode = zipCode;
     }
@@ -21,11 +21,11 @@ public class InsertMarkerString {
         this.marker = marker;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 }

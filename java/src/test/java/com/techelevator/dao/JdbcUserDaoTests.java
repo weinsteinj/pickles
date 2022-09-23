@@ -14,9 +14,9 @@ import java.util.List;
 
 public class
 JdbcUserDaoTests extends BaseDaoTests {
-    protected static final User USER_1 = new User(1, "user1", "user1", "ROLE_USER", "A", "B", "email@email.com", 15212);
-    protected static final User USER_2 = new User(2, "user2", "user2", "ROLE_USER", "A", "B", "email@email.com", 45214);
-    private static final User USER_3 = new User(3, "user3", "user3", "ROLE_USER", "A", "B", "email@email.com", 15206);
+    protected static final User USER_1 = new User(1, "user1", "user1", "ROLE_USER", "A", "B", "email@email.com", "15212");
+    protected static final User USER_2 = new User(2, "user2", "user2", "ROLE_USER", "A", "B", "email@email.com", "45214");
+    private static final User USER_3 = new User(3, "user3", "user3", "ROLE_USER", "A", "B", "email@email.com", "15206");
 
     private JdbcUserDao sut;
 
@@ -85,22 +85,22 @@ JdbcUserDaoTests extends BaseDaoTests {
 
     @Test(expected = DataIntegrityViolationException.class)
     public void create_user_with_null_username() {
-        sut.create("A","b", null, USER_3.getPassword(), "ROLE_USER","email@email.com", 15206);
+        sut.create("A","b", null, USER_3.getPassword(), "ROLE_USER","email@email.com", "15206");
     }
 
     @Test(expected = DataIntegrityViolationException.class)
     public void create_user_with_existing_username() {
-        sut.create("A", "B", USER_1.getUsername(), USER_3.getPassword(), "ROLE_USER", "email@email.com",15212);
+        sut.create("A", "B", USER_1.getUsername(), USER_3.getPassword(), "ROLE_USER", "email@email.com","15212");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void create_user_with_null_password() {
-        sut.create("A", "B",USER_3.getUsername(), null, "ROLE_USER", "email@email.com", 15206);
+        sut.create("A", "B",USER_3.getUsername(), null, "ROLE_USER", "email@email.com", "15206");
     }
 
     @Test
     public void create_user_creates_a_user() {
-        User newUser = new User(-1, "new", "user", "ROLE_USER", "A","B","email@email.com", 15333);
+        User newUser = new User(-1, "new", "user", "ROLE_USER", "A","B","email@email.com", "15333");
 
         boolean userWasCreated = sut.create(newUser.getFirstName(), newUser.getLastName(), newUser.getUsername(), newUser.getPassword(), "ROLE_USER", newUser.getEmail(), newUser.getZipCode());
 

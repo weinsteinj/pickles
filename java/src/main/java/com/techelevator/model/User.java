@@ -18,11 +18,11 @@ public class User {
    private String firstName;
    private String lastName;
    private String email;
-   private int zipCode;
+   private String zipCode;
 
    public User() { }
 
-   public User(int id, String username, String password, String authorities, String firstName, String lastName, String email, int zipCode) {
+   public User(int id, String username, String password, String authorities, String firstName, String lastName, String email, String zipCode) {
       this.id = id;
       this.username = username;
       this.password = password;
@@ -106,11 +106,11 @@ public class User {
       this.email = email;
    }
 
-   public int getZipCode() {
+   public String getZipCode() {
       return zipCode;
    }
 
-   public void setZipCode(int zipCode) {
+   public void setZipCode(String zipCode) {
       this.zipCode = zipCode;
    }
 

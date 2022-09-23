@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 
 public class Place {
 
-    private int zipcode;
+    private String zipcode;
     private BigDecimal lat;
     private BigDecimal lng;
 
-    public Place (int zipcode, BigDecimal lat, BigDecimal lng) {
+    public Place (String zipcode, BigDecimal lat, BigDecimal lng) {
         this.zipcode = zipcode;
         this.lat = lat;
         this.lng = lng;
@@ -18,11 +18,11 @@ public class Place {
 
     }
 
-    public int getZipcode() {
+    public String getZipcode() {
         return zipcode;
     }
 
-    public void setZipcode(int zipcode) {
+    public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
 
